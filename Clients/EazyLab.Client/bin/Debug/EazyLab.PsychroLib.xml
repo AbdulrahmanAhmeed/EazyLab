@@ -1,0 +1,814 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EazyLab.PsychroLib</name>
+    </assembly>
+    <members>
+        <member name="F:EazyLab.PsychroLib.Psychrometrics.ZERO_FAHRENHEIT_AS_RANKINE">
+            <summary>
+            Zero degree Fahrenheit (°F) expressed as degree Rankine (°R).
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 39.
+            </summary>
+        </member>
+        <member name="F:EazyLab.PsychroLib.Psychrometrics.ZERO_CELSIUS_AS_KELVIN">
+            <summary>
+            Zero degree Celsius (°C) expressed as Kelvin (K).
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 39.
+            </summary>
+        </member>
+        <member name="F:EazyLab.PsychroLib.Psychrometrics.R_DA_IP">
+            <summary>
+            Universal gas constant for dry air (IP version) in ft lb_Force lb_DryAir⁻¹ R⁻¹.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1.
+            </summary>
+        </member>
+        <member name="F:EazyLab.PsychroLib.Psychrometrics.R_DA_SI">
+            <summary>
+            Universal gas constant for dry air (SI version) in J kg_DryAir⁻¹ K⁻¹.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1.
+            </summary>
+        </member>
+        <member name="F:EazyLab.PsychroLib.Psychrometrics.INVALID">
+            <summary>
+            Invalid value (dimensionless).
+            </summary>
+        </member>
+        <member name="F:EazyLab.PsychroLib.Psychrometrics.MAX_ITER_COUNT">
+            <summary>
+            Maximum number of iterations before exiting while loops.
+            </summary>
+        </member>
+        <member name="F:EazyLab.PsychroLib.Psychrometrics.MIN_HUM_RATIO">
+            <summary>
+            Minimum acceptable humidity ratio used/returned by any functions.
+            Any value above 0 or below the MIN_HUM_RATIO will be reset to this value.
+            </summary>
+        </member>
+        <member name="F:EazyLab.PsychroLib.Psychrometrics.FREEZING_POINT_WATER_IP">
+            <summary>
+            Freezing point of water in Fahrenheit.
+            </summary>
+        </member>
+        <member name="F:EazyLab.PsychroLib.Psychrometrics.FREEZING_POINT_WATER_SI">
+            <summary>
+            Freezing point of water in Celsius.
+            </summary>
+        </member>
+        <member name="F:EazyLab.PsychroLib.Psychrometrics.TRIPLE_POINT_WATER_IP">
+            <summary>
+            Triple point of water in Fahrenheit.
+            </summary>
+        </member>
+        <member name="F:EazyLab.PsychroLib.Psychrometrics.TRIPLE_POINT_WATER_SI">
+            <summary>
+            Triple point of water in Celsius.
+            </summary>
+        </member>
+        <member name="P:EazyLab.PsychroLib.Psychrometrics.UnitSystem">
+            <summary>
+            Gets or Sets the current system of units for the calculations.
+            </summary>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.#ctor(EazyLab.PsychroLib.UnitSystem)">
+            <summary>
+            Constructor to create instance with the specified unit system.
+            </summary>
+            <param name="unitSystem">System of units to utilize for calculations.</param>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetTRankineFromTFahrenheit(System.Double)">
+            <summary>
+            Utility function to convert temperature to degree Rankine (°R)
+            given temperature in degree Fahrenheit (°F).
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 section 3
+            </summary>
+            <param name="tF">Temperature in Fahrenheit (°F)</param>
+            <returns>Rankine (°R)</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetTFahrenheitFromTRankine(System.Double)">
+            <summary>
+            Utility function to convert temperature to degree Fahrenheit (°F)
+            given temperature in degree Rankine (°R).
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 section 3
+            </summary>
+            <param name="tR">Temperature in Rankine (°R)</param>
+            <returns>Fahrenheit (°F)</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetTKelvinFromTCelsius(System.Double)">
+            <summary>
+            Utility function to convert temperature to Kelvin (K)
+            given temperature in degree Celsius (°C).
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 section 3
+            </summary>
+            <param name="tC">Temperature in Celsius (°C)</param>
+            <returns>Rankine (°R)</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetTCelsiusFromTKelvin(System.Double)">
+            <summary>
+            Utility function to convert temperature to degree Celsius (°C)
+            given temperature in Kelvin (K).
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 section 3
+            </summary>
+            <param name="tK">Temperature in Rankine (°R)</param>
+            <returns>Celsius (°C)</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetTWetBulbFromTDewPoint(System.Double,System.Double,System.Double)">
+            <summary>
+            Return wet-bulb temperature given dry-bulb temperature, dew-point temperature, and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="tDewPoint">Dew point temperature in °F [IP] or °C [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Wet bulb temperature in °F [IP] or °C [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetTWetBulbFromRelHum(System.Double,System.Double,System.Double)">
+            <summary>
+            Return wet-bulb temperature given dry-bulb temperature, relative humidity, and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="relHum">Relative humidity [0-1]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Wet bulb temperature in °F [IP] or °C [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetRelHumFromTDewPoint(System.Double,System.Double)">
+            <summary>
+            Return relative humidity given dry-bulb temperature and dew-point temperature.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn 22
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="tDewPoint">Dew point temperature in °F [IP] or °C [SI]</param>
+            <returns>Relative humidity [0-1]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetRelHumFromTWetBulb(System.Double,System.Double,System.Double)">
+            <summary>
+            Return relative humidity given dry-bulb temperature, wet bulb temperature and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="tWetBulb">Wet bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Relative humidity [0-1]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetTDewPointFromRelHum(System.Double,System.Double)">
+            <summary>
+            Return dew-point temperature given dry-bulb temperature and relative humidity.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="relHum">Relative humidity [0-1]</param>
+            <returns>Dew Point temperature in °F [IP] or °C [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetTDewPointFromTWetBulb(System.Double,System.Double,System.Double)">
+            <summary>
+            Return dew-point temperature given dry-bulb temperature, wet-bulb temperature, and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="tWetBulb">Wet bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Dew Point temperature in °F [IP] or °C [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetVapPresFromRelHum(System.Double,System.Double)">
+            <summary>
+            Return partial pressure of water vapor as a function of relative humidity and temperature.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn 12, 22
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="relHum">Relative humidity [0-1]</param>
+            <returns>Partial pressure of water vapor in moist air in Psi [IP] or Pa [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetRelHumFromVapPres(System.Double,System.Double)">
+            <summary>
+            Return relative humidity given dry-bulb temperature and vapor pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn 12, 22
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="vapPres">Partial pressure of water vapor in moist air in Psi [IP] or Pa [SI]</param>
+            <returns>Relative humidity [0-1]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.dLnPws_(System.Double)">
+            <summary>
+            Helper function returning the derivative of the natural log of the saturation vapor pressure
+            as a function of dry-bulb temperature.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn. 5 &amp; 6
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <returns>Derivative of natural log of vapor pressure of saturated air in Psi [IP] or Pa [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetTDewPointFromVapPres(System.Double,System.Double)">
+            <summary>
+            Return dew-point temperature given dry-bulb temperature and vapor pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn. 5 and 6
+            Notes: the dew point temperature is solved by inverting the equation giving water vapor pressure
+            at saturation from temperature rather than using the regressions provided
+            by ASHRAE (eqn. 37 and 38) which are much less accurate and have a
+            narrower range of validity.
+            The Newton-Raphson (NR) method is used on the logarithm of water vapour
+            pressure as a function of temperature, which is a very smooth function
+            Convergence is usually achieved in 3 to 5 iterations.
+            tDryBulb is not really needed here, just used for convenience.
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="vapPres">Partial pressure of water vapor in moist air in Psi [IP] or Pa [SI]</param>
+            <returns>(o) Dew Point temperature in °F [IP] or °C [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetVapPresFromTDewPoint(System.Double)">
+            <summary>
+            Return vapor pressure given dew point temperature.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn. 36
+            </summary>
+            <param name="tDewPoint">Dew point temperature in °F [IP] or °C [SI]</param>
+            <returns>Partial pressure of water vapor in moist air in Psi [IP] or Pa [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetTWetBulbFromHumRatio(System.Double,System.Double,System.Double)">
+            <summary>
+            Return wet-bulb temperature given dry-bulb temperature, humidity ratio, and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn 33 and 35 solved for Tstar
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="humRatio">Humidity ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Wet bulb temperature in °F [IP] or °C [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetHumRatioFromTWetBulb(System.Double,System.Double,System.Double)">
+            <summary>
+            Return humidity ratio given dry-bulb temperature, wet-bulb temperature, and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn 33 and 35
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="tWetBulb">Wet bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Humidity Ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetHumRatioFromRelHum(System.Double,System.Double,System.Double)">
+            <summary>
+            Return humidity ratio given dry-bulb temperature, relative humidity, and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="relHum">Relative humidity [0-1]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Humidity Ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetRelHumFromHumRatio(System.Double,System.Double,System.Double)">
+            <summary>
+            Return relative humidity given dry-bulb temperature, humidity ratio, and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="humRatio">Humidity ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Relative humidity [0-1]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetHumRatioFromTDewPoint(System.Double,System.Double)">
+            <summary>
+            Return humidity ratio given dew-point temperature and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1
+            </summary>
+            <param name="tDewPoint">Dew point temperature in °F [IP] or °C [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Humidity Ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetTDewPointFromHumRatio(System.Double,System.Double,System.Double)">
+            <summary>
+            Return dew-point temperature given dry-bulb temperature, humidity ratio, and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="humRatio">Humidity ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Dew Point temperature in °F [IP] or °C [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetHumRatioFromVapPres(System.Double,System.Double)">
+            <summary>
+            Return humidity ratio given water vapor pressure and atmospheric pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn 20
+            </summary>
+            <param name="vapPres">Partial pressure of water vapor in moist air in Psi [IP] or Pa [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Humidity Ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetVapPresFromHumRatio(System.Double,System.Double)">
+            <summary>
+            Return vapor pressure given humidity ratio and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn 20 solved for pw
+            </summary>
+            <param name="humRatio">Humidity ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Partial pressure of water vapor in moist air in Psi [IP] or Pa [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetSpecificHumFromHumRatio(System.Double)">
+            <summary>
+            Return the specific humidity from humidity ratio (aka mixing ratio)
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn 9b
+            </summary>
+            <param name="humRatio">Humidity ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</param>
+            <returns>Specific humidity ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetHumRatioFromSpecificHum(System.Double)">
+            <summary>
+            Return the humidity ratio (aka mixing ratio) from specific humidity
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn 9b (solved for humidity ratio)
+            </summary>
+            <param name="specificHum"></param>
+            <returns>Humidity ratio in lb_H₂O lb_Dry_Air⁻¹ [IP] or kg_H₂O kg_Dry_Air⁻¹ [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetDryAirEnthalpy(System.Double)">
+            <summary>
+            Return dry-air enthalpy given dry-bulb temperature.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn. 28
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <returns>Dry air enthalpy in Btu lb⁻¹ [IP] or J kg⁻¹ [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetDryAirDensity(System.Double,System.Double)">
+            <summary>
+            Return dry-air density given dry-bulb temperature and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1
+            Notes: eqn 14 for the perfect gas relationship for dry air.
+            Eqn 1 for the universal gas constant.
+            The factor 144 in IP is for the conversion of Psi = lb in⁻² to lb ft⁻².
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Dry air density in lb ft⁻³ [IP] or kg m⁻³ [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetDryAirVolume(System.Double,System.Double)">
+            <summary>
+            Return dry-air volume given dry-bulb temperature and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1.
+            Notes: eqn 14 for the perfect gas relationship for dry air.
+            Eqn 1 for the universal gas constant.
+            The factor 144 in IP is for the conversion of Psi = lb in⁻² to lb ft⁻².
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Dry air volume ft³ lb⁻¹ [IP] or in m³ kg⁻¹ [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetTDryBulbFromEnthalpyAndHumRatio(System.Double,System.Double)">
+            <summary>
+            Return dry bulb temperature from enthalpy and humidity ratio.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn 30.
+            Notes: based on the `GetMoistAirEnthalpy` function, rearranged for temperature.
+            </summary>
+            <param name="moistAirEnthalpy">Moist air enthalpy in Btu lb⁻¹ [IP] or J kg⁻¹</param>
+            <param name="humRatio">Humidity ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</param>
+            <returns>Dry-bulb temperature in °F [IP] or °C [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetHumRatioFromEnthalpyAndTDryBulb(System.Double,System.Double)">
+            <summary>
+            Return humidity ratio from enthalpy and dry-bulb temperature.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn 30.
+            Notes: based on the `GetMoistAirEnthalpy` function, rearranged for humidity ratio.
+            </summary>
+            <param name="moistAirEnthalpy">Moist air enthalpy in Btu lb⁻¹ [IP] or J kg⁻¹</param>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <returns>Humidity ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetSatVapPres(System.Double)">
+            <summary>
+            Return saturation vapor pressure given dry-bulb temperature.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn. 5 &amp; 6
+            Important note: the ASHRAE formulae are defined above and below the freezing point but have
+            a discontinuity at the freezing point. This is a small inaccuracy on ASHRAE's part: the formulae
+            should be defined above and below the triple point of water (not the feezing point) in which case
+            the discontinuity vanishes. It is essential to use the triple point of water otherwise function
+            GetTDewPointFromVapPres, which inverts the present function, does not converge properly around
+            the freezing point.
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <returns>Vapor pressure of saturated air in Psi [IP] or Pa [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetSatHumRatio(System.Double,System.Double)">
+            <summary>
+            Return humidity ratio of saturated air given dry-bulb temperature and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn 36, solved for W
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Humidity ratio of saturated air in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetSatAirEnthalpy(System.Double,System.Double)">
+            <summary>
+            Return saturated air enthalpy given dry-bulb temperature and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Saturated air enthalpy in Btu lb⁻¹ [IP] or J kg⁻¹ [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetVaporPressureDeficit(System.Double,System.Double,System.Double)">
+            <summary>
+            Return Vapor pressure deficit given dry-bulb temperature, humidity ratio, and pressure.
+            Reference: see Oke (1987) eqn. 2.13a
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="humRatio">Humidity ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Vapor pressure deficit in Psi [IP] or Pa [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetDegreeOfSaturation(System.Double,System.Double,System.Double)">
+            <summary>
+            Return the degree of saturation (i.e humidity ratio of the air / humidity ratio of the air at saturation
+            at the same temperature and pressure) given dry-bulb temperature, humidity ratio, and atmospheric pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2009) ch. 1 eqn. 12
+            Notes: the definition is absent from the 2017 Handbook
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="humRatio">Humidity ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Degree of saturation (unitless)</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetMoistAirEnthalpy(System.Double,System.Double)">
+            <summary>
+            Return moist air enthalpy given dry-bulb temperature and humidity ratio.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn. 30
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="humRatio">Humidity ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</param>
+            <returns>Moist Air Enthalpy in Btu lb⁻¹ [IP] or J kg⁻¹ [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetMoistAirVolume(System.Double,System.Double,System.Double)">
+            <summary>
+            Return moist air specific volume given dry-bulb temperature, humidity ratio, and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn. 26
+            Notes: in IP units, R_DA_IP / 144 equals 0.370486 which is the coefficient appearing in eqn 26.
+            The factor 144 is for the conversion of Psi = lb in⁻² to lb ft⁻².
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="humRatio">Humidity ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Specific Volume ft³ lb⁻¹ [IP] or in m³ kg⁻¹ [SI]</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:EazyLab.PsychroLib.Psychrometrics.GetKiematicViscosity(System.Double,System.Double)" -->
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetTDryBulbFromMoistAirVolumeAndHumRatio(System.Double,System.Double,System.Double)">
+            <summary>
+            Return dry-bulb temperature given moist air specific volume, humidity ratio, and pressure.
+            Reference:
+            ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn 26
+            Notes:
+            In IP units, R_DA_IP / 144 equals 0.370486 which is the coefficient appearing in eqn 26
+            The factor 144 is for the conversion of Psi = lb in⁻² to lb ft⁻².
+            Based on the `GetMoistAirVolume` function, rearranged for dry-bulb temperature.
+            </summary>
+            <param name="MoistAirVolume">Specific volume of moist air in ft³ lb⁻¹ of dry air [IP] or in m³ kg⁻¹ of dry air [SI]</param>
+            <param name="humRatio">Humidity ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Dry-bulb temperature in °F [IP] or °C [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetMoistAirDensity(System.Double,System.Double,System.Double)">
+            <summary>
+            Return moist air density given humidity ratio, dry bulb temperature, and pressure.
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn. 11
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="humRatio">Humidity ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Moist air density in lb ft⁻³ [IP] or kg m⁻³ [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetStandardAtmPressure(System.Double)">
+            <summary>
+            Return standard atmosphere barometric pressure, given the elevation (altitude).
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn 3
+            </summary>
+            <param name="altitude">altitude in ft [IP] or m [SI]</param>
+            <returns>Standard atmosphere barometric pressure in Psi [IP] or Pa [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetStandardAtmTemperature(System.Double)">
+            <summary>
+            Return standard atmosphere temperature, given the elevation (altitude).
+            Reference: ASHRAE Handbook - Fundamentals (2017) ch. 1 eqn 4
+            </summary>
+            <param name="altitude">altitude in ft [IP] or m [SI]</param>
+            <returns> Standard atmosphere dry bulb temperature in °F [IP] or °C [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetSeaLevelPressure(System.Double,System.Double,System.Double)">
+            <summary>
+            Return sea level pressure given dry-bulb temperature, altitude above sea level and pressure.
+            Reference: Hess SL, Introduction to theoretical meteorology, Holt Rinehart and Winston, NY 1959,
+            ch. 6.5; Stull RB, Meteorology for scientists and engineers, 2nd edition,
+            Brooks/Cole 2000, ch. 1.
+            Notes: the standard procedure for the US is to use for tDryBulb the average
+            of the current station temperature and the station temperature from 12 hours ago.
+            </summary>
+            <param name="stnPressure">Observed station pressure in Psi [IP] or Pa [SI]</param>
+            <param name="altitude">Altitude above sea level in ft [IP] or m [SI]</param>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <returns>Sea level barometric pressure in Psi [IP] or Pa [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.GetStationPressure(System.Double,System.Double,System.Double)">
+            <summary>
+            Return station pressure from sea level pressure
+            Reference: see 'GetSeaLevelPressure'
+            Notes: this function is just the inverse of 'GetSeaLevelPressure'.
+            </summary>
+            <param name="seaLevelPressure">Sea level barometric pressure in Psi [IP] or Pa [SI]</param>
+            <param name="altitude">Altitude above sea level in ft [IP] or m [SI]</param>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <returns>Station pressure in Psi [IP] or Pa [SI]</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.CalcPsychrometricsFromTWetBulb(System.Double,System.Double,System.Double)">
+            <summary>
+            Utility function to calculate humidity ratio, dew-point temperature, relative humidity,
+            vapour pressure, moist air enthalpy, moist air volume, and degree of saturation of air given
+            dry-bulb temperature, wet-bulb temperature, and pressure.
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="tWetBulb">Wet bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Calculated values.</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.CalcPsychrometricsFromTDewPoint(System.Double,System.Double,System.Double)">
+            <summary>
+            Utility function to calculate humidity ratio, wet-bulb temperature, relative humidity,
+            vapour pressure, moist air enthalpy, moist air volume, and degree of saturation of air given
+            dry-bulb temperature, dew-point temperature, and pressure.
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="tDewPoint">Dew point temperature in °F [IP] or °C [SI]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Calculated values.</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.Psychrometrics.CalcPsychrometricsFromRelHum(System.Double,System.Double,System.Double)">
+            <summary>
+            Utility function to calculate humidity ratio, wet-bulb temperature, dew-point temperature,
+            vapour pressure, moist air enthalpy, moist air volume, and degree of saturation of air given
+            dry-bulb temperature, relative humidity and pressure.
+            </summary>
+            <param name="tDryBulb">Dry bulb temperature in °F [IP] or °C [SI]</param>
+            <param name="relHum">Relative humidity [0-1]</param>
+            <param name="pressure">Atmospheric pressure in Psi [IP] or Pa [SI]</param>
+            <returns>Calculated values.</returns>
+        </member>
+        <member name="P:EazyLab.PsychroLib.PsychrometricValue.TDryBulb">
+            <summary>
+            Dry bulb temperature in °F [IP] or °C [SI]
+            </summary>
+        </member>
+        <member name="P:EazyLab.PsychroLib.PsychrometricValue.TWetBulb">
+            <summary>
+            Wet bulb temperature in °F [IP] or °C [SI]
+            </summary>
+        </member>
+        <member name="P:EazyLab.PsychroLib.PsychrometricValue.Pressure">
+            <summary>
+            Atmospheric pressure in Psi [IP] or Pa [SI]
+            </summary>
+        </member>
+        <member name="P:EazyLab.PsychroLib.PsychrometricValue.HumRatio">
+            <summary>
+            Humidity ratio in lb_H₂O lb_Air⁻¹ [IP] or kg_H₂O kg_Air⁻¹ [SI]
+            </summary>
+        </member>
+        <member name="P:EazyLab.PsychroLib.PsychrometricValue.TDewPoint">
+            <summary>
+            Dew point temperature in °F [IP] or °C [SI]
+            </summary>
+        </member>
+        <member name="P:EazyLab.PsychroLib.PsychrometricValue.RelHum">
+            <summary>
+            Relative humidity [0-1]
+            </summary>
+        </member>
+        <member name="P:EazyLab.PsychroLib.PsychrometricValue.VapPres">
+            <summary>
+            Partial pressure of water vapor in moist air in Psi [IP] or Pa [SI]
+            </summary>
+        </member>
+        <member name="P:EazyLab.PsychroLib.PsychrometricValue.MoistAirEnthalpy">
+            <summary>
+            Moist air enthalpy in Btu lb⁻¹ [IP] or J kg⁻¹ [SI]
+            </summary>
+        </member>
+        <member name="P:EazyLab.PsychroLib.PsychrometricValue.MoistAirVolume">
+            <summary>
+            Specific volume ft³ lb⁻¹ [IP] or in m³ kg⁻¹ [SI]
+            </summary>
+        </member>
+        <member name="P:EazyLab.PsychroLib.PsychrometricValue.DegreeOfSaturation">
+            <summary>
+            Degree of saturation [unitless]
+            </summary>
+        </member>
+        <member name="T:EazyLab.PsychroLib.UnitSystem">
+            <summary>
+            Standard unit systems
+            </summary>
+        </member>
+        <member name="F:EazyLab.PsychroLib.UnitSystem.IP">
+            <summary>
+            Imperial Units
+            </summary>
+        </member>
+        <member name="F:EazyLab.PsychroLib.UnitSystem.SI">
+            <summary>
+            Metric System Units
+            </summary>
+        </member>
+        <member name="T:EazyLab.PsychroLib.WeatherHelper">
+            <summary>
+            Helpers for weather.
+            </summary>
+        </member>
+        <member name="F:EazyLab.PsychroLib.WeatherHelper.MeanSeaLevel">
+            <summary>
+            The mean sea-level pressure (MSLP) is the average atmospheric pressure at mean sea level.
+            </summary>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.CalculateHeatIndex(UnitsNet.Temperature,UnitsNet.RelativeHumidity)">
+            <summary>
+            The heat index (or apparent temperature) is used to measure the amount of discomfort
+            during the summer months when heat and humidity often combine to make it feel hotter
+            than it actually is. The heat index is usually used for afternoon high temperatures.
+            </summary>
+            <param name="airTemperature">The dry air temperature.</param>
+            <param name="relativeHumidity">The relative humidity (RH).</param>
+            <returns>The heat index, also known as the apparent temperature.</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.CalculateSaturatedVaporPressureOverWater(UnitsNet.Temperature)">
+            <summary>
+            Calculates the saturated vapor pressure for a given air temperature over water.
+            The formula used is valid for temperatures between -100°C and +100°C.
+            </summary>
+            <param name="airTemperature">The dry air temperature.</param>
+            <returns>The saturated vapor pressure.</returns>
+            <remarks>
+            From https://de.wikibooks.org/wiki/Tabellensammlung_Chemie/_Stoffdaten_Wasser, after D. Sonntag (1982).
+            </remarks>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.CalculateSaturatedVaporPressureOverIce(UnitsNet.Temperature)">
+            <summary>
+            Calculates the saturated vapor pressure for a given air temperature over ice.
+            The formula used is valid for temperatures between -100°C and +0°C.
+            </summary>
+            <param name="airTemperature">The dry air temperature.</param>
+            <returns>The saturated vapor pressure.</returns>
+            <remarks>
+            From https://de.wikibooks.org/wiki/Tabellensammlung_Chemie/_Stoffdaten_Wasser, after D. Sonntag (1982).
+            </remarks>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.CalculateActualVaporPressure(UnitsNet.Temperature,UnitsNet.RelativeHumidity)">
+            <summary>
+            Calculates the actual vapor pressure.
+            </summary>
+            <param name="airTemperature">The dry air temperature.</param>
+            <param name="relativeHumidity">The relative humidity (RH).</param>
+            <returns>The actual vapor pressure.</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.CalculateDewPoint(UnitsNet.Temperature,UnitsNet.RelativeHumidity)">
+            <summary>
+            Calculates the dew point.
+            </summary>
+            <param name="airTemperature">The dry air temperature.</param>
+            <param name="relativeHumidity">The relative humidity (RH).</param>
+            <returns>The dew point.</returns>
+            <remarks>
+            Source https://en.wikipedia.org/wiki/Dew_point.
+            </remarks>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.CalculateAbsoluteHumidity(UnitsNet.Temperature,UnitsNet.RelativeHumidity)">
+            <summary>
+            Calculates the absolute humidity in g/m³
+            </summary>
+            <param name="airTemperature">The dry air temperature</param>
+            <param name="relativeHumidity">The relative humidity (RH)</param>
+            <returns>The absolute humidity in g/m³</returns>
+            <remarks>
+            Source https://de.wikipedia.org/wiki/Luftfeuchtigkeit#Absolute_Luftfeuchtigkeit
+            </remarks>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.GetRelativeHumidityFromActualAirTemperature(UnitsNet.Temperature,UnitsNet.RelativeHumidity,UnitsNet.Temperature)">
+            <summary>
+            Calculates a corrected relative humidity. This is useful if you have a temperature/humidity sensor that is
+            placed in a location where the temperature is different from the real ambient temperature (like it sits inside a hot case)
+            and another temperature-only sensor that gives more reasonable ambient temperature readings.
+            Do note that the relative humidity is dependent on the temperature, because it depends on how much water a volume of air
+            can contain, which increases with temperature.
+            </summary>
+            <param name="airTemperatureFromHumiditySensor">Temperature measured by the humidity sensor</param>
+            <param name="relativeHumidityMeasured">Humidity measured</param>
+            <param name="airTemperatureFromBetterPlacedSensor">Temperature measured by better placed sensor</param>
+            <returns>A corrected humidity. The value will be lower than the input value if the better placed sensor is cooler than
+            the "bad" sensor.</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.CalculateAltitude(UnitsNet.Pressure,UnitsNet.Pressure,UnitsNet.Temperature)">
+            <summary>
+            Calculates the altitude in meters from the given pressure, sea-level pressure and air temperature.
+            </summary>
+            <param name="pressure">The pressure at the point for which altitude is being calculated.</param>
+            <param name="seaLevelPressure">The sea-level pressure.</param>
+            <param name="airTemperature">The dry air temperature at the point for which altitude is being calculated.</param>
+            <returns>The altitude.</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.CalculateAltitude(UnitsNet.Pressure,UnitsNet.Temperature)">
+            <summary>
+            Calculates the altitude in meters from the given pressure and air temperature. Assumes mean sea-level pressure.
+            </summary>
+            <param name="pressure">The pressure at the point for which altitude is being calculated.</param>
+            <param name="airTemperature">The dry air temperature at the point for which altitude is being calculated.</param>
+            <returns>The altitude.</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.CalculateAltitude(UnitsNet.Pressure,UnitsNet.Pressure)">
+            <summary>
+            Calculates the altitude in meters from the given pressure and sea-level pressure. Assumes temperature of 15C.
+            </summary>
+            <param name="pressure">The pressure at the point for which altitude is being calculated.</param>
+            <param name="seaLevelPressure">The sea-level pressure.</param>
+            <returns>The altitude.</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.CalculateAltitude(UnitsNet.Pressure)">
+            <summary>
+            Calculates the altitude in meters from the given pressure. Assumes mean sea-level pressure and temperature of 15C.
+            </summary>
+            <param name="pressure">The pressure at the point for which altitude is being calculated.</param>
+            <returns>The altitude.</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.CalculateSeaLevelPressure(UnitsNet.Pressure,UnitsNet.Length,UnitsNet.Temperature)">
+            <summary>
+            Calculates the approximate sea-level pressure from given absolute pressure, altitude and air temperature.
+            </summary>
+            <param name="pressure">The air pressure at the point of measurement.</param>
+            <param name="altitude">The altitude at the point of the measurement.</param>
+            <param name="airTemperature">The air temperature.</param>
+            <returns>The estimated absolute sea-level pressure.</returns>
+            <remarks><see cref="M:EazyLab.PsychroLib.WeatherHelper.CalculatePressure(UnitsNet.Pressure,UnitsNet.Length,UnitsNet.Temperature)"/> solved for sea level pressure.</remarks>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.CalculatePressure(UnitsNet.Pressure,UnitsNet.Length,UnitsNet.Temperature)">
+            <summary>
+            Calculates the approximate absolute pressure from given sea-level pressure, altitude and air temperature.
+            </summary>
+            <param name="seaLevelPressure">The sea-level pressure.</param>
+            <param name="altitude">The altitude in meters at the point for which pressure is being calculated.</param>
+            <param name="airTemperature">The air temperature at the point for which pressure is being calculated.</param>
+            <returns>The estimated absolute pressure at the given altitude.</returns>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.CalculateTemperature(UnitsNet.Pressure,UnitsNet.Pressure,UnitsNet.Length)">
+            <summary>
+            Calculates the temperature gradient for the given pressure difference.
+            </summary>
+            <param name="pressure">The air pressure at the point for which temperature is being calculated.</param>
+            <param name="seaLevelPressure">The sea-level pressure.</param>
+            <param name="altitude">The altitude in meters at the point for which temperature is being calculated.</param>
+            <returns>The standard temperature at the given altitude, when the given pressure difference is known.</returns>
+            <remarks><see cref="M:EazyLab.PsychroLib.WeatherHelper.CalculatePressure(UnitsNet.Pressure,UnitsNet.Length,UnitsNet.Temperature)"/> solved for temperature.</remarks>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.CalculateBarometricPressure(UnitsNet.Pressure,UnitsNet.Temperature,UnitsNet.Length)">
+            <summary>
+            Calculates the barometric pressure from a raw reading, using the reduction formula from the german met service.
+            This is a more complex variant of <see cref="M:EazyLab.PsychroLib.WeatherHelper.CalculateSeaLevelPressure(UnitsNet.Pressure,UnitsNet.Length,UnitsNet.Temperature)"/>. It gives the value that a weather station gives
+            for a particular area and is also used in meteorological charts.
+            <example>
+            You are at 650m over sea and measure a pressure of 948.7 hPa and a temperature of 24.0°C. The met service will show that
+            you are within a high-pressure area of around 1020 hPa.
+            </example>
+            </summary>
+            <param name="measuredPressure">Measured pressure at the observation point.</param>
+            <param name="measuredTemperature">Measured temperature at the observation point.</param>
+            <param name="measurementAltitude">Height over sea level of the observation point (to be really precise, geopotential heights have
+            to be used above ~750m). Do not use the height obtained by calling <see cref="M:EazyLab.PsychroLib.WeatherHelper.CalculateAltitude(UnitsNet.Pressure)"/>
+            or any of its overloads, since what would use redundant data.</param>
+            <returns>The barometric pressure at the point of observation.</returns>
+            <remarks>
+            From https://de.wikipedia.org/wiki/Barometrische_Höhenformel#Anwendungen.
+            </remarks>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.CalculateBarometricPressure(UnitsNet.Pressure,UnitsNet.Temperature,UnitsNet.Pressure,UnitsNet.Length)">
+            <summary>
+            Calculates the barometric pressure from a raw reading, using the reduction formula from the german met service.
+            This is a more complex variant of <see cref="M:EazyLab.PsychroLib.WeatherHelper.CalculateSeaLevelPressure(UnitsNet.Pressure,UnitsNet.Length,UnitsNet.Temperature)"/>. It gives the value that a weather station gives
+            for a particular area and is also used in meteorological charts.
+            <example>
+            You are at 650m over sea and measure a pressure of 948.7 hPa and a temperature of 24.0°C. The met service will show that
+            you are within a high-pressure area of around 1020 hPa.
+            </example>
+            </summary>
+            <param name="measuredPressure">Measured pressure at the observation point.</param>
+            <param name="measuredTemperature">Measured temperature at the observation point.</param>
+            <param name="vaporPressure">Vapor pressure, meteorologic definition.</param>
+            <param name="measurementAltitude">Height over sea level of the observation point (to be really precise, geopotential heights have
+            to be used above ~750m).</param>
+            <returns>The barometric pressure at the point of observation.</returns>
+            <remarks>
+            From https://de.wikipedia.org/wiki/Barometrische_Höhenformel#Anwendungen.
+            </remarks>
+        </member>
+        <member name="M:EazyLab.PsychroLib.WeatherHelper.CalculateBarometricPressure(UnitsNet.Pressure,UnitsNet.Temperature,UnitsNet.Length,UnitsNet.RelativeHumidity)">
+            <summary>
+            Calculates the barometric pressure from a raw reading, using the reduction formula from the german met service.
+            This is a more complex variant of <see cref="M:EazyLab.PsychroLib.WeatherHelper.CalculateSeaLevelPressure(UnitsNet.Pressure,UnitsNet.Length,UnitsNet.Temperature)"/>. It gives the value that a weather station gives
+            for a particular area and is also used in meteorological charts.
+            Use this method if you also have the relative humidity.
+            </summary>
+            <param name="measuredPressure">Measured pressure at the observation point.</param>
+            <param name="measuredTemperature">Measured temperature at the observation point.</param>
+            <param name="measurementAltitude">Height over sea level of the observation point (to be really precise, geopotential heights have
+            to be used above ~750m).</param>
+            <param name="relativeHumidity">Relative humidity at point of measurement.</param>
+            <returns>The barometric pressure at the point of observation.</returns>
+            <remarks>
+            From https://de.wikipedia.org/wiki/Barometrische_Höhenformel#Anwendungen.
+            </remarks>
+        </member>
+    </members>
+</doc>

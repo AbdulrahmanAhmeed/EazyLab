@@ -1,0 +1,197 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A54FAF43-3047-420E-9051-B53D17F02301}"
+	ProjectSection(SolutionItems) = preProject
+		Controls\cs-script\src\.editorconfig = Controls\cs-script\src\.editorconfig
+		..\..\Alternet\Source_AlterNETStudio_7.2\.editorconfig = ..\..\Alternet\Source_AlterNETStudio_7.2\.editorconfig
+		Controls\AlterNETStudio_7.2\.editorconfig = Controls\AlterNETStudio_7.2\.editorconfig
+		Controls\AlterNETStudio_8.0\.editorconfig = Controls\AlterNETStudio_8.0\.editorconfig
+		General classes\CallbackControl.cs = General classes\CallbackControl.cs
+		General classes\CallbackControl.Designer.cs = General classes\CallbackControl.Designer.cs
+		General classes\ConsoleWriter.cs = General classes\ConsoleWriter.cs
+		General classes\Constants.cs = General classes\Constants.cs
+		General classes\DaqException.cs = General classes\DaqException.cs
+		General classes\EepromAssistant.cs = General classes\EepromAssistant.cs
+		General classes\EepromAssistantII.cs = General classes\EepromAssistantII.cs
+		General classes\EepromAssistantIII.cs = General classes\EepromAssistantIII.cs
+		General classes\EepromAssistantIV.cs = General classes\EepromAssistantIV.cs
+		General classes\Enums.cs = General classes\Enums.cs
+		General classes\ErrorCodes.cs = General classes\ErrorCodes.cs
+		General classes\GuiUtilties.cs = General classes\GuiUtilties.cs
+		General classes\IDevice.cs = General classes\IDevice.cs
+		General classes\Messages.cs = General classes\Messages.cs
+		General classes\MessageTranslator.cs = General classes\MessageTranslator.cs
+		General classes\MicroLibrary.cs = General classes\MicroLibrary.cs
+		General classes\NL1000Inverter.cs = General classes\NL1000Inverter.cs
+		General classes\RateCalculator.cs = General classes\RateCalculator.cs
+		General classes\SteadyStateDetector.cs = General classes\SteadyStateDetector.cs
+		General classes\TaskResult.cs = General classes\TaskResult.cs
+		General classes\Thermocouples.cs = General classes\Thermocouples.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{9B27C7BA-8720-40AF-8511-873043D91349}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items (2)", "Solution Items (2)", "{6332CBD5-8A7B-482E-B923-1DE81A5C8AA5}"
+	ProjectSection(SolutionItems) = preProject
+		Controls\cs-script\src\.editorconfig = Controls\cs-script\src\.editorconfig
+		..\..\Alternet\Source_AlterNETStudio_7.2\.editorconfig = ..\..\Alternet\Source_AlterNETStudio_7.2\.editorconfig
+		Controls\AlterNETStudio_7.2\.editorconfig = Controls\AlterNETStudio_7.2\.editorconfig
+		Controls\AlterNETStudio_8.0\.editorconfig = Controls\AlterNETStudio_8.0\.editorconfig
+		General classes\CallbackControl.cs = General classes\CallbackControl.cs
+		General classes\CallbackControl.Designer.cs = General classes\CallbackControl.Designer.cs
+		General classes\ConsoleWriter.cs = General classes\ConsoleWriter.cs
+		General classes\Constants.cs = General classes\Constants.cs
+		General classes\DaqException.cs = General classes\DaqException.cs
+		General classes\EepromAssistant.cs = General classes\EepromAssistant.cs
+		General classes\EepromAssistantII.cs = General classes\EepromAssistantII.cs
+		General classes\EepromAssistantIII.cs = General classes\EepromAssistantIII.cs
+		General classes\EepromAssistantIV.cs = General classes\EepromAssistantIV.cs
+		General classes\Enums.cs = General classes\Enums.cs
+		General classes\ErrorCodes.cs = General classes\ErrorCodes.cs
+		General classes\GuiUtilties.cs = General classes\GuiUtilties.cs
+		General classes\IDevice.cs = General classes\IDevice.cs
+		General classes\Messages.cs = General classes\Messages.cs
+		General classes\MessageTranslator.cs = General classes\MessageTranslator.cs
+		General classes\MicroLibrary.cs = General classes\MicroLibrary.cs
+		General classes\NL1000Inverter.cs = General classes\NL1000Inverter.cs
+		General classes\RateCalculator.cs = General classes\RateCalculator.cs
+		General classes\SteadyStateDetector.cs = General classes\SteadyStateDetector.cs
+		General classes\TaskResult.cs = General classes\TaskResult.cs
+		General classes\Thermocouples.cs = General classes\Thermocouples.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EazyLab.Client", "Clients\EazyLab.Client\EazyLab.Client.csproj", "{BE1B7C96-D0F8-401C-B553-04645B9581AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Debug-Xml|Any CPU = Debug-Xml|Any CPU
+		Debug-Xml|Mixed Platforms = Debug-Xml|Mixed Platforms
+		Debug-Xml|x64 = Debug-Xml|x64
+		Debug-Xml|x86 = Debug-Xml|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+		Release-Signed|Any CPU = Release-Signed|Any CPU
+		Release-Signed|Mixed Platforms = Release-Signed|Mixed Platforms
+		Release-Signed|x64 = Release-Signed|x64
+		Release-Signed|x86 = Release-Signed|x86
+		Release-Xml|Any CPU = Release-Xml|Any CPU
+		Release-Xml|Mixed Platforms = Release-Xml|Mixed Platforms
+		Release-Xml|x64 = Release-Xml|x64
+		Release-Xml|x86 = Release-Xml|x86
+		RemoteDebug|Any CPU = RemoteDebug|Any CPU
+		RemoteDebug|Mixed Platforms = RemoteDebug|Mixed Platforms
+		RemoteDebug|x64 = RemoteDebug|x64
+		RemoteDebug|x86 = RemoteDebug|x86
+		Runtime|Any CPU = Runtime|Any CPU
+		Runtime|Mixed Platforms = Runtime|Mixed Platforms
+		Runtime|x64 = Runtime|x64
+		Runtime|x86 = Runtime|x86
+		Trial|Any CPU = Trial|Any CPU
+		Trial|Mixed Platforms = Trial|Mixed Platforms
+		Trial|x64 = Trial|x64
+		Trial|x86 = Trial|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Debug|x64.Build.0 = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Debug|x86.Build.0 = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Debug-Xml|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Debug-Xml|Any CPU.Build.0 = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Debug-Xml|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Debug-Xml|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Debug-Xml|x64.ActiveCfg = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Debug-Xml|x64.Build.0 = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Debug-Xml|x86.ActiveCfg = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Debug-Xml|x86.Build.0 = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release|x64.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release|x64.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release|x86.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release|x86.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release-Signed|Any CPU.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release-Signed|Any CPU.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release-Signed|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release-Signed|Mixed Platforms.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release-Signed|x64.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release-Signed|x64.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release-Signed|x86.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release-Signed|x86.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release-Xml|Any CPU.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release-Xml|Any CPU.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release-Xml|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release-Xml|Mixed Platforms.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release-Xml|x64.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release-Xml|x64.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release-Xml|x86.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Release-Xml|x86.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.RemoteDebug|Any CPU.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.RemoteDebug|Any CPU.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.RemoteDebug|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.RemoteDebug|Mixed Platforms.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.RemoteDebug|x64.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.RemoteDebug|x64.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.RemoteDebug|x86.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.RemoteDebug|x86.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Runtime|Any CPU.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Runtime|Any CPU.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Runtime|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Runtime|Mixed Platforms.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Runtime|x64.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Runtime|x64.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Runtime|x86.ActiveCfg = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Runtime|x86.Build.0 = Release|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Trial|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Trial|Any CPU.Build.0 = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Trial|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Trial|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Trial|x64.ActiveCfg = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Trial|x64.Build.0 = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Trial|x86.ActiveCfg = Debug|Any CPU
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE}.Trial|x86.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6332CBD5-8A7B-482E-B923-1DE81A5C8AA5} = {A54FAF43-3047-420E-9051-B53D17F02301}
+		{BE1B7C96-D0F8-401C-B553-04645B9581AE} = {9B27C7BA-8720-40AF-8511-873043D91349}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6614D9BB-0E27-4897-93F6-C2EEF08D59D5}
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = src/Numerics/Numerics.csproj
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = src/Numerics/Numerics.csproj
+	EndGlobalSection
+EndGlobal
