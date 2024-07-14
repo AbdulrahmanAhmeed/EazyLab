@@ -45,7 +45,7 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.gbCalibrtion = new System.Windows.Forms.GroupBox();
+            this.gbCalibration = new System.Windows.Forms.GroupBox();
             this.pv1 = new EazyLab.Instrumentation.Standard.PV();
             this.edCalibValue = new EazyLab.Instrumentation.Standard.EditDouble();
             this.btnZero = new System.Windows.Forms.Button();
@@ -68,7 +68,7 @@
             this.label10 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudScanningInterval)).BeginInit();
-            this.gbCalibrtion.SuspendLayout();
+            this.gbCalibration.SuspendLayout();
             this.gbChamber.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudTimeout)).BeginInit();
             this.SuspendLayout();
@@ -76,7 +76,7 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(734, 387);
+            this.btnSave.Location = new System.Drawing.Point(795, 387);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(146, 32);
             this.btnSave.TabIndex = 0;
@@ -129,7 +129,7 @@
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(851, 456);
+            this.btnClose.Location = new System.Drawing.Point(795, 456);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(146, 32);
             this.btnClose.TabIndex = 0;
@@ -165,7 +165,6 @@
             this.led1.Location = new System.Drawing.Point(913, 22);
             this.led1.Name = "led1";
             this.led1.Size = new System.Drawing.Size(54, 49);
-            this.led1.ValueChanged += new EazyLab.Delegates.ValueBooleanEventHandler(this.led1_ValueChanged);
             this.led1.LoadingEnd();
             // 
             // nudScanningInterval
@@ -202,7 +201,6 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "Period (mSec) :";
             this.label5.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // cbSerialNo
             // 
@@ -213,7 +211,7 @@
             this.cbSerialNo.Size = new System.Drawing.Size(334, 37);
             this.cbSerialNo.TabIndex = 14;
             this.cbSerialNo.DropDown += new System.EventHandler(this.cbSerialNo_DropDown);
-            this.cbSerialNo.SelectedIndexChanged += new System.EventHandler(this.cbSerialNo_SelectedIndexChanged);
+            this.cbSerialNo.SelectionChangeCommitted += new System.EventHandler(this.cbSerialNo_SelectionChangeCommitted);
             this.cbSerialNo.TextChanged += new System.EventHandler(this.cbSerialNo_TextChanged);
             // 
             // btnConnect
@@ -225,7 +223,7 @@
             this.btnConnect.OffColor = System.Drawing.Color.Red;
             this.btnConnect.OffText = "Connect";
             this.btnConnect.OnColor = System.Drawing.Color.GreenYellow;
-            this.btnConnect.OnText = "Connecting";
+            this.btnConnect.OnText = "Disconnect";
             this.btnConnect.Size = new System.Drawing.Size(160, 36);
             this.btnConnect.State = false;
             this.btnConnect.TabIndex = 15;
@@ -265,19 +263,19 @@
             this.listBox1.TabIndex = 18;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
-            // gbCalibrtion
+            // gbCalibration
             // 
-            this.gbCalibrtion.Controls.Add(this.pv1);
-            this.gbCalibrtion.Controls.Add(this.edCalibValue);
-            this.gbCalibrtion.Controls.Add(this.btnZero);
-            this.gbCalibrtion.Controls.Add(this.btnSpan);
-            this.gbCalibrtion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbCalibrtion.Location = new System.Drawing.Point(734, 77);
-            this.gbCalibrtion.Name = "gbCalibrtion";
-            this.gbCalibrtion.Size = new System.Drawing.Size(233, 239);
-            this.gbCalibrtion.TabIndex = 21;
-            this.gbCalibrtion.TabStop = false;
-            this.gbCalibrtion.Text = "calibrtion";
+            this.gbCalibration.Controls.Add(this.pv1);
+            this.gbCalibration.Controls.Add(this.edCalibValue);
+            this.gbCalibration.Controls.Add(this.btnZero);
+            this.gbCalibration.Controls.Add(this.btnSpan);
+            this.gbCalibration.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbCalibration.Location = new System.Drawing.Point(734, 77);
+            this.gbCalibration.Name = "gbCalibration";
+            this.gbCalibration.Size = new System.Drawing.Size(233, 239);
+            this.gbCalibration.TabIndex = 21;
+            this.gbCalibration.TabStop = false;
+            this.gbCalibration.Text = "Calibration";
             // 
             // pv1
             // 
@@ -490,7 +488,6 @@
             this.edName.Name = "edName";
             this.edName.Size = new System.Drawing.Size(216, 31);
             this.edName.TabIndex = 30;
-            this.edName.ValueChanged += new EazyLab.Delegates.ValueDoubleEventHandler(this.edName_ValueChanged);
             this.edName.LoadingEnd();
             // 
             // NudTimeout
@@ -527,7 +524,6 @@
             this.label10.TabIndex = 7;
             this.label10.Text = "TiimeOut,Sec :";
             this.label10.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.label10.Click += new System.EventHandler(this.Timeout_Click);
             // 
             // frmCptStation
             // 
@@ -538,7 +534,7 @@
             this.Controls.Add(this.btReset);
             this.Controls.Add(this.gbChamber);
             this.Controls.Add(this.tbStatus);
-            this.Controls.Add(this.gbCalibrtion);
+            this.Controls.Add(this.gbCalibration);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnConnect);
@@ -565,8 +561,8 @@
             this.Load += new System.EventHandler(this.frmCptStation_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nudId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudScanningInterval)).EndInit();
-            this.gbCalibrtion.ResumeLayout(false);
-            this.gbCalibrtion.PerformLayout();
+            this.gbCalibration.ResumeLayout(false);
+            this.gbCalibration.PerformLayout();
             this.gbChamber.ResumeLayout(false);
             this.gbChamber.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudTimeout)).EndInit();
@@ -593,7 +589,7 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.GroupBox gbCalibrtion;
+        private System.Windows.Forms.GroupBox gbCalibration;
         private Instrumentation.Standard.EditDouble edCalibValue;
         private System.Windows.Forms.Button btnZero;
         private System.Windows.Forms.Button btnSpan;

@@ -31,19 +31,18 @@ namespace EazyLab.Cpt.Controls
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CptChamberCntrl));
-            EazyLab.Classes.PlotDataCursorXY plotDataCursorXY1 = new EazyLab.Classes.PlotDataCursorXY();
-            EazyLab.Classes.PlotDataView plotDataView1 = new EazyLab.Classes.PlotDataView();
-            EazyLab.Classes.PlotLabelBasic plotLabelBasic1 = new EazyLab.Classes.PlotLabelBasic();
-            EazyLab.Classes.PlotLegendBasic plotLegendBasic1 = new EazyLab.Classes.PlotLegendBasic();
-            EazyLab.Classes.PlotXAxis plotXAxis1 = new EazyLab.Classes.PlotXAxis();
-            EazyLab.Classes.PlotYAxis plotYAxis1 = new EazyLab.Classes.PlotYAxis();
+            EazyLab.Classes.PlotDataCursorXY plotDataCursorXY2 = new EazyLab.Classes.PlotDataCursorXY();
+            EazyLab.Classes.PlotDataView plotDataView2 = new EazyLab.Classes.PlotDataView();
+            EazyLab.Classes.PlotLabelBasic plotLabelBasic2 = new EazyLab.Classes.PlotLabelBasic();
+            EazyLab.Classes.PlotLegendBasic plotLegendBasic2 = new EazyLab.Classes.PlotLegendBasic();
+            EazyLab.Classes.PlotXAxis plotXAxis2 = new EazyLab.Classes.PlotXAxis();
+            EazyLab.Classes.PlotYAxis plotYAxis2 = new EazyLab.Classes.PlotYAxis();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbtnStart = new EazyLab.Instrumentation.Standard.ToggleButton();
             this.btnConnect = new EazyLab.Instrumentation.Standard.ToggleButton();
             this.button1 = new System.Windows.Forms.Button();
-            this.slStart = new EazyLab.Instrumentation.Standard.SwitchLed();
             this.editString1 = new EazyLab.Instrumentation.Standard.EditString();
             this.button3 = new System.Windows.Forms.Button();
             this.CbStation = new System.Windows.Forms.ComboBox();
@@ -56,11 +55,11 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp4 = new EazyLab.Instrumentation.Standard.PV();
             this.pvTemp6 = new EazyLab.Instrumentation.Standard.PV();
             this.pvTemp1 = new EazyLab.Instrumentation.Standard.PV();
+            this.Plot = new EazyLab.Instrumentation.Standard.CombinedPlot();
             this.pvTemp3 = new EazyLab.Instrumentation.Standard.PV();
             this.pvTemp5 = new EazyLab.Instrumentation.Standard.PV();
             this.labelStatus = new EazyLab.Instrumentation.Standard.Label();
             this.ledStatus = new EazyLab.Instrumentation.Standard.Led();
-            this.Plot = new EazyLab.Instrumentation.Standard.CombinedPlot();
             this.plotToolBarStandard1 = new EazyLab.Instrumentation.Plotting.PlotToolBarStandard();
             this.plotToolBarButton1 = new EazyLab.Classes.PlotToolBarButton();
             this.plotToolBarButton2 = new EazyLab.Classes.PlotToolBarButton();
@@ -158,7 +157,6 @@ namespace EazyLab.Cpt.Controls
             this.groupBox1.Controls.Add(this.tbtnStart);
             this.groupBox1.Controls.Add(this.btnConnect);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.slStart);
             this.groupBox1.Controls.Add(this.editString1);
             this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.CbStation);
@@ -177,13 +175,13 @@ namespace EazyLab.Cpt.Controls
             this.tbtnStart.BackColor = System.Drawing.Color.Red;
             this.tbtnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbtnStart.ForeColor = System.Drawing.Color.DarkGreen;
-            this.tbtnStart.Location = new System.Drawing.Point(447, 17);
+            this.tbtnStart.Location = new System.Drawing.Point(469, 15);
             this.tbtnStart.Name = "tbtnStart";
             this.tbtnStart.OffColor = System.Drawing.Color.Red;
             this.tbtnStart.OffText = "Start";
             this.tbtnStart.OnColor = System.Drawing.Color.GreenYellow;
             this.tbtnStart.OnText = "Stop";
-            this.tbtnStart.Size = new System.Drawing.Size(111, 33);
+            this.tbtnStart.Size = new System.Drawing.Size(131, 33);
             this.tbtnStart.State = false;
             this.tbtnStart.TabIndex = 93;
             this.tbtnStart.Text = "Start";
@@ -201,7 +199,7 @@ namespace EazyLab.Cpt.Controls
             this.btnConnect.OffText = "Connect";
             this.btnConnect.OnColor = System.Drawing.Color.GreenYellow;
             this.btnConnect.OnText = "Disconnect";
-            this.btnConnect.Size = new System.Drawing.Size(111, 33);
+            this.btnConnect.Size = new System.Drawing.Size(133, 33);
             this.btnConnect.State = false;
             this.btnConnect.TabIndex = 93;
             this.btnConnect.Text = "Connect";
@@ -213,32 +211,17 @@ namespace EazyLab.Cpt.Controls
             this.button1.BackColor = System.Drawing.Color.Black;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.button1.Location = new System.Drawing.Point(21, 126);
+            this.button1.Location = new System.Drawing.Point(32, 144);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(86, 32);
             this.button1.TabIndex = 79;
             this.button1.Text = "Export";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // slStart
-            // 
-            this.slStart.LoadingBegin();
-            this.slStart.AutoFont = false;
-            this.slStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.slStart.ForeColor = System.Drawing.Color.LightSeaGreen;
-            this.slStart.Location = new System.Drawing.Point(14, 91);
-            this.slStart.Name = "slStart";
-            this.slStart.OffText = "Start";
-            this.slStart.OnText = "Stop";
-            this.slStart.Size = new System.Drawing.Size(155, 38);
-            this.slStart.TabIndex = 77;
-            this.slStart.Text = "Start";
-            this.slStart.LoadingEnd();
-            // 
             // editString1
             // 
             this.editString1.LoadingBegin();
-            this.editString1.Location = new System.Drawing.Point(113, 63);
+            this.editString1.Location = new System.Drawing.Point(355, 144);
             this.editString1.Name = "editString1";
             this.editString1.Size = new System.Drawing.Size(165, 20);
             this.editString1.TabIndex = 90;
@@ -247,7 +230,7 @@ namespace EazyLab.Cpt.Controls
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(32, 60);
+            this.button3.Location = new System.Drawing.Point(245, 141);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 91;
@@ -260,12 +243,12 @@ namespace EazyLab.Cpt.Controls
             this.CbStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbStation.ForeColor = System.Drawing.Color.Aqua;
             this.CbStation.FormattingEnabled = true;
-            this.CbStation.Location = new System.Drawing.Point(109, 20);
+            this.CbStation.Location = new System.Drawing.Point(86, 19);
             this.CbStation.Name = "CbStation";
-            this.CbStation.Size = new System.Drawing.Size(187, 28);
+            this.CbStation.Size = new System.Drawing.Size(238, 28);
             this.CbStation.TabIndex = 87;
             this.CbStation.DropDown += new System.EventHandler(this.CbStation_DropDown);
-            this.CbStation.SelectionChangeCommitted += new System.EventHandler(this.CbStation_SelectionChangeCommitted);
+            this.CbStation.SelectedValueChanged += new System.EventHandler(this.CbStation_SelectedValueChanged);
             // 
             // label2
             // 
@@ -531,7 +514,7 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp1.IsSelectedForPloting = false;
             this.pvTemp1.Location = new System.Drawing.Point(621, 6);
             this.pvTemp1.Name = "pvTemp1";
-            this.pvTemp1.Plot = null;
+            this.pvTemp1.Plot = this.Plot;
             this.pvTemp1.PlotChannelNamee = null;
             this.pvTemp1.Precision = 2;
             this.pvTemp1.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -548,6 +531,44 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp1.Unit = "°c";
             this.pvTemp1.ValueAsDouble = 0D;
             this.pvTemp1.LoadingEnd();
+            // 
+            // Plot
+            // 
+            this.Plot.LoadingBegin();
+            this.Plot.AutoFont = false;
+            this.Plot.Background.GradientStartColor = System.Drawing.Color.Aqua;
+            this.Plot.Background.GradientStopColor = System.Drawing.Color.Blue;
+            this.Plot.Background.Visible = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.Plot, 4);
+            plotDataCursorXY2.Hint.Fill.Pen.Color = System.Drawing.SystemColors.InfoText;
+            plotDataCursorXY2.Name = "Data-Cursor 1";
+            plotDataCursorXY2.TitleText = "Data-Cursor 1";
+            this.Plot.DataCursors.Add(plotDataCursorXY2);
+            plotDataView2.Name = "Data-View 1";
+            plotDataView2.TitleText = "Data-View 1";
+            this.Plot.DataViews.Add(plotDataView2);
+            this.Plot.Dock = System.Windows.Forms.DockStyle.Fill;
+            plotLabelBasic2.DockOrder = 0;
+            plotLabelBasic2.Name = "Label 1";
+            this.Plot.Labels.Add(plotLabelBasic2);
+            plotLegendBasic2.DockOrder = 0;
+            plotLegendBasic2.Name = "Legend 1";
+            plotLegendBasic2.TitleText = "Legend 1";
+            this.Plot.Legends.Add(plotLegendBasic2);
+            this.Plot.Location = new System.Drawing.Point(3, 33);
+            this.Plot.Name = "Plot";
+            this.Plot.NoOFChannels = 10;
+            this.Plot.Size = new System.Drawing.Size(1284, 578);
+            this.Plot.TabIndex = 4;
+            plotXAxis2.DockOrder = 0;
+            plotXAxis2.Name = "X-Axis 1";
+            plotXAxis2.Title.Text = "X-Axis 1";
+            this.Plot.XAxes.Add(plotXAxis2);
+            plotYAxis2.DockOrder = 0;
+            plotYAxis2.Name = "Y-Axis 1";
+            plotYAxis2.Title.Text = "Y-Axis 1";
+            this.Plot.YAxes.Add(plotYAxis2);
+            this.Plot.LoadingEnd();
             // 
             // pvTemp3
             // 
@@ -638,44 +659,6 @@ namespace EazyLab.Cpt.Controls
             this.ledStatus.Name = "ledStatus";
             this.ledStatus.Size = new System.Drawing.Size(42, 24);
             this.ledStatus.LoadingEnd();
-            // 
-            // Plot
-            // 
-            this.Plot.LoadingBegin();
-            this.Plot.AutoFont = false;
-            this.Plot.Background.GradientStartColor = System.Drawing.Color.Aqua;
-            this.Plot.Background.GradientStopColor = System.Drawing.Color.Blue;
-            this.Plot.Background.Visible = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.Plot, 4);
-            plotDataCursorXY1.Hint.Fill.Pen.Color = System.Drawing.SystemColors.InfoText;
-            plotDataCursorXY1.Name = "Data-Cursor 1";
-            plotDataCursorXY1.TitleText = "Data-Cursor 1";
-            this.Plot.DataCursors.Add(plotDataCursorXY1);
-            plotDataView1.Name = "Data-View 1";
-            plotDataView1.TitleText = "Data-View 1";
-            this.Plot.DataViews.Add(plotDataView1);
-            this.Plot.Dock = System.Windows.Forms.DockStyle.Fill;
-            plotLabelBasic1.DockOrder = 0;
-            plotLabelBasic1.Name = "Label 1";
-            this.Plot.Labels.Add(plotLabelBasic1);
-            plotLegendBasic1.DockOrder = 0;
-            plotLegendBasic1.Name = "Legend 1";
-            plotLegendBasic1.TitleText = "Legend 1";
-            this.Plot.Legends.Add(plotLegendBasic1);
-            this.Plot.Location = new System.Drawing.Point(3, 33);
-            this.Plot.Name = "Plot";
-            this.Plot.NoOFChannels = 10;
-            this.Plot.Size = new System.Drawing.Size(1284, 578);
-            this.Plot.TabIndex = 4;
-            plotXAxis1.DockOrder = 0;
-            plotXAxis1.Name = "X-Axis 1";
-            plotXAxis1.Title.Text = "X-Axis 1";
-            this.Plot.XAxes.Add(plotXAxis1);
-            plotYAxis1.DockOrder = 0;
-            plotYAxis1.Name = "Y-Axis 1";
-            plotYAxis1.Title.Text = "Y-Axis 1";
-            this.Plot.YAxes.Add(plotYAxis1);
-            this.Plot.LoadingEnd();
             // 
             // plotToolBarStandard1
             // 
@@ -1036,7 +1019,6 @@ namespace EazyLab.Cpt.Controls
         private Instrumentation.Standard.PV pvTemp1;
         private System.Windows.Forms.ComboBox CbStation;
         private System.Windows.Forms.Button button1;
-        private Instrumentation.Standard.SwitchLed slStart;
         private Instrumentation.Standard.PV pvEnergy;
         private Instrumentation.Standard.PV pvTemp4;
         private System.Windows.Forms.ImageList imageList2;

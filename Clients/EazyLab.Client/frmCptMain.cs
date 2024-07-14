@@ -8,6 +8,7 @@ using System;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace EazyLabClient
 {
@@ -226,10 +227,17 @@ namespace EazyLabClient
                         frm3.ShowDialog(this);
                         break;
 
-                    case "Config Ahu OutDoor":
+                    case "Connect All Stations":
 
-                        //frmOutDoor frm4 = new frmOutDoor();
-                        //frm4.ShowDialog(this);
+                        this.Cursor = Cursors.WaitCursor;
+                        //Parallel.ForEach(Chamber.Stations, T =>
+                        //{
+                        //    T.Connect(true);
+                        //});
+
+                        foreach(var  c in Chamber.Stations)c.Connect(true);
+                        Cntrl.SelectStation(0); 
+                        this.Cursor = Cursors.Default;
                         break;
 
                     default:
@@ -296,7 +304,7 @@ namespace EazyLabClient
                 ToastMessage("Chamber need to be configured");
             }
 
-            cptChamberCntrl1.Chamber= Chamber;
+            Cntrl.Chamber= Chamber;
             this.WindowState = FormWindowState.Maximized;
             timer1.Interval = 60000;
 

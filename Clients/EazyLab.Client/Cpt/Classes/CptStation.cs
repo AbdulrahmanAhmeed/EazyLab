@@ -18,11 +18,6 @@ namespace EazyLab.Cpt.Classes
     [Serializable]
     public class CptStation : Entity, IDisposable
     {
-        public enum ConnectionStatus
-        {
-            Connecting,
-            DisConnect
-        }
         enum Commands
         {
             ResetCpu = 0xD1, StartSample = 0xD2
@@ -39,19 +34,19 @@ namespace EazyLab.Cpt.Classes
         public string Name => "Station" + Id.ToString();
         public string SerialNumber { set; get; } = String.Empty;
         public string IPAddress { set; get; } = "192.168.0.100";
-        public int Timeout { set; get; } = 20000; // in mSec
+        public int Timeout { set; get; } = 1000;
         public int Port { set; get; } = 9000;
         [BsonIgnore]
         public EventHandler<DataSentEventArgs> DataSent { get; set; }
         [BsonIgnore]
         public bool IsConnected => modbus.IsConnected;
         [BsonIgnore]
-        public bool IsStarted => isStarted&& IsConnected;
+        public bool IsStarted => isStarted && IsConnected;
         [BsonIgnore]
         public bool Initiazlized { get => initiazlized; }
         [BsonIgnore]
         public CptTest Sample { set; get; }
-        public int ReadingInterval { set => Timer.Interval = value; get => Timer.Interval; }// in mSec
+        public int ReadingInterval { set => Timer.Interval = value; get => Timer.Interval; }
         [BsonIgnore]
         public DateTime StartTime { get => startTime; }
         public bool DataReady
@@ -80,7 +75,7 @@ namespace EazyLab.Cpt.Classes
         }
         public CptStation()
         {
-            Timer.Tick +=  new EventHandler(UpdateData);
+            Timer.Tick += new EventHandler(UpdateData);
             Timer.Interval = 1000;
             modbus = new ezModbus.Modbus(ModbusMode.TCP_IP);
 
@@ -187,70 +182,18 @@ namespace EazyLab.Cpt.Classes
             return result;
         }
 
-        void tryConnection()
-        {
-
-        }
-
-   int TempCounter = 0;
+        int TempCounter = 0;
         public void UpdateData(object sender, EventArgs e)
         {
             try
             {
-                if (!modbus.IsConnected)
-                {
-                    ReadingInterval = (int)Timeout;
-                    var result = modbus.Connect(IPAddress, Port);
-                    result = modbus.ReadHoldingRegisters(1, 0, (ushort)data.Length, data);
-                    if (result != ModbusResult.SUCCESS)
-                    {
-                        //DisConnect();
-                        //MessageBox.Show("Could not connect  Please check the Wifi Network");
-                        //return;
-                    }
+                DataReadyEventArgs eee = new DataReadyEventArgs();
+                eee.Result = ReadDataPacket();
+                eee.DataPacket = Lastdp;
+                eee.SerialNo = this.SerialNumber;
+                OnDataReadyEvent(eee);
+                db.GetCollection<CptDataPacketVer1>().Upsert(eee.DataPacket);
 
-                    else
-                    {
-                        byte[] bytes = new byte[8];
-                        Buffer.BlockCopy(data, (data.Length - 4) * 2, bytes, 0, bytes.Length);
-                        var tempSN = BitConverter.ToUInt64(bytes, 0).ToString();
-
-                        if (this.SerialNumber != tempSN)
-                        {
-                            var btnselected = MessageBox.Show("The connected Box SerialNO Does not match Do you want to intialize the station this " +
-                                   "will cause all the previous data to be lost ? ", "New Serial Found", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
-
-                            if (btnselected == DialogResult.OK)
-                            {
-                                this.SerialNumber = tempSN;
-                                this.Id = 0;
-
-                            }
-                            else return;
-                        }
-
-                        //Todo
-                        db = new LiteDatabase(Program.DataDir + this.SerialNumber + ".db");
-                        db.CheckpointSize = 10;
-                    }
-                }
-                else
-                {
-                    ReadingInterval = 1000;
-                    DataReadyEventArgs eee = new DataReadyEventArgs();
-                    eee.Result = ReadDataPacket();
-                    eee.DataPacket = Lastdp;
-                    eee.SerialNo = this.SerialNumber;
-                    OnDataReadyEvent(eee);
-                    db.GetCollection<CptDataPacketVer1>().Upsert(eee.DataPacket);
-                    TempCounter++;
-                }
-                
-                //if ((TempCounter%100) ==0)
-                //{
-                //    db.Checkpoint();
-
-                //}
             }
             catch (Exception ex)
             {
@@ -261,14 +204,57 @@ namespace EazyLab.Cpt.Classes
         }
 
 
-   
+
         UInt16[] serno = new UInt16[4];
-        public void Connect()
+        public void Connect(bool readSerial)
         {
-           
             try
             {
                 Initialize();
+                var result = modbus.Connect(IPAddress, Port);
+
+                if(result!= ModbusResult.SUCCESS)
+                {
+                    modbus.Disconnect();
+                    return;
+                }
+                if ( readSerial)
+                {
+                    //Task.Delay(Timeout).Wait();
+                    result = modbus.ReadHoldingRegisters(1, 0, (ushort)data.Length, data);
+
+                    if (result != ModbusResult.SUCCESS)
+                    {
+                        MessageBox.Show("Could not Read Device Serial NO.");
+                        modbus.Disconnect(); ;
+                        return;
+                    }
+
+                    byte[] bytes = new byte[8];
+                    Buffer.BlockCopy(data, (data.Length - 4) * 2, bytes, 0, bytes.Length);
+                    var tempSN = BitConverter.ToUInt64(bytes, 0).ToString();
+
+                    if (this.SerialNumber != tempSN)
+                    {
+                        var btnselected = MessageBox.Show("The connected Box SerialNO Does not match Do you want to intialize the station this " +
+                               "will cause all the previous data to be lost ? ", "New Serial Found", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
+
+                        if (btnselected == DialogResult.OK)
+                        {
+                            this.SerialNumber = tempSN;
+                            this.Id = 0;
+                        }
+                        else return;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Could not connect  Please check the Wifi Network");
+                    return;
+                }
+
+                db = new LiteDatabase(Program.DataDir + this.SerialNumber + ".db");
+                db.CheckpointSize = 10;
                 Timer.Start();
             }
             catch (Exception ex)
@@ -276,12 +262,17 @@ namespace EazyLab.Cpt.Classes
 
                 LoggerFile.WriteException(ex);
             }
-            
+
         }
 
 
 
-        public void Connect(EventHandler<DataReadyEventArgs> dataReady )
+
+
+
+
+
+        public void Connect(EventHandler<DataReadyEventArgs> dataReady)
         {
             try
             {
@@ -316,7 +307,7 @@ namespace EazyLab.Cpt.Classes
                 }
 
                 //Todo
-                DataReadyEvent += dataReady; 
+                DataReadyEvent += dataReady;
                 db = new LiteDatabase(Program.DataDir + this.SerialNumber + ".db");
                 db.CheckpointSize = 10;
                 Timer.Start();
@@ -376,7 +367,7 @@ namespace EazyLab.Cpt.Classes
         public void Stop()
         {
             isStarted = false;
-            
+
         }
 
         int PacketConsumedTimed = 0;

@@ -4889,20 +4889,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Beta.Soft\\.nuget\\packages\\": {}
+    "C:\\Users\\Ahmed\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLab.Client\\EazyLab.Client.csproj",
+      "projectUniqueName": "F:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLab.Client\\EazyLabCpt.csproj",
       "projectName": "EazyLabCient",
-      "projectPath": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLab.Client\\EazyLab.Client.csproj",
-      "packagesPath": "C:\\Users\\Beta.Soft\\.nuget\\packages\\",
-      "outputPath": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLab.Client\\obj\\",
+      "projectPath": "F:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLab.Client\\EazyLabCpt.csproj",
+      "packagesPath": "C:\\Users\\Ahmed\\.nuget\\packages\\",
+      "outputPath": "F:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLab.Client\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\Beta.Soft\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

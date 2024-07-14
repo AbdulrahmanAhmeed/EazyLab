@@ -49,13 +49,13 @@ namespace EazyLabClient
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemBarCodeScanner = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemConfigOutDoor = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemConnectAllStations = new System.Windows.Forms.ToolStripMenuItem();
             this.tsServerSetup = new Syncfusion.Windows.Forms.Tools.toolstripitem();
             this.toolstripitem1 = new Syncfusion.Windows.Forms.Tools.toolstripitem();
             this.tsSaveChamber = new Syncfusion.Windows.Forms.Tools.toolstripitem();
             this.tsLoadChamber = new Syncfusion.Windows.Forms.Tools.toolstripitem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.cptChamberCntrl1 = new EazyLab.Cpt.Controls.CptChamberCntrl();
+            this.Cntrl = new EazyLab.Cpt.Controls.CptChamberCntrl();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.ledArrow3 = new EazyLab.Instrumentation.Professional.LedArrow();
             this.ledArrow2 = new EazyLab.Instrumentation.Professional.LedArrow();
@@ -121,7 +121,7 @@ namespace EazyLabClient
             this.toolStripMenuItem5,
             this.toolStripMenuItemBarCodeScanner,
             this.toolStripMenuItem1,
-            this.toolStripMenuItemConfigOutDoor});
+            this.toolStripMenuItemConnectAllStations});
             this.contextMenuStripSetup.Name = "contextMenuStrip1";
             this.contextMenuStripSetup.Size = new System.Drawing.Size(259, 236);
             this.contextMenuStripSetup.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStripSetup_Opening);
@@ -189,11 +189,11 @@ namespace EazyLabClient
             this.toolStripMenuItem1.Size = new System.Drawing.Size(258, 26);
             this.toolStripMenuItem1.Text = "Temperature Profile";
             // 
-            // toolStripMenuItemConfigOutDoor
+            // toolStripMenuItemConnectAllStations
             // 
-            this.toolStripMenuItemConfigOutDoor.Name = "toolStripMenuItemConfigOutDoor";
-            this.toolStripMenuItemConfigOutDoor.Size = new System.Drawing.Size(258, 26);
-            this.toolStripMenuItemConfigOutDoor.Text = "Config Ahu OutDoor";
+            this.toolStripMenuItemConnectAllStations.Name = "toolStripMenuItemConnectAllStations";
+            this.toolStripMenuItemConnectAllStations.Size = new System.Drawing.Size(258, 26);
+            this.toolStripMenuItemConnectAllStations.Text = "Connect All Stations";
             // 
             // tsServerSetup
             // 
@@ -223,7 +223,7 @@ namespace EazyLabClient
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.cptChamberCntrl1, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.Cntrl, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanelHeader, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -237,15 +237,15 @@ namespace EazyLabClient
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1449, 745);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // cptChamberCntrl1
+            // Cntrl
             // 
-            this.cptChamberCntrl1.Chamber = null;
-            this.cptChamberCntrl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cptChamberCntrl1.Location = new System.Drawing.Point(3, 48);
-            this.cptChamberCntrl1.Name = "cptChamberCntrl1";
-            this.cptChamberCntrl1.Size = new System.Drawing.Size(1443, 629);
-            this.cptChamberCntrl1.TabIndex = 0;
-            this.cptChamberCntrl1.Load += new System.EventHandler(this.cptChamberCntrl1_Load);
+            this.Cntrl.Chamber = null;
+            this.Cntrl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Cntrl.Location = new System.Drawing.Point(3, 48);
+            this.Cntrl.Name = "Cntrl";
+            this.Cntrl.Size = new System.Drawing.Size(1443, 629);
+            this.Cntrl.TabIndex = 0;
+            this.Cntrl.Load += new System.EventHandler(this.cptChamberCntrl1_Load);
             // 
             // tableLayoutPanel2
             // 
@@ -436,7 +436,8 @@ namespace EazyLabClient
             this.led1.LoadingBegin();
             this.led1.AutoFont = false;
             this.led1.BlinkerRate = 10;
-            this.led1.Location = new System.Drawing.Point(1102, 3);
+            this.led1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.led1.Location = new System.Drawing.Point(1352, 3);
             this.led1.Name = "led1";
             this.led1.Size = new System.Drawing.Size(44, 39);
             this.led1.Value.EventsEnabled = false;
@@ -655,7 +656,7 @@ namespace EazyLabClient
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
         private EazyLab.Common.ComPort  comPort1;
-        private CptChamberCntrl cptChamberCntrl1;
+        private CptChamberCntrl Cntrl;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBarCodeScanner;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private LedArrow ledArrow3;
@@ -667,7 +668,7 @@ namespace EazyLabClient
         private SwitchLed switchLedConnect;
         private SwitchLed switchLed1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemConfigOutDoor;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemConnectAllStations;
         private System.Windows.Forms.Timer timer1;
     }
 }

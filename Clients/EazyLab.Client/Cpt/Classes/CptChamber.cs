@@ -129,7 +129,7 @@ namespace EazyLab.Cpt.Classes
                 {
                     var ss = recvd.Remove(recvd.Length - 1).Substring(3);
                     var st = Stations.First(T => T.SerialNumber == ss);
-                    if (!st.IsConnected) st.Connect();
+                    if (!st.IsConnected) st.Connect(false);
                     if (st.ReadDataPacket() == Types.ModbusResult.SUCCESS)//Station is connected 
                     {
                         if ((st.SampleStatus == CptStation.SAMPLESTATUS.Running))

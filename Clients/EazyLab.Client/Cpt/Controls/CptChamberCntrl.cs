@@ -17,7 +17,6 @@ namespace EazyLab.Cpt.Controls
         int number_of_Graphs = 0, Maximum_Grphs = 3;
 
         public List<StdControlBase> StdControls;// = new List<StdControlBase>();// List to hold all PV in this user control
-
         public CptStation SelectedStation;
         public int SelectedStationIndex = 0;
         public bool Chamber_Reading = false;
@@ -36,8 +35,6 @@ namespace EazyLab.Cpt.Controls
                 C.Dock = DockStyle.Fill;
                 ((PV)C).Plot = this.Plot; 
             }
-
-
 
         }
 
@@ -63,23 +60,22 @@ namespace EazyLab.Cpt.Controls
         /// Updates the All the  Controls in this display.
         /// </summary>
         /// <param name="dp">The Lastdp.</param>
-        public void UpdateDisplay()
+        public void UpdateDisplay(CptDataPacketVer1 dp  )
         {
 
             try
             {
-                pvTemp1.Value = Lastdp.Temp0;
-                pvTemp2.Value = Lastdp.Temp1;
-                pvTemp3.Value = Lastdp.Temp2;
-                pvTemp4.Value = Lastdp.Temp3;
-                pvTemp5.Value = Lastdp.Temp4;
-                pvTemp6.Value = Lastdp.Temp5;
-                pvCurrent.Value = Lastdp.Current;
-                pvPower.Value = Lastdp.Power;
-                pvVoltage.Value = Lastdp.Voltage;
-                pvEnergy.Value = Lastdp.Energy;
-                slStart.Value = SelectedStation.IsConnected;
-                Plot.Update(Lastdp.Time);
+                pvTemp1.Value = dp.Temp0;
+                pvTemp2.Value = dp.Temp1;
+                pvTemp3.Value = dp.Temp2;
+                pvTemp4.Value = dp.Temp3;
+                pvTemp5.Value = dp.Temp4;
+                pvTemp6.Value = dp.Temp5;
+                pvCurrent.Value = dp.Current;
+                pvPower.Value = dp.Power;
+                pvVoltage.Value = dp.Voltage;
+                pvEnergy.Value = dp.Energy;
+                Plot.Update(dp.Time);
                 RefreshPlot();
             }
             catch (Exception ex)
@@ -125,20 +121,27 @@ namespace EazyLab.Cpt.Controls
         {
             Lastdp = e.DataPacket;
             ledStatus.Value = !ledStatus.Value;
-            UpdateDisplay();
+            UpdateDisplay(e.DataPacket);
         }
 
-        private void CbStation_DropDown(object sender, EventArgs e)
+        void UpdateCbStation()
         {
             try
             {
                 CbStation.DataSource = chamber.Stations;
-                CbStation.DisplayMember = "SerialNo";
+                CbStation.DisplayMember = "SerialNumber";
+                CbStation.ValueMember = "SerialNumber";
             }
             catch (Exception ex)
             {
                 LoggerFile.WriteException(ex);
             }
+        }
+
+        private void CbStation_DropDown(object sender, EventArgs e)
+        {
+            UpdateCbStation(); 
+
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -147,13 +150,13 @@ namespace EazyLab.Cpt.Controls
             {
                 if (btnConnect.State)
                 {
-                    SelectedStation.Connect();
+                    SelectedStation.Connect(true);
 
                 }
                 else
                 {
                     SelectedStation.DisConnect();
-
+                    
                 }
                 btnConnect.State = SelectedStation.IsConnected;
                 tbtnStart.State= SelectedStation.IsConnected;
@@ -187,8 +190,21 @@ namespace EazyLab.Cpt.Controls
             tbtnStart.State=SelectedStation.IsStarted;
         }
 
+        public void SelectStation(int stNo)
+        {
+            try
+            {
+                UpdateCbStation(); 
+                CbStation.SelectedIndex = stNo;
+                CbStation.SelectedValue = Chamber.Stations[stNo].SerialNumber; 
+            }
+            catch (Exception ex)
+            {
+                 LoggerFile.WriteException (ex);
+            }
+        }
 
-        private void CbStation_SelectionChangeCommitted(object sender, EventArgs e)
+        private void CbStation_SelectedValueChanged(object sender, EventArgs e)
         {
             try
             {
@@ -197,12 +213,31 @@ namespace EazyLab.Cpt.Controls
                 SelectedStation.DataReadyEvent += DataReady;
                 btnConnect.State = SelectedStation.IsConnected;
                 tbtnStart.State = SelectedStation.IsStarted;
+                UpdateDisplay(new CptDataPacketVer1());
             }
             catch (Exception ex)
             {
                 LoggerFile.WriteException(ex);
             }
         }
+
+        //private void CbStation_SelectionChangeCommitted(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (SelectedStation != null) SelectedStation.DataReadyEvent -= DataReady;
+        //        SelectedStation = Chamber.Stations[CbStation.SelectedIndex];
+        //        SelectedStation.DataReadyEvent += DataReady;
+        //        if (!SelectedStation.IsConnected) SelectedStation.Connect(true); // if not connected  try to connect
+        //        btnConnect.State = SelectedStation.IsConnected;
+        //        tbtnStart.State = SelectedStation.IsStarted;
+        //        UpdateDisplay(new CptDataPacketVer1());
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        LoggerFile.WriteException(ex);
+        //    }
+        //}
 
 
     }
