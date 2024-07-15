@@ -1,0 +1,105 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLab.Client\\EazyLab.Client.csproj": {}
+  },
+  "projects": {
+    "F:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLab.Client\\EazyLab.Client.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLab.Client\\EazyLab.Client.csproj",
+        "projectName": "EazyLabCient",
+        "projectPath": "F:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLab.Client\\EazyLab.Client.csproj",
+        "packagesPath": "C:\\Users\\Ahmed\\.nuget\\packages\\",
+        "outputPath": "F:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLab.Client\\obj\\",
+        "projectStyle": "PackageReference",
+        "skipContentFileWrite": true,
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Ahmed\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "dependencies": {
+            "BarcodeLib": {
+              "target": "Package",
+              "version": "[3.0.3, )"
+            },
+            "CommunityToolkit.HighPerformance": {
+              "target": "Package",
+              "version": "[8.2.2, )"
+            },
+            "CommunityToolkit.WinUI.Notifications": {
+              "target": "Package",
+              "version": "[7.1.2, )"
+            },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.44, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "SuperSimpleTcp": {
+              "target": "Package",
+              "version": "[3.0.14, )"
+            },
+            "System.Data.SQLite": {
+              "target": "Package",
+              "version": "[1.0.118, )"
+            },
+            "System.IO.Ports": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "System.Net.Primitives": {
+              "target": "Package",
+              "version": "[4.3.1, )"
+            },
+            "System.Text.Encoding.CodePages": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          }
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        },
+        "win-arm64": {
+          "#import": []
+        },
+        "win-x64": {
+          "#import": []
+        },
+        "win-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

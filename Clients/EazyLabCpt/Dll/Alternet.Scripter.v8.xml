@@ -1,0 +1,1722 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Alternet.Scripter.v8</name>
+    </assembly>
+    <members>
+        <member name="T:Alternet.Scripter.CodeDOM.CodeDOMScriptHost">
+            <summary>
+            Provides properties and methods to support script engine functionality based on <c>System.CodeDom.Compiler</c> technology.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.CodeDOM.CodeDOMScriptHost.#ctor(Alternet.Scripter.IScriptRun)">
+            <summary>
+            Initializes a new instance of the <c>CodeDomScriptHost</c> class with specified script runner.
+            </summary>
+            <param name="scriptRun">Specifies object that implements <c>IScriptRun</c> interface for this new instance.</param>
+        </member>
+        <member name="P:Alternet.Scripter.CodeDOM.CodeDOMScriptHost.Compiled">
+            <summary>
+            Gets boolean value indicating that script has been compiled and ready to be executed.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.CodeDOM.CodeDOMScriptHost.ScriptAssembly">
+            <summary>
+            Returns compiled script assembly.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.CodeDOM.CodeDOMScriptHost.Compile(System.Boolean,System.Boolean)">
+            <summary>
+            Initializes script engine and compiles the script.
+            </summary>
+            <param name="copyReferences">Specifies if all required assemblies should be copied to the output location</param>
+            <param name="syntaxCheckOnly">Specifies if compilation performs syntax check only, without generating assemblies.</param>
+            <returns>True if succeed, otherwise false.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.CodeDOM.CodeDOMScriptHost.Reset">
+            <summary>
+            Removes the script engine from the running state and disconnects automatically bound event handlers.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.License.ScripterLicenseProvider">
+            <summary>
+            Implements license provider for <c>ScriptRun</c>.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.Roslyn.CSharpScriptProvider">
+            <summary>
+            Provides code generation for C# based on Microsoft Roslyn.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.Roslyn.CSharpScriptProvider.#ctor(Alternet.Scripter.IScriptHost,Microsoft.CodeAnalysis.SourceCodeKind)">
+            <summary>
+            Initializes a new instance of the <c>CSharpScriptProvider</c> class with specified <c>IScriptHost</c>.
+            </summary>
+            <param name="host"><c>IScriptHost</c> holds script engine functionality.</param>
+            <param name="sourceKind">Specifies regular or Script source kind</param>
+        </member>
+        <member name="M:Alternet.Scripter.Roslyn.CSharpScriptProvider.GenerateGlobalItems(System.Collections.Generic.IList{Alternet.Scripter.IScriptGlobalItem})">
+            <summary>
+            Generates code from given global items.
+            </summary>
+            <param name="globalItems">Collection of global items.</param>
+            <returns>Code contains declaration of global items.</returns>
+        </member>
+        <member name="T:Alternet.Scripter.Roslyn.RoslynDocumentationProvider">
+            <summary>
+            Provide XML documentation to the compiler for members from metadata.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.Roslyn.RoslynDocumentationProvider.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <c>RoslynDocumentationProvider</c> class with specified settings.
+            </summary>
+            <param name="systemPath">Path to the system folder.</param>
+            <param name="fullPath">Full documentation path.</param>
+            <param name="assemblyName">Assembly name.</param>
+        </member>
+        <member name="P:Alternet.Scripter.Roslyn.RoslynDocumentationProvider.AssemblyName">
+            <summary>
+            Gets an assembly name.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.Roslyn.RoslynDocumentationProvider.FullPath">
+            <summary>
+            Gets a full documentation path.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.Roslyn.RoslynDocumentationProvider.SystemPath">
+            <summary>
+            Gets a system path.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.Roslyn.RoslynDocumentationProvider.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type.
+            </summary>
+            <returns>
+            A hash code for the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="M:Alternet.Scripter.Roslyn.RoslynDocumentationProvider.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the current object.
+            </summary>
+            <param name="obj">The object to compare with the current object.</param>
+            <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+        </member>
+        <member name="T:Alternet.Scripter.Roslyn.RoslynScriptHost">
+            <summary>
+            Provides methods and properties to support a Roslyn-based script host.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.Roslyn.RoslynScriptHost.#ctor(Alternet.Scripter.IScriptRun)">
+            <summary>
+            Initializes a new instance of the <c>CodeDomScriptHost</c> class with specified script runner.
+            </summary>
+            <param name="scriptRun">Specifies object that implements <c>IScriptRun</c> interface for this new instance.</param>
+        </member>
+        <member name="P:Alternet.Scripter.Roslyn.RoslynScriptHost.Compiled">
+            <summary>
+            Gets boolean value indicating that script has been compiled and ready to be executed.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.Roslyn.RoslynScriptHost.ScriptAssembly">
+            <summary>
+            Returns compiled script assembly.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.Roslyn.RoslynScriptHost.Compilation">
+            <summary>
+            Gets a current project <c>Microsoft.CodeAnalysis.Compilation</c>.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.Roslyn.RoslynScriptHost.Workspace">
+            <summary>
+            Gets a current project <c>Microsoft.CodeAnalysis.Workspace</c>.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.Roslyn.RoslynScriptHost.Compile(System.Boolean,System.Boolean)">
+            <summary>
+            Initializes script engine and compiles the script.
+            </summary>
+            <param name="copyReferences">Specifies if all required assemblies should be copied to the output location</param>
+            <param name="syntaxCheckOnly">Specifies if compilation performs syntax check only, without generating assemblies.</param>
+            <returns>True if succeed, otherwise false.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.Roslyn.RoslynScriptHost.Reset">
+            <summary>
+            Removes the script engine from the running state and disconnects automatically bound event handlers.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.Roslyn.RoslynScriptProvider">
+            <summary>
+            Provides a base class for Roslyn code generation. This class is abstract.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.Roslyn.RoslynScriptProvider.#ctor(Alternet.Scripter.IScriptHost,Microsoft.CodeAnalysis.SourceCodeKind)">
+            <summary>
+            Initializes a new instance of the <c>RoslynScriptProvider</c> class with specified <c>IScriptHost</c>.
+            </summary>
+            <param name="scriptHost"><c>IScriptHost</c> holds script engine functionality.</param>
+            <param name="sourceKind">Specifies regular or Script source kind</param>
+        </member>
+        <member name="P:Alternet.Scripter.Roslyn.RoslynScriptProvider.AssemblyFileName">
+            <summary>
+            Gets or sets script assembly file name.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.Roslyn.RoslynScriptProvider.AssemblyPath">
+            <summary>
+            Gets or sets script assembly file path.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.Roslyn.RoslynScriptProvider.AssemblyTargetPath">
+            <summary>
+            Represents the fully qualified path of the assembly file.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.Roslyn.RoslynScriptProvider.EmbeddedResources">
+            <summary>
+            List of the compilation's managed resources. Null to indicate that there are none.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.Roslyn.RoslynScriptProvider.PDBTargetPath">
+            <summary>
+            Represents the .pdb file path.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.Roslyn.RoslynScriptProvider.ScriptAssembly">
+            <summary>
+            Gets compiled script assembly.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.Roslyn.RoslynScriptProvider.ScriptCompiled">
+            <summary>
+            Indicates whether script has been successfully compiled.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.Roslyn.RoslynScriptProvider.Compilation">
+            <summary>
+            Gets a current project or code <c>Microsoft.CodeAnalysis.Compilation</c>.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.Roslyn.RoslynScriptProvider.Workspace">
+            <summary>
+            Gets a current project or code <c>Microsoft.CodeAnalysis.Workspace</c>.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.Roslyn.RoslynScriptProvider.Compile(System.Boolean)">
+            <summary>
+            Compiles the script.
+            </summary>
+            <param name="syntaxCheckOnly">Specifies if compilation performs syntax check only, without generating assemblies.</param>
+            <returns>result of compilation.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.Roslyn.RoslynScriptProvider.Dispose">
+            <summary>
+            Destroys the instance of the <c>RoslynScriptProvider</c> class.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.Roslyn.RoslynScriptProvider.CompileResult">
+            <summary>
+            Represent structured information of code compilation result.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.Roslyn.RoslynScriptProvider.CompileResult.Diagnostics">
+            <summary>
+            Represents List of <c>Microsoft.CodeAnalysis.Diagnostic</c> compilation.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.Roslyn.RoslynScriptProvider.CompileResult.Exception">
+            <summary>
+            Represents an Exception occurred during compilation. Null if compilation succeed.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.Roslyn.RoslynScriptProvider.CompileResult.Success">
+            <summary>
+            Represents a boolean value indicating whether compilation succeed.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.Roslyn.RoslynScriptProvider.CompileResult.#ctor(System.Boolean,System.Collections.Immutable.ImmutableArray{Microsoft.CodeAnalysis.Diagnostic})">
+            <summary>
+            Initializes a new instance of the <c>CompileResult</c> class with specified parameters.
+            </summary>
+            <param name="success">Indicates whether compilation succeed.</param>
+            <param name="diagnostics">Specifies List of compilation <c>Microsoft.CodeAnalysis.Diagnostic</c></param>
+        </member>
+        <member name="M:Alternet.Scripter.Roslyn.RoslynScriptProvider.CompileResult.#ctor(System.Exception)">
+            <summary>
+            Initializes a new instance of the <c>CompileResult</c> class with specified parameters.
+            </summary>
+            <param name="exception">Specifies an Exception occurred during compilation.</param>
+        </member>
+        <member name="T:Alternet.Scripter.Roslyn.VisualBasicScriptProvider">
+            <summary>
+            Provides code generation for VisualBasic.NET based on Microsoft Roslyn.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.Roslyn.VisualBasicScriptProvider.#ctor(Alternet.Scripter.IScriptHost,Microsoft.CodeAnalysis.SourceCodeKind)">
+            <summary>
+            Initializes a new instance of the <c>VisualBasicScriptProvider</c> class with specified <c>IScriptHost</c>.
+            </summary>
+            <param name="host"><c>IScriptHost</c> holds script engine functionality.</param>
+            <param name="sourceKind">Specifies regular or Script source kind</param>
+        </member>
+        <member name="M:Alternet.Scripter.Roslyn.VisualBasicScriptProvider.GenerateGlobalItems(System.Collections.Generic.IList{Alternet.Scripter.IScriptGlobalItem})">
+            <summary>
+            Generates code from given global items.
+            </summary>
+            <param name="globalItems">Collection of global items.</param>
+            <returns>Code contains declaration of global items.</returns>
+        </member>
+        <member name="T:Alternet.Scripter.XAML.XAMLExtensions">
+            <summary>
+            Provides methods to manipulate xaml content.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.XAML.XAMLExtensions.GetIntermediateFilesAndResources(System.String,System.String,System.String,Alternet.Scripter.ScriptMode,Alternet.Common.DotNet.Projects.TargetFramework,System.Boolean,System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{System.String})">
+            <summary>
+            Generates code and resources files from given list of xaml files.
+            </summary>
+            <param name="projectFileName">The full path to the project file.</param>
+            <param name="outputPath">Path where generated files will be stored.</param>
+            <param name="scriptMode">Debug or release mode.</param>
+            <param name="files">List of generated code files.</param>
+            <param name="resources">List of generated resource files.</param>
+            <returns>True if succeed; otherwise false.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.XAML.XAMLExtensions.GetIntermediateFilesAndResourcesForSeparateXamlFiles(System.String[],System.String,System.String,Alternet.Scripter.ScriptLanguage,System.String[],System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Tuple{System.String,System.String}})">
+            <summary>
+            Generates code and resources files from given list of xaml files.
+            </summary>
+            <param name="xamlFiles">List of source .xaml files.</param>
+            <param name="outputPath">Path where generated files will be stored.</param>
+            <param name="assemblyName">Target assembly name.</param>
+            <param name="language">The .NET language used to generate code.</param>
+            <param name="generatedCodeFiles">List of generated code files.</param>
+            <param name="generatedResourceFiles">List of generated resource files.</param>
+            <returns>True if succeed; otherwise false.</returns>
+        </member>
+        <member name="T:Alternet.Scripter.ScriptConsts">
+            <summary>
+            Contains constants related to Scripter component.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.ScriptGlobalItem">
+            <summary>
+            Describes a global object from the script.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptGlobalItem.#ctor(System.String,System.Type,System.Object)">
+            <summary>
+            Initializes a new instance of the <c>ScriptItem</c> class with specified parameters.
+            </summary>
+            <param name="name">Specifies name of the new instance.</param>
+            <param name="type">Specifies type of the object.</param>
+            <param name="obj">Specifies object the new instance should contain.</param>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptGlobalItem.Name">
+            <summary>
+            Gets or sets name of this item.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptGlobalItem.Obj">
+            <summary>
+            Gets or sets object contained by this item.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptGlobalItem.Type">
+            <summary>
+            Gets or sets string representation of <c>Obj</c> type.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.ScriptHost">
+            <summary>
+            Provides a base class for script execution. This class is abstract.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptHost.#ctor(Alternet.Scripter.IScriptRun)">
+            <summary>
+            Initializes a new instance of <c>ScriptHost</c> with specified script runner.
+            </summary>
+            <param name="scriptRun"></param>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptHost.Finalize">
+            <summary>
+            Destroys the instance of the <c>ScriptHost</c> class.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.Options">
+            <summary>
+            Gets or sets options for this script host.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.ScriptRun">
+            <summary>
+            Gets <c>IScriptRun</c> associated this script host.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.GlobalCode">
+            <summary>
+            Gets a global code required for global items.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.AutoGeneratedCode">
+            <summary>
+            Gets an auto-generated code.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.CompilerErrors">
+            <summary>
+            Gets list of compiler errors associated with the script being executed.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.CompileFailed">
+            <summary>
+            Gets or sets boolean value indicating unsuccessful script compilation.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.ModulesDirectoryPath">
+            <summary>
+            Gets or sets path for compiled script assemblies.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.ReuseCompiledModulesFromDisk">
+            <summary>
+            Gets or sets boolean value indicating whether to attempt to reuse existing compile results from disk, if up-to-date.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.GenerateModulesOnDisk">
+            <summary>
+            Gets or sets value indicating whether script assembly should be written to the disk or kept in memory.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.StrongKeyPath">
+            <summary>
+            Gets a strong key file path used to sign an assembly with a strong key.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.CertificatePath">
+            <summary>
+            Gets or sets pfx certificate file path used to sign an assembly with certificate.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.CertificatePassword">
+            <summary>
+            Gets or sets pfx certificate password used to sign an assembly with certificate.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.CertificateTimeStampURL">
+            <summary>
+            Gets or sets a timestamp URL for time-stamping certificate signature.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.ScriptAssembly">
+            <summary>
+            Returns compiled script assembly.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.Compiled">
+            <summary>
+            Gets boolean value indicating that script has been compiled and ready to be executed.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.AssemblyFileName">
+            <summary>
+            Gets script assembly file name.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptHost.ExecutableModulePath">
+            <summary>
+            Gets script assembly path.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptHost.DetermineTargetPlatform(Alternet.Scripter.ScriptAssemblyKind)">
+            <summary>
+            Determines target application platform.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptHost.Compile(System.Boolean,System.Boolean)">
+            <summary>
+            Initializes script engine and compiles the script.
+            </summary>
+            <param name="copyReferences">Specifies if all required assemblies should be copied to the output location</param>
+            <param name="syntaxCheckOnly">Specifies if compilation performs syntax check only, without generating assemblies.</param>
+            <returns>True if succeed, otherwise false.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptHost.Reset">
+            <summary>
+            Removes the script engine from the running state and disconnects automatically bound event handlers.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptHost.Run(System.String[])">
+            <summary>
+            Executes script starting from the main entry point.
+            </summary>
+            <param name="args">Specifies main method parameters.</param>
+            <returns>Return value of the script being executed.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptHost.RunProcess(System.String[],System.Boolean)">
+            <summary>
+            Executes script starting from the main entry point in standalone process.
+            </summary>
+            <param name="args">Specifies main method parameters.</param>
+            <param name="wait">Specifies if calling application should wait for process termination</param>
+            <returns>Return process exit code.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptHost.RunAsync(System.String[],System.Threading.CancellationToken)">
+            <summary>
+            Executes script asynchronously starting from the main entry point.
+            </summary>
+            <param name="args">Specifies main method parameters.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>Return value of the script being executed.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptHost.RunMethod(System.String,System.Object,System.Object[])">
+            <summary>
+            Executes specified method.
+            </summary>
+            <param name="method">Name of method to execute.</param>
+            <returns>An object containing return value of the executed method.</returns>
+            <param name="obj">Object, contains method to execute.</param>
+            <param name="args">Array of method's parameters.</param>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptHost.RunMethodAsync(System.String,System.Object,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            Executes specified method asynchronously.
+            </summary>
+            <param name="method">Name of method to execute.</param>
+            <returns>An object containing return value of the executed method.</returns>
+            <param name="obj">Object, contains method to execute.</param>
+            <param name="args">Array of method's parameters.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptHost.EvaluateExpression(System.String)">
+            <summary>
+            Evaluates specified expression.
+            </summary>
+            <param name="expression">Expression to evaluate.</param>
+            <returns>An object containing return value of the expression being evaluated.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptHost.EvaluateExpressionAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Evaluates specified expression asynchronously.
+            </summary>
+            <param name="expression">Expression to execute.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>An object containing return value of the expression being evaluated.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptHost.ResolveReferences(System.Collections.Generic.IList{System.String})">
+            <summary>
+            Returns list of assembly references used by the script.
+            </summary>
+            <param name="unresolvedReferences">Contains list of references that can not be resolved.</param>
+            <returns>List of assembly references.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptHost.ResolveReferences">
+            <summary>
+            Returns list of assembly references used by the script.
+            </summary>
+            <returns>List of assembly references.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptHost.Dispose">
+            <summary>
+            Disposes this <c>ScriptHost</c> and frees resources associated with it.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptHost.CopyReferencedAssemblies">
+            <summary>
+            Copies all non-GAC assemblies referenced by a script to the output directories.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.ScriptMethod">
+            <summary>
+            Provides functionality to run particular script method.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptMethod.Run(Alternet.Scripter.IScriptRun,System.Reflection.Assembly,System.Object[])">
+            <summary>
+            Executes script starting from the main entry point.
+            </summary>
+            <param name="scriptRun"><c>IScriptRun</c> associated this script method.</param>
+            <param name="assembly">Assembly contains method to execute.</param>
+            <param name="args">Specifies main method parameters.</param>
+            <returns>Return value of the script being executed.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptMethod.RunProcess(Alternet.Scripter.IScriptRun,System.String,System.Object[],System.Boolean)">
+            <summary>
+            Executes script starting from the main entry point in standalone process.
+            </summary>
+            <param name="scriptRun"><c>IScriptRun</c> associated this script method.</param>
+            <param name="assemblyLocation">Fully qualified name of application to execute.</param>
+            <param name="args">Specifies main method parameters.</param>
+            <param name="wait">Specifies if calling application should wait for process termination</param>
+            <returns>Return process exit code.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptMethod.RunAsync(Alternet.Scripter.IScriptRun,System.Reflection.Assembly,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            Executes script asynchronously starting from the main entry point.
+            </summary>
+            <param name="scriptRun"><c>IScriptRun</c> associated this script method.</param>
+            <param name="assembly">Assembly contains method to execute.</param>
+            <param name="args">Specifies main method parameters.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>Return value of the script being executed.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptMethod.RunMethod(Alternet.Scripter.IScriptRun,System.Reflection.Assembly,System.String,System.Object,System.Object[])">
+            <summary>
+            Executes specified method.
+            </summary>
+            <param name="scriptRun"><c>IScriptRun</c> associated this script method.</param>
+            <param name="assembly">Assembly contains method to execute.</param>
+            <param name="method">Name of method to execute.</param>
+            <param name="obj">Object, contains method to execute.</param>
+            <param name="args">Array of method's parameters.</param>
+            <returns>An object containing return value of the executed method.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptMethod.RunMethodAsync(Alternet.Scripter.IScriptRun,System.Reflection.Assembly,System.String,System.Object,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            Executes specified method asynchronously.
+            </summary>
+            <param name="scriptRun"><c>IScriptRun</c> associated this script method.</param>
+            <param name="assembly">Assembly contains method to execute.</param>
+            <param name="method">Name of method to execute.</param>
+            <param name="obj">Object, contains method to execute.</param>
+            <param name="args">Array of method's parameters.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>An object containing return value of the executed method.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptMethod.DisposeGlobalObjects(System.Reflection.Assembly)">
+            <summary>
+            Disposes global objects registered in the specified assembly.
+            </summary>
+            <param name="assembly">Assembly to process.</param>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptMethod.InitGlobalObjects(Alternet.Scripter.IScriptRun,System.Reflection.Assembly)">
+            <summary>
+            Initializes global objects belongs to the specified assembly.
+            </summary>
+            <param name="scriptRun"><c>IScriptRun</c> associated this script method.</param>
+            <param name="assembly">Assembly contains global objects.</param>
+        </member>
+        <member name="T:Alternet.Scripter.ScriptRun">
+            <summary>
+            Represents runner for script engine.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.#ctor(System.ComponentModel.IContainer)">
+            <summary>
+            Initializes a new instance of the <c>ScriptRun</c> class with specified parameters.
+            </summary>
+            <param name="container">Specifies container of this new instance.</param>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.#ctor">
+            <summary>
+            Initializes a new instance of the <c>ScriptRun</c> class with default settings.
+            </summary>
+        </member>
+        <member name="E:Alternet.Scripter.ScriptRun.ScriptCompiled">
+            <summary>
+            Occurs when the script engine running successfully.
+            </summary>
+        </member>
+        <member name="E:Alternet.Scripter.ScriptRun.ScriptError">
+            <summary>
+            Occurs when the script engine running is failed.
+            </summary>
+        </member>
+        <member name="E:Alternet.Scripter.ScriptRun.ScriptReset">
+            <summary>
+            Occurs when the script engine is reset.
+            </summary>
+        </member>
+        <member name="E:Alternet.Scripter.ScriptRun.ScriptExecuted">
+            <summary>
+            Occurs when script engine executes the script.
+            </summary>
+        </member>
+        <member name="E:Alternet.Scripter.ScriptRun.FileLoad">
+            <summary>
+            Occurs when script code is loaded from file.
+            </summary>
+        </member>
+        <member name="E:Alternet.Scripter.ScriptRun.ReferenceResolve">
+            <summary>
+            Occurs when assembly reference needs to be resolved.
+            </summary>
+        </member>
+        <member name="E:Alternet.Scripter.ScriptRun.ScriptRunning">
+            <summary>
+            Occurs when script engine tries to running script.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptRun.ScriptHost">
+            <summary>
+            Returns object that implements <c>IScriptHost</c> interface for this runner.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptRun.ScriptSource">
+            <summary>
+            Gets source of the script to execute.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptRun.GlobalItems">
+            <summary>
+            Gets or sets a script items collection attached to this runner.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptRun.ScriptLanguage">
+            <summary>
+            Gets or sets programming language of the script.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptRun.AssemblyKind">
+            <summary>
+            Gets or sets output kind for the script assembly.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptRun.Win32ManifestOptions">
+            <summary>
+            Gets or sets Win32 manifest options for the script assembly.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptRun.Platform">
+            <summary>
+            Gets or sets target platform (32 or 64 bits).
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptRun.ScriptMode">
+            <summary>
+            Gets or sets debug or release mode for the scripts being executed.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptRun.TargetFrameworkVersion">
+            <summary>
+            Gets or sets target framework version for locating Framework assemblies.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptRun.CaseSensitive">
+            <summary>
+            Indicates whether script language is case sensitive.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptRun.Compiled">
+            <summary>
+            Gets boolean value indicating that script has been compiled and ready to be executed.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptRun.Executed">
+            <summary>
+            Gets boolean value indicating that script has been compiled and ready to be executed.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.OnScriptCompiled">
+            <summary>
+            Invokes <c>ScriptCompiled</c> event handler.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.OnScriptRunning">
+            <summary>
+            Invokes <c>ScriptRunning</c> event handler.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.OnScriptExecuted">
+            <summary>
+            Invokes <c>ScriptRunning</c> event handler.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.OnScriptError(Alternet.Scripter.ScriptErrorEventArgs)">
+            <summary>
+            Invokes <c>ScriptError</c> event handler.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.OnScriptReset">
+            <summary>
+            Invokes <c>ScriptReset</c> event handler.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.OnFileLoad(System.String)">
+            <summary>
+            Invokes <c>FileLoad</c> event handler.
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.OnResolveReference(System.String,System.String@,System.Byte[]@)">
+            <summary>
+            Invokes <c>ReferenceResolve</c> event handler.
+            </summary>
+            <param name="reference">Reference to resolve.</param>
+            <param name="assemblyLocation">Path to suitable assembly.</param>
+            <param name="assemblyImage">Image containing suitable assembly.</param>
+            <returns>true if reference was resolved otherwise false</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.Run(System.String[])">
+            <summary>
+            Executes script starting from the main entry point.
+            </summary>
+            <param name="args">Specifies main method parameters.</param>
+            <returns>Return value of the script being executed.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.Run">
+            <summary>
+            Executes script starting from the main entry point.
+            </summary>
+            <returns>Return value of the script being executed.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.RunProcess(System.String[],System.Boolean)">
+            <summary>
+            Executes script starting from the main entry point in stand-alone process
+            </summary>
+            <param name="args">Specifies main method parameters.</param>
+            <param name="wait">Specifies if calling application should wait for process termination</param>
+            <returns>Return process exit code.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.RunAsync(System.String[],System.Threading.CancellationToken)">
+            <summary>
+            Executes script asynchronously starting from the main entry point.
+            </summary>
+            <param name="args">Specifies main method parameters.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>Return value of the script being executed.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.RunMethod(System.String,System.Object,System.Object[])">
+            <summary>
+            Executes specified method.
+            </summary>
+            <param name="method">Name of method to execute.</param>
+            <returns>An object containing return value of the executed method.</returns>
+            <param name="obj">Object, contains method to execute.</param>
+            <param name="args">Array of method's parameters.</param>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.RunMethodAsync(System.String,System.Object,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            Executes specified method asynchronously.
+            </summary>
+            <param name="method">Name of method to execute.</param>
+            <returns>An object containing return value of the executed method.</returns>
+            <param name="obj">Object, contains method to execute.</param>
+            <param name="args">Array of method's parameters.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.EvaluateExpression(System.String)">
+            <summary>
+            Evaluates specified expression.
+            </summary>
+            <param name="expression">Expression to evaluate.</param>
+            <returns>An object containing return value of the expression being evaluated.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.EvaluateExpressionAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Evaluates specified expression asynchronously.
+            </summary>
+            <param name="expression">Expression to execute.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>An object containing return value of the expression being evaluated.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.LoadScript(System.String)">
+            <summary>
+            Load script from specified file.
+            </summary>
+            <param name="fileName">File name contains script to load.</param>
+            <returns>String representation of loaded script.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.LoadFile(System.String)">
+            <summary>
+            When implemented by a class, load text content from the specified file.
+            </summary>
+            <param name="fileName">File name that contains text to load.</param>
+            <returns>String representation of the file.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.Compile">
+            <summary>
+            Initializes script engine and compiles the script.
+            </summary>
+            <returns>True if succeed, otherwise false.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.Reset">
+            <summary>
+             Resets the script engine and releases all resources.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptRun.CreateScriptHost">
+            <summary>
+            Creates a new <c>IScriptHost</c> object with appropriate characteristics.
+            </summary>
+            <returns>Created <c>IScriptHost</c> object.</returns>
+        </member>
+        <member name="T:Alternet.Scripter.ScriptSource">
+            <summary>
+            Provides methods and properties to work with script text, files or projects.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptSource.#ctor(Alternet.Scripter.IScriptRun)">
+            <summary>
+            Initializes a new instance of the <c>ScriptSource</c> class with specified script runner.
+            </summary>
+            <param name="scriptRun">Specifies object that implements <c>IScriptRun</c> interface for this new instance.</param>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.ProjectFileName">
+            <summary>
+            Gets a file name of the Visual Studio project containing script files to execute.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.ProjectName">
+            <summary>
+            Gets or sets name of the Visual Studio project containing script files to execute.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.Language">
+            <summary>
+            Returns script programming language.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.RootNamespace">
+            <summary>
+            Gets or sets name of the Visual Studio project containing script files to execute.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.Files">
+            <summary>
+            Gets list of files containing script to execute.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.References">
+            <summary>
+            Gets list of external assemblies referenced from the script.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.Imports">
+            <summary>
+            Gets list of namespaces to be used in the script.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.Conditionals">
+            <summary>
+            Gets list of conditional compilation symbols.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.Resources">
+            <summary>
+            Gets list of embedded resource files.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.WpfResources">
+            <summary>
+            Gets list of wpf resource files.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.SearchPaths">
+            <summary>
+            Gets list of search directories to look for source files and referenced assemblies.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.Properties">
+            <summary>
+            Gets additional properties to be used in code generation.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.ScriptFile">
+            <summary>
+            Gets single script file to execute.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.ScriptCode">
+            <summary>
+            Gets script code to execute.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.Expression">
+            <summary>
+            Gets expression to evaluate.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.FrameworkPath">
+            <summary>
+            Gets location of .NET Framework assemblies.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.HasProject">
+            <summary>
+            Returns boolean value indicating whether <c>ScriptSource</c> is associated with the project.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.HasScriptFile">
+            <summary>
+            Returns boolean value indicating whether <c>ScriptSource</c> contains script file to execute.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.HasScriptCode">
+            <summary>
+            Returns boolean value indicating whether <c>ScriptSource</c> contains script code to execute.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.HasExpression">
+            <summary>
+            Returns boolean value indicating whether <c>ScriptSource</c> contains expression to evaluate.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.IsWpfProject">
+            <summary>
+            Returns boolean value indicating whether <c>ScriptSource</c> contains a Wpf project
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptSource.Changed">
+            <summary>
+            Gets or sets boolean value indicating if script source has been modified since last compilation.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptSource.Reset">
+            <summary>
+            Clears script source.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptSource.FromScriptProject(System.String)">
+            <summary>
+            Loads script source from the Visual Studio project.
+            </summary>
+            <param name="projectFileName">Project file name to load script.</param>
+            <returns>Modified IScrptSource instance</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptSource.FromScriptFile(System.String)">
+            <summary>
+            Loads script source from the script file.
+            </summary>
+            <param name="fileName">File Name to load the script.</param>
+            <returns>Modified IScrptSource instance</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptSource.FromScriptCode(System.String)">
+            <summary>
+            Loads script source from the script code.
+            </summary>
+            <param name="scriptCode">Script code to execute.</param>
+            <returns>Modified IScrptSource instance</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptSource.FromScriptCode(System.String,System.String)">
+            <summary>
+            Loads script source from the script code.
+            </summary>
+            <param name="scriptCode">Script code to execute.</param>
+            <param name="fileName">Specifis name if the file containing script code.</param>
+            <returns>Modified IScrptSource instance</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptSource.FromExpression(System.String)">
+            <summary>
+            Loads script source from the expression.
+            </summary>
+            <param name="expression">Expression to evaluate.</param>
+            <returns>Modified IScrptSource instance</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptSource.WithDefaultReferences(Alternet.Scripter.ScriptTechnologyEnvironment,System.Boolean)">
+            <summary>
+            Sets default assembly references to the script source.
+            </summary>
+            <returns>Modified IScrptSource instance</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptSource.GetLastModifiedDate(System.String)">
+            <summary>
+            Gets file date time when script source was compiled.
+            </summary>
+            <param name="fileName">FileName to check last modified date.</param>
+            <returns>File date of the given file at the time it was compiled.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptSource.HasBeenModified(Alternet.Scripter.IScriptSource)">
+            <summary>
+            Compares file modification dates against to other script source.
+            </summary>
+            <param name="other">IScriptSource to compare.</param>
+            <returns>True, if source has been changed since last compilation; otherwise false.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptSource.Equals(Alternet.Scripter.IScriptSource)">
+            <summary>
+            Determines whether the specified <c>IScriptSource</c> is equal to the current <c>ScriptSource</c>.
+            </summary>
+            <param name="other">The <c>IScriptSource</c> to compare with the current source.</param>
+            <returns>True if the specified source is equal to the current source; otherwise, false.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.ScriptSource.Clone">
+            <summary>
+            Creates a new object that is a copy of the current <c>ScriptSource</c> object.
+            </summary>
+            <returns>A new instance of ScriptSource that is the memberwise clone of the current ScriptSource object.</returns>
+        </member>
+        <member name="T:Alternet.Scripter.ResolveReferenceEventArgs">
+            <summary>
+            Provides data for the <c>IScriptRun.ReferenceResolve</c> event.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.ResolveReferenceEventArgs.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <c>ResolveReferenceEventArgs</c> class with specified reference.
+            </summary>
+            <param name="reference">Reference to resolve.</param>
+        </member>
+        <member name="P:Alternet.Scripter.ResolveReferenceEventArgs.Handled">
+            <summary>
+            Gets or sets a value indicating whether the ReferenceResolve event was handled.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ResolveReferenceEventArgs.Reference">
+            <summary>
+            Gets or sets reference to be resolved.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ResolveReferenceEventArgs.AssemblyLocation">
+            <summary>
+            Gets or sets suitable Assembly.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ResolveReferenceEventArgs.AssemblyImage">
+            <summary>
+            Gets or sets stream suitable Assembly Image.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.IScriptGlobalItem">
+            <summary>
+            Represents properties declaration to describe a global object from the script.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptGlobalItem.Name">
+            <summary>
+            When implemented by a class, gets or sets name of this item.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptGlobalItem.Type">
+            <summary>
+            When implemented by a class, gets or sets object type of this item.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptGlobalItem.Obj">
+            <summary>
+            When implemented by a class, gets or sets object contained by this item.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.ScriptAssemblyKind">
+            <summary>
+            Defines programming language used by the script engine.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptAssemblyKind.WindowsApplication">
+            <summary>
+            Specifies windows executable.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptAssemblyKind.ConsoleApplication">
+            <summary>
+            Specifies console application.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptAssemblyKind.DynamicLibrary">
+            <summary>
+            Specifies dynamic linked library.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptAssemblyKind.WebApplication">
+            <summary>
+            Specifies Web application.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.ScriptPlatform">
+            <summary>
+            Defines target platform.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptPlatform.Auto">
+            <summary>
+            Determines scripting platform depending on calling application target platform.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptPlatform.AnyCpu">
+            <summary>
+            AnyCPU (default) compiles the assembly to run on any platform.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptPlatform.X86">
+            <summary>
+            x86 compiles the assembly to be run by the 32-bit, x86-compatible common language runtime
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptPlatform.X64">
+            <summary>
+            x64 compiles the assembly to be run by the 64-bit common language runtime on a computer that supports the AMD64 or EM64T instruction set.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptPlatform.AnyCpu32BitPreferred">
+            <summary>
+            Compiles your assembly to run on any platform. Your application runs in 32-bit mode on systems that support both 64-bit and 32-bit applications.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.ScriptTechnologyEnvironment">
+            <summary>
+            Defines a technology environment
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptTechnologyEnvironment.WindowsForms">
+            <summary>
+            Specifies Windows Forms.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptTechnologyEnvironment.Wpf">
+            <summary>
+            Specifies Wpf.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.ScriptLanguage">
+            <summary>
+            Defines programming language used by the script engine.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptLanguage.CSharp">
+            <summary>
+            Specifies C# language.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptLanguage.VisualBasic">
+            <summary>
+            Specifies Visual Basic language.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptLanguage.CSharpScript">
+            <summary>
+            Specifies C# class-less script language.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptLanguage.VisualBasicScript">
+            <summary>
+            Specifies Visual Basic class-less script language.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.ScriptMode">
+            <summary>
+            Defines debug or release mode for the scripts.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptMode.Debug">
+            <summary>
+            Specifies Debug mode.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptMode.Release">
+            <summary>
+            Specifies Release mode.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.IScriptHost">
+            <summary>
+            Represents methods and properties declaration to support a script engine functionality.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.AssemblyFileName">
+            <summary>
+            When implemented by a class, gets script assembly file name.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.Compiled">
+            <summary>
+            When implemented by a class, gets boolean value indicating that script has been compiled and ready to be executed.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.CompileFailed">
+            <summary>
+            When implemented by a class, gets or sets boolean value indicating unsuccessful script compilation.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.CompilerErrors">
+            <summary>
+            When implemented by a class, gets list of compiler errors associated with the script being executed.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.ExecutableModulePath">
+            <summary>
+            When implemented by a class, gets script assembly path.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.GenerateModulesOnDisk">
+            <summary>
+            When implemented by a class, gets or sets value indicating whether script assembly should be written to the disk or kept in memory.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.ReuseCompiledModulesFromDisk">
+            <summary>
+            When implemented by a class, gets or sets boolean value indicating whether to attempt to reuse existing compile results from disk, if up-to-date.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.ModulesDirectoryPath">
+            <summary>
+            When implemented by a class, gets or sets path for compiled script assemblies.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.ScriptAssembly">
+            <summary>
+            When implemented by a class, returns compiled script assembly.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.ScriptRun">
+            <summary>
+            When implemented by a class, gets <c>IScriptRun</c> associated this script host.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.GlobalCode">
+            <summary>
+            When implemented by a class, gets a global code required for global items.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.AutoGeneratedCode">
+            <summary>
+            When implemented by a class, gets an auto-generated code.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.Options">
+            <summary>
+            When implemented by a class, gets or sets additional script host options.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.StrongKeyPath">
+            <summary>
+            When implemented by a class, gets a strong key file path used to sign an assembly with a strong key.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.CertificatePath">
+            <summary>
+            When implemented by a class, gets or sets pfx certificate file path used to sign an assembly with certificate.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.CertificatePassword">
+            <summary>
+            When implemented by a class, gets or sets pfx certificate password used to sign an assembly with certificate.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptHost.CertificateTimeStampURL">
+            <summary>
+            When implemented by a class, gets or sets a timestamp URL for time-stamping certificate signature.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptHost.Compile(System.Boolean,System.Boolean)">
+            <summary>
+            When implemented by a class, initializes script engine and compiles the script.
+            </summary>
+            <param name="copyReferences">Specifies if all required assemblies should be copied to the output location</param>
+            <param name="syntaxCheckOnly">Specifies if compilation performs syntax check only, without generating assemblies.</param>
+            <returns>True if succeed, otherwise false.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptHost.CopyReferencedAssemblies">
+            <summary>
+            When implemented by a class, copies all non-GAC assemblies referenced by a script to the output directories.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptHost.EvaluateExpression(System.String)">
+            <summary>
+            When implemented by a class, evaluates specified expression.
+            </summary>
+            <param name="expression">Expression to evaluate.</param>
+            <returns>An object containing return value of the expression being evaluated.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptHost.EvaluateExpressionAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            When implemented by a class, evaluates specified expression asynchronously.
+            </summary>
+            <param name="expression">Expression to execute.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>An object containing return value of the expression being evaluated.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptHost.Reset">
+            <summary>
+            When implemented by a class, closes the script engine and releases all resources.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptHost.ResolveReferences">
+            <summary>
+            When implemented by a class, returns list of assembly references used by the script.
+            </summary>
+            <returns>List of assembly references.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptHost.ResolveReferences(System.Collections.Generic.IList{System.String})">
+            <summary>
+            When implemented by a class, returns list of assembly references used by the script.
+            </summary>
+            <param name="unresolvedReferences">Contains list of references that can not be resolved.</param>
+            <returns>List of assembly references.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptHost.Run(System.String[])">
+            <summary>
+            When implemented by a class, executes script starting from the main entry point.
+            </summary>
+            <param name="args">Specifies main method parameters.</param>
+            <returns>Return value of the script being executed.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptHost.RunProcess(System.String[],System.Boolean)">
+            <summary>
+            When implemented by a class, executes script starting from the main entry point in standalone process.
+            </summary>
+            <param name="args">Specifies main method parameters.</param>
+            <param name="wait">Specifies if calling application should wait for process termination</param>
+            <returns>Return process exit code.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptHost.RunAsync(System.String[],System.Threading.CancellationToken)">
+            <summary>
+            When implemented by a class, executes script asynchronously starting from the main entry point.
+            </summary>
+            <param name="args">Specifies main method parameters.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>Return value of the script being executed.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptHost.RunMethod(System.String,System.Object,System.Object[])">
+            <summary>
+            When implemented by a class, executes specified method.
+            </summary>
+            <param name="method">Name of method to execute.</param>
+            <returns>An object containing return value of the executed method.</returns>
+            <param name="obj">Object, contains method to execute.</param>
+            <param name="args">Array of method's parameters.</param>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptHost.RunMethodAsync(System.String,System.Object,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            When implemented by a class, executes specified method asynchronously.
+            </summary>
+            <param name="method">Name of method to execute.</param>
+            <returns>An object containing return value of the executed method.</returns>
+            <param name="obj">Object, contains method to execute.</param>
+            <param name="args">Array of method's parameters.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+        </member>
+        <member name="T:Alternet.Scripter.ScriptCompiledDelegate">
+            <summary>
+            Delegate for notification of remote control about the end of the compilation process.
+            </summary>
+            <param name="result">Contains result of the compilation.</param>
+        </member>
+        <member name="T:Alternet.Scripter.ScriptFinishedDelegate">
+            <summary>
+            Delegate for notification of remote control about the end of the script execution.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.IScriptRemoteControl">
+            <summary>
+            Represents methods for remote communication between application  that executes script and debugger.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptRemoteControl.CompileScript(Alternet.Scripter.ScriptCompiledDelegate)">
+            <summary>
+            When implemented by a class, compiles scripts, and calls back the given delegate when compilation is complete.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptRemoteControl.IsScriptRunning">
+            <summary>
+            When implementing by a class, returns boolean value indicating that script is currently running.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptRemoteControl.StartScript(Alternet.Scripter.ScriptFinishedDelegate)">
+            <summary>
+            When implemented by a class, compiles script if needed and starts execution.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptRemoteControl.StopScript">
+            <summary>
+            When implemented by a class, stops script execution.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.ScriptCompilationResult">
+            <summary>
+            Represent structured information of code compilation result.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptCompilationResult.Errors">
+            <summary>
+            When implemented by a class, represents errors collection.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptCompilationResult.IsSuccessful">
+            <summary>
+            When implemented by a class, represents a value indicating whether compilation was successful.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.ScriptCompilationResult.TargetAssemblyName">
+            <summary>
+            When implemented by a class, represents fully qualified name of the compiled assembly.
+            </summary>
+        </member>
+        <member name="T:Alternet.Scripter.IScriptRun">
+            <summary>
+            Represents methods and properties declaration to describe runner for script engine.
+            </summary>
+        </member>
+        <member name="E:Alternet.Scripter.IScriptRun.ReferenceResolve">
+            <summary>
+            When implemented by a class, occurs when script code is loaded from file.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptRun.ScriptHost">
+            <summary>
+            When implemented by a class, returns object that implements <c>IScriptHost</c> interface for this runner.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptRun.ScriptSource">
+            <summary>
+            When implemented by a class, gets source of the script to execute.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptRun.GlobalItems">
+            <summary>
+            When implemented by a class, gets or sets a script items collection attached to this runner.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptRun.ScriptLanguage">
+            <summary>
+            When implemented by a class, gets or sets programming language of the script.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptRun.ScriptMode">
+            <summary>
+            When implemented by a class, gets or sets debug or release mode for the scripts being executed.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptRun.Win32ManifestOptions">
+            <summary>
+            When implemented by a class, gets or sets Win32 manifest options for the script assembly.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptRun.AssemblyKind">
+            <summary>
+            When implemented by a class, gets or sets output kind for the script assembly.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptRun.TargetFrameworkVersion">
+            <summary>
+            When implemented by a class, gets or sets target framework version for locating .NET Framework assemblies.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptRun.Platform">
+            <summary>
+            When implemented by a class, gets or sets target platform (32 or 64 bits).
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptRun.LoadFile(System.String)">
+            <summary>
+            When implemented by a class, load text content from the specified file.
+            </summary>
+            <param name="fileName">File name that contains text to load.</param>
+            <returns>String representation of the file.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptRun.Run(System.String[])">
+            <summary>
+            When implemented by a class, executes script starting from the main entry point.
+            </summary>
+            <param name="args">Specifies main method parameters.</param>
+            <returns>Return value of the script being executed.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptRun.RunProcess(System.String[],System.Boolean)">
+            <summary>
+            When implemented by a class, executes script starting from the main entry point in stand-alone process
+            </summary>
+            <param name="args">Specifies main method parameters.</param>
+            <param name="wait">Specifies if calling application should wait for process termination</param>
+            <returns>Return process exit code.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptRun.RunAsync(System.String[],System.Threading.CancellationToken)">
+            <summary>
+            When implemented by a class, executes script asynchronously starting from the main entry point.
+            </summary>
+            <param name="args">Specifies main method parameters.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>Return value of the script being executed.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptRun.RunMethod(System.String,System.Object,System.Object[])">
+            <summary>
+            When implemented by a class, executes specified method.
+            </summary>
+            <param name="method">Name of method to execute.</param>
+            <returns>An object containing return value of the executed method.</returns>
+            <param name="obj">Object, contains method to execute.</param>
+            <param name="args">Array of method's parameters.</param>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptRun.RunMethodAsync(System.String,System.Object,System.Object[],System.Threading.CancellationToken)">
+            <summary>
+            When implemented by a class, executes specified method asynchronously.
+            </summary>
+            <param name="method">Name of method to execute.</param>
+            <returns>An object containing return value of the executed method.</returns>
+            <param name="obj">Object, contains method to execute.</param>
+            <param name="args">Array of method's parameters.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptRun.EvaluateExpressionAsync(System.String,System.Threading.CancellationToken)">
+            <summary>
+            When implemented by a class, evaluates specified expression asynchronously.
+            </summary>
+            <param name="expression">Expression to execute.</param>
+            <param name="cancellationToken">Cancellation token.</param>
+            <returns>An object containing return value of the expression being evaluated.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptRun.CreateScriptHost">
+            <summary>
+            When implemented by a class, creates a new <c>IScriptHost</c> object with appropriate characteristics.
+            </summary>
+            <returns>Created <c>IScriptHost</c> object.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptRun.OnResolveReference(System.String,System.String@,System.Byte[]@)">
+            <summary>
+            When implemented by a class, invokes <c>ReferenceResolve</c> event handler.
+            </summary>
+            <param name="reference">Reference to resolve.</param>
+            <param name="assemblyLocation">Path to suitable assembly.</param>
+            <param name="assemblyImage">Image containing suitable assembly.</param>
+            <returns>true if reference was resolved otherwise false</returns>
+        </member>
+        <member name="T:Alternet.Scripter.IScriptSource">
+            <summary>
+            Represents methods and properties to work with script text, files or projects.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptSource.ProjectName">
+            <summary>
+            When implemented by a class, gets or sets name of the Visual Studio project containing script files to execute.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptSource.RootNamespace">
+            <summary>
+            When implemented by a class, gets or sets root namespace to be used for manifest resources.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptSource.FrameworkPath">
+            <summary>
+            When implemented by a class, gets location of .NET Framework assemblies.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptSource.Files">
+            <summary>
+            When implemented by a class, gets list of files containing script to execute.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptSource.References">
+            <summary>
+            When implemented by a class, gets list of external assemblies referenced from the script.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptSource.Imports">
+            <summary>
+            When implemented by a class, gets list of namespaces to be used in the script.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptSource.Conditionals">
+            <summary>
+            When implemented by a class, gets list of conditional compilation symbols.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptSource.Resources">
+            <summary>
+            When implemented by a class, gets list of embedded resource files.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptSource.WpfResources">
+            <summary>
+            When implemented by a class, gets list of wpf resource files.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptSource.SearchPaths">
+            <summary>
+            When implemented by a class, gets list of search directories to look for source files and referenced assemblies.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptSource.Properties">
+            <summary>
+            When implemented by a class, gets additional properties to be used in code generation.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptSource.IsWpfProject">
+            <summary>
+            When implemented by a class, returns boolean value indicating whether <c>ScriptSource</c> contains a Wpf project
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptSource.Language">
+            <summary>
+            When implemented by a class, returns script programming language.
+            </summary>
+        </member>
+        <member name="P:Alternet.Scripter.IScriptSource.Changed">
+            <summary>
+            When implemented by a class, gets or sets boolean value indicating if script source has been modified since last compilation.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptSource.Reset">
+            <summary>
+            When implemented by a class, clears script source.
+            </summary>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptSource.FromScriptProject(System.String)">
+            <summary>
+            When implemented by a class, loads script source from the Visual Studio project.
+            </summary>
+            <param name="projectFileName">Project file name to load script.</param>
+            <returns>Modified IScrptSource instance</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptSource.FromScriptFile(System.String)">
+            <summary>
+            When implemented by a class, loads script source from the script file.
+            </summary>
+            <param name="fileName">File Name to load the script.</param>
+            <returns>Modified IScrptSource instance</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptSource.FromScriptCode(System.String)">
+            <summary>
+            When implemented by a class, loads script source from the script code.
+            </summary>
+            <param name="scriptCode">Script code to execute.</param>
+            <returns>Modified IScrptSource instance</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptSource.FromScriptCode(System.String,System.String)">
+            <summary>
+            When implemented by a class, loads script source from the script code.
+            </summary>
+            <param name="scriptCode">Script code to execute.</param>
+            <param name="fileName">Specifis name if the file containing script code.</param>
+            <returns>Modified IScrptSource instance</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptSource.FromExpression(System.String)">
+            <summary>
+            When implemented by a class, loads script source from the expression.
+            </summary>
+            <param name="expression">Expression to evaluate.</param>
+            <returns>Modified IScrptSource instance</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptSource.WithDefaultReferences(Alternet.Scripter.ScriptTechnologyEnvironment,System.Boolean)">
+            <summary>
+            When implemented by a class, set default assembly references to the script source.
+            </summary>
+            <param name="technology">Specifies technology platform</param>
+            <param name="keepExisting">Specifies whether existing assemblies should be persisted.</param>
+            <returns>Modified IScrptSource instance</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptSource.GetLastModifiedDate(System.String)">
+            <summary>
+            When implemented by a class, gets file date time when script source was compiled.
+            </summary>
+            <param name="fileName">FileName to check last modified date.</param>
+            <returns>File date of the given file at the time it was compiled.</returns>
+        </member>
+        <member name="M:Alternet.Scripter.IScriptSource.HasBeenModified(Alternet.Scripter.IScriptSource)">
+            <summary>
+            When implemented by a class, compares file modification dates against to other script source.
+            </summary>
+            <param name="other">IScriptSource to compare.</param>
+            <returns>True, if source has been changed since last compilation; otherwise false.</returns>
+        </member>
+        <member name="T:Alternet.Scripter.ScriptHostOptions">
+            <summary>
+            Discribes a set of options for the script host.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptHostOptions.None">
+            <summary>
+            No options specified.
+            </summary>
+        </member>
+        <member name="F:Alternet.Scripter.ScriptHostOptions.DoNotHideDotNetCoreLauncherConsoleWindow">
+            <summary>
+            If set, the .NET Core launcher console window will remain open when launching GUI scripts.
+            </summary>
+        </member>
+    </members>
+</doc>
