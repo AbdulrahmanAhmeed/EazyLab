@@ -3,8 +3,10 @@ using EazyLab;
 using EazyLab.Classes;
 using EazyLab.Cpt.Classes;
 using EazyLab.Cpt.Forms;
+using EazyLab.Instrumentation.Standard;
 using SuperSimpleTcp;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -14,6 +16,7 @@ namespace EazyLabClient
 {
     public partial class frmCptMain : Form
     {
+        DbAccess DbAccess = Server.DbAccess;
         private SuperSimpleTcp.SimpleTcpServer TcpServer;
         private string TcpServerIp = "192.168.1.201";
         private int TcpPort = 9000;
@@ -30,7 +33,6 @@ namespace EazyLabClient
             InitializeComponent();
             try
             {
-                 
                 TerminalAddress = new IPEndPoint(IPAddress.Parse(TerminalIpAddress), TcpPort); // EndPoint..creat(TerminalIpAddress);
                 TerminalIpAddress = TerminalAddress.Address.ToString();
                 TcpServer = new SimpleTcpServer(TcpServerIp, TcpPort);
@@ -210,9 +212,9 @@ namespace EazyLabClient
                         //if (!Program.Chamber.Save(Program.DbDir + "Chamber.obj"))
                         //      if (!EazyLab.Utilties.SerializeObject.Save(_chamber, Program.DbDir + "Chamber.obj"))
                         MessageBox.Show("Failed to save Chamber.\r\nPlease See Log file");
+                        SaveTagsWithColor();
                         break;
                     case "Load Chamber":
-
                         LoadChamber();
                         if (Chamber == null)
                         {
@@ -254,6 +256,35 @@ namespace EazyLabClient
             }
         }
 
+        private void LoadTagsWithColor()
+        {
+            try
+            {
+                var data = DbAccess.GetAll<CptTagController>().OrderBy(x=>x.Created);
+                foreach (var stdControl in Cntrl.StdControls)
+                {
+                    stdControl.PlotColor = Color.FromName(data.Where(x => x.Name == stdControl.Name).First().Color);
+                }
+            }
+            catch(Exception ex)
+            {
+                return;
+            }
+        }
+        private void SaveTagsWithColor()
+        {
+            foreach (var stdControl in Cntrl.StdControls)
+            {
+                var obj = new CptTagController()
+                {
+                    Name = stdControl.Name,
+                    Color = stdControl.PlotColor.Name,
+                };
+                DbAccess.Upsert(obj);
+            }
+        }
+
+        
         private void switchLedConnect_ValueChanged(object sender, ValueBooleanEventArgs e)
         {
             //if (!Server.IsStarted) { Server.Start(); _chamber.Ahu.Initialize(); _chamber.Ahu.Connect(true); }
@@ -287,6 +318,7 @@ namespace EazyLabClient
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            LoadTagsWithColor();
             //timer1.Start();
             timerUpdateDisplay.Interval = Program.UpdateTime;
             var cc = Server.DbAccess.GetAll<CptChamber>(); 

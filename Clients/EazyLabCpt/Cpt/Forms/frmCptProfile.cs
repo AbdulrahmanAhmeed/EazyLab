@@ -238,7 +238,7 @@ namespace EazyLab.Cpt.Forms
             {
                 var oldprofile = tempProfile;
                 tempProfile = new CptProfile();
-                tempProfile.Id= tempProfiles.Last().Id+1 ;
+                tempProfile.Id = tempProfiles.Any() ? tempProfiles.Last().Id + 1 : 1 ;  //tempProfiles.Last().Id+1 ;
                 tempProfiles.Add(tempProfile);
                 nudProfileId.Maximum = tempProfiles.Count;
                 nudProfileId.Minimum = 1;

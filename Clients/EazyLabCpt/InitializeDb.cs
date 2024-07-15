@@ -28,12 +28,13 @@ namespace EazyLab
                 db.GetCollection<SampleSerialPrefix>().EnsureIndex(x => x.Name);
                 db.GetCollection<CptChamber>().EnsureIndex(x => x.Id);
                 db.GetCollection<CptStation>().EnsureIndex(x => x.SerialNumber);
+                db.GetCollection<CptTagController>().EnsureIndex(x => x.Name);
                 //mapper.Entity<CptModel>().Id(x => x.Model);
                 //mapper.Entity<SampleSerialSuffix>().Id(x => x.Name);
                 //mapper.Entity<SampleSerialPrefix>().Id(x => x.Name);
                 //mapper.Entity<CptSample>().Id(x => x.Name);
-               // mapper.Entity<CptStation>().Id(x => x.SerialNumber);
-                
+                // mapper.Entity<CptStation>().Id(x => x.SerialNumber);
+
             }
             catch (Exception ex)
             {

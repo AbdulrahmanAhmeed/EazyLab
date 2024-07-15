@@ -1,8 +1,7 @@
 EazyLab.Instrumentation.Professional.LedArrow, EazyLab.Pro, Version=5.0.2.1638, Culture=neutral, PublicKeyToken=null
-EazyLab.Instrumentation.Standard.EditDouble, EazyLab.Std, Version=5.0.2.1638, Culture=neutral, PublicKeyToken=null
-EazyLab.Instrumentation.Standard.Led, EazyLab.Std, Version=5.0.2.1638, Culture=neutral, PublicKeyToken=null
+EazyLab.Instrumentation.Standard.SwitchLed, EazyLab.Std, Version=5.0.2.1638, Culture=neutral, PublicKeyToken=null
+EazyLab.Instrumentation.Plotting.Plot, EazyLab.Plot, Version=5.0.2.1637, Culture=neutral, PublicKeyToken=null
 EazyLab.Instrumentation.Standard.Label, EazyLab.Std, Version=5.0.2.1638, Culture=neutral, PublicKeyToken=null
-EazyLab.Instrumentation.Standard.SwitchLed, EazyLab.Std, Version=5.0.2.1638, Culture=neutral, PublicKeyToken=null
-EazyLab.Instrumentation.Standard.SwitchLed, EazyLab.Std, Version=5.0.2.1638, Culture=neutral, PublicKeyToken=null
 EazyLab.Instrumentation.Standard.Led, EazyLab.Std, Version=5.0.2.1638, Culture=neutral, PublicKeyToken=null
+EazyLab.Instrumentation.Standard.EditDouble, EazyLab.Std, Version=5.0.2.1638, Culture=neutral, PublicKeyToken=null
 EazyLab.Instrumentation.Standard.EditString, EazyLab.Std, Version=5.0.2.1638, Culture=neutral, PublicKeyToken=null

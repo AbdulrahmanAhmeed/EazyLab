@@ -73,6 +73,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dll\EazyLab.Pro.dll</HintPath>
     </Reference>
+    <Reference Include="EazyLab.Std, Version=5.0.2.1638, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\EazyLab.Std.dll</HintPath>
+    </Reference>
     <Reference Include="eZModbus, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dll\eZModbus.dll</HintPath>
@@ -115,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cpt\Classes\CommDataPacket.cs" />
+    <Compile Include="Cpt\Classes\CptTagController.cs" />
     <Compile Include="Cpt\Classes\OnConnectionEventArgs.cs" />
     <Compile Include="Cpt\Classes\SampleSerialPrefix.cs" />
     <Compile Include="Cpt\Classes\SampleSerialSuffix.cs" />
@@ -291,10 +296,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\EazyLab_V5\branches\CptVer1.0\PC\Instrumentation\STD\EazyLab.Std.csproj">
-      <Project>{5fc6c66c-434f-4ee6-b3ff-f7bdaac9e28b}</Project>
-      <Name>EazyLab.Std</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
