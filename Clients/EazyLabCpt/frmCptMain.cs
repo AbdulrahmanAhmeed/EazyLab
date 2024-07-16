@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace EazyLabClient
@@ -33,6 +34,7 @@ namespace EazyLabClient
             InitializeComponent();
             try
             {
+
                 TerminalAddress = new IPEndPoint(IPAddress.Parse(TerminalIpAddress), TcpPort); // EndPoint..creat(TerminalIpAddress);
                 TerminalIpAddress = TerminalAddress.Address.ToString();
                 TcpServer = new SimpleTcpServer(TcpServerIp, TcpPort);
@@ -51,8 +53,8 @@ namespace EazyLabClient
             }
             catch (Exception ex)
             {
-                LoggerFile.WriteException(ex); 
-               
+                LoggerFile.WriteException(ex);
+
             }
             ToastMessage(TcpServer.IsListening ? "Server Started" : "Server Not Started");
 
@@ -83,12 +85,12 @@ namespace EazyLabClient
         {
             var ipe = IPAddressFromEndPoint(e.IpPort);
 
-            if (ipe == TerminalIpAddress  )//send by Terminal
+            if (ipe == TerminalIpAddress)//send by Terminal
             {
-                char[] cccc = Encoding.ASCII.GetChars(e.Data.Array); 
-                string sss = new String(cccc); 
+                char[] cccc = Encoding.ASCII.GetChars(e.Data.Array);
+                string sss = new String(cccc);
                 CommDataPacket commDataPacket = CommDataPacket.DeSerializer(sss);
-                
+
             }
 
         }
@@ -104,7 +106,7 @@ namespace EazyLabClient
                 IPAddress.Parse(ipEndPoint.Substring(0, ipAddressLength)),
                 Convert.ToInt32(ipEndPoint.Substring(ipAddressLength + 1)));
         }
-        public string IPAddressFromEndPoint (string ipEndPoint)
+        public string IPAddressFromEndPoint(string ipEndPoint)
         {
             int ipAddressLength = ipEndPoint.LastIndexOf(':');
             return ipEndPoint.Substring(0, ipAddressLength);
@@ -137,7 +139,7 @@ namespace EazyLabClient
         private void buttonSetup_Click_1(object sender, EventArgs e)
         {
             buttonSetup.ContextMenuStrip.Show(Cursor.Position);
-         
+
         }
 
         private void contextMenuStripSetup_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -211,7 +213,7 @@ namespace EazyLabClient
                         //CptChamberCntrl1.Set_PV_NAMES();
                         //if (!Program.Chamber.Save(Program.DbDir + "Chamber.obj"))
                         //      if (!EazyLab.Utilties.SerializeObject.Save(_chamber, Program.DbDir + "Chamber.obj"))
-                        MessageBox.Show("Failed to save Chamber.\r\nPlease See Log file");
+                        //MessageBox.Show("Failed to save Chamber.\r\nPlease See Log file");
                         SaveTagsWithColor();
                         break;
                     case "Load Chamber":
@@ -237,8 +239,8 @@ namespace EazyLabClient
                         //    T.Connect(true);
                         //});
 
-                        foreach(var  c in Chamber.Stations)c.Connect(true);
-                        Cntrl.SelectStation(0); 
+                        foreach (var c in Chamber.Stations) c.Connect(true);
+                        Cntrl.SelectStation(0);
                         this.Cursor = Cursors.Default;
                         break;
 
@@ -252,7 +254,7 @@ namespace EazyLabClient
             catch (Exception ex)
             {
 
-                LoggerFile.WriteException(ex); 
+                LoggerFile.WriteException(ex);
             }
         }
 
@@ -260,17 +262,18 @@ namespace EazyLabClient
         {
             try
             {
-                var data = DbAccess.GetAll<CptTagController>().OrderBy(x=>x.Created);
+                var data = DbAccess.GetAll<CptTagController>();
                 foreach (var stdControl in Cntrl.StdControls)
                 {
-                    stdControl.PlotColor = Color.FromName(data.Where(x => x.Name == stdControl.Name).First().Color);
+                    stdControl.PlotColor = Color.FromArgb(data.Find(x=>x.Name == stdControl.Name).RGB);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return;
             }
         }
+
         private void SaveTagsWithColor()
         {
             foreach (var stdControl in Cntrl.StdControls)
@@ -278,13 +281,13 @@ namespace EazyLabClient
                 var obj = new CptTagController()
                 {
                     Name = stdControl.Name,
-                    Color = stdControl.PlotColor.Name,
+                    RGB = stdControl.PlotColor.ToArgb()
                 };
                 DbAccess.Upsert(obj);
             }
         }
 
-        
+
         private void switchLedConnect_ValueChanged(object sender, ValueBooleanEventArgs e)
         {
             //if (!Server.IsStarted) { Server.Start(); _chamber.Ahu.Initialize(); _chamber.Ahu.Connect(true); }
@@ -311,23 +314,20 @@ namespace EazyLabClient
 
         void LoadChamber()
         {
-            DbAccess dba= Server.DbAccess;
-            this.Chamber = dba.db.GetCollection<CptChamber>().FindAll().ToList()[0]; 
+            DbAccess dba = Server.DbAccess;
+            this.Chamber = dba.db.GetCollection<CptChamber>().FindAll().ToList()[0];
 
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
             LoadTagsWithColor();
-            //timer1.Start();
             timerUpdateDisplay.Interval = Program.UpdateTime;
-            var cc = Server.DbAccess.GetAll<CptChamber>(); 
+            var cc = Server.DbAccess.GetAll<CptChamber>();
             if (cc.Count > 0)
             {
                 Chamber = cc[0];
-     
                 Chamber.Initialize();
-                
             }
             else
             {
@@ -335,7 +335,7 @@ namespace EazyLabClient
                 ToastMessage("Chamber need to be configured");
             }
 
-            Cntrl.Chamber= Chamber;
+            Cntrl.Chamber = Chamber;
             this.WindowState = FormWindowState.Maximized;
             timer1.Interval = 60000;
 
@@ -388,7 +388,7 @@ namespace EazyLabClient
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-          // Chamber.ReInitialize(); 
+            // Chamber.ReInitialize(); 
         }
     }
 }

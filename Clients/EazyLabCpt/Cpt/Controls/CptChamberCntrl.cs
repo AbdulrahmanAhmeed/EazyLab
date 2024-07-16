@@ -18,7 +18,7 @@ namespace EazyLab.Cpt.Controls
         public CptChamber Chamber { get => chamber; set => chamber = value; }
         int number_of_Graphs = 0, Maximum_Grphs = 3;
 
-        public List<StdControlBase> StdControls;// = new List<StdControlBase>();// List to hold all PV in this user control
+        public List<PV> StdControls;// = new List<StdControlBase>();// List to hold all PV in this user control
         public CptStation SelectedStation;
         public int SelectedStationIndex = 0;
         public bool Chamber_Reading = false;
@@ -30,12 +30,12 @@ namespace EazyLab.Cpt.Controls
             style |= NativeWinAPI.WS_EX_COMPOSITED;
             NativeWinAPI.SetWindowLong(this.Handle, NativeWinAPI.GWL_EXSTYLE, style);
             InitializeComponent();
-            StdControls = new List<StdControlBase>();
+            StdControls = new List<PV>();
             GetPVControls(this.Controls);
-            foreach (Control C in StdControls)
+            foreach (var  C in StdControls)
             {
                 C.Dock = DockStyle.Fill;
-                ((PV)C).Plot = this.Plot; 
+                C.Plot = this.Plot; 
             }
 
         }
@@ -52,8 +52,12 @@ namespace EazyLab.Cpt.Controls
                 //if (((StdControlBase) control).GetType() == typeof(StdControlBase)) 
                 //    StdControls.Add((StdControlBase)control);
                 //else GetPVControls(((Control)control).Controls);
+                ////////////////////////////////////////
+                //if (control.GetType().IsSubclassOf(typeof(StdControlBase)))
+                //    StdControls.Add((StdControlBase)control);
+                //else GetPVControls(((Control)control).Controls);
                 if (control.GetType().IsSubclassOf(typeof(StdControlBase)))
-                    StdControls.Add((StdControlBase)control);
+                    StdControls.Add((PV)control);
                 else GetPVControls(((Control)control).Controls);
             }
         }
@@ -210,6 +214,31 @@ namespace EazyLab.Cpt.Controls
         }
 
         private void Plot_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CbStation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pvVoltage_ValueChanged(object sender, ValueDoubleEventArgs e)
+        {
+
+        }
+
+        private void toggleButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toggleButton1_Click_1(object sender, EventArgs e)
         {
 
         }

@@ -9,7 +9,7 @@ namespace EazyLab.Cpt.Classes
 {
     public class CptTagController : Entity
     {
-        public string Color { get; set; }
+        public int RGB { get; set; }
 
     }
 }

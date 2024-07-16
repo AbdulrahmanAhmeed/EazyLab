@@ -86,6 +86,7 @@ namespace EazyLab.Cpt.Controls
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.cntrlPIDs1 = new EazyLab.Cntrls.CntrlPIDs();
+            this.btnSet = new EazyLab.Instrumentation.Standard.ToggleButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -151,8 +152,9 @@ namespace EazyLab.Cpt.Controls
             // 
             // groupBox1
             // 
-            this.groupBox1.BackColor = System.Drawing.Color.Blue;
+            this.groupBox1.BackColor = System.Drawing.Color.Black;
             this.tableLayoutPanel2.SetColumnSpan(this.groupBox1, 2);
+            this.groupBox1.Controls.Add(this.btnSet);
             this.groupBox1.Controls.Add(this.tbtnStart);
             this.groupBox1.Controls.Add(this.btnConnect);
             this.groupBox1.Controls.Add(this.button1);
@@ -168,6 +170,7 @@ namespace EazyLab.Cpt.Controls
             this.groupBox1.TabIndex = 145;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Station";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // tbtnStart
             // 
@@ -207,9 +210,9 @@ namespace EazyLab.Cpt.Controls
             // 
             // button1
             // 
-            this.button1.BackColor = System.Drawing.Color.Black;
+            this.button1.BackColor = System.Drawing.Color.White;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.LightSeaGreen;
+            this.button1.ForeColor = System.Drawing.Color.Black;
             this.button1.Location = new System.Drawing.Point(32, 144);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(86, 32);
@@ -229,6 +232,7 @@ namespace EazyLab.Cpt.Controls
             // 
             // button3
             // 
+            this.button3.ForeColor = System.Drawing.Color.Black;
             this.button3.Location = new System.Drawing.Point(245, 141);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
@@ -238,7 +242,7 @@ namespace EazyLab.Cpt.Controls
             // 
             // CbStation
             // 
-            this.CbStation.BackColor = System.Drawing.Color.Blue;
+            this.CbStation.BackColor = System.Drawing.Color.White;
             this.CbStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CbStation.ForeColor = System.Drawing.Color.Aqua;
             this.CbStation.FormattingEnabled = true;
@@ -247,6 +251,7 @@ namespace EazyLab.Cpt.Controls
             this.CbStation.Size = new System.Drawing.Size(238, 28);
             this.CbStation.TabIndex = 87;
             this.CbStation.DropDown += new System.EventHandler(this.CbStation_DropDown);
+            this.CbStation.SelectedIndexChanged += new System.EventHandler(this.CbStation_SelectedIndexChanged);
             this.CbStation.SelectedValueChanged += new System.EventHandler(this.CbStation_SelectedValueChanged);
             // 
             // label2
@@ -254,7 +259,7 @@ namespace EazyLab.Cpt.Controls
             this.label2.LoadingBegin();
             this.label2.AutoFont = false;
             this.label2.AutoSize = false;
-            this.label2.BackColor = System.Drawing.Color.Blue;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Cyan;
             this.label2.Location = new System.Drawing.Point(14, 19);
@@ -269,30 +274,29 @@ namespace EazyLab.Cpt.Controls
             this.pvCurrent.LoadingBegin();
             this.pvCurrent.AutoFont = true;
             this.pvCurrent.AutoSize = false;
-            this.pvCurrent.BackColor = System.Drawing.Color.DarkBlue;
             this.pvCurrent.Calibrated = false;
             this.pvCurrent.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvCurrent.Channel")));
             this.pvCurrent.ChannelNo = 0;
             this.pvCurrent.EnableContextMenu = true;
             this.pvCurrent.EnableDoubleClick = true;
-            this.pvCurrent.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F);
-            this.pvCurrent.ForeColor = System.Drawing.Color.White;
+            this.pvCurrent.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvCurrent.IsHidden = false;
             this.pvCurrent.IsSelectedForPloting = false;
             this.pvCurrent.Location = new System.Drawing.Point(1119, 6);
             this.pvCurrent.Name = "pvCurrent";
             this.pvCurrent.Plot = null;
             this.pvCurrent.PlotChannelNamee = null;
-            this.pvCurrent.Precision = 3;
+            this.pvCurrent.PlotColor = System.Drawing.Color.White;
+            this.pvCurrent.Precision = 1;
             this.pvCurrent.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
             this.pvCurrent.Size = new System.Drawing.Size(155, 54);
-            this.pvCurrent.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.pvCurrent.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.pvCurrent.TagName = "Current";
             this.pvCurrent.TagNameGroup = "PV_TagName Group1";
             this.pvCurrent.TagToDigitRatio = ((uint)(30u));
+            this.pvCurrent.TextFormatting.Precision = 1;
             this.pvCurrent.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvCurrent.TextFormatting.UnitsText = "A";
-            this.pvCurrent.Unit = "A";
+            this.pvCurrent.Unit = "";
             this.pvCurrent.ValueAsDouble = 0D;
             this.pvCurrent.LoadingEnd();
             // 
@@ -301,30 +305,29 @@ namespace EazyLab.Cpt.Controls
             this.pvEnergy.LoadingBegin();
             this.pvEnergy.AutoFont = true;
             this.pvEnergy.AutoSize = false;
-            this.pvEnergy.BackColor = System.Drawing.Color.Navy;
             this.pvEnergy.Calibrated = false;
             this.pvEnergy.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvEnergy.Channel")));
             this.pvEnergy.ChannelNo = 0;
             this.pvEnergy.EnableContextMenu = true;
             this.pvEnergy.EnableDoubleClick = true;
             this.pvEnergy.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
-            this.pvEnergy.ForeColor = System.Drawing.Color.Gainsboro;
             this.pvEnergy.IsHidden = false;
             this.pvEnergy.IsSelectedForPloting = false;
             this.pvEnergy.Location = new System.Drawing.Point(1119, 109);
             this.pvEnergy.Name = "pvEnergy";
             this.pvEnergy.Plot = null;
             this.pvEnergy.PlotChannelNamee = null;
-            this.pvEnergy.Precision = 3;
+            this.pvEnergy.PlotColor = System.Drawing.Color.White;
+            this.pvEnergy.Precision = 1;
             this.pvEnergy.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
             this.pvEnergy.Size = new System.Drawing.Size(155, 54);
             this.pvEnergy.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.pvEnergy.TagName = "Energy";
             this.pvEnergy.TagNameGroup = "PV_TagName Group1";
             this.pvEnergy.TagToDigitRatio = ((uint)(30u));
+            this.pvEnergy.TextFormatting.Precision = 1;
             this.pvEnergy.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvEnergy.TextFormatting.UnitsText = "kwh";
-            this.pvEnergy.Unit = "kwh";
+            this.pvEnergy.Unit = "";
             this.pvEnergy.ValueAsDouble = 0D;
             this.pvEnergy.LoadingEnd();
             // 
@@ -333,33 +336,31 @@ namespace EazyLab.Cpt.Controls
             this.pvVoltage.LoadingBegin();
             this.pvVoltage.AutoFont = true;
             this.pvVoltage.AutoSize = false;
-            this.pvVoltage.BackColor = System.Drawing.Color.Blue;
             this.pvVoltage.Calibrated = false;
             this.pvVoltage.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvVoltage.Channel")));
             this.pvVoltage.ChannelNo = 0;
             this.pvVoltage.EnableContextMenu = true;
             this.pvVoltage.EnableDoubleClick = true;
-            this.pvVoltage.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.pvVoltage.ForeColor = System.Drawing.Color.Gainsboro;
+            this.pvVoltage.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
             this.pvVoltage.IsHidden = false;
             this.pvVoltage.IsSelectedForPloting = false;
             this.pvVoltage.Location = new System.Drawing.Point(953, 6);
             this.pvVoltage.Name = "pvVoltage";
             this.pvVoltage.Plot = null;
             this.pvVoltage.PlotChannelNamee = null;
+            this.pvVoltage.PlotColor = System.Drawing.Color.White;
             this.pvVoltage.Precision = 1;
             this.pvVoltage.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
             this.pvVoltage.Size = new System.Drawing.Size(155, 43);
-            this.pvVoltage.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+            this.pvVoltage.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 6F);
             this.pvVoltage.TagName = "Voltage";
             this.pvVoltage.TagNameGroup = "PV_TagName Group1";
             this.pvVoltage.TagToDigitRatio = ((uint)(30u));
             this.pvVoltage.TextFormatting.Precision = 1;
             this.pvVoltage.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvVoltage.TextFormatting.UnitsText = "V";
-            this.pvVoltage.Unit = "V";
-            this.pvVoltage.Value.AsDouble = 220D;
-            this.pvVoltage.ValueAsDouble = 220D;
+            this.pvVoltage.Unit = "";
+            this.pvVoltage.ValueAsDouble = 0D;
+            this.pvVoltage.ValueChanged += new EazyLab.Delegates.ValueDoubleEventHandler(this.pvVoltage_ValueChanged);
             this.pvVoltage.LoadingEnd();
             // 
             // pvPower
@@ -367,33 +368,29 @@ namespace EazyLab.Cpt.Controls
             this.pvPower.LoadingBegin();
             this.pvPower.AutoFont = true;
             this.pvPower.AutoSize = false;
-            this.pvPower.BackColor = System.Drawing.Color.Blue;
-            this.pvPower.Border.Color = System.Drawing.Color.Blue;
-            this.pvPower.Border.Style = EazyLab.Types.BorderStyleControl.Flat;
             this.pvPower.Calibrated = false;
             this.pvPower.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvPower.Channel")));
             this.pvPower.ChannelNo = 0;
             this.pvPower.EnableContextMenu = true;
             this.pvPower.EnableDoubleClick = true;
-            this.pvPower.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F);
-            this.pvPower.ForeColor = System.Drawing.Color.Gainsboro;
+            this.pvPower.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvPower.IsHidden = false;
             this.pvPower.IsSelectedForPloting = false;
             this.pvPower.Location = new System.Drawing.Point(953, 109);
             this.pvPower.Name = "pvPower";
             this.pvPower.Plot = null;
             this.pvPower.PlotChannelNamee = null;
+            this.pvPower.PlotColor = System.Drawing.Color.White;
             this.pvPower.Precision = 1;
             this.pvPower.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
             this.pvPower.Size = new System.Drawing.Size(155, 54);
-            this.pvPower.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.pvPower.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.pvPower.TagName = "Power";
             this.pvPower.TagNameGroup = "PV_TagName Group1";
             this.pvPower.TagToDigitRatio = ((uint)(30u));
             this.pvPower.TextFormatting.Precision = 1;
             this.pvPower.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvPower.TextFormatting.UnitsText = "W";
-            this.pvPower.Unit = "W";
+            this.pvPower.Unit = "";
             this.pvPower.ValueAsDouble = 0D;
             this.pvPower.LoadingEnd();
             // 
@@ -402,31 +399,29 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp2.LoadingBegin();
             this.pvTemp2.AutoFont = true;
             this.pvTemp2.AutoSize = false;
-            this.pvTemp2.BackColor = System.Drawing.Color.Navy;
             this.pvTemp2.Calibrated = false;
             this.pvTemp2.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvTemp2.Channel")));
             this.pvTemp2.ChannelNo = 0;
             this.pvTemp2.EnableContextMenu = true;
             this.pvTemp2.EnableDoubleClick = true;
-            this.pvTemp2.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F);
-            this.pvTemp2.ForeColor = System.Drawing.Color.Gainsboro;
+            this.pvTemp2.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvTemp2.IsHidden = false;
             this.pvTemp2.IsSelectedForPloting = false;
             this.pvTemp2.Location = new System.Drawing.Point(787, 6);
             this.pvTemp2.Name = "pvTemp2";
             this.pvTemp2.Plot = null;
             this.pvTemp2.PlotChannelNamee = null;
-            this.pvTemp2.Precision = 2;
+            this.pvTemp2.PlotColor = System.Drawing.Color.White;
+            this.pvTemp2.Precision = 1;
             this.pvTemp2.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
             this.pvTemp2.Size = new System.Drawing.Size(155, 54);
-            this.pvTemp2.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.pvTemp2.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.pvTemp2.TagName = "Temp2";
             this.pvTemp2.TagNameGroup = "PV_TagName Group1";
             this.pvTemp2.TagToDigitRatio = ((uint)(30u));
-            this.pvTemp2.TextFormatting.Precision = 2;
+            this.pvTemp2.TextFormatting.Precision = 1;
             this.pvTemp2.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvTemp2.TextFormatting.UnitsText = "°c";
-            this.pvTemp2.Unit = "°c";
+            this.pvTemp2.Unit = "";
             this.pvTemp2.ValueAsDouble = 0D;
             this.pvTemp2.LoadingEnd();
             // 
@@ -435,31 +430,29 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp4.LoadingBegin();
             this.pvTemp4.AutoFont = true;
             this.pvTemp4.AutoSize = false;
-            this.pvTemp4.BackColor = System.Drawing.Color.Navy;
             this.pvTemp4.Calibrated = false;
             this.pvTemp4.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvTemp4.Channel")));
             this.pvTemp4.ChannelNo = 0;
             this.pvTemp4.EnableContextMenu = true;
             this.pvTemp4.EnableDoubleClick = true;
-            this.pvTemp4.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F);
-            this.pvTemp4.ForeColor = System.Drawing.Color.Gainsboro;
+            this.pvTemp4.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvTemp4.IsHidden = false;
             this.pvTemp4.IsSelectedForPloting = false;
             this.pvTemp4.Location = new System.Drawing.Point(787, 109);
             this.pvTemp4.Name = "pvTemp4";
             this.pvTemp4.Plot = null;
             this.pvTemp4.PlotChannelNamee = null;
-            this.pvTemp4.Precision = 2;
+            this.pvTemp4.PlotColor = System.Drawing.Color.White;
+            this.pvTemp4.Precision = 1;
             this.pvTemp4.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
             this.pvTemp4.Size = new System.Drawing.Size(155, 54);
-            this.pvTemp4.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.pvTemp4.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.pvTemp4.TagName = "Temp5";
             this.pvTemp4.TagNameGroup = "PV_TagName Group1";
             this.pvTemp4.TagToDigitRatio = ((uint)(30u));
-            this.pvTemp4.TextFormatting.Precision = 2;
+            this.pvTemp4.TextFormatting.Precision = 1;
             this.pvTemp4.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvTemp4.TextFormatting.UnitsText = "°c";
-            this.pvTemp4.Unit = "°c";
+            this.pvTemp4.Unit = "";
             this.pvTemp4.ValueAsDouble = 0D;
             this.pvTemp4.LoadingEnd();
             // 
@@ -468,31 +461,29 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp6.LoadingBegin();
             this.pvTemp6.AutoFont = true;
             this.pvTemp6.AutoSize = false;
-            this.pvTemp6.BackColor = System.Drawing.Color.Navy;
             this.pvTemp6.Calibrated = false;
             this.pvTemp6.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvTemp6.Channel")));
             this.pvTemp6.ChannelNo = 0;
             this.pvTemp6.EnableContextMenu = true;
             this.pvTemp6.EnableDoubleClick = true;
-            this.pvTemp6.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F);
-            this.pvTemp6.ForeColor = System.Drawing.Color.Gainsboro;
+            this.pvTemp6.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvTemp6.IsHidden = false;
             this.pvTemp6.IsSelectedForPloting = false;
             this.pvTemp6.Location = new System.Drawing.Point(787, 212);
             this.pvTemp6.Name = "pvTemp6";
             this.pvTemp6.Plot = null;
             this.pvTemp6.PlotChannelNamee = null;
-            this.pvTemp6.Precision = 2;
+            this.pvTemp6.PlotColor = System.Drawing.Color.White;
+            this.pvTemp6.Precision = 1;
             this.pvTemp6.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
             this.pvTemp6.Size = new System.Drawing.Size(157, 54);
-            this.pvTemp6.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.pvTemp6.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.pvTemp6.TagName = "Temp6";
             this.pvTemp6.TagNameGroup = "PV_TagName Group1";
             this.pvTemp6.TagToDigitRatio = ((uint)(30u));
-            this.pvTemp6.TextFormatting.Precision = 2;
+            this.pvTemp6.TextFormatting.Precision = 1;
             this.pvTemp6.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvTemp6.TextFormatting.UnitsText = "°c";
-            this.pvTemp6.Unit = "°c";
+            this.pvTemp6.Unit = "";
             this.pvTemp6.ValueAsDouble = 0D;
             this.pvTemp6.LoadingEnd();
             // 
@@ -501,33 +492,29 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp1.LoadingBegin();
             this.pvTemp1.AutoFont = true;
             this.pvTemp1.AutoSize = false;
-            this.pvTemp1.BackColor = System.Drawing.Color.Blue;
             this.pvTemp1.Calibrated = false;
             this.pvTemp1.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvTemp1.Channel")));
             this.pvTemp1.ChannelNo = 0;
             this.pvTemp1.EnableContextMenu = true;
             this.pvTemp1.EnableDoubleClick = true;
             this.pvTemp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
-            this.pvTemp1.ForeColor = System.Drawing.Color.Gainsboro;
             this.pvTemp1.IsHidden = false;
             this.pvTemp1.IsSelectedForPloting = false;
             this.pvTemp1.Location = new System.Drawing.Point(621, 6);
             this.pvTemp1.Name = "pvTemp1";
             this.pvTemp1.Plot = this.Plot;
             this.pvTemp1.PlotChannelNamee = null;
-            this.pvTemp1.Precision = 2;
+            this.pvTemp1.PlotColor = System.Drawing.Color.White;
+            this.pvTemp1.Precision = 1;
             this.pvTemp1.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
             this.pvTemp1.Size = new System.Drawing.Size(155, 54);
             this.pvTemp1.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.pvTemp1.TagName = "Temp1";
             this.pvTemp1.TagNameGroup = "PV_TagName Group1";
             this.pvTemp1.TagToDigitRatio = ((uint)(30u));
-            this.pvTemp1.TextFormatting.Precision = 2;
+            this.pvTemp1.TextFormatting.Precision = 1;
             this.pvTemp1.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvTemp1.TextFormatting.UnitsText = "°c";
-            this.pvTemp1.TextLayout.AlignmentHorizontal.Margin = 0D;
-            this.pvTemp1.TextLayout.AlignmentVertical.Margin = 0D;
-            this.pvTemp1.Unit = "°c";
+            this.pvTemp1.Unit = "";
             this.pvTemp1.ValueAsDouble = 0D;
             this.pvTemp1.LoadingEnd();
             // 
@@ -535,9 +522,6 @@ namespace EazyLab.Cpt.Controls
             // 
             this.Plot.LoadingBegin();
             this.Plot.AutoFont = false;
-            this.Plot.Background.GradientStartColor = System.Drawing.Color.Aqua;
-            this.Plot.Background.GradientStopColor = System.Drawing.Color.Blue;
-            this.Plot.Background.Visible = true;
             this.tableLayoutPanel1.SetColumnSpan(this.Plot, 4);
             plotDataCursorXY1.Hint.Fill.Pen.Color = System.Drawing.SystemColors.InfoText;
             plotDataCursorXY1.Name = "Data-Cursor 1";
@@ -575,31 +559,29 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp3.LoadingBegin();
             this.pvTemp3.AutoFont = true;
             this.pvTemp3.AutoSize = false;
-            this.pvTemp3.BackColor = System.Drawing.Color.Blue;
             this.pvTemp3.Calibrated = false;
             this.pvTemp3.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvTemp3.Channel")));
             this.pvTemp3.ChannelNo = 0;
             this.pvTemp3.EnableContextMenu = true;
             this.pvTemp3.EnableDoubleClick = true;
-            this.pvTemp3.Font = new System.Drawing.Font("Microsoft Sans Serif", 23F);
-            this.pvTemp3.ForeColor = System.Drawing.Color.Gainsboro;
+            this.pvTemp3.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvTemp3.IsHidden = false;
             this.pvTemp3.IsSelectedForPloting = false;
             this.pvTemp3.Location = new System.Drawing.Point(621, 109);
             this.pvTemp3.Name = "pvTemp3";
             this.pvTemp3.Plot = null;
             this.pvTemp3.PlotChannelNamee = null;
-            this.pvTemp3.Precision = 2;
+            this.pvTemp3.PlotColor = System.Drawing.Color.White;
+            this.pvTemp3.Precision = 1;
             this.pvTemp3.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
             this.pvTemp3.Size = new System.Drawing.Size(155, 54);
-            this.pvTemp3.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.pvTemp3.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.pvTemp3.TagName = "Temp3";
             this.pvTemp3.TagNameGroup = "PV_TagName Group1";
             this.pvTemp3.TagToDigitRatio = ((uint)(30u));
-            this.pvTemp3.TextFormatting.Precision = 2;
+            this.pvTemp3.TextFormatting.Precision = 1;
             this.pvTemp3.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvTemp3.TextFormatting.UnitsText = "°c";
-            this.pvTemp3.Unit = "°c";
+            this.pvTemp3.Unit = "";
             this.pvTemp3.ValueAsDouble = 0D;
             this.pvTemp3.LoadingEnd();
             // 
@@ -608,31 +590,29 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp5.LoadingBegin();
             this.pvTemp5.AutoFont = true;
             this.pvTemp5.AutoSize = false;
-            this.pvTemp5.BackColor = System.Drawing.Color.Blue;
             this.pvTemp5.Calibrated = false;
             this.pvTemp5.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvTemp5.Channel")));
             this.pvTemp5.ChannelNo = 0;
             this.pvTemp5.EnableContextMenu = true;
             this.pvTemp5.EnableDoubleClick = true;
             this.pvTemp5.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
-            this.pvTemp5.ForeColor = System.Drawing.Color.Gainsboro;
             this.pvTemp5.IsHidden = false;
             this.pvTemp5.IsSelectedForPloting = false;
             this.pvTemp5.Location = new System.Drawing.Point(621, 212);
             this.pvTemp5.Name = "pvTemp5";
             this.pvTemp5.Plot = null;
             this.pvTemp5.PlotChannelNamee = null;
-            this.pvTemp5.Precision = 2;
+            this.pvTemp5.PlotColor = System.Drawing.Color.White;
+            this.pvTemp5.Precision = 1;
             this.pvTemp5.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
             this.pvTemp5.Size = new System.Drawing.Size(155, 54);
             this.pvTemp5.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.pvTemp5.TagName = "Temp5";
             this.pvTemp5.TagNameGroup = "PV_TagName Group1";
             this.pvTemp5.TagToDigitRatio = ((uint)(30u));
-            this.pvTemp5.TextFormatting.Precision = 2;
+            this.pvTemp5.TextFormatting.Precision = 1;
             this.pvTemp5.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvTemp5.TextFormatting.UnitsText = "°c";
-            this.pvTemp5.Unit = "°c";
+            this.pvTemp5.Unit = "";
             this.pvTemp5.ValueAsDouble = 0D;
             this.pvTemp5.LoadingEnd();
             // 
@@ -959,6 +939,24 @@ namespace EazyLab.Cpt.Controls
             this.cntrlPIDs1.Size = new System.Drawing.Size(900, 509);
             this.cntrlPIDs1.TabIndex = 0;
             // 
+            // btnSet
+            // 
+            this.btnSet.BackColor = System.Drawing.Color.White;
+            this.btnSet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSet.ForeColor = System.Drawing.Color.DarkGreen;
+            this.btnSet.Location = new System.Drawing.Point(330, 70);
+            this.btnSet.Name = "btnSet";
+            this.btnSet.OffColor = System.Drawing.Color.White;
+            this.btnSet.OffText = "Set On";
+            this.btnSet.OnColor = System.Drawing.Color.DimGray;
+            this.btnSet.OnText = "Set Off";
+            this.btnSet.Size = new System.Drawing.Size(133, 33);
+            this.btnSet.State = false;
+            this.btnSet.TabIndex = 95;
+            this.btnSet.Text = "Set On";
+            this.btnSet.UseVisualStyleBackColor = false;
+            this.btnSet.Click += new System.EventHandler(this.toggleButton1_Click_1);
+            // 
             // CptChamberCntrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1027,5 +1025,6 @@ namespace EazyLab.Cpt.Controls
         private System.Windows.Forms.GroupBox groupBox1;
         private Instrumentation.Standard.ToggleButton btnConnect;
         private Instrumentation.Standard.ToggleButton tbtnStart;
+        private Instrumentation.Standard.ToggleButton btnSet;
     }
 }
