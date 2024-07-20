@@ -129,15 +129,16 @@ namespace EazyLab.Cpt.Classes
                 {
                     var ss = recvd.Remove(recvd.Length - 1).Substring(3);
                     var st = Stations.First(T => T.SerialNumber == ss);
-                    if (!st.IsConnected) st.Connect(false);
-                    if (st.ReadDataPacket() == Types.ModbusResult.SUCCESS)//Station is connected 
+                    if (!st.IsConnected) 
+                        st.Connect();
+                    if (st.ReadDataPacket() == Types.ModbusResult.SUCCESS)//Station is conne
+                        if ((st.SampleStatus == CptStation.SamplesStatus.SampleRunning))cted 
                     {
-                        if ((st.SampleStatus == CptStation.SAMPLESTATUS.Running))
                         {
                             ToastMessage("Another Sample is Running Please stop the Station first");
                             return;
                         }
-                        if ((st.SampleStatus == CptStation.SAMPLESTATUS.NoSample || st.SampleStatus == CptStation.SAMPLESTATUS.Finished))
+                        if ((st.SampleStatus == CptStation.SamplesStatus.NoSample || st.SampleStatus == CptStation.SamplesStatus.SampleFinished))
                         {
                             st.PutStationWaitForSample();
                             ToastMessage("Add Sample To station #" + st.SerialNumber);

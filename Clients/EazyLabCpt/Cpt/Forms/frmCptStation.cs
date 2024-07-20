@@ -83,6 +83,7 @@ namespace EazyLab.Cpt.Forms
                 cbDevices.Text = Chamber.WiFiAdapterName;
                 cbWifis.Text = Chamber.SSID;
                 edName.Text = tempStation.Name;
+
             }
             catch (Exception ex)
             {
@@ -178,6 +179,10 @@ namespace EazyLab.Cpt.Forms
                     }
                 }
             }
+            for (int i = 0; i < 8; i++)
+            {
+                matrixLedsDO[i, 0].Value = (dp.DigitalOutput & 1 << i)>0 ;
+                }
 
 
         }
@@ -457,6 +462,19 @@ namespace EazyLab.Cpt.Forms
             tempStation.DataReadyEvent += DataReady;
             listBox1.Items.Clear();
             UpdateDisplay();
+        }
+
+        private void matrixLedsDO_LedClick(object sender, EazyLab.Classes.MatrixLedEventArgs e)
+        {
+            var index = e.ColIndex;
+            e.Led.Value = !e.Led.Value; 
+            tempStation.SetDO(e.ColIndex,e.Led.Value);
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

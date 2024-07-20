@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCptStation));
+            EazyLab.Classes.MatrixLed matrixLed1 = new EazyLab.Classes.MatrixLed();
+            EazyLab.Classes.MatrixLed matrixLed2 = new EazyLab.Classes.MatrixLed();
+            EazyLab.Classes.MatrixLed matrixLed3 = new EazyLab.Classes.MatrixLed();
+            EazyLab.Classes.MatrixLed matrixLed4 = new EazyLab.Classes.MatrixLed();
+            EazyLab.Classes.MatrixLed matrixLed5 = new EazyLab.Classes.MatrixLed();
+            EazyLab.Classes.MatrixLed matrixLed6 = new EazyLab.Classes.MatrixLed();
+            EazyLab.Classes.MatrixLed matrixLed7 = new EazyLab.Classes.MatrixLed();
+            EazyLab.Classes.MatrixLed matrixLed8 = new EazyLab.Classes.MatrixLed();
             this.btnSave = new System.Windows.Forms.Button();
             this.nudId = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
@@ -66,19 +74,22 @@
             this.edName = new EazyLab.Instrumentation.Standard.EditDouble();
             this.NudTimeout = new System.Windows.Forms.NumericUpDown();
             this.label10 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.matrixLedsDO = new EazyLab.Instrumentation.Professional.MatrixLeds();
             ((System.ComponentModel.ISupportInitialize)(this.nudId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudScanningInterval)).BeginInit();
             this.gbCalibration.SuspendLayout();
             this.gbChamber.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudTimeout)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(795, 387);
+            this.btnSave.Location = new System.Drawing.Point(762, 355);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(146, 32);
+            this.btnSave.Size = new System.Drawing.Size(182, 32);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -118,7 +129,7 @@
             // btRemove
             // 
             this.btRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btRemove.Location = new System.Drawing.Point(529, 387);
+            this.btRemove.Location = new System.Drawing.Point(780, 393);
             this.btRemove.Name = "btRemove";
             this.btRemove.Size = new System.Drawing.Size(146, 32);
             this.btRemove.TabIndex = 0;
@@ -129,7 +140,7 @@
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(795, 456);
+            this.btnClose.Location = new System.Drawing.Point(780, 456);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(146, 32);
             this.btnClose.TabIndex = 0;
@@ -234,7 +245,7 @@
             // btnPrint
             // 
             this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrint.Location = new System.Drawing.Point(282, 387);
+            this.btnPrint.Location = new System.Drawing.Point(288, 339);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(175, 32);
             this.btnPrint.TabIndex = 0;
@@ -294,6 +305,7 @@
             this.pv1.Name = "pv1";
             this.pv1.Plot = null;
             this.pv1.PlotChannelNamee = null;
+            this.pv1.PlotColor = System.Drawing.Color.White;
             this.pv1.Precision = 2;
             this.pv1.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
             this.pv1.Size = new System.Drawing.Size(179, 78);
@@ -304,6 +316,7 @@
             this.pv1.TextFormatting.Precision = 2;
             this.pv1.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
             this.pv1.Unit = "";
+            this.pv1.ValueAsDouble = 0D;
             this.pv1.Visible = false;
             this.pv1.LoadingEnd();
             // 
@@ -459,7 +472,7 @@
             // btReset
             // 
             this.btReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btReset.Location = new System.Drawing.Point(282, 436);
+            this.btReset.Location = new System.Drawing.Point(762, 317);
             this.btReset.Name = "btReset";
             this.btReset.Size = new System.Drawing.Size(175, 32);
             this.btReset.TabIndex = 28;
@@ -524,11 +537,70 @@
             this.label10.Text = "TiimeOut,Sec :";
             this.label10.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.matrixLedsDO);
+            this.groupBox1.Location = new System.Drawing.Point(289, 386);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(280, 58);
+            this.groupBox1.TabIndex = 32;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Digital out";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // matrixLedsDO
+            // 
+            this.matrixLedsDO.LoadingBegin();
+            this.matrixLedsDO.AutoFont = false;
+            this.matrixLedsDO.Dock = System.Windows.Forms.DockStyle.Top;
+            matrixLed1.Bezel.Style = EazyLab.Types.BevelStyle.Raised;
+            matrixLed1.Style = EazyLab.Types.ShapeBasic.Ellipse;
+            matrixLed1.Text = "0";
+            matrixLed2.Bezel.Style = EazyLab.Types.BevelStyle.Raised;
+            matrixLed2.Style = EazyLab.Types.ShapeBasic.Ellipse;
+            matrixLed2.Text = "1";
+            matrixLed3.Bezel.Style = EazyLab.Types.BevelStyle.Raised;
+            matrixLed3.Style = EazyLab.Types.ShapeBasic.Ellipse;
+            matrixLed3.Text = "2";
+            matrixLed4.Bezel.Style = EazyLab.Types.BevelStyle.Raised;
+            matrixLed4.Style = EazyLab.Types.ShapeBasic.Ellipse;
+            matrixLed4.Text = "3";
+            matrixLed5.Bezel.Style = EazyLab.Types.BevelStyle.Raised;
+            matrixLed5.Style = EazyLab.Types.ShapeBasic.Ellipse;
+            matrixLed5.Text = "4";
+            matrixLed6.Bezel.Style = EazyLab.Types.BevelStyle.Raised;
+            matrixLed6.Style = EazyLab.Types.ShapeBasic.Ellipse;
+            matrixLed6.Text = "5";
+            matrixLed7.Bezel.Style = EazyLab.Types.BevelStyle.Raised;
+            matrixLed7.Style = EazyLab.Types.ShapeBasic.Ellipse;
+            matrixLed7.Text = "6";
+            matrixLed8.Bezel.Style = EazyLab.Types.BevelStyle.Raised;
+            matrixLed8.Style = EazyLab.Types.ShapeBasic.Ellipse;
+            matrixLed8.Text = "7";
+            this.matrixLedsDO.Leds.Add(matrixLed1);
+            this.matrixLedsDO.Leds.Add(matrixLed2);
+            this.matrixLedsDO.Leds.Add(matrixLed3);
+            this.matrixLedsDO.Leds.Add(matrixLed4);
+            this.matrixLedsDO.Leds.Add(matrixLed5);
+            this.matrixLedsDO.Leds.Add(matrixLed6);
+            this.matrixLedsDO.Leds.Add(matrixLed7);
+            this.matrixLedsDO.Leds.Add(matrixLed8);
+            this.matrixLedsDO.Location = new System.Drawing.Point(3, 16);
+            this.matrixLedsDO.MatrixSettings.ColCount = 8;
+            this.matrixLedsDO.MatrixSettings.ColWidth = 32;
+            this.matrixLedsDO.MatrixSettings.RowCount = 1;
+            this.matrixLedsDO.MatrixSettings.RowHeight = 32;
+            this.matrixLedsDO.Name = "matrixLedsDO";
+            this.matrixLedsDO.Size = new System.Drawing.Size(274, 32);
+            this.matrixLedsDO.LedClick += new EazyLab.Delegates.MatrixLedEventHandler(this.matrixLedsDO_LedClick);
+            this.matrixLedsDO.LoadingEnd();
+            // 
             // frmCptStation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(997, 680);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.edName);
             this.Controls.Add(this.btReset);
             this.Controls.Add(this.gbChamber);
@@ -565,6 +637,8 @@
             this.gbChamber.ResumeLayout(false);
             this.gbChamber.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudTimeout)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -609,5 +683,7 @@
         private Instrumentation.Standard.EditDouble edName;
         private System.Windows.Forms.NumericUpDown NudTimeout;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private Instrumentation.Professional.MatrixLeds matrixLedsDO;
     }
 }

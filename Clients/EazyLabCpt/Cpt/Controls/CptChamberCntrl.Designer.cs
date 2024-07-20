@@ -40,6 +40,8 @@ namespace EazyLab.Cpt.Controls
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.led1 = new EazyLab.Instrumentation.Standard.Led();
+            this.btnSampleOn = new EazyLab.Instrumentation.Standard.ToggleButton();
             this.tbtnStart = new EazyLab.Instrumentation.Standard.ToggleButton();
             this.btnConnect = new EazyLab.Instrumentation.Standard.ToggleButton();
             this.button1 = new System.Windows.Forms.Button();
@@ -86,7 +88,6 @@ namespace EazyLab.Cpt.Controls
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.cntrlPIDs1 = new EazyLab.Cntrls.CntrlPIDs();
-            this.btnSet = new EazyLab.Instrumentation.Standard.ToggleButton();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -154,7 +155,8 @@ namespace EazyLab.Cpt.Controls
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Black;
             this.tableLayoutPanel2.SetColumnSpan(this.groupBox1, 2);
-            this.groupBox1.Controls.Add(this.btnSet);
+            this.groupBox1.Controls.Add(this.led1);
+            this.groupBox1.Controls.Add(this.btnSampleOn);
             this.groupBox1.Controls.Add(this.tbtnStart);
             this.groupBox1.Controls.Add(this.btnConnect);
             this.groupBox1.Controls.Add(this.button1);
@@ -172,18 +174,50 @@ namespace EazyLab.Cpt.Controls
             this.groupBox1.Text = "Station";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // led1
+            // 
+            this.led1.LoadingBegin();
+            this.led1.AutoFont = false;
+            this.led1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.led1.Indicator.Style = EazyLab.Types.ShapeBasic.Rectangle;
+            this.led1.Indicator.Text = "Sample Wait";
+            this.led1.Location = new System.Drawing.Point(404, 19);
+            this.led1.Name = "led1";
+            this.led1.Size = new System.Drawing.Size(196, 32);
+            this.led1.LoadingEnd();
+            // 
+            // btnSampleOn
+            // 
+            this.btnSampleOn.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnSampleOn.Enabled = false;
+            this.btnSampleOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSampleOn.ForeColor = System.Drawing.Color.Black;
+            this.btnSampleOn.Location = new System.Drawing.Point(451, 57);
+            this.btnSampleOn.Name = "btnSampleOn";
+            this.btnSampleOn.OffColor = System.Drawing.Color.DarkGreen;
+            this.btnSampleOn.OffText = "Power On";
+            this.btnSampleOn.OnColor = System.Drawing.Color.YellowGreen;
+            this.btnSampleOn.OnText = "Power Off";
+            this.btnSampleOn.Size = new System.Drawing.Size(149, 33);
+            this.btnSampleOn.State = false;
+            this.btnSampleOn.TabIndex = 95;
+            this.btnSampleOn.Text = "Power On";
+            this.btnSampleOn.UseVisualStyleBackColor = false;
+            this.btnSampleOn.Click += new System.EventHandler(this.btnSampleOn_Click);
+            // 
             // tbtnStart
             // 
-            this.tbtnStart.BackColor = System.Drawing.Color.Red;
+            this.tbtnStart.BackColor = System.Drawing.Color.DarkGreen;
+            this.tbtnStart.Enabled = false;
             this.tbtnStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbtnStart.ForeColor = System.Drawing.Color.DarkGreen;
-            this.tbtnStart.Location = new System.Drawing.Point(469, 15);
+            this.tbtnStart.ForeColor = System.Drawing.Color.Black;
+            this.tbtnStart.Location = new System.Drawing.Point(451, 96);
             this.tbtnStart.Name = "tbtnStart";
-            this.tbtnStart.OffColor = System.Drawing.Color.Red;
+            this.tbtnStart.OffColor = System.Drawing.Color.DarkGreen;
             this.tbtnStart.OffText = "Start";
-            this.tbtnStart.OnColor = System.Drawing.Color.GreenYellow;
+            this.tbtnStart.OnColor = System.Drawing.Color.YellowGreen;
             this.tbtnStart.OnText = "Stop";
-            this.tbtnStart.Size = new System.Drawing.Size(131, 33);
+            this.tbtnStart.Size = new System.Drawing.Size(149, 33);
             this.tbtnStart.State = false;
             this.tbtnStart.TabIndex = 93;
             this.tbtnStart.Text = "Start";
@@ -192,16 +226,17 @@ namespace EazyLab.Cpt.Controls
             // 
             // btnConnect
             // 
-            this.btnConnect.BackColor = System.Drawing.Color.Red;
+            this.btnConnect.BackColor = System.Drawing.Color.DarkGreen;
+            this.btnConnect.Enabled = false;
             this.btnConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnect.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btnConnect.Location = new System.Drawing.Point(330, 15);
+            this.btnConnect.ForeColor = System.Drawing.Color.Black;
+            this.btnConnect.Location = new System.Drawing.Point(451, 135);
             this.btnConnect.Name = "btnConnect";
-            this.btnConnect.OffColor = System.Drawing.Color.Red;
+            this.btnConnect.OffColor = System.Drawing.Color.DarkGreen;
             this.btnConnect.OffText = "Connect";
-            this.btnConnect.OnColor = System.Drawing.Color.GreenYellow;
+            this.btnConnect.OnColor = System.Drawing.Color.YellowGreen;
             this.btnConnect.OnText = "Disconnect";
-            this.btnConnect.Size = new System.Drawing.Size(133, 33);
+            this.btnConnect.Size = new System.Drawing.Size(149, 33);
             this.btnConnect.State = false;
             this.btnConnect.TabIndex = 93;
             this.btnConnect.Text = "Connect";
@@ -223,7 +258,7 @@ namespace EazyLab.Cpt.Controls
             // editString1
             // 
             this.editString1.LoadingBegin();
-            this.editString1.Location = new System.Drawing.Point(355, 144);
+            this.editString1.Location = new System.Drawing.Point(32, 195);
             this.editString1.Name = "editString1";
             this.editString1.Size = new System.Drawing.Size(165, 20);
             this.editString1.TabIndex = 90;
@@ -233,7 +268,7 @@ namespace EazyLab.Cpt.Controls
             // button3
             // 
             this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button3.Location = new System.Drawing.Point(245, 141);
+            this.button3.Location = new System.Drawing.Point(139, 153);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 91;
@@ -244,11 +279,11 @@ namespace EazyLab.Cpt.Controls
             // 
             this.CbStation.BackColor = System.Drawing.Color.White;
             this.CbStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CbStation.ForeColor = System.Drawing.Color.Aqua;
+            this.CbStation.ForeColor = System.Drawing.Color.Black;
             this.CbStation.FormattingEnabled = true;
             this.CbStation.Location = new System.Drawing.Point(86, 19);
             this.CbStation.Name = "CbStation";
-            this.CbStation.Size = new System.Drawing.Size(238, 28);
+            this.CbStation.Size = new System.Drawing.Size(312, 28);
             this.CbStation.TabIndex = 87;
             this.CbStation.DropDown += new System.EventHandler(this.CbStation_DropDown);
             this.CbStation.SelectedIndexChanged += new System.EventHandler(this.CbStation_SelectedIndexChanged);
@@ -287,16 +322,17 @@ namespace EazyLab.Cpt.Controls
             this.pvCurrent.Plot = null;
             this.pvCurrent.PlotChannelNamee = null;
             this.pvCurrent.PlotColor = System.Drawing.Color.White;
-            this.pvCurrent.Precision = 1;
+            this.pvCurrent.Precision = 2;
             this.pvCurrent.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
             this.pvCurrent.Size = new System.Drawing.Size(155, 54);
             this.pvCurrent.TagFont = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.pvCurrent.TagName = "Current";
             this.pvCurrent.TagNameGroup = "PV_TagName Group1";
             this.pvCurrent.TagToDigitRatio = ((uint)(30u));
-            this.pvCurrent.TextFormatting.Precision = 1;
+            this.pvCurrent.TextFormatting.Precision = 2;
             this.pvCurrent.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvCurrent.Unit = "";
+            this.pvCurrent.TextFormatting.UnitsText = "A";
+            this.pvCurrent.Unit = "A";
             this.pvCurrent.ValueAsDouble = 0D;
             this.pvCurrent.LoadingEnd();
             // 
@@ -327,7 +363,8 @@ namespace EazyLab.Cpt.Controls
             this.pvEnergy.TagToDigitRatio = ((uint)(30u));
             this.pvEnergy.TextFormatting.Precision = 1;
             this.pvEnergy.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvEnergy.Unit = "";
+            this.pvEnergy.TextFormatting.UnitsText = "kwh";
+            this.pvEnergy.Unit = "kwh";
             this.pvEnergy.ValueAsDouble = 0D;
             this.pvEnergy.LoadingEnd();
             // 
@@ -358,7 +395,8 @@ namespace EazyLab.Cpt.Controls
             this.pvVoltage.TagToDigitRatio = ((uint)(30u));
             this.pvVoltage.TextFormatting.Precision = 1;
             this.pvVoltage.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvVoltage.Unit = "";
+            this.pvVoltage.TextFormatting.UnitsText = "V";
+            this.pvVoltage.Unit = "V";
             this.pvVoltage.ValueAsDouble = 0D;
             this.pvVoltage.ValueChanged += new EazyLab.Delegates.ValueDoubleEventHandler(this.pvVoltage_ValueChanged);
             this.pvVoltage.LoadingEnd();
@@ -390,7 +428,8 @@ namespace EazyLab.Cpt.Controls
             this.pvPower.TagToDigitRatio = ((uint)(30u));
             this.pvPower.TextFormatting.Precision = 1;
             this.pvPower.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvPower.Unit = "";
+            this.pvPower.TextFormatting.UnitsText = "W";
+            this.pvPower.Unit = "W";
             this.pvPower.ValueAsDouble = 0D;
             this.pvPower.LoadingEnd();
             // 
@@ -421,7 +460,8 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp2.TagToDigitRatio = ((uint)(30u));
             this.pvTemp2.TextFormatting.Precision = 1;
             this.pvTemp2.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvTemp2.Unit = "";
+            this.pvTemp2.TextFormatting.UnitsText = "°c";
+            this.pvTemp2.Unit = "°c";
             this.pvTemp2.ValueAsDouble = 0D;
             this.pvTemp2.LoadingEnd();
             // 
@@ -452,7 +492,8 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp4.TagToDigitRatio = ((uint)(30u));
             this.pvTemp4.TextFormatting.Precision = 1;
             this.pvTemp4.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvTemp4.Unit = "";
+            this.pvTemp4.TextFormatting.UnitsText = "°c";
+            this.pvTemp4.Unit = "°c";
             this.pvTemp4.ValueAsDouble = 0D;
             this.pvTemp4.LoadingEnd();
             // 
@@ -483,7 +524,8 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp6.TagToDigitRatio = ((uint)(30u));
             this.pvTemp6.TextFormatting.Precision = 1;
             this.pvTemp6.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvTemp6.Unit = "";
+            this.pvTemp6.TextFormatting.UnitsText = "°c";
+            this.pvTemp6.Unit = "°c";
             this.pvTemp6.ValueAsDouble = 0D;
             this.pvTemp6.LoadingEnd();
             // 
@@ -514,7 +556,8 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp1.TagToDigitRatio = ((uint)(30u));
             this.pvTemp1.TextFormatting.Precision = 1;
             this.pvTemp1.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvTemp1.Unit = "";
+            this.pvTemp1.TextFormatting.UnitsText = "°c";
+            this.pvTemp1.Unit = "°c";
             this.pvTemp1.ValueAsDouble = 0D;
             this.pvTemp1.LoadingEnd();
             // 
@@ -545,6 +588,7 @@ namespace EazyLab.Cpt.Controls
             this.Plot.TabIndex = 4;
             plotXAxis1.DockOrder = 0;
             plotXAxis1.Name = "X-Axis 1";
+            plotXAxis1.ScaleDisplay.TextFormatting.Style = EazyLab.Types.TextFormatDoubleStyle.DateTime;
             plotXAxis1.Title.Text = "X-Axis 1";
             this.Plot.XAxes.Add(plotXAxis1);
             plotYAxis1.DockOrder = 0;
@@ -581,7 +625,8 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp3.TagToDigitRatio = ((uint)(30u));
             this.pvTemp3.TextFormatting.Precision = 1;
             this.pvTemp3.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvTemp3.Unit = "";
+            this.pvTemp3.TextFormatting.UnitsText = "°c";
+            this.pvTemp3.Unit = "°c";
             this.pvTemp3.ValueAsDouble = 0D;
             this.pvTemp3.LoadingEnd();
             // 
@@ -612,7 +657,8 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp5.TagToDigitRatio = ((uint)(30u));
             this.pvTemp5.TextFormatting.Precision = 1;
             this.pvTemp5.TextFormatting.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
-            this.pvTemp5.Unit = "";
+            this.pvTemp5.TextFormatting.UnitsText = "°c";
+            this.pvTemp5.Unit = "°c";
             this.pvTemp5.ValueAsDouble = 0D;
             this.pvTemp5.LoadingEnd();
             // 
@@ -939,24 +985,6 @@ namespace EazyLab.Cpt.Controls
             this.cntrlPIDs1.Size = new System.Drawing.Size(900, 509);
             this.cntrlPIDs1.TabIndex = 0;
             // 
-            // btnSet
-            // 
-            this.btnSet.BackColor = System.Drawing.Color.White;
-            this.btnSet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSet.ForeColor = System.Drawing.Color.DarkGreen;
-            this.btnSet.Location = new System.Drawing.Point(330, 70);
-            this.btnSet.Name = "btnSet";
-            this.btnSet.OffColor = System.Drawing.Color.White;
-            this.btnSet.OffText = "Set On";
-            this.btnSet.OnColor = System.Drawing.Color.DimGray;
-            this.btnSet.OnText = "Set Off";
-            this.btnSet.Size = new System.Drawing.Size(133, 33);
-            this.btnSet.State = false;
-            this.btnSet.TabIndex = 95;
-            this.btnSet.Text = "Set On";
-            this.btnSet.UseVisualStyleBackColor = false;
-            this.btnSet.Click += new System.EventHandler(this.toggleButton1_Click_1);
-            // 
             // CptChamberCntrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1025,6 +1053,7 @@ namespace EazyLab.Cpt.Controls
         private System.Windows.Forms.GroupBox groupBox1;
         private Instrumentation.Standard.ToggleButton btnConnect;
         private Instrumentation.Standard.ToggleButton tbtnStart;
-        private Instrumentation.Standard.ToggleButton btnSet;
+        private Instrumentation.Standard.ToggleButton btnSampleOn;
+        private Instrumentation.Standard.Led led1;
     }
 }

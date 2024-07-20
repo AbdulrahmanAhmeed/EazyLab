@@ -73,12 +73,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dll\EazyLab.Pro.dll</HintPath>
     </Reference>
-    <Reference Include="EazyLab.Std, Version=5.0.2.1638, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="EazyLab.Std">
       <HintPath>Dll\EazyLab.Std.dll</HintPath>
     </Reference>
-    <Reference Include="eZModbus, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="eZModbus">
       <HintPath>Dll\eZModbus.dll</HintPath>
     </Reference>
     <Reference Include="LiteDB">

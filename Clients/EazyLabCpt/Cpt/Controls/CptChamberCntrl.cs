@@ -71,6 +71,7 @@ namespace EazyLab.Cpt.Controls
 
             try
             {
+                
                 pvTemp1.Value = dp.Temp0;
                 pvTemp2.Value = dp.Temp1;
                 pvTemp3.Value = dp.Temp2;
@@ -83,11 +84,38 @@ namespace EazyLab.Cpt.Controls
                 pvEnergy.Value = dp.Energy;
                 Plot.Update(dp.Time);
                 RefreshPlot();
+                CheckSelectedStationStatus();
+                led1.Indicator.Text = SelectedStation.SampleStatus.ToString();
             }
             catch (Exception ex)
             {
                 LoggerFile.WriteException(ex);
             }
+        }
+        void CheckSelectedStationStatus()
+        {
+            if(SelectedStation != null)
+            {
+                EnableButtons();
+            }
+            else
+            {
+                DisableButtons();
+            }
+            
+        }
+
+        void EnableButtons()
+        {
+            btnConnect.Enabled = true;
+            tbtnStart.Enabled = true;
+            btnSampleOn.Enabled = true;
+        }
+        void DisableButtons()
+        {
+            btnConnect.Enabled = false;
+            tbtnStart.Enabled = false;
+            btnSampleOn.Enabled = false;
         }
 
         void RefreshPlot()
@@ -233,14 +261,9 @@ namespace EazyLab.Cpt.Controls
 
         }
 
-        private void toggleButton1_Click(object sender, EventArgs e)
+        private void btnSampleOn_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void toggleButton1_Click_1(object sender, EventArgs e)
-        {
-
+            SelectedStation.SwitchSample(btnSampleOn.State);    
         }
 
         private void CbStation_SelectedValueChanged(object sender, EventArgs e)
@@ -251,6 +274,8 @@ namespace EazyLab.Cpt.Controls
                 SelectedStation = Chamber.Stations[CbStation.SelectedIndex];
                 SelectedStation.DataReadyEvent += DataReady;
                 btnConnect.State = SelectedStation.IsConnected;
+                if(SelectedStation.IsConnected && !SelectedStation.TimerStatus())
+                    SelectedStation.Start();
                 tbtnStart.State = SelectedStation.IsStarted;
                 UpdateDisplay(new CptDataPacketVer1());
             }
