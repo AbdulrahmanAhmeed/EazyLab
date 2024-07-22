@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            EazyLab.Classes.PlotChannelTrace plotChannelTrace3 = new EazyLab.Classes.PlotChannelTrace();
-            EazyLab.Classes.PlotChannelTrace plotChannelTrace4 = new EazyLab.Classes.PlotChannelTrace();
-            EazyLab.Classes.PlotDataCursorXY plotDataCursorXY2 = new EazyLab.Classes.PlotDataCursorXY();
-            EazyLab.Classes.PlotDataView plotDataView2 = new EazyLab.Classes.PlotDataView();
-            EazyLab.Classes.PlotLabelBasic plotLabelBasic2 = new EazyLab.Classes.PlotLabelBasic();
-            EazyLab.Classes.PlotLegendBasic plotLegendBasic2 = new EazyLab.Classes.PlotLegendBasic();
-            EazyLab.Classes.PlotTableGrid plotTableGrid2 = new EazyLab.Classes.PlotTableGrid();
-            EazyLab.Classes.PlotXAxis plotXAxis2 = new EazyLab.Classes.PlotXAxis();
-            EazyLab.Classes.PlotYAxis plotYAxis2 = new EazyLab.Classes.PlotYAxis();
+            EazyLab.Classes.PlotChannelTrace plotChannelTrace1 = new EazyLab.Classes.PlotChannelTrace();
+            EazyLab.Classes.PlotChannelTrace plotChannelTrace2 = new EazyLab.Classes.PlotChannelTrace();
+            EazyLab.Classes.PlotDataCursorXY plotDataCursorXY1 = new EazyLab.Classes.PlotDataCursorXY();
+            EazyLab.Classes.PlotDataView plotDataView1 = new EazyLab.Classes.PlotDataView();
+            EazyLab.Classes.PlotLabelBasic plotLabelBasic1 = new EazyLab.Classes.PlotLabelBasic();
+            EazyLab.Classes.PlotLegendBasic plotLegendBasic1 = new EazyLab.Classes.PlotLegendBasic();
+            EazyLab.Classes.PlotTableGrid plotTableGrid1 = new EazyLab.Classes.PlotTableGrid();
+            EazyLab.Classes.PlotXAxis plotXAxis1 = new EazyLab.Classes.PlotXAxis();
+            EazyLab.Classes.PlotYAxis plotYAxis1 = new EazyLab.Classes.PlotYAxis();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnSaveGeneratedSamples = new System.Windows.Forms.Button();
             this.nudQuantity = new System.Windows.Forms.NumericUpDown();
@@ -110,6 +110,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.BackColor = System.Drawing.Color.White;
             this.groupBox3.Controls.Add(this.btnSaveGeneratedSamples);
             this.groupBox3.Controls.Add(this.nudQuantity);
             this.groupBox3.Controls.Add(this.btnGenerate);
@@ -178,7 +179,7 @@
             // 
             // listBox1
             // 
-            this.listBox1.BackColor = System.Drawing.Color.Blue;
+            this.listBox1.BackColor = System.Drawing.Color.White;
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 25;
@@ -192,7 +193,7 @@
             this.nudStartCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudStartCount.Location = new System.Drawing.Point(359, 325);
             this.nudStartCount.Maximum = new decimal(new int[] {
-            1,
+            2147483647,
             0,
             0,
             0});
@@ -209,6 +210,7 @@
             0,
             0,
             0});
+            this.nudStartCount.ValueChanged += new System.EventHandler(this.nudStartCount_ValueChanged);
             // 
             // label12
             // 
@@ -279,6 +281,7 @@
             // 
             // groupBoxModel
             // 
+            this.groupBoxModel.BackColor = System.Drawing.Color.White;
             this.groupBoxModel.Controls.Add(this.nudDelayTime);
             this.groupBoxModel.Controls.Add(this.nudInrushDurration);
             this.groupBoxModel.Controls.Add(this.listBox2);
@@ -339,7 +342,7 @@
             // 
             // listBox2
             // 
-            this.listBox2.BackColor = System.Drawing.Color.Blue;
+            this.listBox2.BackColor = System.Drawing.Color.White;
             this.listBox2.FormattingEnabled = true;
             this.listBox2.Location = new System.Drawing.Point(17, 64);
             this.listBox2.Name = "listBox2";
@@ -444,6 +447,7 @@
             this.cbModelName.Name = "cbModelName";
             this.cbModelName.Size = new System.Drawing.Size(338, 21);
             this.cbModelName.TabIndex = 11;
+            this.cbModelName.SelectedIndexChanged += new System.EventHandler(this.cbModelName_SelectedIndexChanged);
             this.cbModelName.SelectionChangeCommitted += new System.EventHandler(this.cbModelName_SelectionChangeCommitted);
             // 
             // btModelDelete
@@ -470,6 +474,7 @@
             // 
             // groupBoxPoint
             // 
+            this.groupBoxPoint.BackColor = System.Drawing.Color.White;
             this.groupBoxPoint.Controls.Add(this.btnDeleteTempZone);
             this.groupBoxPoint.Controls.Add(this.btnAddTempZone);
             this.groupBoxPoint.Controls.Add(this.label4);
@@ -596,66 +601,68 @@
             this.plot.AutoFont = false;
             this.plot.Background.GradientStartColor = System.Drawing.Color.DeepSkyBlue;
             this.plot.Background.GradientStopColor = System.Drawing.Color.Blue;
+            this.plot.Background.SolidColor = System.Drawing.Color.White;
+            this.plot.Background.Style = EazyLab.Types.PlotBrushStyle.Solid;
             this.plot.Background.Visible = true;
-            plotChannelTrace3.Color = System.Drawing.Color.Red;
-            plotChannelTrace3.DrawCustomDataPointAttributes = true;
-            plotChannelTrace3.Markers.Size = 6;
-            plotChannelTrace3.Markers.Visible = true;
-            plotChannelTrace3.MarkersTurnOffLimit = 0;
-            plotChannelTrace3.Name = "Max";
-            plotChannelTrace3.TitleText = "Max";
-            plotChannelTrace3.Trace.Thickness = 3D;
-            plotChannelTrace4.Color = System.Drawing.Color.Lime;
-            plotChannelTrace4.Markers.Size = 6;
-            plotChannelTrace4.Markers.Style = EazyLab.Types.PlotMarkerStyle.TriangleUp;
-            plotChannelTrace4.Markers.Visible = true;
-            plotChannelTrace4.MarkersTurnOffLimit = 0;
-            plotChannelTrace4.Name = "Min";
-            plotChannelTrace4.TitleText = "Min";
-            plotChannelTrace4.Trace.Thickness = 3D;
-            this.plot.Channels.Add(plotChannelTrace3);
-            this.plot.Channels.Add(plotChannelTrace4);
+            plotChannelTrace1.Color = System.Drawing.Color.Red;
+            plotChannelTrace1.DrawCustomDataPointAttributes = true;
+            plotChannelTrace1.Markers.Size = 6;
+            plotChannelTrace1.Markers.Visible = true;
+            plotChannelTrace1.MarkersTurnOffLimit = 0;
+            plotChannelTrace1.Name = "Max";
+            plotChannelTrace1.TitleText = "Max";
+            plotChannelTrace1.Trace.Thickness = 3D;
+            plotChannelTrace2.Color = System.Drawing.Color.Lime;
+            plotChannelTrace2.Markers.Size = 6;
+            plotChannelTrace2.Markers.Style = EazyLab.Types.PlotMarkerStyle.TriangleUp;
+            plotChannelTrace2.Markers.Visible = true;
+            plotChannelTrace2.MarkersTurnOffLimit = 0;
+            plotChannelTrace2.Name = "Min";
+            plotChannelTrace2.TitleText = "Min";
+            plotChannelTrace2.Trace.Thickness = 3D;
+            this.plot.Channels.Add(plotChannelTrace1);
+            this.plot.Channels.Add(plotChannelTrace2);
             this.tableLayoutPanel2.SetColumnSpan(this.plot, 3);
-            plotDataCursorXY2.ClippingStyle = EazyLab.Types.PlotClippingStyle.Axes;
-            plotDataCursorXY2.Hint.Fill.Pen.Color = System.Drawing.SystemColors.InfoText;
-            plotDataCursorXY2.Name = "Data-Cursor 1";
-            plotDataCursorXY2.Style = EazyLab.Types.PlotDataCursorMultipleStyle.ValueX;
-            plotDataCursorXY2.TitleText = "Data-Cursor 1";
-            plotDataCursorXY2.UserCanEdit = false;
-            plotDataCursorXY2.Visible = true;
-            this.plot.DataCursors.Add(plotDataCursorXY2);
-            plotDataView2.Name = "Data-View 1";
-            plotDataView2.TitleText = "Data-View 1";
-            this.plot.DataViews.Add(plotDataView2);
+            plotDataCursorXY1.ClippingStyle = EazyLab.Types.PlotClippingStyle.Axes;
+            plotDataCursorXY1.Hint.Fill.Pen.Color = System.Drawing.SystemColors.InfoText;
+            plotDataCursorXY1.Name = "Data-Cursor 1";
+            plotDataCursorXY1.Style = EazyLab.Types.PlotDataCursorMultipleStyle.ValueX;
+            plotDataCursorXY1.TitleText = "Data-Cursor 1";
+            plotDataCursorXY1.UserCanEdit = false;
+            plotDataCursorXY1.Visible = true;
+            this.plot.DataCursors.Add(plotDataCursorXY1);
+            plotDataView1.Name = "Data-View 1";
+            plotDataView1.TitleText = "Data-View 1";
+            this.plot.DataViews.Add(plotDataView1);
             this.plot.Dock = System.Windows.Forms.DockStyle.Fill;
-            plotLabelBasic2.DockOrder = 0;
-            plotLabelBasic2.Name = "Label 1";
-            plotLabelBasic2.Text = "Profile";
-            plotLabelBasic2.Visible = false;
-            this.plot.Labels.Add(plotLabelBasic2);
-            plotLegendBasic2.DockOrder = 0;
-            plotLegendBasic2.Name = "Legend 1";
-            plotLegendBasic2.TitleText = "Legend 1";
-            this.plot.Legends.Add(plotLegendBasic2);
+            plotLabelBasic1.DockOrder = 0;
+            plotLabelBasic1.Name = "Label 1";
+            plotLabelBasic1.Text = "Profile";
+            plotLabelBasic1.Visible = false;
+            this.plot.Labels.Add(plotLabelBasic1);
+            plotLegendBasic1.DockOrder = 0;
+            plotLegendBasic1.Name = "Legend 1";
+            plotLegendBasic1.TitleText = "Legend 1";
+            this.plot.Legends.Add(plotLegendBasic1);
             this.plot.Location = new System.Drawing.Point(3, 3);
             this.plot.Name = "plot";
             this.plot.Size = new System.Drawing.Size(1458, 392);
             this.plot.TabIndex = 0;
-            plotTableGrid2.ColTitlesVisible = true;
-            plotTableGrid2.DataRowCount = 7;
-            plotTableGrid2.DockOrder = 1;
-            plotTableGrid2.Name = "Table 1";
-            plotTableGrid2.TitleText = "Table 1";
-            plotTableGrid2.Visible = false;
-            this.plot.Tables.Add(plotTableGrid2);
-            plotXAxis2.DockOrder = 0;
-            plotXAxis2.Name = "X-Axis 1";
-            plotXAxis2.Title.Text = "X-Axis 1";
-            this.plot.XAxes.Add(plotXAxis2);
-            plotYAxis2.DockOrder = 0;
-            plotYAxis2.Name = "Y-Axis 1";
-            plotYAxis2.Title.Text = "Y-Axis 1";
-            this.plot.YAxes.Add(plotYAxis2);
+            plotTableGrid1.ColTitlesVisible = true;
+            plotTableGrid1.DataRowCount = 7;
+            plotTableGrid1.DockOrder = 1;
+            plotTableGrid1.Name = "Table 1";
+            plotTableGrid1.TitleText = "Table 1";
+            plotTableGrid1.Visible = false;
+            this.plot.Tables.Add(plotTableGrid1);
+            plotXAxis1.DockOrder = 0;
+            plotXAxis1.Name = "X-Axis 1";
+            plotXAxis1.Title.Text = "X-Axis 1";
+            this.plot.XAxes.Add(plotXAxis1);
+            plotYAxis1.DockOrder = 0;
+            plotYAxis1.Name = "Y-Axis 1";
+            plotYAxis1.Title.Text = "Y-Axis 1";
+            this.plot.YAxes.Add(plotYAxis1);
             this.plot.CursorChanged += new System.EventHandler(this.plot_CursorChanged);
             this.plot.Click += new System.EventHandler(this.plot_Click);
             this.plot.DoubleClick += new System.EventHandler(this.plot_DoubleClick);
@@ -668,6 +675,7 @@
             // 
             // tableLayoutPanel2
             // 
+            this.tableLayoutPanel2.BackColor = System.Drawing.Color.White;
             this.tableLayoutPanel2.ColumnCount = 4;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 500F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 350F));
@@ -690,6 +698,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.White;
             this.groupBox2.Controls.Add(this.cbMaxCurrent);
             this.groupBox2.Controls.Add(this.cbMinPowerFactor);
             this.groupBox2.Controls.Add(this.btnCancel);

@@ -22,14 +22,15 @@ namespace EazyLab
             try
             {
                 db.GetCollection<CptProfile>().EnsureIndex(x => x.Id);
-                db.GetCollection<CptModel>().EnsureIndex(x => x.Name);
+                db.GetCollection<CptModel>().EnsureIndex(x => x.Model);
                 db.GetCollection<CptTest>().EnsureIndex(x => x.Name);
+                db.GetCollection<CptSample>().EnsureIndex(x => x.SerialNo);
                 db.GetCollection<SampleSerialSuffix>().EnsureIndex(x => x.Name);
                 db.GetCollection<SampleSerialPrefix>().EnsureIndex(x => x.Name);
                 db.GetCollection<CptChamber>().EnsureIndex(x => x.Id);
                 db.GetCollection<CptStation>().EnsureIndex(x => x.SerialNumber);
                 db.GetCollection<CptTagController>().EnsureIndex(x => x.Name);
-                //mapper.Entity<CptModel>().Id(x => x.Model);
+                mapper.Entity<CptModel>().Id(x => x.Model);
                 //mapper.Entity<SampleSerialSuffix>().Id(x => x.Name);
                 //mapper.Entity<SampleSerialPrefix>().Id(x => x.Name);
                 //mapper.Entity<CptSample>().Id(x => x.Name);

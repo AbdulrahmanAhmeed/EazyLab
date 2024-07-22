@@ -117,6 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cpt\Classes\CommDataPacket.cs" />
+    <Compile Include="Cpt\Classes\CptSample.cs" />
     <Compile Include="Cpt\Classes\CptTagController.cs" />
     <Compile Include="Cpt\Classes\OnConnectionEventArgs.cs" />
     <Compile Include="Cpt\Classes\SampleSerialPrefix.cs" />

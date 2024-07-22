@@ -121,27 +121,10 @@ namespace EazyLab.Cpt.Forms
 
 
         }
-        CptDataPacketVer1 dp = new CptDataPacketVer1();
-        private void DataReady(object sender, DataReadyEventArgs e)
-        {
-            //btnConnect.OnText = CptStation.ConnectionStatus.DisConnect.ToString();
-            btnConnect.State = tempStation.IsConnected;
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    led1.Value = true;
-                    Task.Delay(tempStation.ReadingInterval / 2 - 100).Wait();
-                    led1.Value = false;
-                }
-                catch (Exception ex)
-                {
-                    LoggerFile.WriteException(ex);
-                }
-            });
 
-            dp = e.DataPacket;
-            tbStatus.Text = e.Result.ToString();
+        void UpdateControls(CptDataPacketVer1 dp, string text)
+        {
+            tbStatus.Text = text;
             if (listBox1.Items.Count == 0)
             {
                 foreach (var stat in dp.GetType().GetProperties())
@@ -181,13 +164,37 @@ namespace EazyLab.Cpt.Forms
             }
             for (int i = 0; i < 8; i++)
             {
-                matrixLedsDO[i, 0].Value = (dp.DigitalOutput & 1 << i)>0 ;
+                matrixLedsDO[i, 0].Value = (dp.DigitalOutput & 1 << i) > 0;
+            }
+        }
+
+        CptDataPacketVer1 dp = new CptDataPacketVer1();
+        private void DataReady(object sender, DataReadyEventArgs e)
+        {
+            //btnConnect.OnText = CptStation.ConnectionStatus.DisConnect.ToString();
+            btnConnect.State = tempStation.IsConnected;
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    led1.Value = true;
+                    Task.Delay(tempStation.ReadingInterval / 2 - 100).Wait();
+                    led1.Value = false;
                 }
+                catch (Exception ex)
+                {
+                    LoggerFile.WriteException(ex);
+                }
+            });
+
+            dp = e.DataPacket;
+           // if (InvokeRequired)
+            Invoke(new Action(() => UpdateControls(e.DataPacket, e.Result.ToString())));
 
 
         }
 
- 
+
         private void btnConnect_Click(object sender, EventArgs e)
         {
             try
@@ -261,7 +268,7 @@ namespace EazyLab.Cpt.Forms
                 edCalibValue.Value = 10000.0;
                 gbCalibration.Text = "Calibration of Temp" + (listBox1.SelectedIndex - 3).ToString();
                 pv1.TagName = "Temp" + (listBox1.SelectedIndex - 3).ToString();
-                gbCalibration.Enabled = true;
+                //gbCalibration.Enabled = true;
                 pv1.Visible = true;
                 return;
             }
@@ -271,7 +278,7 @@ namespace EazyLab.Cpt.Forms
                 {
                     edCalibValue.Value = 5000.0;
                     gbCalibration.Text = "Calibration of Aux" + (listBox1.SelectedIndex - 9).ToString();
-                    gbCalibration.Enabled = true;
+                    //gbCalibration.Enabled = true;
                     pv1.TagName = "Aux" + (listBox1.SelectedIndex - 9).ToString();
                     pv1.Visible = true;
                     return;
@@ -297,7 +304,7 @@ namespace EazyLab.Cpt.Forms
                             pv1.TagName = "Current";
                             break;
                         case 16:
-                            edCalibValue.Value = 5000.0;
+                            //edCalibValue.Value = 5000.0;
                             gbCalibration.Text = "Calibration of Power" + (listBox1.SelectedIndex - 9).ToString();
                             pv1.TagName = "Power";
                             break;
@@ -319,14 +326,14 @@ namespace EazyLab.Cpt.Forms
                             break;
 
                     }
-                    gbCalibration.Enabled = true;
+                    //gbCalibration.Enabled = true;
                     pv1.Visible = true;
                     return;
                 }
 
             }
             gbCalibration.Text = "calibration-No ch";
-            gbCalibration.Enabled = false;
+            //gbCalibration.Enabled = false;
             pv1.Visible = false;
         }
 
@@ -467,12 +474,17 @@ namespace EazyLab.Cpt.Forms
         private void matrixLedsDO_LedClick(object sender, EazyLab.Classes.MatrixLedEventArgs e)
         {
             var index = e.ColIndex;
-            e.Led.Value = !e.Led.Value; 
-            tempStation.SetDO(e.ColIndex,e.Led.Value);
+            e.Led.Value = !e.Led.Value;
+            tempStation.SetDO(e.ColIndex, e.Led.Value);
 
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

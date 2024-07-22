@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Windows.Devices.WiFi;
 
 namespace EazyLab.Cpt.Classes
@@ -117,23 +118,23 @@ namespace EazyLab.Cpt.Classes
 
 
 
-
+        CptStation waitingStation = new CptStation();
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
+            string ss = ""; 
             try
             {
                 var recvd = serialPort.ReadExisting(); //.ReadLine();
                 if (recvd == null) return;
                 if (recvd.Substring(0, 3) == "Cpt") //if scanned code is 
                 {
-                    var ss = recvd.Remove(recvd.Length - 1).Substring(3);
+                     ss = recvd.Remove(recvd.Length - 1).Substring(3);
                     var st = Stations.First(T => T.SerialNumber == ss);
-                    if (!st.IsConnected) 
-                        st.Connect();
-                    if (st.ReadDataPacket() == Types.ModbusResult.SUCCESS)//Station is conne
-                        if ((st.SampleStatus == CptStation.SamplesStatus.SampleRunning))cted 
+                    if (!st.IsConnected) st.Connect(true);
+                    if (st.ReadDataPacket() == Types.ModbusResult.SUCCESS)//Station is connected 
                     {
+                        if ((st.SampleStatus == CptStation.SamplesStatus.SampleRunning))
                         {
                             ToastMessage("Another Sample is Running Please stop the Station first");
                             return;
@@ -142,6 +143,7 @@ namespace EazyLab.Cpt.Classes
                         {
                             st.PutStationWaitForSample();
                             ToastMessage("Add Sample To station #" + st.SerialNumber);
+                            waitingStation = st;
                             return;
                         }
                     }
@@ -153,17 +155,36 @@ namespace EazyLab.Cpt.Classes
 
                 }
 
-
+                else
+                {
+                    if (waitingStation.SampleStatus == CptStation.SamplesStatus.SampleWaiting)
+                    {
+                        var cptSamples = Server.DbAccess.GetAll<CptSample>();
+                        if (cptSamples.Any(x => x.SerialNo == recvd.Replace("\r", "")))
+                        {
+                            ToastMessage($"Sample #{recvd} Found");
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Please add {recvd} Sample first");
+                        }
+                    }
+                    else
+                    {
+                        ToastMessage($"Please scann the Station");
+                    }
+                }
                 //ToastMessage(recvd);
             }
             catch (Exception ex)
             {
 
                 LoggerFile.WriteException(ex);
-                new ToastContentBuilder().AddText("Scanner Not Attached").Show();
-            }
-           // serialPort.Close();
+                ToastMessage("The Station ID " + ss + " is not  connected");
 
+            }
+            // serialPort.Close();
+            return;
         }
 
 

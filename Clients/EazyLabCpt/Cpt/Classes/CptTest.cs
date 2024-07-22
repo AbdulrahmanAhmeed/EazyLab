@@ -10,9 +10,7 @@ namespace EazyLab.Cpt.Classes
         public const string IncludeString = "$.CptDataPacketVer1,$.Profile,$.Model";
 
         public List<CptDataPacketVer1> Data = new List<CptDataPacketVer1>();  // buffer to store the Datapacket
-        public List< CptProfile> Profiles {  get; set; }
-        public CptModel Model { get; set; }
-        public string SerialNo { set; get; }         
+        public CptSample CptSample { get; set; }        
         public CptTest()
         {
             this.Name = "New Sample";   

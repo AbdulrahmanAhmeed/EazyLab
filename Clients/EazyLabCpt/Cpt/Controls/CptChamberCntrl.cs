@@ -154,11 +154,21 @@ namespace EazyLab.Cpt.Controls
         int x = 1;
         int yMax=100;
         int yMin=1;
+
+        void UpdateControls(CptDataPacketVer1 dp, string text)
+        {
+            Lastdp = dp;
+            ledStatus.Value = !ledStatus.Value;
+            UpdateDisplay(dp);
+        }
+
+
         private void DataReady(object sender, DataReadyEventArgs e)
         {
-            Lastdp = e.DataPacket;
-            ledStatus.Value = !ledStatus.Value;
-            UpdateDisplay(e.DataPacket);
+            Invoke(new Action(() => UpdateControls(e.DataPacket, e.Result.ToString())));
+            //Lastdp = e.DataPacket;
+            //ledStatus.Value = !ledStatus.Value;
+            
         }
 
         void UpdateCbStation()
@@ -274,8 +284,6 @@ namespace EazyLab.Cpt.Controls
                 SelectedStation = Chamber.Stations[CbStation.SelectedIndex];
                 SelectedStation.DataReadyEvent += DataReady;
                 btnConnect.State = SelectedStation.IsConnected;
-                if(SelectedStation.IsConnected && !SelectedStation.TimerStatus())
-                    SelectedStation.Start();
                 tbtnStart.State = SelectedStation.IsStarted;
                 UpdateDisplay(new CptDataPacketVer1());
             }

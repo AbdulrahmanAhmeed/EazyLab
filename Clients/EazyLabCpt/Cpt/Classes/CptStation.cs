@@ -13,6 +13,7 @@ using System.Linq;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 namespace EazyLab.Cpt.Classes
 {
@@ -26,7 +27,7 @@ namespace EazyLab.Cpt.Classes
             ResetCpu = 0xD1, StartSample = 0xD2, StopSample = 0xD3, SampleOnOff = 0xD4, SetDigitalOut = 0xD5
         }
 
-        System.Windows.Forms.Timer Timer = new System.Windows.Forms.Timer();
+        System.Timers.Timer Timer = new System.Timers.Timer();
         public CptDataPacketVer1 Lastdp = new CptDataPacketVer1();
         private ezModbus.Modbus modbus;
         private LiteDatabase db;
@@ -48,7 +49,7 @@ namespace EazyLab.Cpt.Classes
         public bool Initiazlized { get => initiazlized; }
         [BsonIgnore]
         public CptTest Sample { set; get; }
-        public int ReadingInterval { set => Timer.Interval = value; get => Timer.Interval; }
+        public int ReadingInterval { set => Timer.Interval = (double)value; get => (int)Timer.Interval; }
         [BsonIgnore]
         public DateTime StartTime { get => startTime; }
         public bool DataReady
@@ -77,7 +78,7 @@ namespace EazyLab.Cpt.Classes
         }
         public CptStation()
         {
-            Timer.Tick += new EventHandler(UpdateData);
+            Timer.Elapsed += new System.Timers.ElapsedEventHandler(UpdateData);
             Timer.Interval = 1000;
             modbus = new ezModbus.Modbus(ModbusMode.TCP_IP);
 
@@ -144,7 +145,6 @@ namespace EazyLab.Cpt.Classes
                     }
                     if (result == ModbusResult.SUCCESS)
                     {
-
                         Lastdp = new CptDataPacketVer1();
                         Lastdp.Temp0 = (double)data[0] / 100;
                         Lastdp.Temp1 = (double)data[1] / 100;
@@ -185,10 +185,11 @@ namespace EazyLab.Cpt.Classes
         }
 
         int TempCounter = 0;
-        public void UpdateData(object sender, EventArgs e)
+        public void UpdateData(object sender, ElapsedEventArgs e)
         {
             try
             {
+                Timer.Stop();
                 DataReadyEventArgs eee = new DataReadyEventArgs();
                 eee.Result = ReadDataPacket();
                 eee.DataPacket = Lastdp;
@@ -202,75 +203,12 @@ namespace EazyLab.Cpt.Classes
                 LoggerFile.WriteException(ex);
             }
 
+            Timer.Start();
+        }
 
-        }
-        public bool TimerStatus()
-        {
-           return Timer.Enabled;
-        }
+
 
         UInt16[] serno = new UInt16[4];
-
-        public void Connect()
-        {
-            try
-            {
-                Initialize();
-                var result = modbus.Connect(IPAddress, Port);
-
-                if (result != ModbusResult.SUCCESS)
-                {
-                    modbus.Disconnect();
-                    MessageBox.Show("Could not connect  Please check the Wifi Network");
-                    return;
-                }
-                    //Task.Delay(Timeout).Wait();
-                result = modbus.ReadHoldingRegisters(1, 0, (ushort)data.Length, data);
-
-                if (result != ModbusResult.SUCCESS)
-                {
-                    MessageBox.Show("Could not Read Device Serial NO.");
-                    modbus.Disconnect();
-                    return;
-                }
-
-                byte[] bytes = new byte[8];
-                Buffer.BlockCopy(data, (data.Length - 4) * 2, bytes, 0, bytes.Length);
-                var tempSN = BitConverter.ToUInt64(bytes, 0).ToString();
-
-                if (this.SerialNumber != tempSN)
-                {
-                    var btnselected = MessageBox.Show("The connected Box SerialNO Does not match Do you want to intialize the station this " +
-                            "will cause all the previous data to be lost ? ", "New Serial Found", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk);
-
-                    if (btnselected == DialogResult.OK)
-                    {
-                        this.SerialNumber = tempSN;
-                        this.Id = 0;
-                    }
-                    else return;
-                }
-                else return;
-                db = new LiteDatabase(Program.DataDir + this.SerialNumber + ".db");
-                db.CheckpointSize = 10;
-                //Timer.Start();
-            }
-            catch (IOException ex) when (ex.Message.Contains(".db"))
-            {
-                MessageBox.Show("Please Close LiteDB ");
-                LoggerFile.WriteException(ex);
-                DisConnect();
-            }
-            catch (Exception ex)
-            {
-
-                LoggerFile.WriteException(ex);
-                DisConnect();
-            }
-
-
-        }
-
         public void Connect(bool readSerial)
         {
             try
@@ -284,8 +222,7 @@ namespace EazyLab.Cpt.Classes
                     MessageBox.Show("Could not connect  Please check the Wifi Network");
                     return;
                 }
-                
-                if (readSerial)
+                else if (readSerial)
                 {
                     //Task.Delay(Timeout).Wait();
                     result = modbus.ReadHoldingRegisters(1, 0, (ushort)data.Length, data);
@@ -314,7 +251,7 @@ namespace EazyLab.Cpt.Classes
                         else return;
                     }
                 }
-                else return;
+
                 db = new LiteDatabase(Program.DataDir + this.SerialNumber + ".db");
                 db.CheckpointSize = 10;
                 Timer.Start();
@@ -418,7 +355,6 @@ namespace EazyLab.Cpt.Classes
         {
             isStarted = true;
             startTime = DateTime.Now;
-            Timer.Start();
         }
 
         public void Stop()

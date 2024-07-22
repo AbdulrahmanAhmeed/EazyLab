@@ -18,7 +18,7 @@ namespace EazyLab.Cpt.Forms
         List<CptModel> cptModels = new List<CptModel>();
         List<SampleSerialPrefix> sampleSerialPrefixes = new List<SampleSerialPrefix>();
         List<SampleSerialSuffix> sampleSerialSuffixes = new List<SampleSerialSuffix>();
-        List<CptTest> cptSamples = new List<CptTest>();
+        List<CptSample> cptSamples = new List<CptSample>();
         public frmCptProfile()
         {
             InitializeComponent();
@@ -56,7 +56,7 @@ namespace EazyLab.Cpt.Forms
                 cbPrefix.DataSource = sampleSerialPrefixes;
                 sampleSerialSuffixes = DbAccess.GetAll<SampleSerialSuffix>();
                 cbSuffix.DataSource = sampleSerialSuffixes;
-                cptSamples = DbAccess.GetAll<CptTest>();
+                cptSamples = DbAccess.GetAll<CptSample>();
                 listBox1.Items.AddRange(cptSamples.ToArray());
                 UpdateDisplay();
             }
@@ -72,6 +72,20 @@ namespace EazyLab.Cpt.Forms
         /// </summary>
         void UpdateDisplay()
         {
+            cptSamples = DbAccess.GetAll<CptSample>().Where(x => x.Model.Model == cbModelName.Text).ToList();
+            if (cptSamples.Count != 0)
+            {
+                if (tempProfile.Id != cptSamples[0].Profiles.Id)
+                {
+                    tempProfile = cptSamples.Count == 0 ? tempProfile : cptSamples[0].Profiles;
+                }
+            }
+            
+            if (tempsample.Count == 0)
+            {
+                listBox1.Items.Clear();
+                listBox1.Items.AddRange(cptSamples.Select(x => x.SerialNo).ToArray());
+            }
             try
             {
                 plot.Channels[0].Clear();
@@ -85,23 +99,25 @@ namespace EazyLab.Cpt.Forms
                 }
                 else
                 {
-                    groupBoxPoint.Enabled = true;
-                    nudProfileId.Enabled = true;
-                    nudProfileId.Maximum = tempProfiles.Count;
-                    nudProfileId.Minimum = 1;
-                    nudProfileId.Value = tempProfile.Id;
-                    tempProfile.TempZones.Sort((x, y) => x.Time.CompareTo(y.Time));
-                    foreach (var p in tempProfile.TempZones)
+                    if(tempProfile != null )
                     {
-                        plot.Channels[0].AddXY(p.Time, p.Max);
-                        plot.Channels[1].AddXY(p.Time,  p.Min);
+                        groupBoxPoint.Enabled = true;
+                        nudProfileId.Enabled = true;
+                        nudProfileId.Maximum = tempProfiles.Count;
+                        nudProfileId.Minimum = 1;
+                        nudProfileId.Value = tempProfile.Id;
+                        tempProfile.TempZones.Sort((x, y) => x.Time.CompareTo(y.Time));
+                        foreach (var p in tempProfile.TempZones)
+                        {
+                            plot.Channels[0].AddXY(p.Time, p.Max);
+                            plot.Channels[1].AddXY(p.Time, p.Min);
 
+                        }
+                        plot.XAxes[0].Tracking.ZoomToFitAll();
+                        plot.YAxes[0].Tracking.ZoomToFitAll();
                     }
-                    plot.XAxes[0].Tracking.ZoomToFitAll();
-                    plot.YAxes[0].Tracking.ZoomToFitAll();
                 }
-                cptSamples = DbAccess.GetAll<CptTest>();
-                listBox1.Items.AddRange(cptSamples.ToArray());
+                
 
             }
             catch (Exception ex)
@@ -366,7 +382,7 @@ namespace EazyLab.Cpt.Forms
 
         }
 
-        List<CptTest> tempsample = new List<CptTest>();
+        List<CptSample> tempsample = new List<CptSample>();
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             //tempsample.Clear();
@@ -396,9 +412,9 @@ namespace EazyLab.Cpt.Forms
             for (int i = 0; i < nudQuantity.Value; i++)
             {
                 string newserial = cbPrefix.Text + (i + nudStartCount.Value).ToString() + cbSuffix.Text;
-                CptTest s = new CptTest() { Name = newserial, Model = cptModels[cbModelName.SelectedIndex] };
+                CptSample s = new CptSample() { SerialNo = newserial, Model = cptModels[cbModelName.SelectedIndex] };
                 tempsample.Add(s);
-                listBox1.Items.Add(s.Name);
+                listBox1.Items.Add(s.SerialNo);
 
             }
 
@@ -412,8 +428,10 @@ namespace EazyLab.Cpt.Forms
             //    DbAccess.Upsert(s);
 
             //}
-
+            tempsample = tempsample.Count == 0 ? cptSamples : tempsample;
+            tempsample.ForEach(x => x.Profiles = tempProfile);
             DbAccess.Upsert(tempsample);
+            //CptTest cptTest = new CptTest();
 
         }
 
@@ -430,6 +448,18 @@ namespace EazyLab.Cpt.Forms
         private void cbMinPowerFactor_CheckedChanged(object sender, EventArgs e)
         {
             tempProfile.RejectIfPowerFactor = cbMinPowerFactor.Checked;
+        }
+
+        private void nudStartCount_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbModelName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var model = (CptModel)cbModelName.SelectedItem;
+            cbModelName.Text = model.Model;
+            UpdateDisplay();
         }
     }
 }
