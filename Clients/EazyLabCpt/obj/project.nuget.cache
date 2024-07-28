@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9rJcL3bV38M=",
+  "dgSpecHash": "Ao6MeBH7oNg=",
   "success": true,
-  "projectFilePath": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\EazyLabCpt.csproj",
+  "projectFilePath": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\EazyLabCpt.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Beta.Soft\\.nuget\\packages\\barcodelib\\3.0.3\\barcodelib.3.0.3.nupkg.sha512",
     "C:\\Users\\Beta.Soft\\.nuget\\packages\\communitytoolkit.highperformance\\8.2.2\\communitytoolkit.highperformance.8.2.2.nupkg.sha512",

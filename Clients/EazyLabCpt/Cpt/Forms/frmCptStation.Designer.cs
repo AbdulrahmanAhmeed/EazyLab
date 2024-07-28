@@ -76,12 +76,15 @@
             this.label10 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.matrixLedsDO = new EazyLab.Instrumentation.Professional.MatrixLeds();
+            this.btnSetOverCurrent = new System.Windows.Forms.Button();
+            this.nudOverCurrent = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.nudId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudScanningInterval)).BeginInit();
             this.gbCalibration.SuspendLayout();
             this.gbChamber.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.NudTimeout)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudOverCurrent)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSave
@@ -298,14 +301,12 @@
             this.pv1.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pv1.Channel")));
             this.pv1.ChannelNo = 0;
             this.pv1.EnableContextMenu = true;
-            this.pv1.EnableDoubleClick = true;
             this.pv1.Font = new System.Drawing.Font("Microsoft Sans Serif", 34F);
             this.pv1.IsHidden = false;
             this.pv1.IsSelectedForPloting = false;
             this.pv1.Location = new System.Drawing.Point(28, 25);
             this.pv1.Name = "pv1";
             this.pv1.Plot = null;
-            this.pv1.PlotChannelNamee = null;
             this.pv1.PlotColor = System.Drawing.Color.White;
             this.pv1.Precision = 2;
             this.pv1.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -596,11 +597,42 @@
             this.matrixLedsDO.LedClick += new EazyLab.Delegates.MatrixLedEventHandler(this.matrixLedsDO_LedClick);
             this.matrixLedsDO.LoadingEnd();
             // 
+            // btnSetOverCurrent
+            // 
+            this.btnSetOverCurrent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnSetOverCurrent.Location = new System.Drawing.Point(288, 450);
+            this.btnSetOverCurrent.Name = "btnSetOverCurrent";
+            this.btnSetOverCurrent.Size = new System.Drawing.Size(175, 32);
+            this.btnSetOverCurrent.TabIndex = 34;
+            this.btnSetOverCurrent.Text = "Set OverCurrent";
+            this.btnSetOverCurrent.UseVisualStyleBackColor = true;
+            this.btnSetOverCurrent.Click += new System.EventHandler(this.btnSetOverCurrent_Click);
+            // 
+            // nudOverCurrent
+            // 
+            this.nudOverCurrent.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudOverCurrent.Location = new System.Drawing.Point(469, 454);
+            this.nudOverCurrent.Maximum = new decimal(new int[] {
+            50000,
+            0,
+            0,
+            0});
+            this.nudOverCurrent.Name = "nudOverCurrent";
+            this.nudOverCurrent.Size = new System.Drawing.Size(85, 26);
+            this.nudOverCurrent.TabIndex = 35;
+            this.nudOverCurrent.Value = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            // 
             // frmCptStation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(997, 680);
+            this.Controls.Add(this.nudOverCurrent);
+            this.Controls.Add(this.btnSetOverCurrent);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.edName);
             this.Controls.Add(this.btReset);
@@ -640,6 +672,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NudTimeout)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudOverCurrent)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -686,5 +719,7 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox groupBox1;
         private Instrumentation.Professional.MatrixLeds matrixLedsDO;
+        private System.Windows.Forms.Button btnSetOverCurrent;
+        private System.Windows.Forms.NumericUpDown nudOverCurrent;
     }
 }

@@ -1,5 +1,4 @@
 using EazyLab.Classes;
-using EazyLab.Model;
 using EazyLab.Types;
 using EazyLabClient;
 using LiteDB;
@@ -15,21 +14,38 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
+using EazyLab.Model;
+using Modbus; 
+
 namespace EazyLab.Cpt.Classes
 {
     [Serializable]
     public class CptStation : Entity, IDisposable
     {
         public enum SamplesStatus { NoSample, SampleWaiting, SampleOn, SampleRunning, SampleFinished };
+        
         public enum Registers : ushort { DigitalOutput = 12 }
         public enum Commands
         {
-            ResetCpu = 0xD1, StartSample = 0xD2, StopSample = 0xD3, SampleOnOff = 0xD4, SetDigitalOut = 0xD5
+            ResetCpu = 0xD1, StartTest = 0xD4, StopSample = 0xD3, SampleOnOff = 0xD4, SetDigitalOut = 0xD5,SetOverCurrrent= 0xD8
         }
-
+        /*
+   enum Commands
+{
+    SetLedMode = 1,
+    SetLedState = 2,
+    SetDoState = 3,
+    ReadAllData = 4,
+    CALIBCHANNEL = 5,
+    SetMaxCurrent = 6,
+    SetMaxCurrentPeriod = 7,
+    SetOverCurrent = 8,
+    SoftWareReset = 255
+};
+         */
         System.Timers.Timer Timer = new System.Timers.Timer();
         public CptDataPacketVer1 Lastdp = new CptDataPacketVer1();
-        private ezModbus.Modbus modbus;
+        private Modbus.Modbus modbus;
         private LiteDatabase db;
 
         public string DataBaseLocation { get; set; }
@@ -44,23 +60,14 @@ namespace EazyLab.Cpt.Classes
         [BsonIgnore]
         public bool IsConnected => modbus.IsConnected;
         [BsonIgnore]
-        public bool IsStarted => isStarted && IsConnected;
+        public bool IsTestStarted => isTestStarted && IsConnected;
         [BsonIgnore]
         public bool Initiazlized { get => initiazlized; }
         [BsonIgnore]
-        public CptTest Sample { set; get; }
+        public CptTest Test { get => test; set => test = value; }
         public int ReadingInterval { set => Timer.Interval = (double)value; get => (int)Timer.Interval; }
         [BsonIgnore]
         public DateTime StartTime { get => startTime; }
-        public bool DataReady
-        {
-            get
-            {
-                var dd = dataReady;
-                dataReady = false;
-                return dd;
-            }
-        }
         [BsonIgnore]
         public SamplesStatus SampleStatus => (SamplesStatus)(Lastdp.Status & 0x00FF);
 
@@ -80,7 +87,7 @@ namespace EazyLab.Cpt.Classes
         {
             Timer.Elapsed += new System.Timers.ElapsedEventHandler(UpdateData);
             Timer.Interval = 1000;
-            modbus = new ezModbus.Modbus(ModbusMode.TCP_IP);
+            modbus = new Modbus.Modbus(Mode.TCP_IP);
 
         }
 
@@ -109,10 +116,8 @@ namespace EazyLab.Cpt.Classes
                 modbus.IP = IPAddress;
                 modbus.Port = Port;
                 modbus.ResponseTimeout = this.Timeout;
-                modbus.Mode = ModbusMode.TCP_IP;// must be the last
-
+                modbus.Mode = Mode.TCP_IP;// must be the last
                 initiazlized = true;
-                //}
             }
             catch (Exception ex)
             {
@@ -127,23 +132,52 @@ namespace EazyLab.Cpt.Classes
             Timer.Start();
         }
 
-        public ModbusResult ReadDataPacket()
+        public Result SetOverCurrent(int ovrcurr)
         {
-            ModbusResult result = ModbusResult.CONNECT_ERROR;
+            Result result = Result.CONNECT_ERROR;
             try
             {
 
                 lock (this.modbus)
                 {
                     if (!modbus.IsConnected) modbus.Connect();
+                    result = modbus.WriteSingleRegister(1,(ushort) Commands.SetOverCurrrent,(short) ovrcurr);
+                    if (result == Result.ISCLOSED)// one more time trial
+                    {
+                        modbus.Disconnect();
+                        modbus.Connect();
+                        result = modbus.WriteSingleRegister(1, (ushort)Commands.SetOverCurrrent, (short)ovrcurr);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                LoggerFile.WriteException(ex);
+            }
+            return result;
+
+
+
+        }
+
+
+        public Result ReadDataPacket()
+        {
+            Result result = Result.CONNECT_ERROR;
+            try
+            {
+                lock (this.modbus)
+                {
+                    if (!modbus.IsConnected) modbus.Connect();
                     result = modbus.ReadHoldingRegisters(1, 0, (ushort)data.Length, data);
-                    if (result == ModbusResult.ISCLOSED)
+                    if (result == Result.ISCLOSED)
                     {
                         modbus.Disconnect();
                         modbus.Connect();
                         result = modbus.ReadHoldingRegisters(1, 0, (ushort)data.Length, data);
                     }
-                    if (result == ModbusResult.SUCCESS)
+                    if (result == Result.SUCCESS)
                     {
                         Lastdp = new CptDataPacketVer1();
                         Lastdp.Temp0 = (double)data[0] / 100;
@@ -195,7 +229,9 @@ namespace EazyLab.Cpt.Classes
                 eee.DataPacket = Lastdp;
                 eee.SerialNo = this.SerialNumber;
                 OnDataReadyEvent(eee);
-                db.GetCollection<CptDataPacketVer1>().Upsert(eee.DataPacket);
+                test.Add(Lastdp);
+              //  db.GetCollection<CptDataPacketVer1>().Upsert(eee.DataPacket);
+                
 
             }
             catch (Exception ex)
@@ -216,7 +252,7 @@ namespace EazyLab.Cpt.Classes
                 Initialize();
                 var result = modbus.Connect(IPAddress, Port);
 
-                if (result != ModbusResult.SUCCESS)
+                if (result != Result.SUCCESS)
                 {
                     modbus.Disconnect();
                     MessageBox.Show("Could not connect  Please check the Wifi Network");
@@ -227,7 +263,7 @@ namespace EazyLab.Cpt.Classes
                     //Task.Delay(Timeout).Wait();
                     result = modbus.ReadHoldingRegisters(1, 0, (ushort)data.Length, data);
 
-                    if (result != ModbusResult.SUCCESS)
+                    if (result != Result.SUCCESS)
                     {
                         MessageBox.Show("Could not Read Device Serial NO.");
                         modbus.Disconnect();
@@ -271,14 +307,6 @@ namespace EazyLab.Cpt.Classes
 
 
         }
-
-
-
-
-
-
-
-
         public void Connect(EventHandler<DataReadyEventArgs> dataReady)
         {
             try
@@ -286,7 +314,7 @@ namespace EazyLab.Cpt.Classes
                 Initialize();
                 var result = modbus.Connect(IPAddress, Port);
                 result = modbus.ReadHoldingRegisters(1, 0, (ushort)data.Length, data);
-                if (result != ModbusResult.SUCCESS)
+                if (result != Result.SUCCESS)
                 {
                     MessageBox.Show("Could not connect  Please check the Wifi Network");
                     return;
@@ -308,9 +336,6 @@ namespace EazyLab.Cpt.Classes
 
                     }
                     else return;
-
-
-
                 }
 
                 //Todo
@@ -349,33 +374,34 @@ namespace EazyLab.Cpt.Classes
 
 
 
-
-
-        public void Start()
+        public Result StartTest(bool start)
         {
-            isStarted = true;
-            startTime = DateTime.Now;
+            Result result = Result.CONNECT_ERROR;
+            try
+            {
+
+                lock (this.modbus)
+                {
+                    if (!modbus.IsConnected) modbus.Connect();
+                    result = modbus.WriteSingleRegister(1, (ushort)Commands.StartTest,(short) (start? 0xff:0x00));
+                    test = new CptTest(db); 
+                    isTestStarted = result == Result.SUCCESS && start ;   // must be  updated from DAtapacket 
+                }
+
+            }
+            catch (Exception ex)
+            {
+                LoggerFile.WriteException(ex);
+            }
+            return result;
         }
 
-        public void Stop()
-        {
-            isStarted = false;
-
-        }
-
-
-
-        int PacketConsumedTimed = 0;
-        [NonSerialized]
-
-
-
-        Task ReadTask;
         private bool dataReady;
         private bool initiazlized;
         private EventHandler<DataReadyEventArgs> dataReadyEvent;
-        private bool isStarted;
+        private bool isTestStarted;
         private DateTime startTime;
+        private CptTest test;
 
         //public void ExportToExcel(ExcelVersion version)
         //{
@@ -486,7 +512,7 @@ namespace EazyLab.Cpt.Classes
         public bool SwitchSample(bool onOff)
         {
 
-            ModbusResult result = ModbusResult.CONNECT_ERROR;
+            Result result = Result.CONNECT_ERROR;
             try
             {
 
@@ -496,19 +522,19 @@ namespace EazyLab.Cpt.Classes
 
                     if (!modbus.IsConnected) modbus.Connect();
                     result = modbus.WriteSingleRegister(1, (ushort)Commands.SampleOnOff, data);
-                    if (result == ModbusResult.ISCLOSED)
+                    if (result == Result.ISCLOSED)
                     {
                         modbus.Disconnect();
                         modbus.Connect();
                         result = modbus.WriteSingleRegister(1, 0, data);//resend 
                     }
-                    if (result == ModbusResult.SUCCESS)
+                    if (result == Result.SUCCESS)
                     {
                         //read the status of the buttton. 
                         short[] data1 = new short[1];
                         result = modbus.ReadHoldingRegisters(1, (ushort)Registers.DigitalOutput, 1, data1);
 
-                        if (result != ModbusResult.SUCCESS) return false;
+                        if (result != Result.SUCCESS) return false;
                         var res = data1[0] & 0x0001;
                         return res == 1;  // return true if the Do is set to 1
 
@@ -522,7 +548,7 @@ namespace EazyLab.Cpt.Classes
             {
                 LoggerFile.WriteException(ex);
             }
-            return result == ModbusResult.SUCCESS;
+            return result == Result.SUCCESS;
         }
 
 
@@ -531,7 +557,7 @@ namespace EazyLab.Cpt.Classes
         public bool SetDO(int position, bool value)
         {
 
-            ModbusResult result = ModbusResult.CONNECT_ERROR;
+            Result result = Result.CONNECT_ERROR;
             try
             {
 
@@ -541,19 +567,19 @@ namespace EazyLab.Cpt.Classes
                     data = (short)((short)(position << 8) | data);
                     if (!modbus.IsConnected) modbus.Connect();
                     result = modbus.WriteSingleRegister(1, (ushort)Commands.SetDigitalOut, data);
-                    if (result == ModbusResult.ISCLOSED)
+                    if (result == Result.ISCLOSED)
                     {
                         modbus.Disconnect();
                         modbus.Connect();
                         result = modbus.WriteSingleRegister(1, 0, data);//resend 
                     }
-                    if (result == ModbusResult.SUCCESS)
+                    if (result == Result.SUCCESS)
                     {
                         //read the status of the buttton. 
                         short[] data1 = new short[1];
                         result = modbus.ReadHoldingRegisters(1, (ushort)Registers.DigitalOutput, 1, data1);
 
-                        if (result != ModbusResult.SUCCESS) return false;
+                        if (result != Result.SUCCESS) return false;
                         var res = data1[0] & 0x0001;
                         return res == 1;  // return true if the Do is set to 1
 
@@ -567,7 +593,7 @@ namespace EazyLab.Cpt.Classes
             {
                 LoggerFile.WriteException(ex);
             }
-            return result == ModbusResult.SUCCESS;
+            return result == Result.SUCCESS;
         }
 
 

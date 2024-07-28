@@ -8,6 +8,7 @@ using SharpZebra.Printing;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
@@ -171,25 +172,18 @@ namespace EazyLab.Cpt.Forms
         CptDataPacketVer1 dp = new CptDataPacketVer1();
         private void DataReady(object sender, DataReadyEventArgs e)
         {
-            //btnConnect.OnText = CptStation.ConnectionStatus.DisConnect.ToString();
-            btnConnect.State = tempStation.IsConnected;
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    led1.Value = true;
-                    Task.Delay(tempStation.ReadingInterval / 2 - 100).Wait();
-                    led1.Value = false;
-                }
-                catch (Exception ex)
-                {
-                    LoggerFile.WriteException(ex);
-                }
-            });
 
-            dp = e.DataPacket;
-           // if (InvokeRequired)
-            Invoke(new Action(() => UpdateControls(e.DataPacket, e.Result.ToString())));
+            try
+            {
+                btnConnect.State = tempStation.IsConnected;
+                led1.Value = !led1.Value;
+                dp = e.DataPacket;
+                Invoke(new Action(() => UpdateControls(e.DataPacket, e.Result.ToString())));
+            }
+            catch (Exception ex)
+            {
+                LoggerFile.WriteException(ex); 
+            }
 
 
         }
@@ -391,7 +385,7 @@ namespace EazyLab.Cpt.Forms
 
         private void frmCptStation_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //tempStation.DisConnect();
+            if (tempStation.DataReadyEvent != null) tempStation.DataReadyEvent -= DataReady;
             GC.Collect();
 
         }
@@ -487,6 +481,11 @@ namespace EazyLab.Cpt.Forms
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnSetOverCurrent_Click(object sender, EventArgs e)
+        {
+            tempStation.SetOverCurrent((int)nudOverCurrent.Value);
         }
     }
 }

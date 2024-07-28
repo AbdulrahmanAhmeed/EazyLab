@@ -327,6 +327,7 @@ namespace EazyLab.Cpt.Forms
                 DbAccess.Upsert<CptModel>(model, "Model");
                 cptModels = DbAccess.GetAll<CptModel>();
                 UpdatecbModelName();
+                
             }
             catch (Exception ex)
             {
@@ -336,8 +337,19 @@ namespace EazyLab.Cpt.Forms
 
         private void btModelDelete_Click(object sender, EventArgs e)
         {
-            DbAccess.Delete(cptModels[cbModelName.SelectedIndex]);
-            UpdatecbModelName();
+            try
+            {
+                if (cptSamples.Any(x => x.Model.Model == cptModels[cbModelName.SelectedIndex].Model))
+                    DbAccess.Delete<CptSample>(cptSamples.Where(x => x.Model.Model == cptModels[cbModelName.SelectedIndex].Model).First());
+                DbAccess.Delete(cptModels[cbModelName.SelectedIndex]);
+                UpdatecbModelName();
+                UpdateDisplay();
+            }
+            catch (Exception ex)
+            {
+                LoggerFile.WriteException(ex);
+            } 
+
         }
         void UpdatecbModelName()
         {
@@ -428,6 +440,13 @@ namespace EazyLab.Cpt.Forms
             //    DbAccess.Upsert(s);
 
             //}
+            tempsample.ForEach(x =>
+            {
+                if (x.Model.Model != cptModels[cbModelName.SelectedIndex].Model)
+                {
+                    x.Model = cptModels[cbModelName.SelectedIndex];
+                }
+            });
             tempsample = tempsample.Count == 0 ? cptSamples : tempsample;
             tempsample.ForEach(x => x.Profiles = tempProfile);
             DbAccess.Upsert(tempsample);

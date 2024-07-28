@@ -84,6 +84,7 @@ namespace EazyLab.Cpt.Controls
             this.plotToolBarButton19 = new EazyLab.Classes.PlotToolBarButton();
             this.plotToolBarButton20 = new EazyLab.Classes.PlotToolBarButton();
             this.plotToolBarButton21 = new EazyLab.Classes.PlotToolBarButton();
+            this.imageList4 = new System.Windows.Forms.ImageList(this.components);
             this.imageList3 = new System.Windows.Forms.ImageList(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
@@ -313,14 +314,13 @@ namespace EazyLab.Cpt.Controls
             this.pvCurrent.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvCurrent.Channel")));
             this.pvCurrent.ChannelNo = 0;
             this.pvCurrent.EnableContextMenu = true;
-            this.pvCurrent.EnableDoubleClick = true;
             this.pvCurrent.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvCurrent.IsHidden = false;
             this.pvCurrent.IsSelectedForPloting = false;
             this.pvCurrent.Location = new System.Drawing.Point(1119, 6);
             this.pvCurrent.Name = "pvCurrent";
             this.pvCurrent.Plot = null;
-            this.pvCurrent.PlotChannelNamee = null;
+            this.pvCurrent.TagName = null;
             this.pvCurrent.PlotColor = System.Drawing.Color.White;
             this.pvCurrent.Precision = 2;
             this.pvCurrent.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -345,14 +345,13 @@ namespace EazyLab.Cpt.Controls
             this.pvEnergy.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvEnergy.Channel")));
             this.pvEnergy.ChannelNo = 0;
             this.pvEnergy.EnableContextMenu = true;
-            this.pvEnergy.EnableDoubleClick = true;
             this.pvEnergy.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvEnergy.IsHidden = false;
             this.pvEnergy.IsSelectedForPloting = false;
             this.pvEnergy.Location = new System.Drawing.Point(1119, 109);
             this.pvEnergy.Name = "pvEnergy";
             this.pvEnergy.Plot = null;
-            this.pvEnergy.PlotChannelNamee = null;
+            this.pvEnergy.TagName = null;
             this.pvEnergy.PlotColor = System.Drawing.Color.White;
             this.pvEnergy.Precision = 1;
             this.pvEnergy.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -377,14 +376,13 @@ namespace EazyLab.Cpt.Controls
             this.pvVoltage.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvVoltage.Channel")));
             this.pvVoltage.ChannelNo = 0;
             this.pvVoltage.EnableContextMenu = true;
-            this.pvVoltage.EnableDoubleClick = true;
             this.pvVoltage.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
             this.pvVoltage.IsHidden = false;
             this.pvVoltage.IsSelectedForPloting = false;
             this.pvVoltage.Location = new System.Drawing.Point(953, 6);
             this.pvVoltage.Name = "pvVoltage";
             this.pvVoltage.Plot = null;
-            this.pvVoltage.PlotChannelNamee = null;
+            this.pvVoltage.TagName = null;
             this.pvVoltage.PlotColor = System.Drawing.Color.White;
             this.pvVoltage.Precision = 1;
             this.pvVoltage.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -410,14 +408,13 @@ namespace EazyLab.Cpt.Controls
             this.pvPower.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvPower.Channel")));
             this.pvPower.ChannelNo = 0;
             this.pvPower.EnableContextMenu = true;
-            this.pvPower.EnableDoubleClick = true;
             this.pvPower.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvPower.IsHidden = false;
             this.pvPower.IsSelectedForPloting = false;
             this.pvPower.Location = new System.Drawing.Point(953, 109);
             this.pvPower.Name = "pvPower";
             this.pvPower.Plot = null;
-            this.pvPower.PlotChannelNamee = null;
+            this.pvPower.TagName = null;
             this.pvPower.PlotColor = System.Drawing.Color.White;
             this.pvPower.Precision = 1;
             this.pvPower.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -442,14 +439,13 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp2.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvTemp2.Channel")));
             this.pvTemp2.ChannelNo = 0;
             this.pvTemp2.EnableContextMenu = true;
-            this.pvTemp2.EnableDoubleClick = true;
             this.pvTemp2.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvTemp2.IsHidden = false;
             this.pvTemp2.IsSelectedForPloting = false;
             this.pvTemp2.Location = new System.Drawing.Point(787, 6);
             this.pvTemp2.Name = "pvTemp2";
             this.pvTemp2.Plot = null;
-            this.pvTemp2.PlotChannelNamee = null;
+            this.pvTemp2.TagName = null;
             this.pvTemp2.PlotColor = System.Drawing.Color.White;
             this.pvTemp2.Precision = 1;
             this.pvTemp2.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -474,14 +470,13 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp4.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvTemp4.Channel")));
             this.pvTemp4.ChannelNo = 0;
             this.pvTemp4.EnableContextMenu = true;
-            this.pvTemp4.EnableDoubleClick = true;
             this.pvTemp4.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvTemp4.IsHidden = false;
             this.pvTemp4.IsSelectedForPloting = false;
             this.pvTemp4.Location = new System.Drawing.Point(787, 109);
             this.pvTemp4.Name = "pvTemp4";
             this.pvTemp4.Plot = null;
-            this.pvTemp4.PlotChannelNamee = null;
+            this.pvTemp4.TagName = null;
             this.pvTemp4.PlotColor = System.Drawing.Color.White;
             this.pvTemp4.Precision = 1;
             this.pvTemp4.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -506,14 +501,13 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp6.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvTemp6.Channel")));
             this.pvTemp6.ChannelNo = 0;
             this.pvTemp6.EnableContextMenu = true;
-            this.pvTemp6.EnableDoubleClick = true;
             this.pvTemp6.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvTemp6.IsHidden = false;
             this.pvTemp6.IsSelectedForPloting = false;
             this.pvTemp6.Location = new System.Drawing.Point(787, 212);
             this.pvTemp6.Name = "pvTemp6";
             this.pvTemp6.Plot = null;
-            this.pvTemp6.PlotChannelNamee = null;
+            this.pvTemp6.TagName = null;
             this.pvTemp6.PlotColor = System.Drawing.Color.White;
             this.pvTemp6.Precision = 1;
             this.pvTemp6.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -538,14 +532,13 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp1.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvTemp1.Channel")));
             this.pvTemp1.ChannelNo = 0;
             this.pvTemp1.EnableContextMenu = true;
-            this.pvTemp1.EnableDoubleClick = true;
             this.pvTemp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvTemp1.IsHidden = false;
             this.pvTemp1.IsSelectedForPloting = false;
             this.pvTemp1.Location = new System.Drawing.Point(621, 6);
             this.pvTemp1.Name = "pvTemp1";
             this.pvTemp1.Plot = this.Plot;
-            this.pvTemp1.PlotChannelNamee = null;
+            this.pvTemp1.TagName = null;
             this.pvTemp1.PlotColor = System.Drawing.Color.White;
             this.pvTemp1.Precision = 1;
             this.pvTemp1.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -607,14 +600,13 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp3.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvTemp3.Channel")));
             this.pvTemp3.ChannelNo = 0;
             this.pvTemp3.EnableContextMenu = true;
-            this.pvTemp3.EnableDoubleClick = true;
             this.pvTemp3.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvTemp3.IsHidden = false;
             this.pvTemp3.IsSelectedForPloting = false;
             this.pvTemp3.Location = new System.Drawing.Point(621, 109);
             this.pvTemp3.Name = "pvTemp3";
             this.pvTemp3.Plot = null;
-            this.pvTemp3.PlotChannelNamee = null;
+            this.pvTemp3.TagName = null;
             this.pvTemp3.PlotColor = System.Drawing.Color.White;
             this.pvTemp3.Precision = 1;
             this.pvTemp3.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -639,14 +631,13 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp5.Channel = ((EazyLab.Model.AnalogInput)(resources.GetObject("pvTemp5.Channel")));
             this.pvTemp5.ChannelNo = 0;
             this.pvTemp5.EnableContextMenu = true;
-            this.pvTemp5.EnableDoubleClick = true;
             this.pvTemp5.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvTemp5.IsHidden = false;
             this.pvTemp5.IsSelectedForPloting = false;
             this.pvTemp5.Location = new System.Drawing.Point(621, 212);
             this.pvTemp5.Name = "pvTemp5";
             this.pvTemp5.Plot = null;
-            this.pvTemp5.PlotChannelNamee = null;
+            this.pvTemp5.TagName = null;
             this.pvTemp5.PlotColor = System.Drawing.Color.White;
             this.pvTemp5.Precision = 1;
             this.pvTemp5.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -712,12 +703,11 @@ namespace EazyLab.Cpt.Controls
             this.plotToolBarButton19,
             this.plotToolBarButton20,
             this.plotToolBarButton21});
-            this.plotToolBarStandard1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.plotToolBarStandard1.DropDownArrows = true;
-            this.plotToolBarStandard1.ImageList = this.imageList3;
+            this.plotToolBarStandard1.ImageList = this.imageList4;
             this.plotToolBarStandard1.Location = new System.Drawing.Point(3, 3);
             this.plotToolBarStandard1.Name = "plotToolBarStandard1";
-            this.plotToolBarStandard1.Plot = this.Plot;
+            this.plotToolBarStandard1.Plot = null;
             this.plotToolBarStandard1.ShowToolTips = true;
             this.plotToolBarStandard1.Size = new System.Drawing.Size(584, 28);
             this.plotToolBarStandard1.TabIndex = 5;
@@ -726,7 +716,6 @@ namespace EazyLab.Cpt.Controls
             // plotToolBarButton1
             // 
             this.plotToolBarButton1.LoadingBegin();
-            this.plotToolBarButton1.Enabled = false;
             this.plotToolBarButton1.ImageIndex = 0;
             this.plotToolBarButton1.Name = "plotToolBarButton1";
             this.plotToolBarButton1.ToolTipText = "Tracking Resume";
@@ -756,7 +745,6 @@ namespace EazyLab.Cpt.Controls
             this.plotToolBarButton4.Command = EazyLab.Types.PlotToolBarCommandStyle.AxesScroll;
             this.plotToolBarButton4.ImageIndex = 2;
             this.plotToolBarButton4.Name = "plotToolBarButton4";
-            this.plotToolBarButton4.Pushed = true;
             this.plotToolBarButton4.ToolTipText = "Axes Scroll";
             this.plotToolBarButton4.LoadingEnd();
             // 
@@ -811,7 +799,6 @@ namespace EazyLab.Cpt.Controls
             this.plotToolBarButton10.Command = EazyLab.Types.PlotToolBarCommandStyle.Select;
             this.plotToolBarButton10.ImageIndex = 6;
             this.plotToolBarButton10.Name = "plotToolBarButton10";
-            this.plotToolBarButton10.Pushed = true;
             this.plotToolBarButton10.ToolTipText = "Select";
             this.plotToolBarButton10.LoadingEnd();
             // 
@@ -914,62 +901,42 @@ namespace EazyLab.Cpt.Controls
             this.plotToolBarButton21.ToolTipText = "Page Setup";
             this.plotToolBarButton21.LoadingEnd();
             // 
+            // imageList4
+            // 
+            this.imageList4.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList4.ImageStream")));
+            this.imageList4.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList4.Images.SetKeyName(0, "");
+            this.imageList4.Images.SetKeyName(1, "");
+            this.imageList4.Images.SetKeyName(2, "");
+            this.imageList4.Images.SetKeyName(3, "");
+            this.imageList4.Images.SetKeyName(4, "");
+            this.imageList4.Images.SetKeyName(5, "");
+            this.imageList4.Images.SetKeyName(6, "");
+            this.imageList4.Images.SetKeyName(7, "");
+            this.imageList4.Images.SetKeyName(8, "");
+            this.imageList4.Images.SetKeyName(9, "");
+            this.imageList4.Images.SetKeyName(10, "");
+            this.imageList4.Images.SetKeyName(11, "");
+            this.imageList4.Images.SetKeyName(12, "");
+            this.imageList4.Images.SetKeyName(13, "");
+            // 
             // imageList3
             // 
-            this.imageList3.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList3.ImageStream")));
+            this.imageList3.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList3.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList3.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList3.Images.SetKeyName(0, "");
-            this.imageList3.Images.SetKeyName(1, "");
-            this.imageList3.Images.SetKeyName(2, "");
-            this.imageList3.Images.SetKeyName(3, "");
-            this.imageList3.Images.SetKeyName(4, "");
-            this.imageList3.Images.SetKeyName(5, "");
-            this.imageList3.Images.SetKeyName(6, "");
-            this.imageList3.Images.SetKeyName(7, "");
-            this.imageList3.Images.SetKeyName(8, "");
-            this.imageList3.Images.SetKeyName(9, "");
-            this.imageList3.Images.SetKeyName(10, "");
-            this.imageList3.Images.SetKeyName(11, "");
-            this.imageList3.Images.SetKeyName(12, "");
-            this.imageList3.Images.SetKeyName(13, "");
             // 
             // imageList1
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "");
-            this.imageList1.Images.SetKeyName(1, "");
-            this.imageList1.Images.SetKeyName(2, "");
-            this.imageList1.Images.SetKeyName(3, "");
-            this.imageList1.Images.SetKeyName(4, "");
-            this.imageList1.Images.SetKeyName(5, "");
-            this.imageList1.Images.SetKeyName(6, "");
-            this.imageList1.Images.SetKeyName(7, "");
-            this.imageList1.Images.SetKeyName(8, "");
-            this.imageList1.Images.SetKeyName(9, "");
-            this.imageList1.Images.SetKeyName(10, "");
-            this.imageList1.Images.SetKeyName(11, "");
-            this.imageList1.Images.SetKeyName(12, "");
-            this.imageList1.Images.SetKeyName(13, "");
             // 
             // imageList2
             // 
-            this.imageList2.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList2.ImageStream")));
+            this.imageList2.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList2.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList2.Images.SetKeyName(0, "");
-            this.imageList2.Images.SetKeyName(1, "");
-            this.imageList2.Images.SetKeyName(2, "");
-            this.imageList2.Images.SetKeyName(3, "");
-            this.imageList2.Images.SetKeyName(4, "");
-            this.imageList2.Images.SetKeyName(5, "");
-            this.imageList2.Images.SetKeyName(6, "");
-            this.imageList2.Images.SetKeyName(7, "");
-            this.imageList2.Images.SetKeyName(8, "");
-            this.imageList2.Images.SetKeyName(9, "");
-            this.imageList2.Images.SetKeyName(10, "");
-            this.imageList2.Images.SetKeyName(11, "");
-            this.imageList2.Images.SetKeyName(12, "");
-            this.imageList2.Images.SetKeyName(13, "");
             // 
             // cntrlPIDs1
             // 
@@ -1008,28 +975,6 @@ namespace EazyLab.Cpt.Controls
         private Instrumentation.Standard.Label labelStatus;
         private Instrumentation.Standard.CombinedPlot Plot;
         private Cntrls.CntrlPIDs cntrlPIDs1;
-        private Instrumentation.Plotting.PlotToolBarStandard plotToolBarStandard1;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton1;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton2;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton3;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton4;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton5;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton6;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton7;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton8;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton9;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton10;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton11;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton12;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton13;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton14;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton15;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton16;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton17;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton18;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton19;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton20;
-        private EazyLab.Classes.PlotToolBarButton plotToolBarButton21;
         private System.Windows.Forms.ImageList imageList3;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
@@ -1055,5 +1000,28 @@ namespace EazyLab.Cpt.Controls
         private Instrumentation.Standard.ToggleButton tbtnStart;
         private Instrumentation.Standard.ToggleButton btnSampleOn;
         private Instrumentation.Standard.Led led1;
+        private Instrumentation.Plotting.PlotToolBarStandard plotToolBarStandard1;
+        private PlotToolBarButton plotToolBarButton1;
+        private PlotToolBarButton plotToolBarButton2;
+        private PlotToolBarButton plotToolBarButton3;
+        private PlotToolBarButton plotToolBarButton4;
+        private PlotToolBarButton plotToolBarButton5;
+        private PlotToolBarButton plotToolBarButton6;
+        private PlotToolBarButton plotToolBarButton7;
+        private PlotToolBarButton plotToolBarButton8;
+        private PlotToolBarButton plotToolBarButton9;
+        private PlotToolBarButton plotToolBarButton10;
+        private PlotToolBarButton plotToolBarButton11;
+        private PlotToolBarButton plotToolBarButton12;
+        private PlotToolBarButton plotToolBarButton13;
+        private PlotToolBarButton plotToolBarButton14;
+        private PlotToolBarButton plotToolBarButton15;
+        private PlotToolBarButton plotToolBarButton16;
+        private PlotToolBarButton plotToolBarButton17;
+        private PlotToolBarButton plotToolBarButton18;
+        private PlotToolBarButton plotToolBarButton19;
+        private PlotToolBarButton plotToolBarButton20;
+        private PlotToolBarButton plotToolBarButton21;
+        private System.Windows.Forms.ImageList imageList4;
     }
 }

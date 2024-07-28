@@ -1,74 +1,81 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\",
+  "WorkspaceRootPath": "H:\\ActiveProjects\\EazyLabCpt\\PC\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|h:\\activeprojects\\eazylabcpt\\trunk\\pc\\clients\\eazylabcpt\\cpt\\forms\\frmcptstation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\forms\\frmcptstation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|h:\\activeprojects\\eazylabcpt\\pc\\clients\\eazylabcpt\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\clients\\eazylabcpt\\cpt\\forms\\frmcptstation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\forms\\frmcptstation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\clients\\eazylabcpt\\cpt\\forms\\frmcptstation.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\forms\\frmcptstation.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\clients\\eazylabcpt\\cpt\\forms\\frmcptprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\forms\\frmcptprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\clients\\eazylabcpt\\initializedb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\initializedb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\clients\\eazylabcpt\\cpt\\classes\\cptchamber.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\classes\\cptchamber.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\clients\\eazylabcpt\\cpt\\classes\\cptstation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\PC\\clients\\eazylabcpt\\cpt\\classes\\cptstation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\classes\\cptstation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\clients\\eazylabcpt\\cpt\\controls\\cptchambercntrl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\PC\\clients\\eazylabcpt\\cpt\\controls\\cptchambercntrl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\controls\\cptchambercntrl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Beta.Soft\\AppData\\Local\\Temp\\.vsdbgsrc\\52077487c10ad83ecdf98b2d19fd007d38f2385a0137f2e4d70c2ba3556e41c2\\PV.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\PC\\clients\\eazylabcpt\\cpt\\controls\\cptchambercntrl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\controls\\cptchambercntrl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\clients\\eazylabcpt\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\PC\\clients\\eazylabcpt\\cpt\\forms\\frmcptstation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\forms\\frmcptstation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\clients\\eazylabcpt\\cpt\\controls\\cptchambercntrl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\controls\\cptchambercntrl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\PC\\clients\\eazylabcpt\\cpt\\forms\\frmcptstation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\forms\\frmcptstation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\PC\\clients\\eazylabcpt\\cpt\\forms\\frmcptprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\forms\\frmcptprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\PC\\clients\\eazylabcpt\\cpt\\forms\\frmcptprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\forms\\frmcptprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\PC\\clients\\eazylabcpt\\cpt\\classes\\cptchamber.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\classes\\cptchamber.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\PC\\clients\\eazylabcpt\\initializedb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\initializedb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\PC\\clients\\eazylabcpt\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Beta.Soft\\AppData\\Local\\Temp\\.vsdbgsrc\\05d0ab668a678c98f70f7830404f1a49d07fe017e5dd0b5809c134fe10ac5c9f\\PageBuffer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\clients\\eazylabcpt\\frmcptmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\PC\\clients\\eazylabcpt\\frmcptmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\frmcptmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Beta.Soft\\AppData\\Local\\Temp\\.vsdbgsrc\\193c6249ddc487789a6826eb75492d77276620e8f92e9895a5a39fbf726da383\\ThreadLocal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\clients\\eazylabcpt\\frmcptmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\PC\\clients\\eazylabcpt\\frmcptmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\frmcptmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\clients\\eazylabcpt\\cpt\\forms\\frmbarcodescannerregist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\PC\\clients\\eazylabcpt\\cpt\\forms\\frmbarcodescannerregist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\forms\\frmbarcodescannerregist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\clients\\eazylabcpt\\cpt\\classes\\cptprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\PC\\clients\\eazylabcpt\\cpt\\classes\\cptprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\classes\\cptprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ahmed\\AppData\\Local\\SourceServer\\66c20d7c631a39326decf4cf63a9df4950d577cfa1a5a2641de9140b0d20725e\\CommunityToolkit.WinUI.Notifications\\Toasts\\Compat\\Desktop\\Win32AppInfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\clients\\eazylabcpt\\cpt\\controls\\cptchambercntrl.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|H:\\ActiveProjects\\EazyLabCpt\\PC\\clients\\eazylabcpt\\cpt\\controls\\cptchambercntrl.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{121CA1AD-7272-487A-98D3-A6DEC37DE49C}|Clients\\EazyLabCpt\\EazyLabCpt.csproj|solutionrelative:clients\\eazylabcpt\\cpt\\controls\\cptchambercntrl.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -85,7 +92,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -93,28 +100,30 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "ThreadLocal.cs",
-              "DocumentMoniker": "C:\\Users\\Beta.Soft\\AppData\\Local\\Temp\\.vsdbgsrc\\193c6249ddc487789a6826eb75492d77276620e8f92e9895a5a39fbf726da383\\ThreadLocal.cs",
-              "ToolTip": "C:\\Users\\Beta.Soft\\AppData\\Local\\Temp\\.vsdbgsrc\\193c6249ddc487789a6826eb75492d77276620e8f92e9895a5a39fbf726da383\\ThreadLocal.cs [Read Only]",
-              "ViewState": "AQIAAFkBAAAAAAAAAAAEwHEBAAADAAAA",
+              "DocumentIndex": 0,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Properties\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Properties\\AssemblyInfo.cs",
+              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Properties\\AssemblyInfo.cs",
+              "RelativeToolTip": "Clients\\EazyLabCpt\\Properties\\AssemblyInfo.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAQwCMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T12:24:14.093Z",
-              "EditorCaption": " [Read Only]"
+              "WhenOpened": "2024-07-28T11:20:43.945Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "Win32AppInfo.cs",
-              "DocumentMoniker": "C:\\Users\\Ahmed\\AppData\\Local\\SourceServer\\66c20d7c631a39326decf4cf63a9df4950d577cfa1a5a2641de9140b0d20725e\\CommunityToolkit.WinUI.Notifications\\Toasts\\Compat\\Desktop\\Win32AppInfo.cs",
-              "ToolTip": "C:\\Users\\Ahmed\\AppData\\Local\\SourceServer\\66c20d7c631a39326decf4cf63a9df4950d577cfa1a5a2641de9140b0d20725e\\CommunityToolkit.WinUI.Notifications\\Toasts\\Compat\\Desktop\\Win32AppInfo.cs",
-              "ViewState": "AQIAAEAAAAAAAAAAAAAAwEoAAAAQAAAA",
+              "DocumentIndex": 3,
+              "Title": "PV.cs",
+              "DocumentMoniker": "C:\\Users\\Beta.Soft\\AppData\\Local\\Temp\\.vsdbgsrc\\52077487c10ad83ecdf98b2d19fd007d38f2385a0137f2e4d70c2ba3556e41c2\\PV.cs",
+              "ToolTip": "C:\\Users\\Beta.Soft\\AppData\\Local\\Temp\\.vsdbgsrc\\52077487c10ad83ecdf98b2d19fd007d38f2385a0137f2e4d70c2ba3556e41c2\\PV.cs",
+              "ViewState": "AQIAAHEAAAAAAAAAAAAEwIcAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T11:16:24.653Z"
+              "WhenOpened": "2024-07-24T08:21:22.783Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "PageBuffer.cs",
               "DocumentMoniker": "F:\\ActiveProjects\\EazyLab_V5\\branches\\CptVer1.0\\PC\\Controls\\LiteDb\\LiteDB-5.0.19\\LiteDB\\Engine\\Structures\\PageBuffer.cs",
               "ToolTip": "F:\\ActiveProjects\\EazyLab_V5\\branches\\CptVer1.0\\PC\\Controls\\LiteDb\\LiteDB-5.0.19\\LiteDB\\Engine\\Structures\\PageBuffer.cs",
@@ -123,82 +132,134 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "frmCptProfile.cs",
-              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptProfile.cs",
+              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptProfile.cs",
               "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptProfile.cs",
-              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptProfile.cs",
+              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptProfile.cs",
               "RelativeToolTip": "Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptProfile.cs",
-              "ViewState": "AQIAANkAAAAAAAAAAAAAAOoAAAAtAAAA",
+              "ViewState": "AQIAADkAAAAAAAAAAAAWwEoAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-21T13:54:31.67Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "frmCptStation.cs",
-              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.cs",
+              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.cs",
               "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.cs",
-              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.cs",
+              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.cs",
               "RelativeToolTip": "Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.cs",
-              "ViewState": "AQIAAP0AAAAAAAAAAAAnwA4BAAASAAAA",
+              "ViewState": "AQIAAN4BAAAAAAAAAAAMwPUBAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-20T07:57:45.506Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-20T07:57:45.506Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "CptChamber.cs",
-              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Classes\\CptChamber.cs",
+              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Classes\\CptChamber.cs",
               "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Cpt\\Classes\\CptChamber.cs",
-              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Classes\\CptChamber.cs",
+              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Classes\\CptChamber.cs",
               "RelativeToolTip": "Clients\\EazyLabCpt\\Cpt\\Classes\\CptChamber.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAIA4wCIAAAAMAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-15T12:20:32.681Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "frmBarcodeScannerRegist.cs [Design]",
-              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmBarcodeScannerRegist.cs",
+              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmBarcodeScannerRegist.cs",
               "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Cpt\\Forms\\frmBarcodeScannerRegist.cs",
               "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmBarcodeScannerRegist.cs [Design]",
-              "RelativeToolTip": "Clients\\EazyLabCpt\\Cpt\\Forms\\frmBarcodeScannerRegist.cs [Design]",
+              "RelativeToolTip": "..\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmBarcodeScannerRegist.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-20T07:54:45.041Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "frmCptStation.cs [Design]",
-              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.cs",
-              "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.cs",
-              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.cs [Design]",
-              "RelativeToolTip": "Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.cs [Design]",
+              "Title": "CptStation.cs",
+              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Classes\\CptStation.cs",
+              "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Cpt\\Classes\\CptStation.cs",
+              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Classes\\CptStation.cs",
+              "RelativeToolTip": "Clients\\EazyLabCpt\\Cpt\\Classes\\CptStation.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-20T07:54:13.765Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frmCptStation.Designer.cs",
-              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.Designer.cs",
-              "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.Designer.cs",
-              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.Designer.cs",
-              "RelativeToolTip": "Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.Designer.cs",
-              "ViewState": "AQIAAPoAAAAAAAAAAAAmwBMBAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-21T12:17:23.602Z"
+              "WhenOpened": "2024-07-15T12:19:39.06Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "CptChamberCntrl.cs [Design]",
+              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.cs",
+              "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.cs",
+              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.cs [Design]",
+              "RelativeToolTip": "Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-15T12:09:38.655Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CptChamberCntrl.cs",
+              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.cs",
+              "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.cs",
+              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.cs",
+              "RelativeToolTip": "Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-20T11:20:13.93Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "frmCptStation.cs [Design]",
+              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.cs",
+              "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.cs",
+              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.cs [Design]",
+              "RelativeToolTip": "Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptStation.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-23T12:12:53.265Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Win32AppInfo.cs",
+              "DocumentMoniker": "C:\\Users\\Ahmed\\AppData\\Local\\SourceServer\\66c20d7c631a39326decf4cf63a9df4950d577cfa1a5a2641de9140b0d20725e\\CommunityToolkit.WinUI.Notifications\\Toasts\\Compat\\Desktop\\Win32AppInfo.cs",
+              "ToolTip": "C:\\Users\\Ahmed\\AppData\\Local\\SourceServer\\66c20d7c631a39326decf4cf63a9df4950d577cfa1a5a2641de9140b0d20725e\\CommunityToolkit.WinUI.Notifications\\Toasts\\Compat\\Desktop\\Win32AppInfo.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-21T11:16:24.653Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "frmCptProfile.cs [Design]",
+              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptProfile.cs",
+              "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptProfile.cs",
+              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptProfile.cs [Design]",
+              "RelativeToolTip": "Clients\\EazyLabCpt\\Cpt\\Forms\\frmCptProfile.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-23T06:49:54.208Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ThreadLocal.cs",
+              "DocumentMoniker": "C:\\Users\\Beta.Soft\\AppData\\Local\\Temp\\.vsdbgsrc\\193c6249ddc487789a6826eb75492d77276620e8f92e9895a5a39fbf726da383\\ThreadLocal.cs",
+              "ToolTip": "C:\\Users\\Beta.Soft\\AppData\\Local\\Temp\\.vsdbgsrc\\193c6249ddc487789a6826eb75492d77276620e8f92e9895a5a39fbf726da383\\ThreadLocal.cs",
+              "ViewState": "AQIAAFkBAAAAAAAAAAAEwHEBAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-21T12:24:14.093Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "InitializeDb.cs",
-              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\InitializeDb.cs",
+              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\InitializeDb.cs",
               "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\InitializeDb.cs",
-              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\InitializeDb.cs",
+              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\InitializeDb.cs",
               "RelativeToolTip": "Clients\\EazyLabCpt\\InitializeDb.cs",
               "ViewState": "AQIAACcAAAAAAAAAAAAowCAAAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -206,7 +267,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "StreamPool.cs",
               "DocumentMoniker": "F:\\ActiveProjects\\EazyLab_V5\\branches\\CptVer1.0\\PC\\Controls\\LiteDb\\LiteDB-5.0.19\\LiteDB\\Engine\\Disk\\StreamFactory\\StreamPool.cs",
               "ToolTip": "F:\\ActiveProjects\\EazyLab_V5\\branches\\CptVer1.0\\PC\\Controls\\LiteDb\\LiteDB-5.0.19\\LiteDB\\Engine\\Disk\\StreamFactory\\StreamPool.cs",
@@ -215,7 +276,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "PageBuffer.cs",
               "DocumentMoniker": "C:\\Users\\Beta.Soft\\AppData\\Local\\Temp\\.vsdbgsrc\\05d0ab668a678c98f70f7830404f1a49d07fe017e5dd0b5809c134fe10ac5c9f\\PageBuffer.cs",
               "ToolTip": "C:\\Users\\Beta.Soft\\AppData\\Local\\Temp\\.vsdbgsrc\\05d0ab668a678c98f70f7830404f1a49d07fe017e5dd0b5809c134fe10ac5c9f\\PageBuffer.cs",
@@ -225,45 +286,22 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CptStation.cs",
-              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Classes\\CptStation.cs",
-              "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Cpt\\Classes\\CptStation.cs",
-              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Classes\\CptStation.cs",
-              "RelativeToolTip": "Clients\\EazyLabCpt\\Cpt\\Classes\\CptStation.cs",
-              "ViewState": "AQIAANEAAAAAAAAAAAAkwOcAAABMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T12:19:39.06Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "frmCptMain.cs [Design]",
-              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\frmCptMain.cs",
+              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\frmCptMain.cs",
               "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\frmCptMain.cs",
               "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\frmCptMain.cs [Design]",
-              "RelativeToolTip": "Clients\\EazyLabCpt\\frmCptMain.cs [Design]",
+              "RelativeToolTip": "..\\trunk\\PC\\Clients\\EazyLabCpt\\frmCptMain.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-16T07:18:35.808Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CptChamberCntrl.cs [Design]",
-              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.cs",
-              "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.cs",
-              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.cs [Design]",
-              "RelativeToolTip": "Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-15T12:09:38.655Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "Program.cs",
-              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Program.cs",
+              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Program.cs",
               "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Program.cs",
-              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Program.cs",
+              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Program.cs",
               "RelativeToolTip": "Clients\\EazyLabCpt\\Program.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -271,23 +309,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "CptChamberCntrl.cs",
-              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.cs",
-              "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.cs",
-              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.cs",
-              "RelativeToolTip": "Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.cs",
-              "ViewState": "AQIAAJMAAAAAAAAAAAAkwKEAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-20T11:20:13.93Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "frmCptMain.cs",
-              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\frmCptMain.cs",
+              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\frmCptMain.cs",
               "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\frmCptMain.cs",
-              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\frmCptMain.cs",
+              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\frmCptMain.cs",
               "RelativeToolTip": "Clients\\EazyLabCpt\\frmCptMain.cs",
               "ViewState": "AQIAAFoBAAAAAAAAAAAuwIEBAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -295,11 +321,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "CptProfile.cs",
-              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Classes\\CptProfile.cs",
+              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Classes\\CptProfile.cs",
               "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Cpt\\Classes\\CptProfile.cs",
-              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Classes\\CptProfile.cs",
+              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Classes\\CptProfile.cs",
               "RelativeToolTip": "Clients\\EazyLabCpt\\Cpt\\Classes\\CptProfile.cs",
               "ViewState": "AQIAABkAAAAAAAAAAAAgwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -307,11 +333,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "CptChamberCntrl.Designer.cs",
-              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.Designer.cs",
+              "DocumentMoniker": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.Designer.cs",
               "RelativeDocumentMoniker": "Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.Designer.cs",
-              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.Designer.cs",
+              "ToolTip": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.Designer.cs",
               "RelativeToolTip": "Clients\\EazyLabCpt\\Cpt\\Controls\\CptChamberCntrl.Designer.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAqwAMAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",

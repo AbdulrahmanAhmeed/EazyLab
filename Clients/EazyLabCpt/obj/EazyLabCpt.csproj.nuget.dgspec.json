@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\EazyLabCpt.csproj": {}
+    "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\EazyLabCpt.csproj": {}
   },
   "projects": {
-    "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\EazyLabCpt.csproj": {
+    "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\EazyLabCpt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\EazyLabCpt.csproj",
+        "projectUniqueName": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\EazyLabCpt.csproj",
         "projectName": "EazyLabCient",
-        "projectPath": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\EazyLabCpt.csproj",
+        "projectPath": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\EazyLabCpt.csproj",
         "packagesPath": "C:\\Users\\Beta.Soft\\.nuget\\packages\\",
-        "outputPath": "H:\\ActiveProjects\\EazyLabCpt\\trunk\\PC\\Clients\\EazyLabCpt\\obj\\",
+        "outputPath": "H:\\ActiveProjects\\EazyLabCpt\\PC\\Clients\\EazyLabCpt\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "configFilePaths": [

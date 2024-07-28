@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Windows.Devices.WiFi;
+using Modbus;
 
 namespace EazyLab.Cpt.Classes
 {
@@ -132,7 +133,7 @@ namespace EazyLab.Cpt.Classes
                      ss = recvd.Remove(recvd.Length - 1).Substring(3);
                     var st = Stations.First(T => T.SerialNumber == ss);
                     if (!st.IsConnected) st.Connect(true);
-                    if (st.ReadDataPacket() == Types.ModbusResult.SUCCESS)//Station is connected 
+                    if (st.ReadDataPacket() == Result.SUCCESS)//Station is connected 
                     {
                         if ((st.SampleStatus == CptStation.SamplesStatus.SampleRunning))
                         {

@@ -123,13 +123,13 @@ namespace EazyLab.Cpt.Controls
             if (Plot.XAxes.Count > 0)
             {
                 Plot.XAxes[0].Tracking.ZoomToFitAll();
-                Plot.XAxes[0].Tracking.Enabled = true;
+                //Plot.XAxes[0].Tracking.Enabled = true;
 
             }
             if (Plot.YAxes.Count > 0)
             {
                 Plot.YAxes[0].Tracking.ZoomToFitAll();
-                Plot.YAxes[0].Tracking.Enabled = true;
+               // Plot.YAxes[0].Tracking.Enabled = true;
             }
             
         }
@@ -195,6 +195,8 @@ namespace EazyLab.Cpt.Controls
         {
             try
             {
+                if (SelectedStation.DataReadyEvent == null) SelectedStation.DataReadyEvent += DataReady;
+                
                 if (btnConnect.State)
                 {
                     SelectedStation.Connect(true);
@@ -206,7 +208,7 @@ namespace EazyLab.Cpt.Controls
                     
                 }
                 btnConnect.State = SelectedStation.IsConnected;
-                tbtnStart.State= SelectedStation.IsConnected;
+                tbtnStart.State= SelectedStation.IsTestStarted;
             }
             catch (Exception ex)
             {
@@ -221,11 +223,9 @@ namespace EazyLab.Cpt.Controls
             {
                 if (SelectedStation.IsConnected)
                 {
-                    if (!SelectedStation.IsStarted) 
-                    {  if(tbtnStart.State)  SelectedStation.Start(); 
-                       else SelectedStation.Stop();
-                    
-                    }
+                   SelectedStation.StartTest(tbtnStart.State);              
+                       
+  
                  
                 }
                 else
@@ -234,7 +234,7 @@ namespace EazyLab.Cpt.Controls
 
                 }
             }
-            tbtnStart.State=SelectedStation.IsStarted;
+            tbtnStart.State=SelectedStation.IsTestStarted;
         }
 
         public void SelectStation(int stNo)
@@ -284,7 +284,7 @@ namespace EazyLab.Cpt.Controls
                 SelectedStation = Chamber.Stations[CbStation.SelectedIndex];
                 SelectedStation.DataReadyEvent += DataReady;
                 btnConnect.State = SelectedStation.IsConnected;
-                tbtnStart.State = SelectedStation.IsStarted;
+                tbtnStart.State = SelectedStation.IsTestStarted;
                 UpdateDisplay(new CptDataPacketVer1());
             }
             catch (Exception ex)

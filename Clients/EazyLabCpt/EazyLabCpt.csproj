@@ -57,27 +57,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EazyLab.Common, Version=5.0.2.1636, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="EazyLab.Common">
       <HintPath>Dll\EazyLab.Common.dll</HintPath>
     </Reference>
     <Reference Include="EazyLab.Equipments, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dll\EazyLab.Equipments.dll</HintPath>
     </Reference>
-    <Reference Include="EazyLab.Plot, Version=5.0.2.1637, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="EazyLab.Plot">
       <HintPath>Dll\EazyLab.Plot.dll</HintPath>
     </Reference>
-    <Reference Include="EazyLab.Pro, Version=5.0.2.1638, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="EazyLab.Pro">
       <HintPath>Dll\EazyLab.Pro.dll</HintPath>
     </Reference>
     <Reference Include="EazyLab.Std">
       <HintPath>Dll\EazyLab.Std.dll</HintPath>
-    </Reference>
-    <Reference Include="eZModbus">
-      <HintPath>Dll\eZModbus.dll</HintPath>
     </Reference>
     <Reference Include="LiteDB">
       <HintPath>Dll\LiteDB.dll</HintPath>
@@ -85,6 +79,9 @@
     <Reference Include="LoggerFile, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dll\LoggerFile.dll</HintPath>
+    </Reference>
+    <Reference Include="Modbus">
+      <HintPath>Dll\Modbus.dll</HintPath>
     </Reference>
     <Reference Include="SharpZebra">
       <HintPath>Dll\SharpZebra.dll</HintPath>
@@ -174,6 +171,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Cpt\Forms\frmCptStation.resx">
       <DependentUpon>frmCptStation.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Cpt\Forms\frmCptProfile.resx">
       <DependentUpon>frmCptProfile.cs</DependentUpon>
