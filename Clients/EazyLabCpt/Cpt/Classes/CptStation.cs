@@ -15,19 +15,20 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 using EazyLab.Model;
-using Modbus; 
+using Modbus;
 
 namespace EazyLab.Cpt.Classes
 {
     [Serializable]
     public class CptStation : Entity, IDisposable
-    {
+    { 
+
         public enum SamplesStatus { NoSample, SampleWaiting, SampleOn, SampleRunning, SampleFinished };
-        
+
         public enum Registers : ushort { DigitalOutput = 12 }
         public enum Commands
         {
-            ResetCpu = 0xD1, StartTest = 0xD4, StopSample = 0xD3, SampleOnOff = 0xD4, SetDigitalOut = 0xD5,SetOverCurrrent= 0xD8
+            ResetCpu = 0xD1, StartTest = 0xD4, StopSample = 0xD3, SampleOnOff = 0xD4, SetDigitalOut = 0xD5, SetOverCurrrent = 0xD8
         }
         /*
    enum Commands
@@ -47,6 +48,10 @@ namespace EazyLab.Cpt.Classes
         public CptDataPacketVer1 Lastdp = new CptDataPacketVer1();
         private Modbus.Modbus modbus;
         private LiteDatabase db;
+
+
+        public ValueDouble min = new ValueDouble(0);
+        public ValueDouble max = new ValueDouble(100);
 
         public string DataBaseLocation { get; set; }
         public int Id { get; set; } = 1;
@@ -141,7 +146,7 @@ namespace EazyLab.Cpt.Classes
                 lock (this.modbus)
                 {
                     if (!modbus.IsConnected) modbus.Connect();
-                    result = modbus.WriteSingleRegister(1,(ushort) Commands.SetOverCurrrent,(short) ovrcurr);
+                    result = modbus.WriteSingleRegister(1, (ushort)Commands.SetOverCurrrent, (short)ovrcurr);
                     if (result == Result.ISCLOSED)// one more time trial
                     {
                         modbus.Disconnect();
@@ -190,7 +195,7 @@ namespace EazyLab.Cpt.Classes
                         Lastdp.Aux1 = data[7];
                         Lastdp.Aux2 = data[8];
                         Lastdp.Aux3 = data[9];
-                        Lastdp.Current_LR = data[10];
+                        Lastdp.Current_LR=( ushort) data[10];
                         Lastdp.DigitalInput = (ushort)data[11];
                         Lastdp.DigitalOutput = (ushort)data[12];
                         Lastdp.Error = (ushort)data[13];
@@ -230,8 +235,8 @@ namespace EazyLab.Cpt.Classes
                 eee.SerialNo = this.SerialNumber;
                 OnDataReadyEvent(eee);
                 test.Add(Lastdp);
-              //  db.GetCollection<CptDataPacketVer1>().Upsert(eee.DataPacket);
-                
+                //  db.GetCollection<CptDataPacketVer1>().Upsert(eee.DataPacket);
+
 
             }
             catch (Exception ex)
@@ -269,7 +274,7 @@ namespace EazyLab.Cpt.Classes
                         modbus.Disconnect();
                         return;
                     }
-
+                    PutStationWaitForSample();
                     byte[] bytes = new byte[8];
                     Buffer.BlockCopy(data, (data.Length - 4) * 2, bytes, 0, bytes.Length);
                     var tempSN = BitConverter.ToUInt64(bytes, 0).ToString();
@@ -383,9 +388,10 @@ namespace EazyLab.Cpt.Classes
                 lock (this.modbus)
                 {
                     if (!modbus.IsConnected) modbus.Connect();
-                    result = modbus.WriteSingleRegister(1, (ushort)Commands.StartTest,(short) (start? 0xff:0x00));
-                    test = new CptTest(db); 
-                    isTestStarted = result == Result.SUCCESS && start ;   // must be  updated from DAtapacket 
+                    result = modbus.WriteSingleRegister(1, (ushort)Commands.StartTest, (short)(start ? 0xff : 0x00));
+                    test = new CptTest(db);
+                    Server.DbAccess.Upsert(test);
+                    isTestStarted = result == Result.SUCCESS && start;   // must be  updated from DAtapacket 
                 }
 
             }

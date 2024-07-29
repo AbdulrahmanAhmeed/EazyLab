@@ -31,6 +31,7 @@ namespace EazyLab
                 db.GetCollection<CptStation>().EnsureIndex(x => x.SerialNumber);
                 db.GetCollection<CptTagController>().EnsureIndex(x => x.Name);
                 mapper.Entity<CptModel>().Id(x => x.Model);
+                mapper.Entity<CptTagController>().Id(x => x.Name);
                 //mapper.Entity<SampleSerialSuffix>().Id(x => x.Name);
                 //mapper.Entity<SampleSerialPrefix>().Id(x => x.Name);
                 //mapper.Entity<CptSample>().Id(x => x.Name);

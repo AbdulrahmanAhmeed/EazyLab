@@ -28,6 +28,8 @@ namespace EazyLab.Cpt.Classes
         Windows.Devices.WiFi.WiFiAdapter Adapter { get; set; }
         [BsonIgnore]
         WiFiAvailableNetwork WiFiAvailableNetwork { get; set; }
+        [BsonIgnore]
+        public EventHandler<SampleReadyEventArgs> SampleReadyEvent { get => smapleReadyEvent; set => smapleReadyEvent = value; }
         public CptChamber()
         {
             Stations = new List<CptStation>();
@@ -36,6 +38,16 @@ namespace EazyLab.Cpt.Classes
             serialPort.DataReceived += SerialPort_DataReceived;
              
                
+
+        }
+
+        protected virtual void OnSampleReadyEvent(SampleReadyEventArgs e)
+        {
+            EventHandler<SampleReadyEventArgs> handler = SampleReadyEvent;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
 
         }
 
@@ -120,6 +132,7 @@ namespace EazyLab.Cpt.Classes
 
 
         CptStation waitingStation = new CptStation();
+        private EventHandler<SampleReadyEventArgs> smapleReadyEvent;
 
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
@@ -131,7 +144,7 @@ namespace EazyLab.Cpt.Classes
                 if (recvd.Substring(0, 3) == "Cpt") //if scanned code is 
                 {
                      ss = recvd.Remove(recvd.Length - 1).Substring(3);
-                    var st = Stations.First(T => T.SerialNumber == ss);
+                    var st =string.IsNullOrEmpty(ss)? Stations.First(x=>x.IsConnected) : Stations.First(T => T.SerialNumber == ss);
                     if (!st.IsConnected) st.Connect(true);
                     if (st.ReadDataPacket() == Result.SUCCESS)//Station is connected 
                     {
@@ -158,11 +171,16 @@ namespace EazyLab.Cpt.Classes
 
                 else
                 {
+                    waitingStation = string.IsNullOrEmpty(ss) ? Stations.First(x => x.IsConnected) : Stations.First(T => T.SerialNumber == ss);
                     if (waitingStation.SampleStatus == CptStation.SamplesStatus.SampleWaiting)
                     {
                         var cptSamples = Server.DbAccess.GetAll<CptSample>();
                         if (cptSamples.Any(x => x.SerialNo == recvd.Replace("\r", "")))
                         {
+                            SampleReadyEventArgs eee = new SampleReadyEventArgs();
+                            eee.cptSample = cptSamples.Where(x => x.SerialNo == recvd.Replace("\r", "")).First();
+                            OnSampleReadyEvent(eee);
+                            //if(!waitingStation.IsTestStarted) waitingStation.StartTest(true);
                             ToastMessage($"Sample #{recvd} Found");
                         }
                         else

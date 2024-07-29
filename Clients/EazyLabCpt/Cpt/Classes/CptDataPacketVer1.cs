@@ -7,7 +7,7 @@ namespace EazyLab.Cpt.Classes
     { 
         public DateTime  Time { set; get; }
         public int Id { get; set; }               
-        public   int    SampleId { set; get; }  
+        public int TestId { set; get; }  
         public double Temp0 { set; get; }
         public double Temp1  { set; get; }
         public double Temp2 { set; get; }

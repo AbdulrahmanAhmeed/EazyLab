@@ -24,6 +24,7 @@ namespace EazyLab.Cpt.Classes
         {
             this.Name = "New Sample"; // Naming strategy must be reevaluated 
             this.db = db;  
+
         }
 
 
@@ -44,7 +45,9 @@ namespace EazyLab.Cpt.Classes
             try
             {
                 Data.Add(dp);
+                dp.TestId = this.Id;
                 db.GetCollection<CptDataPacketVer1>().Upsert(dp);
+
             }
             catch (Exception ex)
             {

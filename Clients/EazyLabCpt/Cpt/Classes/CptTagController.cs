@@ -10,6 +10,7 @@ namespace EazyLab.Cpt.Classes
     public class CptTagController : Entity
     {
         public int RGB { get; set; }
-
+        public double Max { get; set; }
+        public double Min { get; set; }    
     }
 }

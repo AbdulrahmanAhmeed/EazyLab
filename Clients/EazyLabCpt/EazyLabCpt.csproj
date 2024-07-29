@@ -117,6 +117,7 @@
     <Compile Include="Cpt\Classes\CptSample.cs" />
     <Compile Include="Cpt\Classes\CptTagController.cs" />
     <Compile Include="Cpt\Classes\OnConnectionEventArgs.cs" />
+    <Compile Include="Cpt\Classes\SampleReadyEventArgs.cs" />
     <Compile Include="Cpt\Classes\SampleSerialPrefix.cs" />
     <Compile Include="Cpt\Classes\SampleSerialSuffix.cs" />
     <Compile Include="Cpt\Classes\EnumCommands.cs" />

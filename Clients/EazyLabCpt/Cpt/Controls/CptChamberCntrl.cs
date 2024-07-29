@@ -15,6 +15,7 @@ namespace EazyLab.Cpt.Controls
     public partial class CptChamberCntrl : UserControl
     {
         private CptChamber chamber;
+        private CptSample sample;
         public CptChamber Chamber { get => chamber; set => chamber = value; }
         int number_of_Graphs = 0, Maximum_Grphs = 3;
 
@@ -23,6 +24,7 @@ namespace EazyLab.Cpt.Controls
         public int SelectedStationIndex = 0;
         public bool Chamber_Reading = false;
         CptDataPacketVer1 Lastdp = new CptDataPacketVer1();
+
 
         public CptChamberCntrl()
         {
@@ -71,17 +73,17 @@ namespace EazyLab.Cpt.Controls
 
             try
             {
-                
-                pvTemp1.Value = dp.Temp0;
-                pvTemp2.Value = dp.Temp1;
-                pvTemp3.Value = dp.Temp2;
-                pvTemp4.Value = dp.Temp3;
-                pvTemp5.Value = dp.Temp4;
-                pvTemp6.Value = dp.Temp5;
-                pvCurrent.Value = dp.Current;
-                pvPower.Value = dp.Power;
-                pvVoltage.Value = dp.Voltage;
-                pvEnergy.Value = dp.Energy;
+                if (chamber.SampleReadyEvent == null) chamber.SampleReadyEvent += SampleReady;
+                pvTemp1.Value.AsDouble = dp.Temp0;
+                pvTemp2.Value.AsDouble  = dp.Temp1;
+                pvTemp3.Value.AsDouble = dp.Temp2;
+                pvTemp4.Value.AsDouble = dp.Temp3;
+                pvTemp5.Value.AsDouble = dp.Temp4;
+                pvTemp6.Value.AsDouble = dp.Temp5;
+                pvCurrent.Value.AsDouble = dp.Current;
+                pvPower.Value.AsDouble = dp.Power;
+                pvVoltage.Value.AsDouble = dp.Voltage;
+                pvEnergy.Value.AsDouble = dp.Energy;
                 Plot.Update(dp.Time);
                 RefreshPlot();
                 CheckSelectedStationStatus();
@@ -162,6 +164,10 @@ namespace EazyLab.Cpt.Controls
             UpdateDisplay(dp);
         }
 
+        void UpdateSampleControl( string text)
+        {
+            editString1.Value.AsString = text;
+        }
 
         private void DataReady(object sender, DataReadyEventArgs e)
         {
@@ -169,6 +175,15 @@ namespace EazyLab.Cpt.Controls
             //Lastdp = e.DataPacket;
             //ledStatus.Value = !ledStatus.Value;
             
+        }
+
+        private void SampleReady(object sender, SampleReadyEventArgs e)
+        {
+            sample = e.cptSample;
+            Invoke(new Action(() => UpdateSampleControl( e.cptSample.SerialNo)));
+            //Lastdp = e.DataPacket;
+            //ledStatus.Value = !ledStatus.Value;
+
         }
 
         void UpdateCbStation()
@@ -190,6 +205,8 @@ namespace EazyLab.Cpt.Controls
             UpdateCbStation(); 
 
         }
+
+        
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
@@ -223,10 +240,18 @@ namespace EazyLab.Cpt.Controls
             {
                 if (SelectedStation.IsConnected)
                 {
-                   SelectedStation.StartTest(tbtnStart.State);              
-                       
-  
-                 
+                    // user should add smaple before start test
+                   if(sample != null)
+                    {
+                        SelectedStation.StartTest(tbtnStart.State);
+                        SelectedStation.Test.CptSample = sample;
+
+                    }         
+                    else
+                        MessageBox.Show("Please add sample first");
+
+
+
                 }
                 else
                 {
@@ -276,6 +301,29 @@ namespace EazyLab.Cpt.Controls
             SelectedStation.SwitchSample(btnSampleOn.State);    
         }
 
+        private void pvTemp1_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (SelectedStation.Test.CptSample.Profiles.Source == CptProfile.ProfileSource.T0)
+                {
+                    //Plot.Subscribe(SelectedStation.min);
+                    //Plot.Subscribe(SelectedStation.max);
+                }
+
+            }
+            catch (Exception  ex)
+            {
+
+                LoggerFile.WriteException(ex);
+            }
+        }
+
+        private void pvTemp1_ValueChanged(object sender, ValueDoubleEventArgs e)
+        {
+
+        }
+
         private void CbStation_SelectedValueChanged(object sender, EventArgs e)
         {
             try
@@ -291,6 +339,11 @@ namespace EazyLab.Cpt.Controls
             {
                 LoggerFile.WriteException(ex);
             }
+        }
+
+        private void editString1_ValueChanged(object sender, ValueStringEventArgs e)
+        {
+
         }
 
         //private void CbStation_SelectionChangeCommitted(object sender, EventArgs e)

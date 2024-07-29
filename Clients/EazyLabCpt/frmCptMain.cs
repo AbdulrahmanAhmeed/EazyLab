@@ -266,6 +266,8 @@ namespace EazyLabClient
                 foreach (var stdControl in Cntrl.StdControls)
                 {
                     stdControl.PlotColor = Color.FromArgb(data.Find(x=>x.Name == stdControl.Name).RGB);
+                    stdControl.Max = data.Find(x => x.Name == stdControl.Name).Max;
+                    stdControl.Min = data.Find(x => x.Name == stdControl.Name).Min;
                 }
             }
             catch (Exception ex)
@@ -281,7 +283,9 @@ namespace EazyLabClient
                 var obj = new CptTagController()
                 {
                     Name = stdControl.Name,
-                    RGB = stdControl.PlotColor.ToArgb()
+                    RGB = stdControl.PlotColor.ToArgb(),
+                    Max = stdControl.Max,
+                    Min = stdControl.Min,
                 };
                 DbAccess.Upsert(obj);
             }

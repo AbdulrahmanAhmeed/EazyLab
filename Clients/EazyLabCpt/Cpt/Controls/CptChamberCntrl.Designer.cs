@@ -263,7 +263,9 @@ namespace EazyLab.Cpt.Controls
             this.editString1.Name = "editString1";
             this.editString1.Size = new System.Drawing.Size(165, 20);
             this.editString1.TabIndex = 90;
-            this.editString1.Value.AsString = "01234567";
+            this.editString1.Value.AsString = "012345678";
+            this.editString1.Value.EventsEnabled = false;
+            this.editString1.ValueChanged += new EazyLab.Delegates.ValueStringEventHandler(this.editString1_ValueChanged);
             this.editString1.LoadingEnd();
             // 
             // button3
@@ -318,9 +320,10 @@ namespace EazyLab.Cpt.Controls
             this.pvCurrent.IsHidden = false;
             this.pvCurrent.IsSelectedForPloting = false;
             this.pvCurrent.Location = new System.Drawing.Point(1119, 6);
+            this.pvCurrent.Max = 0D;
+            this.pvCurrent.Min = 0D;
             this.pvCurrent.Name = "pvCurrent";
             this.pvCurrent.Plot = null;
-            this.pvCurrent.TagName = null;
             this.pvCurrent.PlotColor = System.Drawing.Color.White;
             this.pvCurrent.Precision = 2;
             this.pvCurrent.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -349,9 +352,10 @@ namespace EazyLab.Cpt.Controls
             this.pvEnergy.IsHidden = false;
             this.pvEnergy.IsSelectedForPloting = false;
             this.pvEnergy.Location = new System.Drawing.Point(1119, 109);
+            this.pvEnergy.Max = 0D;
+            this.pvEnergy.Min = 0D;
             this.pvEnergy.Name = "pvEnergy";
             this.pvEnergy.Plot = null;
-            this.pvEnergy.TagName = null;
             this.pvEnergy.PlotColor = System.Drawing.Color.White;
             this.pvEnergy.Precision = 1;
             this.pvEnergy.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -380,9 +384,10 @@ namespace EazyLab.Cpt.Controls
             this.pvVoltage.IsHidden = false;
             this.pvVoltage.IsSelectedForPloting = false;
             this.pvVoltage.Location = new System.Drawing.Point(953, 6);
+            this.pvVoltage.Max = 0D;
+            this.pvVoltage.Min = 0D;
             this.pvVoltage.Name = "pvVoltage";
             this.pvVoltage.Plot = null;
-            this.pvVoltage.TagName = null;
             this.pvVoltage.PlotColor = System.Drawing.Color.White;
             this.pvVoltage.Precision = 1;
             this.pvVoltage.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -412,9 +417,10 @@ namespace EazyLab.Cpt.Controls
             this.pvPower.IsHidden = false;
             this.pvPower.IsSelectedForPloting = false;
             this.pvPower.Location = new System.Drawing.Point(953, 109);
+            this.pvPower.Max = 0D;
+            this.pvPower.Min = 0D;
             this.pvPower.Name = "pvPower";
             this.pvPower.Plot = null;
-            this.pvPower.TagName = null;
             this.pvPower.PlotColor = System.Drawing.Color.White;
             this.pvPower.Precision = 1;
             this.pvPower.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -443,9 +449,10 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp2.IsHidden = false;
             this.pvTemp2.IsSelectedForPloting = false;
             this.pvTemp2.Location = new System.Drawing.Point(787, 6);
+            this.pvTemp2.Max = 0D;
+            this.pvTemp2.Min = 0D;
             this.pvTemp2.Name = "pvTemp2";
             this.pvTemp2.Plot = null;
-            this.pvTemp2.TagName = null;
             this.pvTemp2.PlotColor = System.Drawing.Color.White;
             this.pvTemp2.Precision = 1;
             this.pvTemp2.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -474,9 +481,10 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp4.IsHidden = false;
             this.pvTemp4.IsSelectedForPloting = false;
             this.pvTemp4.Location = new System.Drawing.Point(787, 109);
+            this.pvTemp4.Max = 0D;
+            this.pvTemp4.Min = 0D;
             this.pvTemp4.Name = "pvTemp4";
             this.pvTemp4.Plot = null;
-            this.pvTemp4.TagName = null;
             this.pvTemp4.PlotColor = System.Drawing.Color.White;
             this.pvTemp4.Precision = 1;
             this.pvTemp4.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -505,9 +513,10 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp6.IsHidden = false;
             this.pvTemp6.IsSelectedForPloting = false;
             this.pvTemp6.Location = new System.Drawing.Point(787, 212);
+            this.pvTemp6.Max = 0D;
+            this.pvTemp6.Min = 0D;
             this.pvTemp6.Name = "pvTemp6";
             this.pvTemp6.Plot = null;
-            this.pvTemp6.TagName = null;
             this.pvTemp6.PlotColor = System.Drawing.Color.White;
             this.pvTemp6.Precision = 1;
             this.pvTemp6.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -536,9 +545,10 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp1.IsHidden = false;
             this.pvTemp1.IsSelectedForPloting = false;
             this.pvTemp1.Location = new System.Drawing.Point(621, 6);
+            this.pvTemp1.Max = 0D;
+            this.pvTemp1.Min = 0D;
             this.pvTemp1.Name = "pvTemp1";
             this.pvTemp1.Plot = this.Plot;
-            this.pvTemp1.TagName = null;
             this.pvTemp1.PlotColor = System.Drawing.Color.White;
             this.pvTemp1.Precision = 1;
             this.pvTemp1.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -552,6 +562,8 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp1.TextFormatting.UnitsText = "°c";
             this.pvTemp1.Unit = "°c";
             this.pvTemp1.ValueAsDouble = 0D;
+            this.pvTemp1.ValueChanged += new EazyLab.Delegates.ValueDoubleEventHandler(this.pvTemp1_ValueChanged);
+            this.pvTemp1.DoubleClick += new System.EventHandler(this.pvTemp1_DoubleClick);
             this.pvTemp1.LoadingEnd();
             // 
             // Plot
@@ -586,7 +598,14 @@ namespace EazyLab.Cpt.Controls
             this.Plot.XAxes.Add(plotXAxis1);
             plotYAxis1.DockOrder = 0;
             plotYAxis1.Name = "Y-Axis 1";
+            plotYAxis1.Title.MarginSpacing = -4D;
             plotYAxis1.Title.Text = "Y-Axis 1";
+            plotYAxis1.Title.TextLayout.AlignmentHorizontal.Margin = 1D;
+            plotYAxis1.Title.TextLayout.AlignmentHorizontal.Style = System.Drawing.StringAlignment.Near;
+            plotYAxis1.Title.TextLayout.AlignmentVertical.Margin = 0D;
+            plotYAxis1.Title.TextLayout.AlignmentVertical.Style = System.Drawing.StringAlignment.Near;
+            plotYAxis1.Title.TextRotation = EazyLab.Types.PlotAutoRotation.X000;
+            plotYAxis1.Title.Visible = true;
             this.Plot.YAxes.Add(plotYAxis1);
             this.Plot.Click += new System.EventHandler(this.Plot_Click);
             this.Plot.LoadingEnd();
@@ -604,9 +623,10 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp3.IsHidden = false;
             this.pvTemp3.IsSelectedForPloting = false;
             this.pvTemp3.Location = new System.Drawing.Point(621, 109);
+            this.pvTemp3.Max = 0D;
+            this.pvTemp3.Min = 0D;
             this.pvTemp3.Name = "pvTemp3";
             this.pvTemp3.Plot = null;
-            this.pvTemp3.TagName = null;
             this.pvTemp3.PlotColor = System.Drawing.Color.White;
             this.pvTemp3.Precision = 1;
             this.pvTemp3.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
@@ -635,9 +655,10 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp5.IsHidden = false;
             this.pvTemp5.IsSelectedForPloting = false;
             this.pvTemp5.Location = new System.Drawing.Point(621, 212);
+            this.pvTemp5.Max = 0D;
+            this.pvTemp5.Min = 0D;
             this.pvTemp5.Name = "pvTemp5";
             this.pvTemp5.Plot = null;
-            this.pvTemp5.TagName = null;
             this.pvTemp5.PlotColor = System.Drawing.Color.White;
             this.pvTemp5.Precision = 1;
             this.pvTemp5.PrecisionStyle = EazyLab.Types.PrecisionStyle.FixedDecimalPoints;
