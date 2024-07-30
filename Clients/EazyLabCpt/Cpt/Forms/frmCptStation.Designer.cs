@@ -225,6 +225,7 @@
             this.cbSerialNo.Size = new System.Drawing.Size(334, 37);
             this.cbSerialNo.TabIndex = 14;
             this.cbSerialNo.DropDown += new System.EventHandler(this.cbSerialNo_DropDown);
+            this.cbSerialNo.SelectedIndexChanged += new System.EventHandler(this.cbSerialNo_SelectedIndexChanged);
             this.cbSerialNo.SelectionChangeCommitted += new System.EventHandler(this.cbSerialNo_SelectionChangeCommitted);
             this.cbSerialNo.TextChanged += new System.EventHandler(this.cbSerialNo_TextChanged);
             // 
@@ -305,6 +306,8 @@
             this.pv1.IsHidden = false;
             this.pv1.IsSelectedForPloting = false;
             this.pv1.Location = new System.Drawing.Point(28, 25);
+            this.pv1.Max = 0D;
+            this.pv1.Min = 0D;
             this.pv1.Name = "pv1";
             this.pv1.Plot = null;
             this.pv1.PlotColor = System.Drawing.Color.White;

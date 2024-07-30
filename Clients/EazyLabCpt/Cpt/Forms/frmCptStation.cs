@@ -487,5 +487,10 @@ namespace EazyLab.Cpt.Forms
         {
             tempStation.SetOverCurrent((int)nudOverCurrent.Value);
         }
+
+        private void cbSerialNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

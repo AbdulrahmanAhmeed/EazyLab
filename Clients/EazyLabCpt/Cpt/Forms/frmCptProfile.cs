@@ -30,9 +30,9 @@ namespace EazyLab.Cpt.Forms
         void UpdateTempZoneGroup(int i)
         {
             tempZone = tempProfile.TempZones[i];
-            dudMax.Value = tempZone.Max;
+            dudMax.Value = tempZone.Upper;
             dudTime.Value = tempZone.Time;
-            dudMin.Value = tempZone.Min  ;
+            dudMin.Value = tempZone.Lower  ;
         }
         private void TraceClicked(object sender, PlotChannelDataPointClickEventArgs e)
         {
@@ -75,9 +75,9 @@ namespace EazyLab.Cpt.Forms
             cptSamples = DbAccess.GetAll<CptSample>().Where(x => x.Model.Model == cbModelName.Text).ToList();
             if (cptSamples.Count != 0)
             {
-                if (tempProfile.Id != cptSamples[0].Profiles.Id)
+                if (tempProfile.Id != cptSamples[0].Profile.Id)
                 {
-                    tempProfile = cptSamples.Count == 0 ? tempProfile : cptSamples[0].Profiles;
+                    tempProfile = cptSamples.Count == 0 ? tempProfile : cptSamples[0].Profile;
                 }
             }
             
@@ -109,8 +109,8 @@ namespace EazyLab.Cpt.Forms
                         tempProfile.TempZones.Sort((x, y) => x.Time.CompareTo(y.Time));
                         foreach (var p in tempProfile.TempZones)
                         {
-                            plot.Channels[0].AddXY(p.Time, p.Max);
-                            plot.Channels[1].AddXY(p.Time, p.Min);
+                            plot.Channels[0].AddXY(p.Time, p.Upper);
+                            plot.Channels[1].AddXY(p.Time, p.Lower);
 
                         }
                         plot.XAxes[0].Tracking.ZoomToFitAll();
@@ -143,9 +143,9 @@ namespace EazyLab.Cpt.Forms
             {
 
 
-                plot.Channels[0].AddXY(p.Time, p.Min);
-                plot.Channels[1].AddXY(p.Time, p.Min + p.Max);
-                plot.Channels[2].AddXY(p.Time, p.Min - p.Max);
+                plot.Channels[0].AddXY(p.Time, p.Lower);
+                plot.Channels[1].AddXY(p.Time, p.Lower + p.Upper);
+                plot.Channels[2].AddXY(p.Time, p.Lower - p.Upper);
                 plot.XAxes[0].Tracking.ZoomToFitAll();
                 plot.YAxes[0].Tracking.ZoomToFitAll();
             }
@@ -162,8 +162,8 @@ namespace EazyLab.Cpt.Forms
             {
                 CptTempZone z = new CptTempZone()
                 {
-                    Max = this.dudMax.Value,
-                    Min = this.dudMin.Value,
+                    Upper = this.dudMax.Value,
+                    Lower = this.dudMin.Value,
                     Time = this.dudTime.Value
                 };
 
@@ -448,7 +448,7 @@ namespace EazyLab.Cpt.Forms
                 }
             });
             tempsample = tempsample.Count == 0 ? cptSamples : tempsample;
-            tempsample.ForEach(x => x.Profiles = tempProfile);
+            tempsample.ForEach(x => x.Profile = tempProfile);
             DbAccess.Upsert(tempsample);
             //CptTest cptTest = new CptTest();
 

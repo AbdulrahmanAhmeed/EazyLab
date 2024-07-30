@@ -9,8 +9,8 @@ namespace EazyLab.Cpt.Classes
     public class CptTempZone
     {
         public double Time { get; set; }
-        public double Max { get; set; }
-        public double Min { get; set; }
+        public double Upper { get; set; }
+        public double Lower { get; set; }
 
     }
 }

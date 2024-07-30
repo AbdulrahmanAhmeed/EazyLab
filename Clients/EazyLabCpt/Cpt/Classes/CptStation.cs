@@ -65,7 +65,7 @@ namespace EazyLab.Cpt.Classes
         [BsonIgnore]
         public bool IsConnected => modbus.IsConnected;
         [BsonIgnore]
-        public bool IsTestStarted => isTestStarted && IsConnected;
+        public bool IsTestStarted => Test.IsStarted;
         [BsonIgnore]
         public bool Initiazlized { get => initiazlized; }
         [BsonIgnore]
@@ -88,6 +88,7 @@ namespace EazyLab.Cpt.Classes
             }
 
         }
+
         public CptStation()
         {
             Timer.Elapsed += new System.Timers.ElapsedEventHandler(UpdateData);
@@ -211,6 +212,11 @@ namespace EazyLab.Cpt.Classes
                         Buffer.BlockCopy(data, (data.Length - 8) * 2, bytes, 0, bytes.Length);
                         Lastdp.MillisTime = BitConverter.ToUInt64(bytes, 0);
                         Lastdp.WifiStrength = (short)data[25];
+                        if (IsTestStarted) test.CptSample.Profile.UpdateLimits((DateTime.Now - Test.StartTime).TotalMinutes); 
+                                
+
+
+
                         return result;
                     }
                 }
@@ -389,9 +395,10 @@ namespace EazyLab.Cpt.Classes
                 {
                     if (!modbus.IsConnected) modbus.Connect();
                     result = modbus.WriteSingleRegister(1, (ushort)Commands.StartTest, (short)(start ? 0xff : 0x00));
-                    test = new CptTest(db);
+                 if(test==null)   test = new CptTest(db);
                     Server.DbAccess.Upsert(test);
-                    isTestStarted = result == Result.SUCCESS && start;   // must be  updated from DAtapacket 
+                    if(result == Result.SUCCESS && start )  Test.Start(); ;   // must be  updated from DAtapacket 
+                   
                 }
 
             }
@@ -405,9 +412,8 @@ namespace EazyLab.Cpt.Classes
         private bool dataReady;
         private bool initiazlized;
         private EventHandler<DataReadyEventArgs> dataReadyEvent;
-        private bool isTestStarted;
         private DateTime startTime;
-        private CptTest test;
+        private CptTest test = new CptTest();
 
         //public void ExportToExcel(ExcelVersion version)
         //{

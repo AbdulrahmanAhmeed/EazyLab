@@ -5,7 +5,9 @@ using EazyLab.Instrumentation.Standard;
 using EazyLabClient;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using Windows.UI;
 
 namespace EazyLab.Cpt.Controls
@@ -16,6 +18,7 @@ namespace EazyLab.Cpt.Controls
     {
         private CptChamber chamber;
         private CptSample sample;
+        
         public CptChamber Chamber { get => chamber; set => chamber = value; }
         int number_of_Graphs = 0, Maximum_Grphs = 3;
 
@@ -74,6 +77,7 @@ namespace EazyLab.Cpt.Controls
             try
             {
                 if (chamber.SampleReadyEvent == null) chamber.SampleReadyEvent += SampleReady;
+                
                 pvTemp1.Value.AsDouble = dp.Temp0;
                 pvTemp2.Value.AsDouble  = dp.Temp1;
                 pvTemp3.Value.AsDouble = dp.Temp2;
@@ -85,7 +89,7 @@ namespace EazyLab.Cpt.Controls
                 pvVoltage.Value.AsDouble = dp.Voltage;
                 pvEnergy.Value.AsDouble = dp.Energy;
                 Plot.Update(dp.Time);
-                RefreshPlot();
+                //RefreshPlot();
                 CheckSelectedStationStatus();
                 led1.Indicator.Text = SelectedStation.SampleStatus.ToString();
             }
@@ -244,7 +248,7 @@ namespace EazyLab.Cpt.Controls
                    if(sample != null)
                     {
                         SelectedStation.StartTest(tbtnStart.State);
-                        SelectedStation.Test.CptSample = sample;
+                        //SelectedStation.Test.CptSample = sample;
 
                     }         
                     else
@@ -305,7 +309,7 @@ namespace EazyLab.Cpt.Controls
         {
             try
             {
-                if (SelectedStation.Test.CptSample.Profiles.Source == CptProfile.ProfileSource.T0)
+                if (SelectedStation.Test.CptSample.Profile.Source == CptProfile.ProfileSource.Temp1)
                 {
                     //Plot.Subscribe(SelectedStation.min);
                     //Plot.Subscribe(SelectedStation.max);
@@ -338,6 +342,39 @@ namespace EazyLab.Cpt.Controls
             catch (Exception ex)
             {
                 LoggerFile.WriteException(ex);
+            }
+        }
+
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SelectedStation.Test.CptSample = Server.DbAccess.GetAll<CptSample>().Where(x=>x.SerialNo == "2401000").FirstOrDefault();
+            sample = SelectedStation.Test.CptSample;
+            UpdateSampleControl(SelectedStation.Test.CptSample.SerialNo);
+        }
+
+        private void checkUpperLimit_CheckedChanged(object sender, EventArgs e)
+        {
+            PlotYAxis axis = null; 
+            try
+            {
+                var source = SelectedStation.Test.CptSample.Profile.Source.ToString();
+                axis = Plot.YAxes[source];
+                if (axis == null)
+                {
+                    MessageBox.Show(" Please select " + "source");
+                    checkUpperLimit.Checked = false;
+                    return; 
+                }
+                SelectedStation.Test.CptSample.Profile.InitializeSubscribers(axis);
+
+
+                Plot.Subscribe(SelectedStation.Test.CptSample.Profile.LowerLimitSubs); 
+            }
+            catch (Exception ex)
+            {
+                LoggerFile.WriteException(ex);
+
             }
         }
 

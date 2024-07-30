@@ -2,6 +2,8 @@
 using LiteDB;
 using System;
 using System.Collections.Generic;
+using System.Text;
+using Windows.Media.Audio;
 namespace EazyLab.Cpt.Classes
 {
 
@@ -10,11 +12,13 @@ namespace EazyLab.Cpt.Classes
     {
         private  DateTime startTime = DateTime.MinValue;
         private LiteDatabase db;
+        private bool isStarted = false; 
         public const string IncludeString = "$.CptDataPacketVer1,$.Profile,$.Model";
 
         public List<CptDataPacketVer1> Data = new List<CptDataPacketVer1>();  // buffer to store the Datapacket
         public CptSample CptSample { get; set; }   
         public DateTime StartTime => startTime;
+        public bool IsStarted => isStarted;
         public CptTest()
         {
             this.Name = "New Sample";   
@@ -37,6 +41,7 @@ namespace EazyLab.Cpt.Classes
         {
             startTime = DateTime.Now;
             Data= new List<CptDataPacketVer1>();
+            isStarted = true;
 
         }
 

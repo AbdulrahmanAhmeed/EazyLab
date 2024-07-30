@@ -57,21 +57,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EazyLab.Common">
-      <HintPath>Dll\EazyLab.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="EazyLab.Equipments, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="EazyLab.Equipments">
       <HintPath>Dll\EazyLab.Equipments.dll</HintPath>
-    </Reference>
-    <Reference Include="EazyLab.Plot">
-      <HintPath>Dll\EazyLab.Plot.dll</HintPath>
-    </Reference>
-    <Reference Include="EazyLab.Pro">
-      <HintPath>Dll\EazyLab.Pro.dll</HintPath>
-    </Reference>
-    <Reference Include="EazyLab.Std">
-      <HintPath>Dll\EazyLab.Std.dll</HintPath>
     </Reference>
     <Reference Include="LiteDB">
       <HintPath>Dll\LiteDB.dll</HintPath>
@@ -295,6 +282,24 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\EazyLab_V5\PC\Instrumentation\Common\EazyLab.Common.csproj">
+      <Project>{4dac615a-281f-4aca-8b5e-b81028a79577}</Project>
+      <Name>EazyLab.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\EazyLab_V5\PC\Instrumentation\Plot\EazyLab.Plot.csproj">
+      <Project>{f5103d40-25dd-45c8-8925-0413e227374d}</Project>
+      <Name>EazyLab.Plot</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\EazyLab_V5\PC\Instrumentation\Pro\EazyLab.Pro.csproj">
+      <Project>{f673c466-c01b-49aa-ba53-25c8e6316d9a}</Project>
+      <Name>EazyLab.Pro</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\EazyLab_V5\PC\Instrumentation\STD\EazyLab.Std.csproj">
+      <Project>{5fc6c66c-434f-4ee6-b3ff-f7bdaac9e28b}</Project>
+      <Name>EazyLab.Std</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

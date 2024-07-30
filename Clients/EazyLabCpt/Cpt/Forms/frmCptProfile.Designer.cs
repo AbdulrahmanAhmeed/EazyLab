@@ -385,11 +385,6 @@
             0,
             65536});
             this.dudOverCurrent.Location = new System.Drawing.Point(204, 299);
-            this.dudOverCurrent.Maximum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
             this.dudOverCurrent.Name = "dudOverCurrent";
             this.dudOverCurrent.Size = new System.Drawing.Size(74, 26);
             this.dudOverCurrent.TabIndex = 13;
@@ -429,11 +424,6 @@
             0,
             65536});
             this.dudInrushCurrent.Location = new System.Drawing.Point(204, 239);
-            this.dudInrushCurrent.Maximum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
             this.dudInrushCurrent.Name = "dudInrushCurrent";
             this.dudInrushCurrent.Size = new System.Drawing.Size(74, 26);
             this.dudInrushCurrent.TabIndex = 13;
@@ -555,11 +545,6 @@
             this.dudTime.DecimalPlaces = 2;
             this.dudTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dudTime.Location = new System.Drawing.Point(219, 30);
-            this.dudTime.Maximum = new decimal(new int[] {
-            10000,
-            0,
-            0,
-            0});
             this.dudTime.Name = "dudTime";
             this.dudTime.Size = new System.Drawing.Size(97, 31);
             this.dudTime.TabIndex = 1;
@@ -570,11 +555,6 @@
             this.dudMax.DecimalPlaces = 2;
             this.dudMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dudMax.Location = new System.Drawing.Point(219, 67);
-            this.dudMax.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
             this.dudMax.Name = "dudMax";
             this.dudMax.Size = new System.Drawing.Size(97, 31);
             this.dudMax.TabIndex = 1;
@@ -585,11 +565,6 @@
             this.dudMin.DecimalPlaces = 2;
             this.dudMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dudMin.Location = new System.Drawing.Point(219, 104);
-            this.dudMin.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
             this.dudMin.Name = "dudMin";
             this.dudMin.Size = new System.Drawing.Size(97, 31);
             this.dudMin.TabIndex = 1;
@@ -826,11 +801,6 @@
             0,
             65536});
             this.dudMaxCurrent.Location = new System.Drawing.Point(266, 105);
-            this.dudMaxCurrent.Maximum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
             this.dudMaxCurrent.Name = "dudMaxCurrent";
             this.dudMaxCurrent.Size = new System.Drawing.Size(74, 26);
             this.dudMaxCurrent.TabIndex = 13;

@@ -40,6 +40,9 @@ namespace EazyLab.Cpt.Controls
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.checkLowerLimit = new System.Windows.Forms.CheckBox();
+            this.checkUpperLimit = new System.Windows.Forms.CheckBox();
             this.led1 = new EazyLab.Instrumentation.Standard.Led();
             this.btnSampleOn = new EazyLab.Instrumentation.Standard.ToggleButton();
             this.tbtnStart = new EazyLab.Instrumentation.Standard.ToggleButton();
@@ -115,7 +118,7 @@ namespace EazyLab.Cpt.Controls
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1290, 834);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1760, 834);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -149,13 +152,16 @@ namespace EazyLab.Cpt.Controls
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1284, 294);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1754, 294);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Black;
             this.tableLayoutPanel2.SetColumnSpan(this.groupBox1, 2);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.checkLowerLimit);
+            this.groupBox1.Controls.Add(this.checkUpperLimit);
             this.groupBox1.Controls.Add(this.led1);
             this.groupBox1.Controls.Add(this.btnSampleOn);
             this.groupBox1.Controls.Add(this.tbtnStart);
@@ -169,11 +175,43 @@ namespace EazyLab.Cpt.Controls
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
             this.tableLayoutPanel2.SetRowSpan(this.groupBox1, 3);
-            this.groupBox1.Size = new System.Drawing.Size(606, 300);
+            this.groupBox1.Size = new System.Drawing.Size(833, 300);
             this.groupBox1.TabIndex = 145;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Station";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // button2
+            // 
+            this.button2.ForeColor = System.Drawing.Color.Black;
+            this.button2.Location = new System.Drawing.Point(451, 237);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(149, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Test";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // checkLowerLimit
+            // 
+            this.checkLowerLimit.AutoSize = true;
+            this.checkLowerLimit.Location = new System.Drawing.Point(695, 73);
+            this.checkLowerLimit.Name = "checkLowerLimit";
+            this.checkLowerLimit.Size = new System.Drawing.Size(76, 17);
+            this.checkLowerLimit.TabIndex = 97;
+            this.checkLowerLimit.Text = "LowerLimit";
+            this.checkLowerLimit.UseVisualStyleBackColor = true;
+            // 
+            // checkUpperLimit
+            // 
+            this.checkUpperLimit.AutoSize = true;
+            this.checkUpperLimit.Location = new System.Drawing.Point(695, 26);
+            this.checkUpperLimit.Name = "checkUpperLimit";
+            this.checkUpperLimit.Size = new System.Drawing.Size(76, 17);
+            this.checkUpperLimit.TabIndex = 1;
+            this.checkUpperLimit.Text = "UpperLimit";
+            this.checkUpperLimit.UseVisualStyleBackColor = true;
+            this.checkUpperLimit.CheckedChanged += new System.EventHandler(this.checkUpperLimit_CheckedChanged);
             // 
             // led1
             // 
@@ -319,7 +357,7 @@ namespace EazyLab.Cpt.Controls
             this.pvCurrent.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvCurrent.IsHidden = false;
             this.pvCurrent.IsSelectedForPloting = false;
-            this.pvCurrent.Location = new System.Drawing.Point(1119, 6);
+            this.pvCurrent.Location = new System.Drawing.Point(1529, 6);
             this.pvCurrent.Max = 0D;
             this.pvCurrent.Min = 0D;
             this.pvCurrent.Name = "pvCurrent";
@@ -351,7 +389,7 @@ namespace EazyLab.Cpt.Controls
             this.pvEnergy.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvEnergy.IsHidden = false;
             this.pvEnergy.IsSelectedForPloting = false;
-            this.pvEnergy.Location = new System.Drawing.Point(1119, 109);
+            this.pvEnergy.Location = new System.Drawing.Point(1529, 109);
             this.pvEnergy.Max = 0D;
             this.pvEnergy.Min = 0D;
             this.pvEnergy.Name = "pvEnergy";
@@ -383,7 +421,7 @@ namespace EazyLab.Cpt.Controls
             this.pvVoltage.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
             this.pvVoltage.IsHidden = false;
             this.pvVoltage.IsSelectedForPloting = false;
-            this.pvVoltage.Location = new System.Drawing.Point(953, 6);
+            this.pvVoltage.Location = new System.Drawing.Point(1302, 6);
             this.pvVoltage.Max = 0D;
             this.pvVoltage.Min = 0D;
             this.pvVoltage.Name = "pvVoltage";
@@ -416,7 +454,7 @@ namespace EazyLab.Cpt.Controls
             this.pvPower.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvPower.IsHidden = false;
             this.pvPower.IsSelectedForPloting = false;
-            this.pvPower.Location = new System.Drawing.Point(953, 109);
+            this.pvPower.Location = new System.Drawing.Point(1302, 109);
             this.pvPower.Max = 0D;
             this.pvPower.Min = 0D;
             this.pvPower.Name = "pvPower";
@@ -448,7 +486,7 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp2.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvTemp2.IsHidden = false;
             this.pvTemp2.IsSelectedForPloting = false;
-            this.pvTemp2.Location = new System.Drawing.Point(787, 6);
+            this.pvTemp2.Location = new System.Drawing.Point(1075, 6);
             this.pvTemp2.Max = 0D;
             this.pvTemp2.Min = 0D;
             this.pvTemp2.Name = "pvTemp2";
@@ -480,7 +518,7 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp4.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvTemp4.IsHidden = false;
             this.pvTemp4.IsSelectedForPloting = false;
-            this.pvTemp4.Location = new System.Drawing.Point(787, 109);
+            this.pvTemp4.Location = new System.Drawing.Point(1075, 109);
             this.pvTemp4.Max = 0D;
             this.pvTemp4.Min = 0D;
             this.pvTemp4.Name = "pvTemp4";
@@ -512,7 +550,7 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp6.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvTemp6.IsHidden = false;
             this.pvTemp6.IsSelectedForPloting = false;
-            this.pvTemp6.Location = new System.Drawing.Point(787, 212);
+            this.pvTemp6.Location = new System.Drawing.Point(1075, 212);
             this.pvTemp6.Max = 0D;
             this.pvTemp6.Min = 0D;
             this.pvTemp6.Name = "pvTemp6";
@@ -544,7 +582,7 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvTemp1.IsHidden = false;
             this.pvTemp1.IsSelectedForPloting = false;
-            this.pvTemp1.Location = new System.Drawing.Point(621, 6);
+            this.pvTemp1.Location = new System.Drawing.Point(848, 6);
             this.pvTemp1.Max = 0D;
             this.pvTemp1.Min = 0D;
             this.pvTemp1.Name = "pvTemp1";
@@ -589,7 +627,7 @@ namespace EazyLab.Cpt.Controls
             this.Plot.Location = new System.Drawing.Point(3, 33);
             this.Plot.Name = "Plot";
             this.Plot.NoOFChannels = 10;
-            this.Plot.Size = new System.Drawing.Size(1284, 478);
+            this.Plot.Size = new System.Drawing.Size(1754, 478);
             this.Plot.TabIndex = 4;
             plotXAxis1.DockOrder = 0;
             plotXAxis1.Name = "X-Axis 1";
@@ -622,7 +660,7 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp3.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvTemp3.IsHidden = false;
             this.pvTemp3.IsSelectedForPloting = false;
-            this.pvTemp3.Location = new System.Drawing.Point(621, 109);
+            this.pvTemp3.Location = new System.Drawing.Point(848, 109);
             this.pvTemp3.Max = 0D;
             this.pvTemp3.Min = 0D;
             this.pvTemp3.Name = "pvTemp3";
@@ -654,7 +692,7 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp5.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F);
             this.pvTemp5.IsHidden = false;
             this.pvTemp5.IsSelectedForPloting = false;
-            this.pvTemp5.Location = new System.Drawing.Point(621, 212);
+            this.pvTemp5.Location = new System.Drawing.Point(848, 212);
             this.pvTemp5.Max = 0D;
             this.pvTemp5.Min = 0D;
             this.pvTemp5.Name = "pvTemp5";
@@ -682,7 +720,7 @@ namespace EazyLab.Cpt.Controls
             this.labelStatus.Dock = System.Windows.Forms.DockStyle.Fill;
             this.labelStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.99688F);
             this.labelStatus.ForeColor = System.Drawing.SystemColors.Control;
-            this.labelStatus.Location = new System.Drawing.Point(593, 3);
+            this.labelStatus.Location = new System.Drawing.Point(1063, 3);
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(494, 24);
             this.labelStatus.Text = "Status";
@@ -693,7 +731,7 @@ namespace EazyLab.Cpt.Controls
             this.ledStatus.LoadingBegin();
             this.ledStatus.AutoFont = false;
             this.ledStatus.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ledStatus.Location = new System.Drawing.Point(1245, 3);
+            this.ledStatus.Location = new System.Drawing.Point(1715, 3);
             this.ledStatus.Name = "ledStatus";
             this.ledStatus.Size = new System.Drawing.Size(42, 24);
             this.ledStatus.LoadingEnd();
@@ -728,15 +766,16 @@ namespace EazyLab.Cpt.Controls
             this.plotToolBarStandard1.ImageList = this.imageList4;
             this.plotToolBarStandard1.Location = new System.Drawing.Point(3, 3);
             this.plotToolBarStandard1.Name = "plotToolBarStandard1";
-            this.plotToolBarStandard1.Plot = null;
+            this.plotToolBarStandard1.Plot = this.Plot;
             this.plotToolBarStandard1.ShowToolTips = true;
-            this.plotToolBarStandard1.Size = new System.Drawing.Size(584, 28);
+            this.plotToolBarStandard1.Size = new System.Drawing.Size(1054, 28);
             this.plotToolBarStandard1.TabIndex = 5;
             this.plotToolBarStandard1.LoadingEnd();
             // 
             // plotToolBarButton1
             // 
             this.plotToolBarButton1.LoadingBegin();
+            this.plotToolBarButton1.Enabled = false;
             this.plotToolBarButton1.ImageIndex = 0;
             this.plotToolBarButton1.Name = "plotToolBarButton1";
             this.plotToolBarButton1.ToolTipText = "Tracking Resume";
@@ -766,6 +805,7 @@ namespace EazyLab.Cpt.Controls
             this.plotToolBarButton4.Command = EazyLab.Types.PlotToolBarCommandStyle.AxesScroll;
             this.plotToolBarButton4.ImageIndex = 2;
             this.plotToolBarButton4.Name = "plotToolBarButton4";
+            this.plotToolBarButton4.Pushed = true;
             this.plotToolBarButton4.ToolTipText = "Axes Scroll";
             this.plotToolBarButton4.LoadingEnd();
             // 
@@ -820,6 +860,7 @@ namespace EazyLab.Cpt.Controls
             this.plotToolBarButton10.Command = EazyLab.Types.PlotToolBarCommandStyle.Select;
             this.plotToolBarButton10.ImageIndex = 6;
             this.plotToolBarButton10.Name = "plotToolBarButton10";
+            this.plotToolBarButton10.Pushed = true;
             this.plotToolBarButton10.ToolTipText = "Select";
             this.plotToolBarButton10.LoadingEnd();
             // 
@@ -980,7 +1021,7 @@ namespace EazyLab.Cpt.Controls
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.Name = "CptChamberCntrl";
-            this.Size = new System.Drawing.Size(1290, 834);
+            this.Size = new System.Drawing.Size(1760, 834);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -1044,5 +1085,8 @@ namespace EazyLab.Cpt.Controls
         private PlotToolBarButton plotToolBarButton20;
         private PlotToolBarButton plotToolBarButton21;
         private System.Windows.Forms.ImageList imageList4;
+        private System.Windows.Forms.CheckBox checkLowerLimit;
+        private System.Windows.Forms.CheckBox checkUpperLimit;
+        private System.Windows.Forms.Button button2;
     }
 }
