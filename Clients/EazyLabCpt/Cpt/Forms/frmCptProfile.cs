@@ -15,6 +15,7 @@ namespace EazyLab.Cpt.Forms
         CptModel model;
 
         List<CptProfile> tempProfiles = new List<CptProfile>();
+        List<CptProfile> ModelsProfiles = new List<CptProfile>();
         List<CptModel> cptModels = new List<CptModel>();
         List<SampleSerialPrefix> sampleSerialPrefixes = new List<SampleSerialPrefix>();
         List<SampleSerialSuffix> sampleSerialSuffixes = new List<SampleSerialSuffix>();
@@ -75,9 +76,9 @@ namespace EazyLab.Cpt.Forms
             cptSamples = DbAccess.GetAll<CptSample>().Where(x => x.Model.Model == cbModelName.Text).ToList();
             if (cptSamples.Count != 0)
             {
-                if (tempProfile.Id != cptSamples[0].Profile.Id)
+                if (tempProfile.Id != cptSamples[0].Profiles.Where(x => x.Source == CptProfile.ProfileSource.Temp1).First().Id)
                 {
-                    tempProfile = cptSamples.Count == 0 ? tempProfile : cptSamples[0].Profile;
+                    tempProfile = cptSamples.Count == 0 ? tempProfile : cptSamples[0].Profiles.Where(x => x.Source == CptProfile.ProfileSource.Temp1).First();
                 }
             }
             
@@ -205,10 +206,11 @@ namespace EazyLab.Cpt.Forms
             if (tempProfile.TempZones.Count < 2) MessageBox.Show("Error : Profile must have at least two points");
             else
             {
-                tempProfile.MaxCurrent = dudMaxCurrent.Value;
-                tempProfile.MinPowerFactor = dudMinPowerFactor.Value;
-                tempProfile.RejectIfPowerFactor = cbMinPowerFactor.Checked;
-                tempProfile.RejectIfCurrent = cbMaxCurrent.Checked;
+                //tempProfile.MaxCurrent = dudMaxCurrent.Value;
+                //tempProfile.MinPowerFactor = dudMinPowerFactor.Value;
+                //tempProfile.RejectIfPowerFactor = cbMinPowerFactor.Checked;
+                //tempProfile.RejectIfCurrent = cbMaxCurrent.Checked;
+                tempProfile.Source = (CptProfile.ProfileSource)Enum.Parse(typeof(CptProfile.ProfileSource), cbSource.Text);  // (cbSource.SelectedIndex)CptProfile.ProfileSource;
                 DbAccess.Upsert(tempProfile);
                 tempProfiles = DbAccess.GetAll<CptProfile>();
                 //tempProfile = tempProfiles[(int)nudProfileId.Value - 1];
@@ -448,7 +450,7 @@ namespace EazyLab.Cpt.Forms
                 }
             });
             tempsample = tempsample.Count == 0 ? cptSamples : tempsample;
-            tempsample.ForEach(x => x.Profile = tempProfile);
+            tempsample.ForEach(x => x.Profiles= ModelsProfiles);
             DbAccess.Upsert(tempsample);
             //CptTest cptTest = new CptTest();
 
@@ -466,7 +468,7 @@ namespace EazyLab.Cpt.Forms
 
         private void cbMinPowerFactor_CheckedChanged(object sender, EventArgs e)
         {
-            tempProfile.RejectIfPowerFactor = cbMinPowerFactor.Checked;
+            //tempProfile.RejectIfPowerFactor = cbMinPowerFactor.Checked;
         }
 
         private void nudStartCount_ValueChanged(object sender, EventArgs e)
@@ -479,6 +481,58 @@ namespace EazyLab.Cpt.Forms
             var model = (CptModel)cbModelName.SelectedItem;
             cbModelName.Text = model.Model;
             UpdateDisplay();
+        }
+
+        private void btnAddToModel_Click(object sender, EventArgs e)
+        {
+            if (!ModelsProfiles.Any(x => x.Source == tempProfile.Source))
+            {
+                ModelsProfiles.Add((CptProfile)tempProfile.Clone());
+                listBox2.Items.Add(tempProfile.Source);
+            }
+            else
+                MessageBox.Show($"Model already contain {tempProfile.Source} source");
+            //listBox1.Items.Add(tempProfile.Source);
+        }
+
+        private void btUpper_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = colorDialog1.ShowDialog();
+            // = colorDialog1.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                try
+                {
+                    
+                    tempProfile.UpperLimitRGP = colorDialog1.Color.ToArgb();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("Please Add New Profile");
+                }
+                //btColorDialog.BackColor = colorDialog1.Color;
+            }
+        }
+
+        private void btLower_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = colorDialog1.ShowDialog();
+            // = colorDialog1.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                try
+                {
+
+                    tempProfile.LowerLimitRGP = colorDialog1.Color.ToArgb();
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("Please Add New Profile");
+                }
+                //btColorDialog.BackColor = colorDialog1.Color;
+            }
         }
     }
 }

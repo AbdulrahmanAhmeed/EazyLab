@@ -9,7 +9,7 @@ namespace EazyLab.Cpt.Classes
 {
     public class CptSample : Entity
     {
-        public CptProfile Profile { get; set; }
+        public List<CptProfile> Profiles { get; set; }
         public CptModel Model { get; set; }
         public string SerialNo { set; get; }
     }

@@ -1,5 +1,7 @@
 ﻿using EazyLab.Classes;
 using EazyLab.Cpt.Classes;
+using EazyLab.Design;
+using EazyLab.Design.Components;
 using EazyLab.Instrumentation.Plotting;
 using EazyLab.Instrumentation.Standard;
 using EazyLabClient;
@@ -309,11 +311,11 @@ namespace EazyLab.Cpt.Controls
         {
             try
             {
-                if (SelectedStation.Test.CptSample.Profile.Source == CptProfile.ProfileSource.Temp1)
-                {
-                    //Plot.Subscribe(SelectedStation.min);
-                    //Plot.Subscribe(SelectedStation.max);
-                }
+                //if (SelectedStation.Test.CptSample.Profile.Source == CptProfile.ProfileSource.Temp1)
+                //{
+                //    //Plot.Subscribe(SelectedStation.min);
+                //    //Plot.Subscribe(SelectedStation.max);
+                //}
 
             }
             catch (Exception  ex)
@@ -358,7 +360,7 @@ namespace EazyLab.Cpt.Controls
             PlotYAxis axis = null; 
             try
             {
-                var source = SelectedStation.Test.CptSample.Profile.Source.ToString();
+                var source = SelectedStation.Test.CptSample.Profiles.Where(x=>x.Source==CptProfile.ProfileSource.Temp1).First().Source.ToString();
                 axis = Plot.YAxes[source];
                 if (axis == null)
                 {
@@ -366,15 +368,83 @@ namespace EazyLab.Cpt.Controls
                     checkUpperLimit.Checked = false;
                     return; 
                 }
-                SelectedStation.Test.CptSample.Profile.InitializeSubscribers(axis);
+                SelectedStation.Test.CptSample.Profiles.Where(x => x.Source == CptProfile.ProfileSource.Temp1).First().InitializeSubscribers(axis);
+                try
+                {
+                    var data = Server.DbAccess.GetAll<CptTagController>();
+                    SelectedStation.Test.CptSample.Profiles.Where(x => x.Source == CptProfile.ProfileSource.Temp1).First().LowerLimitSubs.Color = System.Drawing.Color.FromArgb(data.Find(x => x.Name ==nameof(CptProfile.LowerLimit)).RGB);
+                    SelectedStation.Test.CptSample.Profiles.Where(x => x.Source == CptProfile.ProfileSource.Temp1).First().UpperLimitSubs.Color = System.Drawing.Color.FromArgb(data.Find(x => x.Name == nameof(CptProfile.UpperLimitSubs)).RGB);
+                }
+                catch (Exception ex)
+                {
+                }
 
-
-                Plot.Subscribe(SelectedStation.Test.CptSample.Profile.LowerLimitSubs); 
+                //SelectedStation.Test.CptSample.Profile.LowerLimitSubs.Color = lowerLimitColor.Color;
+                Plot.Subscribe(SelectedStation.Test.CptSample.Profiles.Where(x => x.Source == CptProfile.ProfileSource.Temp1).First().LowerLimitSubs);
             }
             catch (Exception ex)
             {
                 LoggerFile.WriteException(ex);
 
+            }
+        }
+
+        private void btUpper_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = colorDialog1.ShowDialog();
+            // = colorDialog1.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                try
+                {
+                    var obj = new CptTagController()
+                    {
+                        Name = nameof(CptProfile.UpperLimitSubs),
+                        RGB = colorDialog1.Color.ToArgb(),
+                    };
+                    if(SelectedStation.Test.CptSample.Profiles.Where(x => x.Source == CptProfile.ProfileSource.Temp1).First().UpperLimitSubs != null)
+                    {
+                        SelectedStation.Test.CptSample.Profiles.Where(x => x.Source == CptProfile.ProfileSource.Temp1).First().UpperLimitSubs.Color = colorDialog1.Color;
+
+                    }
+                    Server.DbAccess.Upsert(obj);
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("Please Add Sample");
+                }
+                //btColorDialog.BackColor = colorDialog1.Color;
+            }
+        }
+
+        private void btLower_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = colorDialog1.ShowDialog();
+            // = colorDialog1.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+
+                try
+                {
+                    var obj = new CptTagController()
+                    {
+                        Name = nameof(CptProfile.LowerLimitSubs),
+                        RGB = colorDialog1.Color.ToArgb(),
+                    };
+                    if (SelectedStation.Test.CptSample.Profiles.Where(x => x.Source == CptProfile.ProfileSource.Temp1).First().LowerLimitSubs != null)
+                    {
+                        SelectedStation.Test.CptSample.Profiles.Where(x => x.Source == CptProfile.ProfileSource.Temp1).First().LowerLimitSubs.Color = colorDialog1.Color;
+
+                    }
+                    Server.DbAccess.Upsert(obj);
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show("Please Add Sample");
+                }
+                //btColorDialog.BackColor = colorDialog1.Color;
             }
         }
 

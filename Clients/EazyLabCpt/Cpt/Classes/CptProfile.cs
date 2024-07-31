@@ -31,6 +31,8 @@ namespace EazyLab.Cpt.Classes
         public double MinPowerFactor { set; get; }
         public bool RejectIfPowerFactor { set; get; }
         public bool RejectIfCurrent { set; get; }
+        public int UpperLimitRGP { set; get; }
+        public int LowerLimitRGP { set; get; }
         public ProfileSource Source { set; get; }
         public List<CptTempZone> TempZones { set; get; }
         public string JsonString { get; set; }
@@ -61,8 +63,8 @@ namespace EazyLab.Cpt.Classes
 
         public void InitializeSubscribers(PlotYAxis axis)
         {
-            UpperLimitSubs = new PlotSubscriber(UpperLimit, axis);
-            LowerLimitSubs = new PlotSubscriber(LowerLimit, axis);
+            UpperLimitSubs = new PlotSubscriber(UpperLimit,axis, 0.5f);
+            LowerLimitSubs = new PlotSubscriber(LowerLimit,axis, -0.5f);
         }
 
 

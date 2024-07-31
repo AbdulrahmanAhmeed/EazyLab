@@ -734,3 +734,6 @@ F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\NPOI.OpenXmlFormats
 F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\NPOI.OpenXmlFormats.pdb
 F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\Syncfusion.Licensing.dll
 F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\Syncfusion.XlsIO.Base.dll
+F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\Controls\cntrlPIDLoop.resx
+F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\Controls\cntrlPIDLoop.cs
+F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\Controls\cntrlPIDLoop.designer.cs

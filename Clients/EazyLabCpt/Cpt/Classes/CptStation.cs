@@ -212,7 +212,7 @@ namespace EazyLab.Cpt.Classes
                         Buffer.BlockCopy(data, (data.Length - 8) * 2, bytes, 0, bytes.Length);
                         Lastdp.MillisTime = BitConverter.ToUInt64(bytes, 0);
                         Lastdp.WifiStrength = (short)data[25];
-                        if (IsTestStarted) test.CptSample.Profile.UpdateLimits((DateTime.Now - Test.StartTime).TotalMinutes); 
+                        if (IsTestStarted) test.CptSample.Profiles.Where(x => x.Source == CptProfile.ProfileSource.Temp1).First().UpdateLimits((DateTime.Now - Test.StartTime).TotalMinutes); 
                                 
 
 

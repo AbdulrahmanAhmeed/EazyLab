@@ -40,9 +40,13 @@ namespace EazyLab.Cpt.Controls
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.checkLowerLimit = new System.Windows.Forms.CheckBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btLower = new System.Windows.Forms.Button();
+            this.btUpper = new System.Windows.Forms.Button();
             this.checkUpperLimit = new System.Windows.Forms.CheckBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.led1 = new EazyLab.Instrumentation.Standard.Led();
             this.btnSampleOn = new EazyLab.Instrumentation.Standard.ToggleButton();
             this.tbtnStart = new EazyLab.Instrumentation.Standard.ToggleButton();
@@ -92,9 +96,11 @@ namespace EazyLab.Cpt.Controls
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.cntrlPIDs1 = new EazyLab.Cntrls.CntrlPIDs();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -159,9 +165,8 @@ namespace EazyLab.Cpt.Controls
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Black;
             this.tableLayoutPanel2.SetColumnSpan(this.groupBox1, 2);
+            this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.checkLowerLimit);
-            this.groupBox1.Controls.Add(this.checkUpperLimit);
             this.groupBox1.Controls.Add(this.led1);
             this.groupBox1.Controls.Add(this.btnSampleOn);
             this.groupBox1.Controls.Add(this.tbtnStart);
@@ -181,6 +186,70 @@ namespace EazyLab.Cpt.Controls
             this.groupBox1.Text = "Station";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.flowLayoutPanel2);
+            this.groupBox2.Controls.Add(this.flowLayoutPanel1);
+            this.groupBox2.Controls.Add(this.btLower);
+            this.groupBox2.Controls.Add(this.btUpper);
+            this.groupBox2.Controls.Add(this.checkUpperLimit);
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.Window;
+            this.groupBox2.Location = new System.Drawing.Point(627, 20);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(200, 109);
+            this.groupBox2.TabIndex = 100;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Limits ";
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.BackColor = System.Drawing.Color.White;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(98, 47);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(91, 24);
+            this.flowLayoutPanel2.TabIndex = 4;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(98, 19);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(91, 24);
+            this.flowLayoutPanel1.TabIndex = 4;
+            // 
+            // btLower
+            // 
+            this.btLower.ForeColor = System.Drawing.Color.Black;
+            this.btLower.Location = new System.Drawing.Point(6, 48);
+            this.btLower.Name = "btLower";
+            this.btLower.Size = new System.Drawing.Size(86, 23);
+            this.btLower.TabIndex = 2;
+            this.btLower.Text = "Lower Color";
+            this.btLower.UseVisualStyleBackColor = true;
+            this.btLower.Click += new System.EventHandler(this.btLower_Click);
+            // 
+            // btUpper
+            // 
+            this.btUpper.ForeColor = System.Drawing.Color.Black;
+            this.btUpper.Location = new System.Drawing.Point(6, 19);
+            this.btUpper.Name = "btUpper";
+            this.btUpper.Size = new System.Drawing.Size(86, 23);
+            this.btUpper.TabIndex = 2;
+            this.btUpper.Text = "Upper Color";
+            this.btUpper.UseVisualStyleBackColor = true;
+            this.btUpper.Click += new System.EventHandler(this.btUpper_Click);
+            // 
+            // checkUpperLimit
+            // 
+            this.checkUpperLimit.AutoSize = true;
+            this.checkUpperLimit.Location = new System.Drawing.Point(6, 77);
+            this.checkUpperLimit.Name = "checkUpperLimit";
+            this.checkUpperLimit.Size = new System.Drawing.Size(76, 17);
+            this.checkUpperLimit.TabIndex = 1;
+            this.checkUpperLimit.Text = "UpperLimit";
+            this.checkUpperLimit.UseVisualStyleBackColor = true;
+            this.checkUpperLimit.CheckedChanged += new System.EventHandler(this.checkUpperLimit_CheckedChanged);
+            // 
             // button2
             // 
             this.button2.ForeColor = System.Drawing.Color.Black;
@@ -191,27 +260,6 @@ namespace EazyLab.Cpt.Controls
             this.button2.Text = "Test";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // checkLowerLimit
-            // 
-            this.checkLowerLimit.AutoSize = true;
-            this.checkLowerLimit.Location = new System.Drawing.Point(695, 73);
-            this.checkLowerLimit.Name = "checkLowerLimit";
-            this.checkLowerLimit.Size = new System.Drawing.Size(76, 17);
-            this.checkLowerLimit.TabIndex = 97;
-            this.checkLowerLimit.Text = "LowerLimit";
-            this.checkLowerLimit.UseVisualStyleBackColor = true;
-            // 
-            // checkUpperLimit
-            // 
-            this.checkUpperLimit.AutoSize = true;
-            this.checkUpperLimit.Location = new System.Drawing.Point(695, 26);
-            this.checkUpperLimit.Name = "checkUpperLimit";
-            this.checkUpperLimit.Size = new System.Drawing.Size(76, 17);
-            this.checkUpperLimit.TabIndex = 1;
-            this.checkUpperLimit.Text = "UpperLimit";
-            this.checkUpperLimit.UseVisualStyleBackColor = true;
-            this.checkUpperLimit.CheckedChanged += new System.EventHandler(this.checkUpperLimit_CheckedChanged);
             // 
             // led1
             // 
@@ -1027,6 +1075,8 @@ namespace EazyLab.Cpt.Controls
             this.tableLayoutPanel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1085,8 +1135,13 @@ namespace EazyLab.Cpt.Controls
         private PlotToolBarButton plotToolBarButton20;
         private PlotToolBarButton plotToolBarButton21;
         private System.Windows.Forms.ImageList imageList4;
-        private System.Windows.Forms.CheckBox checkLowerLimit;
         private System.Windows.Forms.CheckBox checkUpperLimit;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btLower;
+        private System.Windows.Forms.Button btUpper;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
