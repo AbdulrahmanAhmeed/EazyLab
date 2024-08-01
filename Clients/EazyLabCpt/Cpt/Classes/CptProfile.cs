@@ -53,6 +53,7 @@ namespace EazyLab.Cpt.Classes
             Id = 1;
             // BsonMapper.Global.Entity<CptTempProfile>().DbRef(x => x.TempZones, "CptTempZone");
             UpperLimit.UnitsText = "°c";
+            
             UpperLimit.Max = 50;
             UpperLimit.Min = -50;
             LowerLimit.UnitsText = "°c";
@@ -63,8 +64,14 @@ namespace EazyLab.Cpt.Classes
 
         public void InitializeSubscribers(PlotYAxis axis)
         {
+            
             UpperLimitSubs = new PlotSubscriber(UpperLimit,axis, 0.5f);
             LowerLimitSubs = new PlotSubscriber(LowerLimit,axis, -0.5f);
+            UpperLimitSubs.TagName = "UpperLimit";
+            LowerLimitSubs.TagName = "LowerLimit";
+            UpperLimitSubs.PlotChannel.Name = UpperLimitSubs.TagName;
+            LowerLimitSubs.PlotChannel.Name = LowerLimitSubs.TagName;
+
         }
 
 
@@ -143,6 +150,8 @@ namespace EazyLab.Cpt.Classes
 
             UpperLimit = (time - z1.Time) * (z2.Upper - z1.Upper) / (z2.Time - z1.Time) + z1.Upper;
             LowerLimit = (time - z1.Time) * (z2.Lower - z1.Lower) / (z2.Time - z1.Time) + z1.Lower;
+            UpperLimitSubs.Value = UpperLimit;
+            LowerLimitSubs.Value = LowerLimit;
 
 
         }

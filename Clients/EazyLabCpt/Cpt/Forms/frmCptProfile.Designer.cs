@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            EazyLab.Classes.PlotChannelTrace plotChannelTrace7 = new EazyLab.Classes.PlotChannelTrace();
-            EazyLab.Classes.PlotChannelTrace plotChannelTrace8 = new EazyLab.Classes.PlotChannelTrace();
-            EazyLab.Classes.PlotDataCursorXY plotDataCursorXY4 = new EazyLab.Classes.PlotDataCursorXY();
-            EazyLab.Classes.PlotDataView plotDataView4 = new EazyLab.Classes.PlotDataView();
-            EazyLab.Classes.PlotLabelBasic plotLabelBasic4 = new EazyLab.Classes.PlotLabelBasic();
-            EazyLab.Classes.PlotLegendBasic plotLegendBasic4 = new EazyLab.Classes.PlotLegendBasic();
-            EazyLab.Classes.PlotTableGrid plotTableGrid4 = new EazyLab.Classes.PlotTableGrid();
-            EazyLab.Classes.PlotXAxis plotXAxis4 = new EazyLab.Classes.PlotXAxis();
-            EazyLab.Classes.PlotYAxis plotYAxis4 = new EazyLab.Classes.PlotYAxis();
+            EazyLab.Classes.PlotChannelTrace plotChannelTrace1 = new EazyLab.Classes.PlotChannelTrace();
+            EazyLab.Classes.PlotChannelTrace plotChannelTrace2 = new EazyLab.Classes.PlotChannelTrace();
+            EazyLab.Classes.PlotDataCursorXY plotDataCursorXY1 = new EazyLab.Classes.PlotDataCursorXY();
+            EazyLab.Classes.PlotDataView plotDataView1 = new EazyLab.Classes.PlotDataView();
+            EazyLab.Classes.PlotLabelBasic plotLabelBasic1 = new EazyLab.Classes.PlotLabelBasic();
+            EazyLab.Classes.PlotLegendBasic plotLegendBasic1 = new EazyLab.Classes.PlotLegendBasic();
+            EazyLab.Classes.PlotTableGrid plotTableGrid1 = new EazyLab.Classes.PlotTableGrid();
+            EazyLab.Classes.PlotXAxis plotXAxis1 = new EazyLab.Classes.PlotXAxis();
+            EazyLab.Classes.PlotYAxis plotYAxis1 = new EazyLab.Classes.PlotYAxis();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnSaveGeneratedSamples = new System.Windows.Forms.Button();
             this.nudQuantity = new System.Windows.Forms.NumericUpDown();
@@ -76,6 +76,8 @@
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btLower = new System.Windows.Forms.Button();
+            this.btUpper = new System.Windows.Forms.Button();
             this.btnAddToModel = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnCopy = new System.Windows.Forms.Button();
@@ -87,8 +89,6 @@
             this.label13 = new EazyLab.Instrumentation.Standard.Label();
             this.label5 = new EazyLab.Instrumentation.Standard.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.btLower = new System.Windows.Forms.Button();
-            this.btUpper = new System.Windows.Forms.Button();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStartCount)).BeginInit();
@@ -577,65 +577,65 @@
             this.plot.Background.SolidColor = System.Drawing.Color.White;
             this.plot.Background.Style = EazyLab.Types.PlotBrushStyle.Solid;
             this.plot.Background.Visible = true;
-            plotChannelTrace7.Color = System.Drawing.Color.Red;
-            plotChannelTrace7.DrawCustomDataPointAttributes = true;
-            plotChannelTrace7.Markers.Size = 6;
-            plotChannelTrace7.Markers.Visible = true;
-            plotChannelTrace7.MarkersTurnOffLimit = 0;
-            plotChannelTrace7.Name = "Max";
-            plotChannelTrace7.TitleText = "Max";
-            plotChannelTrace7.Trace.Thickness = 3D;
-            plotChannelTrace8.Color = System.Drawing.Color.Lime;
-            plotChannelTrace8.Markers.Size = 6;
-            plotChannelTrace8.Markers.Style = EazyLab.Types.PlotMarkerStyle.TriangleUp;
-            plotChannelTrace8.Markers.Visible = true;
-            plotChannelTrace8.MarkersTurnOffLimit = 0;
-            plotChannelTrace8.Name = "Min";
-            plotChannelTrace8.TitleText = "Min";
-            plotChannelTrace8.Trace.Thickness = 3D;
-            this.plot.Channels.Add(plotChannelTrace7);
-            this.plot.Channels.Add(plotChannelTrace8);
+            plotChannelTrace1.Color = System.Drawing.Color.Red;
+            plotChannelTrace1.DrawCustomDataPointAttributes = true;
+            plotChannelTrace1.Markers.Size = 6;
+            plotChannelTrace1.Markers.Visible = true;
+            plotChannelTrace1.MarkersTurnOffLimit = 0;
+            plotChannelTrace1.Name = "Max";
+            plotChannelTrace1.TitleText = "Max";
+            plotChannelTrace1.Trace.Thickness = 3D;
+            plotChannelTrace2.Color = System.Drawing.Color.Lime;
+            plotChannelTrace2.Markers.Size = 6;
+            plotChannelTrace2.Markers.Style = EazyLab.Types.PlotMarkerStyle.TriangleUp;
+            plotChannelTrace2.Markers.Visible = true;
+            plotChannelTrace2.MarkersTurnOffLimit = 0;
+            plotChannelTrace2.Name = "Min";
+            plotChannelTrace2.TitleText = "Min";
+            plotChannelTrace2.Trace.Thickness = 3D;
+            this.plot.Channels.Add(plotChannelTrace1);
+            this.plot.Channels.Add(plotChannelTrace2);
             this.tableLayoutPanel2.SetColumnSpan(this.plot, 3);
-            plotDataCursorXY4.ClippingStyle = EazyLab.Types.PlotClippingStyle.Axes;
-            plotDataCursorXY4.Hint.Fill.Pen.Color = System.Drawing.SystemColors.InfoText;
-            plotDataCursorXY4.Name = "Data-Cursor 1";
-            plotDataCursorXY4.Style = EazyLab.Types.PlotDataCursorMultipleStyle.ValueX;
-            plotDataCursorXY4.TitleText = "Data-Cursor 1";
-            plotDataCursorXY4.UserCanEdit = false;
-            plotDataCursorXY4.Visible = true;
-            this.plot.DataCursors.Add(plotDataCursorXY4);
-            plotDataView4.Name = "Data-View 1";
-            plotDataView4.TitleText = "Data-View 1";
-            this.plot.DataViews.Add(plotDataView4);
+            plotDataCursorXY1.ClippingStyle = EazyLab.Types.PlotClippingStyle.Axes;
+            plotDataCursorXY1.Hint.Fill.Pen.Color = System.Drawing.SystemColors.InfoText;
+            plotDataCursorXY1.Name = "Data-Cursor 1";
+            plotDataCursorXY1.Style = EazyLab.Types.PlotDataCursorMultipleStyle.ValueX;
+            plotDataCursorXY1.TitleText = "Data-Cursor 1";
+            plotDataCursorXY1.UserCanEdit = false;
+            plotDataCursorXY1.Visible = true;
+            this.plot.DataCursors.Add(plotDataCursorXY1);
+            plotDataView1.Name = "Data-View 1";
+            plotDataView1.TitleText = "Data-View 1";
+            this.plot.DataViews.Add(plotDataView1);
             this.plot.Dock = System.Windows.Forms.DockStyle.Fill;
-            plotLabelBasic4.DockOrder = 0;
-            plotLabelBasic4.Name = "Label 1";
-            plotLabelBasic4.Text = "Profile";
-            plotLabelBasic4.Visible = false;
-            this.plot.Labels.Add(plotLabelBasic4);
-            plotLegendBasic4.DockOrder = 0;
-            plotLegendBasic4.Name = "Legend 1";
-            plotLegendBasic4.TitleText = "Legend 1";
-            this.plot.Legends.Add(plotLegendBasic4);
+            plotLabelBasic1.DockOrder = 0;
+            plotLabelBasic1.Name = "Label 1";
+            plotLabelBasic1.Text = "Profile";
+            plotLabelBasic1.Visible = false;
+            this.plot.Labels.Add(plotLabelBasic1);
+            plotLegendBasic1.DockOrder = 0;
+            plotLegendBasic1.Name = "Legend 1";
+            plotLegendBasic1.TitleText = "Legend 1";
+            this.plot.Legends.Add(plotLegendBasic1);
             this.plot.Location = new System.Drawing.Point(3, 3);
             this.plot.Name = "plot";
             this.plot.Size = new System.Drawing.Size(1458, 392);
             this.plot.TabIndex = 0;
-            plotTableGrid4.ColTitlesVisible = true;
-            plotTableGrid4.DataRowCount = 7;
-            plotTableGrid4.DockOrder = 1;
-            plotTableGrid4.Name = "Table 1";
-            plotTableGrid4.TitleText = "Table 1";
-            plotTableGrid4.Visible = false;
-            this.plot.Tables.Add(plotTableGrid4);
-            plotXAxis4.DockOrder = 0;
-            plotXAxis4.Name = "X-Axis 1";
-            plotXAxis4.Title.Text = "X-Axis 1";
-            this.plot.XAxes.Add(plotXAxis4);
-            plotYAxis4.DockOrder = 0;
-            plotYAxis4.Name = "Y-Axis 1";
-            plotYAxis4.Title.Text = "Y-Axis 1";
-            this.plot.YAxes.Add(plotYAxis4);
+            plotTableGrid1.ColTitlesVisible = true;
+            plotTableGrid1.DataRowCount = 7;
+            plotTableGrid1.DockOrder = 1;
+            plotTableGrid1.Name = "Table 1";
+            plotTableGrid1.TitleText = "Table 1";
+            plotTableGrid1.Visible = false;
+            this.plot.Tables.Add(plotTableGrid1);
+            plotXAxis1.DockOrder = 0;
+            plotXAxis1.Name = "X-Axis 1";
+            plotXAxis1.Title.Text = "X-Axis 1";
+            this.plot.XAxes.Add(plotXAxis1);
+            plotYAxis1.DockOrder = 0;
+            plotYAxis1.Name = "Y-Axis 1";
+            plotYAxis1.Title.Text = "Y-Axis 1";
+            this.plot.YAxes.Add(plotYAxis1);
             this.plot.CursorChanged += new System.EventHandler(this.plot_CursorChanged);
             this.plot.Click += new System.EventHandler(this.plot_Click);
             this.plot.DoubleClick += new System.EventHandler(this.plot_DoubleClick);
@@ -692,6 +692,28 @@
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "  Profile";
+            // 
+            // btLower
+            // 
+            this.btLower.ForeColor = System.Drawing.Color.Black;
+            this.btLower.Location = new System.Drawing.Point(33, 130);
+            this.btLower.Name = "btLower";
+            this.btLower.Size = new System.Drawing.Size(152, 34);
+            this.btLower.TabIndex = 25;
+            this.btLower.Text = "Lower Color";
+            this.btLower.UseVisualStyleBackColor = true;
+            this.btLower.Click += new System.EventHandler(this.btLower_Click);
+            // 
+            // btUpper
+            // 
+            this.btUpper.ForeColor = System.Drawing.Color.Black;
+            this.btUpper.Location = new System.Drawing.Point(204, 128);
+            this.btUpper.Name = "btUpper";
+            this.btUpper.Size = new System.Drawing.Size(136, 34);
+            this.btUpper.TabIndex = 26;
+            this.btUpper.Text = "Upper Color";
+            this.btUpper.UseVisualStyleBackColor = true;
+            this.btUpper.Click += new System.EventHandler(this.btUpper_Click);
             // 
             // btnAddToModel
             // 
@@ -792,6 +814,7 @@
             this.cbSource.Name = "cbSource";
             this.cbSource.Size = new System.Drawing.Size(215, 28);
             this.cbSource.TabIndex = 11;
+            this.cbSource.SelectedIndexChanged += new System.EventHandler(this.cbSource_SelectedIndexChanged);
             // 
             // label13
             // 
@@ -816,28 +839,6 @@
             this.label5.Size = new System.Drawing.Size(60, 31);
             this.label5.Text = "Id:";
             this.label5.LoadingEnd();
-            // 
-            // btLower
-            // 
-            this.btLower.ForeColor = System.Drawing.Color.Black;
-            this.btLower.Location = new System.Drawing.Point(33, 130);
-            this.btLower.Name = "btLower";
-            this.btLower.Size = new System.Drawing.Size(152, 34);
-            this.btLower.TabIndex = 25;
-            this.btLower.Text = "Lower Color";
-            this.btLower.UseVisualStyleBackColor = true;
-            this.btLower.Click += new System.EventHandler(this.btLower_Click);
-            // 
-            // btUpper
-            // 
-            this.btUpper.ForeColor = System.Drawing.Color.Black;
-            this.btUpper.Location = new System.Drawing.Point(204, 128);
-            this.btUpper.Name = "btUpper";
-            this.btUpper.Size = new System.Drawing.Size(136, 34);
-            this.btUpper.TabIndex = 26;
-            this.btUpper.Text = "Upper Color";
-            this.btUpper.UseVisualStyleBackColor = true;
-            this.btUpper.Click += new System.EventHandler(this.btUpper_Click);
             // 
             // frmCptProfile
             // 

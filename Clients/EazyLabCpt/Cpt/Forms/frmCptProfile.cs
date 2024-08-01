@@ -47,11 +47,14 @@ namespace EazyLab.Cpt.Forms
             try
             {
                 tempProfiles = DbAccess.GetAll<CptProfile>();
+                nudProfileId.Maximum = tempProfiles.Count==0 ? 1:tempProfiles.Count;
                 cptModels = DbAccess.GetAll<CptModel>();
                 cbModelName.DataSource = cptModels;
                 cbModelName.DisplayMember = "Model";
                 cbModelName.SelectedIndex = cptModels.Count > 0 ? 0 : -1;
-                if (tempProfiles.Count > 0) { tempProfile = tempProfiles[0]; }
+                if (tempProfiles.Count > 0) {
+                    tempProfile = tempProfiles[0]; 
+                }
                 cbSource.DataSource = Enum.GetNames(typeof(CptProfile.ProfileSource));
                 sampleSerialPrefixes = DbAccess.GetAll<SampleSerialPrefix>();
                 cbPrefix.DataSource = sampleSerialPrefixes;
@@ -74,14 +77,12 @@ namespace EazyLab.Cpt.Forms
         void UpdateDisplay()
         {
             cptSamples = DbAccess.GetAll<CptSample>().Where(x => x.Model.Model == cbModelName.Text).ToList();
-            if (cptSamples.Count != 0)
+            if (cptSamples.Count > 0)
             {
-                if (tempProfile.Id != cptSamples[0].Profiles.Where(x => x.Source == CptProfile.ProfileSource.Temp1).First().Id)
-                {
-                    tempProfile = cptSamples.Count == 0 ? tempProfile : cptSamples[0].Profiles.Where(x => x.Source == CptProfile.ProfileSource.Temp1).First();
-                }
+                listBox2.Items.Clear();
+                listBox2.Items.AddRange(cptSamples[0].Profiles.Select(x => x.Source.ToString()).ToArray());
+                ModelsProfiles = cptSamples[0].Profiles;
             }
-            
             if (tempsample.Count == 0)
             {
                 listBox1.Items.Clear();
@@ -107,12 +108,18 @@ namespace EazyLab.Cpt.Forms
                         nudProfileId.Maximum = tempProfiles.Count;
                         nudProfileId.Minimum = 1;
                         nudProfileId.Value = tempProfile.Id;
+                        cbSource.Text = tempProfile.Source.ToString();
                         tempProfile.TempZones.Sort((x, y) => x.Time.CompareTo(y.Time));
                         foreach (var p in tempProfile.TempZones)
                         {
                             plot.Channels[0].AddXY(p.Time, p.Upper);
                             plot.Channels[1].AddXY(p.Time, p.Lower);
 
+                        }
+                        if (tempProfile.TempZones.Count > 0) {
+                            dudTime.Value = tempProfile.TempZones.Last().Time;
+                            dudMax.Value = tempProfile.TempZones.Last().Upper;
+                            dudMin.Value = tempProfile.TempZones.Last().Lower;
                         }
                         plot.XAxes[0].Tracking.ZoomToFitAll();
                         plot.YAxes[0].Tracking.ZoomToFitAll();
@@ -277,13 +284,12 @@ namespace EazyLab.Cpt.Forms
 
         private void nudProfileId_ValueChanged(object sender, EventArgs e)
         {
-            tempProfile = tempProfiles[(int)nudProfileId.Value - 1];
+            tempProfile = tempProfiles.Where(x => x.Id == nudProfileId.Value).FirstOrDefault();
             UpdateDisplay();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-
         }
 
         private void label1_TextChanged(object sender, EventArgs e)
@@ -533,6 +539,11 @@ namespace EazyLab.Cpt.Forms
                 }
                 //btColorDialog.BackColor = colorDialog1.Color;
             }
+        }
+
+        private void cbSource_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tempProfile.Source = (CptProfile.ProfileSource)Enum.Parse(typeof(CptProfile.ProfileSource), cbSource.Text);
         }
     }
 }

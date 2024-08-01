@@ -31,20 +31,16 @@ namespace EazyLab.Cpt.Controls
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CptChamberCntrl));
-            EazyLab.Classes.PlotDataCursorXY plotDataCursorXY1 = new EazyLab.Classes.PlotDataCursorXY();
-            EazyLab.Classes.PlotDataView plotDataView1 = new EazyLab.Classes.PlotDataView();
-            EazyLab.Classes.PlotLabelBasic plotLabelBasic1 = new EazyLab.Classes.PlotLabelBasic();
-            EazyLab.Classes.PlotLegendBasic plotLegendBasic1 = new EazyLab.Classes.PlotLegendBasic();
-            EazyLab.Classes.PlotXAxis plotXAxis1 = new EazyLab.Classes.PlotXAxis();
-            EazyLab.Classes.PlotYAxis plotYAxis1 = new EazyLab.Classes.PlotYAxis();
+            EazyLab.Classes.PlotDataCursorXY plotDataCursorXY2 = new EazyLab.Classes.PlotDataCursorXY();
+            EazyLab.Classes.PlotDataView plotDataView2 = new EazyLab.Classes.PlotDataView();
+            EazyLab.Classes.PlotLabelBasic plotLabelBasic2 = new EazyLab.Classes.PlotLabelBasic();
+            EazyLab.Classes.PlotLegendBasic plotLegendBasic2 = new EazyLab.Classes.PlotLegendBasic();
+            EazyLab.Classes.PlotXAxis plotXAxis2 = new EazyLab.Classes.PlotXAxis();
+            EazyLab.Classes.PlotYAxis plotYAxis2 = new EazyLab.Classes.PlotYAxis();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.btLower = new System.Windows.Forms.Button();
-            this.btUpper = new System.Windows.Forms.Button();
             this.checkUpperLimit = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.led1 = new EazyLab.Instrumentation.Standard.Led();
@@ -97,6 +93,8 @@ namespace EazyLab.Cpt.Controls
             this.imageList2 = new System.Windows.Forms.ImageList(this.components);
             this.cntrlPIDs1 = new EazyLab.Cntrls.CntrlPIDs();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cbSource = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -188,10 +186,8 @@ namespace EazyLab.Cpt.Controls
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.flowLayoutPanel2);
-            this.groupBox2.Controls.Add(this.flowLayoutPanel1);
-            this.groupBox2.Controls.Add(this.btLower);
-            this.groupBox2.Controls.Add(this.btUpper);
+            this.groupBox2.Controls.Add(this.cbSource);
+            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.checkUpperLimit);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.Window;
             this.groupBox2.Location = new System.Drawing.Point(627, 20);
@@ -200,44 +196,7 @@ namespace EazyLab.Cpt.Controls
             this.groupBox2.TabIndex = 100;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Limits ";
-            // 
-            // flowLayoutPanel2
-            // 
-            this.flowLayoutPanel2.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(98, 47);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(91, 24);
-            this.flowLayoutPanel2.TabIndex = 4;
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.White;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(98, 19);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(91, 24);
-            this.flowLayoutPanel1.TabIndex = 4;
-            // 
-            // btLower
-            // 
-            this.btLower.ForeColor = System.Drawing.Color.Black;
-            this.btLower.Location = new System.Drawing.Point(6, 48);
-            this.btLower.Name = "btLower";
-            this.btLower.Size = new System.Drawing.Size(86, 23);
-            this.btLower.TabIndex = 2;
-            this.btLower.Text = "Lower Color";
-            this.btLower.UseVisualStyleBackColor = true;
-            this.btLower.Click += new System.EventHandler(this.btLower_Click);
-            // 
-            // btUpper
-            // 
-            this.btUpper.ForeColor = System.Drawing.Color.Black;
-            this.btUpper.Location = new System.Drawing.Point(6, 19);
-            this.btUpper.Name = "btUpper";
-            this.btUpper.Size = new System.Drawing.Size(86, 23);
-            this.btUpper.TabIndex = 2;
-            this.btUpper.Text = "Upper Color";
-            this.btUpper.UseVisualStyleBackColor = true;
-            this.btUpper.Click += new System.EventHandler(this.btUpper_Click);
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // checkUpperLimit
             // 
@@ -657,42 +616,42 @@ namespace EazyLab.Cpt.Controls
             this.Plot.LoadingBegin();
             this.Plot.AutoFont = false;
             this.tableLayoutPanel1.SetColumnSpan(this.Plot, 4);
-            plotDataCursorXY1.Hint.Fill.Pen.Color = System.Drawing.SystemColors.InfoText;
-            plotDataCursorXY1.Name = "Data-Cursor 1";
-            plotDataCursorXY1.TitleText = "Data-Cursor 1";
-            this.Plot.DataCursors.Add(plotDataCursorXY1);
-            plotDataView1.Name = "Data-View 1";
-            plotDataView1.TitleText = "Data-View 1";
-            this.Plot.DataViews.Add(plotDataView1);
+            plotDataCursorXY2.Hint.Fill.Pen.Color = System.Drawing.SystemColors.InfoText;
+            plotDataCursorXY2.Name = "Data-Cursor 1";
+            plotDataCursorXY2.TitleText = "Data-Cursor 1";
+            this.Plot.DataCursors.Add(plotDataCursorXY2);
+            plotDataView2.Name = "Data-View 1";
+            plotDataView2.TitleText = "Data-View 1";
+            this.Plot.DataViews.Add(plotDataView2);
             this.Plot.Dock = System.Windows.Forms.DockStyle.Fill;
-            plotLabelBasic1.DockOrder = 0;
-            plotLabelBasic1.Name = "Label 1";
-            this.Plot.Labels.Add(plotLabelBasic1);
-            plotLegendBasic1.DockOrder = 0;
-            plotLegendBasic1.Name = "Legend 1";
-            plotLegendBasic1.TitleText = "Legend 1";
-            this.Plot.Legends.Add(plotLegendBasic1);
+            plotLabelBasic2.DockOrder = 0;
+            plotLabelBasic2.Name = "Label 1";
+            this.Plot.Labels.Add(plotLabelBasic2);
+            plotLegendBasic2.DockOrder = 0;
+            plotLegendBasic2.Name = "Legend 1";
+            plotLegendBasic2.TitleText = "Legend 1";
+            this.Plot.Legends.Add(plotLegendBasic2);
             this.Plot.Location = new System.Drawing.Point(3, 33);
             this.Plot.Name = "Plot";
             this.Plot.NoOFChannels = 10;
             this.Plot.Size = new System.Drawing.Size(1754, 478);
             this.Plot.TabIndex = 4;
-            plotXAxis1.DockOrder = 0;
-            plotXAxis1.Name = "X-Axis 1";
-            plotXAxis1.ScaleDisplay.TextFormatting.Style = EazyLab.Types.TextFormatDoubleStyle.DateTime;
-            plotXAxis1.Title.Text = "X-Axis 1";
-            this.Plot.XAxes.Add(plotXAxis1);
-            plotYAxis1.DockOrder = 0;
-            plotYAxis1.Name = "Y-Axis 1";
-            plotYAxis1.Title.MarginSpacing = -4D;
-            plotYAxis1.Title.Text = "Y-Axis 1";
-            plotYAxis1.Title.TextLayout.AlignmentHorizontal.Margin = 1D;
-            plotYAxis1.Title.TextLayout.AlignmentHorizontal.Style = System.Drawing.StringAlignment.Near;
-            plotYAxis1.Title.TextLayout.AlignmentVertical.Margin = 0D;
-            plotYAxis1.Title.TextLayout.AlignmentVertical.Style = System.Drawing.StringAlignment.Near;
-            plotYAxis1.Title.TextRotation = EazyLab.Types.PlotAutoRotation.X000;
-            plotYAxis1.Title.Visible = true;
-            this.Plot.YAxes.Add(plotYAxis1);
+            plotXAxis2.DockOrder = 0;
+            plotXAxis2.Name = "X-Axis 1";
+            plotXAxis2.ScaleDisplay.TextFormatting.Style = EazyLab.Types.TextFormatDoubleStyle.DateTime;
+            plotXAxis2.Title.Text = "X-Axis 1";
+            this.Plot.XAxes.Add(plotXAxis2);
+            plotYAxis2.DockOrder = 0;
+            plotYAxis2.Name = "Y-Axis 1";
+            plotYAxis2.Title.MarginSpacing = -4D;
+            plotYAxis2.Title.Text = "Y-Axis 1";
+            plotYAxis2.Title.TextLayout.AlignmentHorizontal.Margin = 1D;
+            plotYAxis2.Title.TextLayout.AlignmentHorizontal.Style = System.Drawing.StringAlignment.Near;
+            plotYAxis2.Title.TextLayout.AlignmentVertical.Margin = 0D;
+            plotYAxis2.Title.TextLayout.AlignmentVertical.Style = System.Drawing.StringAlignment.Near;
+            plotYAxis2.Title.TextRotation = EazyLab.Types.PlotAutoRotation.X000;
+            plotYAxis2.Title.Visible = true;
+            this.Plot.YAxes.Add(plotYAxis2);
             this.Plot.Click += new System.EventHandler(this.Plot_Click);
             this.Plot.LoadingEnd();
             // 
@@ -1062,6 +1021,24 @@ namespace EazyLab.Cpt.Controls
             this.cntrlPIDs1.Size = new System.Drawing.Size(900, 509);
             this.cntrlPIDs1.TabIndex = 0;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 37);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Source";
+            // 
+            // cbSource
+            // 
+            this.cbSource.FormattingEnabled = true;
+            this.cbSource.Location = new System.Drawing.Point(53, 34);
+            this.cbSource.Name = "cbSource";
+            this.cbSource.Size = new System.Drawing.Size(141, 21);
+            this.cbSource.TabIndex = 3;
+            this.cbSource.SelectedIndexChanged += new System.EventHandler(this.cbSource_SelectedIndexChanged);
+            // 
             // CptChamberCntrl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1138,10 +1115,8 @@ namespace EazyLab.Cpt.Controls
         private System.Windows.Forms.CheckBox checkUpperLimit;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button btLower;
-        private System.Windows.Forms.Button btUpper;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox cbSource;
     }
 }

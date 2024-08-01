@@ -92,7 +92,7 @@ namespace EazyLab.Cpt.Classes
         public CptStation()
         {
             Timer.Elapsed += new System.Timers.ElapsedEventHandler(UpdateData);
-            Timer.Interval = 1000;
+            Timer.Interval = 20000;
             modbus = new Modbus.Modbus(Mode.TCP_IP);
 
         }
@@ -212,7 +212,11 @@ namespace EazyLab.Cpt.Classes
                         Buffer.BlockCopy(data, (data.Length - 8) * 2, bytes, 0, bytes.Length);
                         Lastdp.MillisTime = BitConverter.ToUInt64(bytes, 0);
                         Lastdp.WifiStrength = (short)data[25];
-                        if (IsTestStarted) test.CptSample.Profiles.Where(x => x.Source == CptProfile.ProfileSource.Temp1).First().UpdateLimits((DateTime.Now - Test.StartTime).TotalMinutes); 
+                        if (IsTestStarted)
+                        {
+                            test.CptSample.Profiles.Where(x => x.Source == test.CptSample.SelectedSource).First().UpdateLimits((DateTime.Now - Test.StartTime).TotalMinutes);
+
+                        }
                                 
 
 
@@ -230,8 +234,9 @@ namespace EazyLab.Cpt.Classes
         }
 
         int TempCounter = 0;
-        public void UpdateData(object sender, ElapsedEventArgs e)
+        public async void UpdateData(object sender, ElapsedEventArgs e)
         {
+            
             try
             {
                 Timer.Stop();
@@ -241,6 +246,7 @@ namespace EazyLab.Cpt.Classes
                 eee.SerialNo = this.SerialNumber;
                 OnDataReadyEvent(eee);
                 test.Add(Lastdp);
+                
                 //  db.GetCollection<CptDataPacketVer1>().Upsert(eee.DataPacket);
 
 
@@ -249,11 +255,12 @@ namespace EazyLab.Cpt.Classes
             {
                 LoggerFile.WriteException(ex);
             }
-
+            
+            await Task.Delay(20000);
             Timer.Start();
         }
 
-
+        
 
         UInt16[] serno = new UInt16[4];
         public void Connect(bool readSerial)
