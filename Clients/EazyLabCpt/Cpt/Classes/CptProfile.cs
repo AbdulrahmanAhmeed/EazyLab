@@ -67,8 +67,8 @@ namespace EazyLab.Cpt.Classes
             
             UpperLimitSubs = new PlotSubscriber(UpperLimit,axis, 0.5f);
             LowerLimitSubs = new PlotSubscriber(LowerLimit,axis, -0.5f);
-            UpperLimitSubs.TagName = "UpperLimit";
-            LowerLimitSubs.TagName = "LowerLimit";
+            UpperLimitSubs.TagName = "UpperLimit"+Source.ToString();
+            LowerLimitSubs.TagName = "LowerLimit" + Source.ToString();
             UpperLimitSubs.PlotChannel.Name = UpperLimitSubs.TagName;
             LowerLimitSubs.PlotChannel.Name = LowerLimitSubs.TagName;
 

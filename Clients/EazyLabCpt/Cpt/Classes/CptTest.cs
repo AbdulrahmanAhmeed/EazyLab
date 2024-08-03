@@ -15,8 +15,8 @@ namespace EazyLab.Cpt.Classes
         private bool isStarted = false; 
         public const string IncludeString = "$.CptDataPacketVer1,$.Profile,$.Model";
 
-        public List<CptDataPacketVer1> Data = new List<CptDataPacketVer1>();  // buffer to store the Datapacket
-        public List<CptError> Errors = new List<CptError>();
+        public List<CptDataPacketVer1> Data { get; set; } = new List<CptDataPacketVer1>();  // buffer to store the Datapacket
+        //public List<CptError> Errors = new List<CptError>();
         public CptSample CptSample { get; set; }   
         public DateTime StartTime => startTime;
         public bool IsStarted => isStarted;

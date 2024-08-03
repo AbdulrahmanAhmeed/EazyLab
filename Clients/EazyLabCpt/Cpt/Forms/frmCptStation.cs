@@ -345,7 +345,9 @@ namespace EazyLab.Cpt.Forms
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            
             this.Close();
+            tempStation.DisConnect();
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -386,6 +388,7 @@ namespace EazyLab.Cpt.Forms
         private void frmCptStation_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (tempStation.DataReadyEvent != null) tempStation.DataReadyEvent -= DataReady;
+            tempStation.DisConnect();
             GC.Collect();
 
         }

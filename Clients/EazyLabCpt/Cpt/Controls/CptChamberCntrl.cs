@@ -180,8 +180,8 @@ namespace EazyLab.Cpt.Controls
         {
             bool status = true;
             string errorMessages = string.Empty;
-            if(SelectedStation.IsTestStarted) 
-                status = CheckTemp(SelectedStation.Test.CptSample.SelectedSource, e.DataPacket, out errorMessages);
+            if(SelectedStation.IsTestStarted && e.DataPacket.CptError != null) 
+                CheckTemp(e.DataPacket);
             
             Invoke(new Action(() => UpdateControls(e.DataPacket, e.Result.ToString())));
             //Lastdp = e.DataPacket;
@@ -189,106 +189,20 @@ namespace EazyLab.Cpt.Controls
             
         }
 
-        private bool CheckTemp(CptProfile.ProfileSource source, CptDataPacketVer1 data, out string message)
+        private bool CheckTemp( CptDataPacketVer1 data)
         {
-            message = string.Empty;
-            var Profile = SelectedStation.Test.CptSample.Profiles.Where(x => x.Source == source).First();
-            switch (source)
-            {
-                case CptProfile.ProfileSource.Temp1:
-                    if (!(data.Temp0 > Profile.LowerLimit && data.Temp0 < Profile.UpperLimit))
-                    {
-                        message = "The temp1 hase exceeded its profile limit";
-                        pvTemp1.BackColor = System.Drawing.Color.Red;
-                        CptError error = new CptError()
-                        {
-                            ProfileSource = source,
-                            Time = data.Time,
-                        };
-                        SelectedStation.Test.Errors.Add(error);
-                        Server.DbAccess.Upsert(SelectedStation.Test);
-                        return false;
-                    }
-                    break;
-                case CptProfile.ProfileSource.Temp2:
-                    if (!(data.Temp1 > Profile.LowerLimit && data.Temp1 < Profile.UpperLimit))
-                    {
-                        message = "The temp2 hase exceeded its profile limit";
-                        pvTemp2.BackColor = System.Drawing.Color.Red;
-                        CptError error =  new CptError()
-                        {
-                            ProfileSource = source,
-                            Time = data.Time,
-                        };
-                        SelectedStation.Test.Errors.Add(error);
-                        Server.DbAccess.Upsert(SelectedStation.Test);
-                        return false;
-                    }
-                    break;
-                case CptProfile.ProfileSource.Temp3:
-                    if (!(data.Temp2 > Profile.LowerLimit && data.Temp2 < Profile.UpperLimit))
-                    {
-                        message = "The temp3 hase exceeded its profile limit";
-                        pvTemp3.BackColor = System.Drawing.Color.Red;
-                        CptError error = new CptError()
-                        {
-                            ProfileSource = source,
-                            Time = data.Time,
-                        };
-                        SelectedStation.Test.Errors.Add(error);
-                        Server.DbAccess.Upsert(SelectedStation.Test);
-                        return false;
-                    }
-                    break;
-                 case CptProfile.ProfileSource.Temp4:
-                    if (!(data.Temp3 > Profile.LowerLimit && data.Temp3 < Profile.UpperLimit))
-                    {
-                        message = "The temp4 hase exceeded its profile limit";
-                        pvTemp4.BackColor = System.Drawing.Color.Red;
-                        CptError error = new CptError()
-                        {
-                            ProfileSource = source,
-                            Time = data.Time,
-                        };
-                        SelectedStation.Test.Errors.Add(error);
-                        Server.DbAccess.Upsert(SelectedStation.Test);
-                        return false;
-                    }
-                    break;
-                case CptProfile.ProfileSource.Temp5:
-                    if (!(data.Temp4 > Profile.LowerLimit && data.Temp4 < Profile.UpperLimit))
-                    {
-                        message = "The temp5 hase exceeded its profile limit";
-                        pvTemp5.BackColor = System.Drawing.Color.Red;
-                        CptError error = new CptError()
-                        {
-                            ProfileSource = source,
-                            Time = data.Time,
-                        };
-                        SelectedStation.Test.Errors.Add(error);
-                        Server.DbAccess.Upsert(SelectedStation.Test);
-                        return false;
-                    }
-                    break;
-                case CptProfile.ProfileSource.Temp6:
-                    if (!(data.Temp5 > Profile.LowerLimit && data.Temp5 < Profile.UpperLimit))
-                    {
-                        message = "The temp5 hase exceeded its profile limit";
-                        pvTemp6.BackColor = System.Drawing.Color.Red;
-                        CptError error = new CptError()
-                        {
-                            ProfileSource = source,
-                            Time = data.Time,
-                        };
-                        SelectedStation.Test.Errors.Add(error);
-                        Server.DbAccess.Upsert(SelectedStation.Test);
-                        return false;
-                    }
-                    break;
-
-
-
-            }
+            if (data.CptError.Temp1 != CptError.ErrorState.noError)
+                pvTemp1.ForeColor = System.Drawing.Color.Red;
+            if(data.CptError.Temp2 != CptError.ErrorState.noError)
+                pvTemp2.ForeColor = System.Drawing.Color.Red;
+            if(data.CptError.Temp3 != CptError.ErrorState.noError)
+                pvTemp3.ForeColor = System.Drawing.Color.Red;
+            if(data.CptError.Temp4 != CptError.ErrorState.noError)
+                pvTemp4.ForeColor = System.Drawing.Color.Red;
+            if(data.CptError.Temp5 != CptError.ErrorState.noError)
+                pvTemp5.ForeColor = System.Drawing.Color.Red;
+            if(data.CptError.Temp6 != CptError.ErrorState.noError)
+                pvTemp6.ForeColor = System.Drawing.Color.Red;
             return true;
         }
 
@@ -364,6 +278,12 @@ namespace EazyLab.Cpt.Controls
 
         private void tbtnStart_Click(object sender, EventArgs e)
         {
+            if (!tbtnStart.State)
+            {
+                SelectedStation.StartTest(false);
+                tbtnStart.State = false;
+                return;
+            }
             if (SelectedStation != null)
             {
                 if (SelectedStation.IsConnected)
@@ -429,23 +349,7 @@ namespace EazyLab.Cpt.Controls
             SelectedStation.SwitchSample(btnSampleOn.State);    
         }
 
-        private void pvTemp1_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                //if (SelectedStation.Test.CptSample.Profile.Source == CptProfile.ProfileSource.Temp1)
-                //{
-                //    //Plot.Subscribe(SelectedStation.min);
-                //    //Plot.Subscribe(SelectedStation.max);
-                //}
-
-            }
-            catch (Exception  ex)
-            {
-
-                LoggerFile.WriteException(ex);
-            }
-        }
+        
 
         private void pvTemp1_ValueChanged(object sender, ValueDoubleEventArgs e)
         {
@@ -493,52 +397,73 @@ namespace EazyLab.Cpt.Controls
         {
             
             PlotYAxis axis = null;
-            if (!string.IsNullOrEmpty(cbSource.Text))
+            
+            try
             {
-                try
+                //CptProfile profile = SelectedStation.Test.CptSample.Profiles.
+                //    Where(x => x.Source == (CptProfile.ProfileSource)Enum.Parse(typeof(CptProfile.ProfileSource), cbSource.Text)).First();
+                foreach(CptProfile profile in SelectedStation.Test.CptSample.Profiles)
                 {
-                    CptProfile profile = SelectedStation.Test.CptSample.Profiles.
-                        Where(x => x.Source == (CptProfile.ProfileSource)Enum.Parse(typeof(CptProfile.ProfileSource), cbSource.Text)).First();
-                    if (!checkUpperLimit.Checked)
-                    {
-                        Plot.UnSubscribe(profile.LowerLimitSubs);
-                        Plot.UnSubscribe(profile.UpperLimitSubs);
-                        return;
-                    }
+                    
                     var source = cbSource.Text;
-                    SelectedStation.Test.CptSample.SelectedSource = (CptProfile.ProfileSource)Enum.Parse(typeof(CptProfile.ProfileSource), cbSource.Text);
-                    axis = Plot.YAxes[source];
+                    SelectedStation.Test.CptSample.SelectedSource = (CptProfile.ProfileSource)Enum.Parse(typeof(CptProfile.ProfileSource), profile.Source.ToString());
+                    axis = Plot.YAxes[profile.Source.ToString()];
                     if (axis == null)
                     {
-                        MessageBox.Show(" Please select " + "source");
-                        checkUpperLimit.Checked = false;
-                        return;
+                        continue;
                     }
-                    profile.InitializeSubscribers(axis);
+                    if (profile.LowerLimitSubs == null && profile.UpperLimitSubs == null)
+                    {
+                        profile.InitializeSubscribers(axis);
+                    }
                     try
                     {
                         var data = Server.DbAccess.GetAll<CptTagController>();
-                        profile.LowerLimitSubs.Color = System.Drawing.Color.FromArgb(profile.LowerLimitRGP);  //System.Drawing.Color.FromArgb(data.Find(x => x.Name == nameof(CptProfile.LowerLimit)).RGB);
-                        profile.UpperLimitSubs.Color = System.Drawing.Color.FromArgb(profile.UpperLimitRGP);  //System.Drawing.Color.FromArgb(data.Find(x => x.Name == nameof(CptProfile.UpperLimitSubs)).RGB);
+                        profile.LowerLimitSubs.Color = profile.LowerLimitRGP == 0 ? System.Drawing.Color.Gray: System.Drawing.Color.FromArgb(profile.LowerLimitRGP);  //System.Drawing.Color.FromArgb(data.Find(x => x.Name == nameof(CptProfile.LowerLimit)).RGB);
+                        profile.UpperLimitSubs.Color = profile.UpperLimitRGP == 0 ? System.Drawing.Color.Yellow : System.Drawing.Color.FromArgb(profile.UpperLimitRGP);
+                        if(profile.Source.ToString() == pvTemp1.TagName.Replace("►","") && pvTemp1.IsSelectedForPloting && checkUpperLimit.Checked)
+                        {
+                            Plot.Subscribe(profile.LowerLimitSubs);
+                            Plot.Subscribe(profile.UpperLimitSubs);
+                        }
+                        else if (profile.Source.ToString() == pvTemp2.TagName.Replace("►", "") && pvTemp2.IsSelectedForPloting && checkUpperLimit.Checked)
+                        {
+                            Plot.Subscribe(profile.LowerLimitSubs);
+                            Plot.Subscribe(profile.UpperLimitSubs);
+                        }
+                        else if (profile.Source.ToString() == pvTemp3.TagName.Replace("►", "") && pvTemp3.IsSelectedForPloting && checkUpperLimit.Checked)
+                        {
+                            Plot.Subscribe(profile.LowerLimitSubs);
+                            Plot.Subscribe(profile.UpperLimitSubs);
+                        }
                     }
                     catch (Exception ex)
                     {
                     }
-
-                    //SelectedStation.Test.CptSample.Profile.LowerLimitSubs.Color = lowerLimitColor.Color;
-                    Plot.Subscribe(profile.LowerLimitSubs);
-                    Plot.Subscribe(profile.UpperLimitSubs);
                 }
-                catch (Exception ex)
-                {
-                    LoggerFile.WriteException(ex);
 
-                }
+                //SelectedStation.Test.CptSample.Profile.LowerLimitSubs.Color = lowerLimitColor.Color;
+                    
             }
-            else MessageBox.Show("Please Select Source First");
+            catch (Exception ex)
+            {
+                LoggerFile.WriteException(ex);
+
+            }
         }
 
-        
+        private void InitializeSubscribers(CptProfile profile)
+        {
+            var axis = Plot.YAxes[profile.Source.ToString()];
+            if (axis == null)
+            {
+                return;
+            }
+            profile.InitializeSubscribers(axis);
+            var data = Server.DbAccess.GetAll<CptTagController>();
+            profile.LowerLimitSubs.Color = System.Drawing.Color.FromArgb(profile.LowerLimitRGP);  //System.Drawing.Color.FromArgb(data.Find(x => x.Name == nameof(CptProfile.LowerLimit)).RGB);
+            profile.UpperLimitSubs.Color = System.Drawing.Color.FromArgb(profile.UpperLimitRGP);
+        }
 
         //private void btLower_Click(object sender, EventArgs e)
         //{
@@ -577,6 +502,81 @@ namespace EazyLab.Cpt.Controls
 
         private void cbSource_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void multiSelectionComboBox1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void Subscribe(PV pV)
+        {
+            var profile = SelectedStation.Test.CptSample.Profiles.Where(x => x.Source == (CptProfile.ProfileSource)Enum.Parse(typeof(CptProfile.ProfileSource), pV.TagName.Replace("►", ""))).FirstOrDefault();
+            if (profile != null)
+            {
+                if (profile.LowerLimitSubs == null && profile.UpperLimitSubs == null)
+                {
+                    InitializeSubscribers(profile);
+                }
+                Plot.Subscribe(profile.LowerLimitSubs);
+                Plot.Subscribe(profile.UpperLimitSubs);
+                
+            }
+        }
+        private void UnSubscribe(PV pV)
+        {
+            var profile = SelectedStation.Test.CptSample.Profiles.Where(x => x.Source == (CptProfile.ProfileSource)Enum.Parse(typeof(CptProfile.ProfileSource), pV.TagName.Replace("►", ""))).FirstOrDefault();
+            if (profile != null)
+            {
+                if (profile.LowerLimitSubs == null && profile.UpperLimitSubs == null)
+                {
+                    InitializeSubscribers(profile);
+                }
+
+                Plot.UnSubscribe(profile.LowerLimitSubs);
+                Plot.UnSubscribe(profile.UpperLimitSubs);
+            }
+        }
+        private void pvTemp1_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+               if(pvTemp1.IsSelectedForPloting && checkUpperLimit.Checked)
+                {
+                    Subscribe(pvTemp1);
+                }
+                else
+                {
+                    UnSubscribe(pvTemp1);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                LoggerFile.WriteException(ex);
+            }
+        }
+
+        private void pvTemp2_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                if (pvTemp2.IsSelectedForPloting && checkUpperLimit.Checked)
+                {
+                    Subscribe(pvTemp2);
+                }
+                else
+                {
+                    UnSubscribe(pvTemp2);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                LoggerFile.WriteException(ex);
+            }
 
         }
 

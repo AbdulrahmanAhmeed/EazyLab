@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiteDB;
+using System;
 
 namespace EazyLab.Cpt.Classes
 {
@@ -32,7 +33,7 @@ namespace EazyLab.Cpt.Classes
         public UInt16 Status { set; get; }
         public UInt64 MillisTime {  set; get; }
         public short WifiStrength { set; get; }
-
+        public CptError CptError { set; get; } = new CptError();
 
 
         public CptDataPacketVer1()

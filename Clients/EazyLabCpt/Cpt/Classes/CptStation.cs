@@ -214,7 +214,7 @@ namespace EazyLab.Cpt.Classes
                         Lastdp.WifiStrength = (short)data[25];
                         if (IsTestStarted)
                         {
-                            test.CptSample.Profiles.Where(x => x.Source == test.CptSample.SelectedSource).First().UpdateLimits((DateTime.Now - Test.StartTime).TotalMinutes);
+                            test.CptSample.Profiles.Where(x => x.UpperLimitSubs.PlotChannel.Enabled && x.LowerLimitSubs.PlotChannel.Enabled).First().UpdateLimits((DateTime.Now - Test.StartTime).TotalMinutes);
 
                         }
                                 
@@ -236,7 +236,7 @@ namespace EazyLab.Cpt.Classes
         int TempCounter = 0;
         public async void UpdateData(object sender, ElapsedEventArgs e)
         {
-            
+            var result = false;
             try
             {
                 Timer.Stop();
@@ -244,9 +244,12 @@ namespace EazyLab.Cpt.Classes
                 eee.Result = ReadDataPacket();
                 eee.DataPacket = Lastdp;
                 eee.SerialNo = this.SerialNumber;
+                if(IsTestStarted)
+                   result =  CheckTemp(this.test.CptSample.SelectedSource, eee.DataPacket);
                 OnDataReadyEvent(eee);
-                test.Add(Lastdp);
-                
+                test.Add(eee.DataPacket);
+                if (IsTestStarted) 
+                    Server.DbAccess.Upsert(test);
                 //  db.GetCollection<CptDataPacketVer1>().Upsert(eee.DataPacket);
 
 
@@ -260,7 +263,135 @@ namespace EazyLab.Cpt.Classes
             Timer.Start();
         }
 
-        
+        private bool CheckTemp(CptProfile.ProfileSource source, CptDataPacketVer1 data)
+        {
+            try
+            {
+                var profiles = test.CptSample.Profiles.Where(x =>
+                x.UpperLimitSubs != null && x.LowerLimitSubs != null &&
+                x.UpperLimitSubs!.PlotChannel.Enabled && x.LowerLimitSubs!.PlotChannel.Enabled).ToList();
+
+                //message = string.Empty;
+                CptError error = new CptError();
+                foreach (var Profile in profiles)
+                {
+                    switch (Profile.Source)
+                    {
+                        case CptProfile.ProfileSource.Temp1:
+                            if (!(data.Temp0 < Profile.UpperLimit))
+                            {
+                                //message = "The temp1 hase exceeded its profile limit";
+                                //pvTemp1.BackColor = System.Drawing.Color.Red;
+                                data.CptError.Temp1 = CptError.ErrorState.upperLimit;
+                                //this.Test.Errors.Add(error);
+                                //Server.DbAccess.Upsert(SelectedStation.Test);
+                            }
+                            if (data.Temp0 < Profile.LowerLimit)
+                            {
+                                data.CptError.Temp1 = CptError.ErrorState.lowerLimit;
+                            }
+                            break;
+                        case CptProfile.ProfileSource.Temp2:
+                            if (!(data.Temp1 < Profile.UpperLimit))
+                            {
+                                //message = "The temp2 hase exceeded its profile limit";
+                                //pvTemp2.BackColor = System.Drawing.Color.Red;
+                                data.CptError.Temp2 = CptError.ErrorState.upperLimit;
+                                //data.CptError = error;
+                                //SelectedStation.Test.Errors.Add(error);
+                                //Server.DbAccess.Upsert(SelectedStation.Test);
+                            }
+                            if (data.Temp1 < Profile.LowerLimit)
+                            {
+                                data.CptError.Temp2 = CptError.ErrorState.lowerLimit;
+                                //data.CptError = error;
+                                //SelectedStation.Test.Errors.Add(error);
+                                //Server.DbAccess.Upsert(SelectedStation.Test);
+                            }
+                            break;
+                        case CptProfile.ProfileSource.Temp3:
+                            if (!(data.Temp2 < Profile.UpperLimit))
+                            {
+                                //message = "The temp3 hase exceeded its profile limit";
+                                //pvTemp3.BackColor = System.Drawing.Color.Red;
+                                data.CptError.Temp3 = CptError.ErrorState.upperLimit;
+                                //data.CptError = error;
+                                //SelectedStation.Test.Errors.Add(error);
+                                //Server.DbAccess.Upsert(SelectedStation.Test);
+                            }
+                            if (data.Temp2 < Profile.LowerLimit)
+                            {
+                                data.CptError.Temp3 = CptError.ErrorState.lowerLimit;
+                                //data.CptError = error;
+                            }
+                            break;
+                        case CptProfile.ProfileSource.Temp4:
+                            if (!(data.Temp3 < Profile.UpperLimit))
+                            {
+                                //message = "The temp4 hase exceeded its profile limit";
+                                //pvTemp4.BackColor = System.Drawing.Color.Red;
+                                data.CptError.Temp4 = CptError.ErrorState.upperLimit;
+                                //data.CptError = error;
+                                //SelectedStation.Test.Errors.Add(error);
+                                //Server.DbAccess.Upsert(SelectedStation.Test);
+                            }
+                            if (data.Temp3 < Profile.LowerLimit)
+                            {
+                                data.CptError.Temp4 = CptError.ErrorState.lowerLimit;
+                                //data.CptError = error;
+                                //SelectedStation.Test.Errors.Add(error);
+                                //Server.DbAccess.Upsert(SelectedStation.Test);
+                            }
+                            break;
+                        case CptProfile.ProfileSource.Temp5:
+                            if (!(data.Temp4 < Profile.UpperLimit))
+                            {
+                                //message = "The temp5 hase exceeded its profile limit";
+                                //pvTemp5.BackColor = System.Drawing.Color.Red;
+                                data.CptError.Temp5 = CptError.ErrorState.upperLimit;
+                                //data.CptError = error;
+                                //SelectedStation.Test.Errors.Add(error);
+                                //Server.DbAccess.Upsert(SelectedStation.Test);
+                            }
+                            if (data.Temp4 < Profile.LowerLimit)
+                            {
+                                data.CptError.Temp5 = CptError.ErrorState.lowerLimit;
+                                //data.CptError = error;
+                                //SelectedStation.Test.Errors.Add(error);
+                                //Server.DbAccess.Upsert(SelectedStation.Test);
+                            }
+                            break;
+                        case CptProfile.ProfileSource.Temp6:
+                            if (!(data.Temp5 < Profile.UpperLimit))
+                            {
+                                //message = "The temp5 hase exceeded its profile limit";
+                                //pvTemp6.BackColor = System.Drawing.Color.Red;
+                                data.CptError.Temp6 = CptError.ErrorState.upperLimit;
+                                //data.CptError = error;
+                                //SelectedStation.Test.Errors.Add(error);
+                                //Server.DbAccess.Upsert(SelectedStation.Test);
+                            }
+                            if (data.Temp5 < Profile.LowerLimit)
+                            {
+                                data.CptError.Temp6 = CptError.ErrorState.lowerLimit;
+                                //data.CptError = error;
+                                //SelectedStation.Test.Errors.Add(error);
+                                //Server.DbAccess.Upsert(SelectedStation.Test);
+                            }
+                            break;
+
+
+
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex) { 
+                return false;
+            }
+        }
+
 
         UInt16[] serno = new UInt16[4];
         public void Connect(bool readSerial)
@@ -397,7 +528,6 @@ namespace EazyLab.Cpt.Classes
             Result result = Result.CONNECT_ERROR;
             try
             {
-
                 lock (this.modbus)
                 {
                     if (!modbus.IsConnected) modbus.Connect();

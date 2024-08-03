@@ -305,12 +305,12 @@ namespace EazyLab.Cpt.Forms
             {
                 model = new CptModel();
                 model.Model = cbModelName.Text;
-                if (!tempProfiles.Exists(x => x.Id == tempProfile.Id))
-                {
-                    MessageBox.Show("this tempProfile is either not saved or not exists");
-                    return;
+                //if (!tempProfiles.Exists(x => x.Id == tempProfile.Id))
+                //{
+                //    MessageBox.Show("this tempProfile is either not saved or not exists");
+                //    return;
 
-                }
+                //}
                 model.DefaultProfile = tempProfile;
                 model.Created = DateTime.Now;
                 model.InrushCurrent = dudInrushCurrent.Value;
@@ -429,13 +429,19 @@ namespace EazyLab.Cpt.Forms
             }
             if (nudQuantity.Value == 0) return;
             listBox1.Items.Clear();
-            for (int i = 0; i < nudQuantity.Value; i++)
+            try
             {
-                string newserial = cbPrefix.Text + (i + nudStartCount.Value).ToString() + cbSuffix.Text;
-                CptSample s = new CptSample() { SerialNo = newserial, Model = cptModels[cbModelName.SelectedIndex] };
-                tempsample.Add(s);
-                listBox1.Items.Add(s.SerialNo);
+                for (int i = 0; i < nudQuantity.Value; i++)
+                {
+                    string newserial = cbPrefix.Text + (i + nudStartCount.Value).ToString() + cbSuffix.Text;
+                    CptSample s = new CptSample() { SerialNo = newserial, Model = cptModels[cbModelName.SelectedIndex] };
+                    tempsample.Add(s);
+                    listBox1.Items.Add(s.SerialNo);
 
+                }
+            }
+            catch (Exception ex)
+            {
             }
 
             UpdateDisplay();
