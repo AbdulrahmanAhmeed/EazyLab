@@ -31,19 +31,17 @@ namespace EazyLab.Cpt.Controls
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CptChamberCntrl));
-            EazyLab.Classes.PlotDataCursorXY plotDataCursorXY3 = new EazyLab.Classes.PlotDataCursorXY();
-            EazyLab.Classes.PlotDataView plotDataView3 = new EazyLab.Classes.PlotDataView();
-            EazyLab.Classes.PlotLabelBasic plotLabelBasic3 = new EazyLab.Classes.PlotLabelBasic();
-            EazyLab.Classes.PlotLegendBasic plotLegendBasic3 = new EazyLab.Classes.PlotLegendBasic();
-            EazyLab.Classes.PlotXAxis plotXAxis3 = new EazyLab.Classes.PlotXAxis();
-            EazyLab.Classes.PlotYAxis plotYAxis3 = new EazyLab.Classes.PlotYAxis();
+            EazyLab.Classes.PlotDataCursorXY plotDataCursorXY1 = new EazyLab.Classes.PlotDataCursorXY();
+            EazyLab.Classes.PlotDataView plotDataView1 = new EazyLab.Classes.PlotDataView();
+            EazyLab.Classes.PlotLabelBasic plotLabelBasic1 = new EazyLab.Classes.PlotLabelBasic();
+            EazyLab.Classes.PlotLegendBasic plotLegendBasic1 = new EazyLab.Classes.PlotLegendBasic();
+            EazyLab.Classes.PlotXAxis plotXAxis1 = new EazyLab.Classes.PlotXAxis();
+            EazyLab.Classes.PlotYAxis plotYAxis1 = new EazyLab.Classes.PlotYAxis();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cbSource = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.checkUpperLimit = new System.Windows.Forms.CheckBox();
+            this.checkLimit = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.led1 = new EazyLab.Instrumentation.Standard.Led();
             this.btnSampleOn = new EazyLab.Instrumentation.Standard.ToggleButton();
@@ -186,9 +184,7 @@ namespace EazyLab.Cpt.Controls
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.cbSource);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Controls.Add(this.checkUpperLimit);
+            this.groupBox2.Controls.Add(this.checkLimit);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.Window;
             this.groupBox2.Location = new System.Drawing.Point(627, 20);
             this.groupBox2.Name = "groupBox2";
@@ -198,34 +194,16 @@ namespace EazyLab.Cpt.Controls
             this.groupBox2.Text = "Limits ";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
-            // cbSource
+            // checkLimit
             // 
-            this.cbSource.FormattingEnabled = true;
-            this.cbSource.Location = new System.Drawing.Point(53, 34);
-            this.cbSource.Name = "cbSource";
-            this.cbSource.Size = new System.Drawing.Size(141, 21);
-            this.cbSource.TabIndex = 3;
-            this.cbSource.SelectedIndexChanged += new System.EventHandler(this.cbSource_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Source";
-            // 
-            // checkUpperLimit
-            // 
-            this.checkUpperLimit.AutoSize = true;
-            this.checkUpperLimit.Location = new System.Drawing.Point(6, 77);
-            this.checkUpperLimit.Name = "checkUpperLimit";
-            this.checkUpperLimit.Size = new System.Drawing.Size(76, 17);
-            this.checkUpperLimit.TabIndex = 1;
-            this.checkUpperLimit.Text = "UpperLimit";
-            this.checkUpperLimit.UseVisualStyleBackColor = true;
-            this.checkUpperLimit.CheckedChanged += new System.EventHandler(this.checkUpperLimit_CheckedChanged);
+            this.checkLimit.AutoSize = true;
+            this.checkLimit.Location = new System.Drawing.Point(66, 47);
+            this.checkLimit.Name = "checkLimit";
+            this.checkLimit.Size = new System.Drawing.Size(66, 17);
+            this.checkLimit.TabIndex = 1;
+            this.checkLimit.Text = "AddLimit";
+            this.checkLimit.UseVisualStyleBackColor = true;
+            this.checkLimit.CheckedChanged += new System.EventHandler(this.checkLimit_CheckedChanged);
             // 
             // button2
             // 
@@ -529,7 +507,7 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp2.TextFormatting.UnitsText = "°c";
             this.pvTemp2.Unit = "°c";
             this.pvTemp2.ValueAsDouble = 0D;
-            this.pvTemp2.DoubleClick += new System.EventHandler(this.pvTemp2_DoubleClick);
+            this.pvTemp2.DoubleClick += new System.EventHandler(this.pvTemp_DoubleClick);
             this.pvTemp2.LoadingEnd();
             // 
             // pvTemp4
@@ -627,7 +605,7 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp1.Unit = "°c";
             this.pvTemp1.ValueAsDouble = 0D;
             this.pvTemp1.ValueChanged += new EazyLab.Delegates.ValueDoubleEventHandler(this.pvTemp1_ValueChanged);
-            this.pvTemp1.DoubleClick += new System.EventHandler(this.pvTemp1_DoubleClick);
+            this.pvTemp1.DoubleClick += new System.EventHandler(this.pvTemp_DoubleClick);
             this.pvTemp1.LoadingEnd();
             // 
             // Plot
@@ -635,42 +613,43 @@ namespace EazyLab.Cpt.Controls
             this.Plot.LoadingBegin();
             this.Plot.AutoFont = false;
             this.tableLayoutPanel1.SetColumnSpan(this.Plot, 4);
-            plotDataCursorXY3.Hint.Fill.Pen.Color = System.Drawing.SystemColors.InfoText;
-            plotDataCursorXY3.Name = "Data-Cursor 1";
-            plotDataCursorXY3.TitleText = "Data-Cursor 1";
-            this.Plot.DataCursors.Add(plotDataCursorXY3);
-            plotDataView3.Name = "Data-View 1";
-            plotDataView3.TitleText = "Data-View 1";
-            this.Plot.DataViews.Add(plotDataView3);
+            plotDataCursorXY1.Hint.Fill.Pen.Color = System.Drawing.SystemColors.InfoText;
+            plotDataCursorXY1.Name = "Data-Cursor 1";
+            plotDataCursorXY1.TitleText = "Data-Cursor 1";
+            this.Plot.DataCursors.Add(plotDataCursorXY1);
+            plotDataView1.Name = "Data-View 1";
+            plotDataView1.TitleText = "Data-View 1";
+            this.Plot.DataViews.Add(plotDataView1);
+            this.Plot.DefaultGridLineColor = System.Drawing.Color.LimeGreen;
             this.Plot.Dock = System.Windows.Forms.DockStyle.Fill;
-            plotLabelBasic3.DockOrder = 0;
-            plotLabelBasic3.Name = "Label 1";
-            this.Plot.Labels.Add(plotLabelBasic3);
-            plotLegendBasic3.DockOrder = 0;
-            plotLegendBasic3.Name = "Legend 1";
-            plotLegendBasic3.TitleText = "Legend 1";
-            this.Plot.Legends.Add(plotLegendBasic3);
+            plotLabelBasic1.DockOrder = 0;
+            plotLabelBasic1.Name = "Label 1";
+            this.Plot.Labels.Add(plotLabelBasic1);
+            plotLegendBasic1.DockOrder = 0;
+            plotLegendBasic1.Name = "Legend 1";
+            plotLegendBasic1.TitleText = "Legend 1";
+            this.Plot.Legends.Add(plotLegendBasic1);
             this.Plot.Location = new System.Drawing.Point(3, 33);
             this.Plot.Name = "Plot";
             this.Plot.NoOFChannels = 10;
             this.Plot.Size = new System.Drawing.Size(1754, 478);
             this.Plot.TabIndex = 4;
-            plotXAxis3.DockOrder = 0;
-            plotXAxis3.Name = "X-Axis 1";
-            plotXAxis3.ScaleDisplay.TextFormatting.Style = EazyLab.Types.TextFormatDoubleStyle.DateTime;
-            plotXAxis3.Title.Text = "X-Axis 1";
-            this.Plot.XAxes.Add(plotXAxis3);
-            plotYAxis3.DockOrder = 0;
-            plotYAxis3.Name = "Y-Axis 1";
-            plotYAxis3.Title.MarginSpacing = -4D;
-            plotYAxis3.Title.Text = "Y-Axis 1";
-            plotYAxis3.Title.TextLayout.AlignmentHorizontal.Margin = 1D;
-            plotYAxis3.Title.TextLayout.AlignmentHorizontal.Style = System.Drawing.StringAlignment.Near;
-            plotYAxis3.Title.TextLayout.AlignmentVertical.Margin = 0D;
-            plotYAxis3.Title.TextLayout.AlignmentVertical.Style = System.Drawing.StringAlignment.Near;
-            plotYAxis3.Title.TextRotation = EazyLab.Types.PlotAutoRotation.X000;
-            plotYAxis3.Title.Visible = true;
-            this.Plot.YAxes.Add(plotYAxis3);
+            plotXAxis1.DockOrder = 0;
+            plotXAxis1.Name = "X-Axis 1";
+            plotXAxis1.ScaleDisplay.TextFormatting.Style = EazyLab.Types.TextFormatDoubleStyle.DateTime;
+            plotXAxis1.Title.Text = "X-Axis 1";
+            this.Plot.XAxes.Add(plotXAxis1);
+            plotYAxis1.DockOrder = 0;
+            plotYAxis1.Name = "Y-Axis 1";
+            plotYAxis1.Title.MarginSpacing = -4D;
+            plotYAxis1.Title.Text = "Y-Axis 1";
+            plotYAxis1.Title.TextLayout.AlignmentHorizontal.Margin = 1D;
+            plotYAxis1.Title.TextLayout.AlignmentHorizontal.Style = System.Drawing.StringAlignment.Near;
+            plotYAxis1.Title.TextLayout.AlignmentVertical.Margin = 0D;
+            plotYAxis1.Title.TextLayout.AlignmentVertical.Style = System.Drawing.StringAlignment.Near;
+            plotYAxis1.Title.TextRotation = EazyLab.Types.PlotAutoRotation.X000;
+            plotYAxis1.Title.Visible = true;
+            this.Plot.YAxes.Add(plotYAxis1);
             this.Plot.Click += new System.EventHandler(this.Plot_Click);
             this.Plot.LoadingEnd();
             // 
@@ -1113,11 +1092,9 @@ namespace EazyLab.Cpt.Controls
         private PlotToolBarButton plotToolBarButton20;
         private PlotToolBarButton plotToolBarButton21;
         private System.Windows.Forms.ImageList imageList4;
-        private System.Windows.Forms.CheckBox checkUpperLimit;
+        private System.Windows.Forms.CheckBox checkLimit;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cbSource;
     }
 }

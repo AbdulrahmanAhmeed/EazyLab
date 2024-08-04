@@ -21,7 +21,7 @@ namespace EazyLab.Cpt.Controls
     {
         private CptChamber chamber;
         private CptSample sample;
-        
+
         public CptChamber Chamber { get => chamber; set => chamber = value; }
         int number_of_Graphs = 0, Maximum_Grphs = 3;
 
@@ -40,10 +40,10 @@ namespace EazyLab.Cpt.Controls
             InitializeComponent();
             StdControls = new List<PV>();
             GetPVControls(this.Controls);
-            foreach (var  C in StdControls)
+            foreach (var C in StdControls)
             {
                 C.Dock = DockStyle.Fill;
-                C.Plot = this.Plot; 
+                C.Plot = this.Plot;
             }
 
         }
@@ -74,15 +74,15 @@ namespace EazyLab.Cpt.Controls
         /// Updates the All the  Controls in this display.
         /// </summary>
         /// <param name="dp">The Lastdp.</param>
-        public void UpdateDisplay(CptDataPacketVer1 dp  )
+        public void UpdateDisplay(CptDataPacketVer1 dp)
         {
 
             try
             {
                 if (chamber.SampleReadyEvent == null) chamber.SampleReadyEvent += SampleReady;
-                
+
                 pvTemp1.Value.AsDouble = dp.Temp0;
-                pvTemp2.Value.AsDouble  = dp.Temp1;
+                pvTemp2.Value.AsDouble = dp.Temp1;
                 pvTemp3.Value.AsDouble = dp.Temp2;
                 pvTemp4.Value.AsDouble = dp.Temp3;
                 pvTemp5.Value.AsDouble = dp.Temp4;
@@ -103,7 +103,7 @@ namespace EazyLab.Cpt.Controls
         }
         void CheckSelectedStationStatus()
         {
-            if(SelectedStation != null)
+            if (SelectedStation != null)
             {
                 EnableButtons();
             }
@@ -111,7 +111,7 @@ namespace EazyLab.Cpt.Controls
             {
                 DisableButtons();
             }
-            
+
         }
 
         void EnableButtons()
@@ -138,9 +138,9 @@ namespace EazyLab.Cpt.Controls
             if (Plot.YAxes.Count > 0)
             {
                 Plot.YAxes[0].Tracking.ZoomToFitAll();
-               // Plot.YAxes[0].Tracking.Enabled = true;
+                // Plot.YAxes[0].Tracking.Enabled = true;
             }
-            
+
         }
 
         public void ResetPVs()
@@ -161,8 +161,8 @@ namespace EazyLab.Cpt.Controls
             CbStation.SelectedIndex = index;
         }
         int x = 1;
-        int yMax=100;
-        int yMin=1;
+        int yMax = 100;
+        int yMin = 1;
 
         void UpdateControls(CptDataPacketVer1 dp, string text)
         {
@@ -171,7 +171,7 @@ namespace EazyLab.Cpt.Controls
             UpdateDisplay(dp);
         }
 
-        void UpdateSampleControl( string text)
+        void UpdateSampleControl(string text)
         {
             editString1.Value.AsString = text;
         }
@@ -180,28 +180,28 @@ namespace EazyLab.Cpt.Controls
         {
             bool status = true;
             string errorMessages = string.Empty;
-            if(SelectedStation.IsTestStarted && e.DataPacket.CptError != null) 
+            if (SelectedStation.IsTestStarted && e.DataPacket.CptError != null)
                 CheckTemp(e.DataPacket);
-            
+
             Invoke(new Action(() => UpdateControls(e.DataPacket, e.Result.ToString())));
             //Lastdp = e.DataPacket;
             //ledStatus.Value = !ledStatus.Value;
-            
+
         }
 
-        private bool CheckTemp( CptDataPacketVer1 data)
+        private bool CheckTemp(CptDataPacketVer1 data)
         {
             if (data.CptError.Temp1 != CptError.ErrorState.noError)
                 pvTemp1.ForeColor = System.Drawing.Color.Red;
-            if(data.CptError.Temp2 != CptError.ErrorState.noError)
+            if (data.CptError.Temp2 != CptError.ErrorState.noError)
                 pvTemp2.ForeColor = System.Drawing.Color.Red;
-            if(data.CptError.Temp3 != CptError.ErrorState.noError)
+            if (data.CptError.Temp3 != CptError.ErrorState.noError)
                 pvTemp3.ForeColor = System.Drawing.Color.Red;
-            if(data.CptError.Temp4 != CptError.ErrorState.noError)
+            if (data.CptError.Temp4 != CptError.ErrorState.noError)
                 pvTemp4.ForeColor = System.Drawing.Color.Red;
-            if(data.CptError.Temp5 != CptError.ErrorState.noError)
+            if (data.CptError.Temp5 != CptError.ErrorState.noError)
                 pvTemp5.ForeColor = System.Drawing.Color.Red;
-            if(data.CptError.Temp6 != CptError.ErrorState.noError)
+            if (data.CptError.Temp6 != CptError.ErrorState.noError)
                 pvTemp6.ForeColor = System.Drawing.Color.Red;
             return true;
         }
@@ -210,19 +210,8 @@ namespace EazyLab.Cpt.Controls
         {
             sample = e.cptSample;
             SelectedStation.Test.CptSample = sample;
-            cbSource.Items.Clear();
-            try
-            {
-                foreach (var profile in SelectedStation.Test.CptSample.Profiles)
-                {
-                    cbSource.Items.Add(profile.Source.ToString());
-                }
-            }
-            catch (Exception ex)
-            {
-                LoggerFile.WriteException(ex);
-            }
-            Invoke(new Action(() => UpdateSampleControl( e.cptSample.SerialNo)));
+            
+            Invoke(new Action(() => UpdateSampleControl(e.cptSample.SerialNo)));
             //Lastdp = e.DataPacket;
             //ledStatus.Value = !ledStatus.Value;
 
@@ -244,18 +233,18 @@ namespace EazyLab.Cpt.Controls
 
         private void CbStation_DropDown(object sender, EventArgs e)
         {
-            UpdateCbStation(); 
+            UpdateCbStation();
 
         }
 
-        
+
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
             try
             {
                 if (SelectedStation.DataReadyEvent == null) SelectedStation.DataReadyEvent += DataReady;
-                
+
                 if (btnConnect.State)
                 {
                     SelectedStation.Connect(true);
@@ -264,10 +253,10 @@ namespace EazyLab.Cpt.Controls
                 else
                 {
                     SelectedStation.DisConnect();
-                    
+
                 }
                 btnConnect.State = SelectedStation.IsConnected;
-                tbtnStart.State= SelectedStation.IsTestStarted;
+                tbtnStart.State = SelectedStation.IsTestStarted;
             }
             catch (Exception ex)
             {
@@ -289,12 +278,12 @@ namespace EazyLab.Cpt.Controls
                 if (SelectedStation.IsConnected)
                 {
                     // user should add smaple before start test
-                   if(sample != null)
+                    if (sample != null)
                     {
                         SelectedStation.StartTest(tbtnStart.State);
                         //SelectedStation.Test.CptSample = sample;
 
-                    }         
+                    }
                     else
                         MessageBox.Show("Please add sample first");
 
@@ -307,20 +296,20 @@ namespace EazyLab.Cpt.Controls
 
                 }
             }
-            tbtnStart.State=SelectedStation.IsTestStarted;
+            tbtnStart.State = SelectedStation.IsTestStarted;
         }
 
         public void SelectStation(int stNo)
         {
             try
             {
-                UpdateCbStation(); 
+                UpdateCbStation();
                 CbStation.SelectedIndex = stNo;
-                CbStation.SelectedValue = Chamber.Stations[stNo].SerialNumber; 
+                CbStation.SelectedValue = Chamber.Stations[stNo].SerialNumber;
             }
             catch (Exception ex)
             {
-                 LoggerFile.WriteException (ex);
+                LoggerFile.WriteException(ex);
             }
         }
 
@@ -346,10 +335,10 @@ namespace EazyLab.Cpt.Controls
 
         private void btnSampleOn_Click(object sender, EventArgs e)
         {
-            SelectedStation.SwitchSample(btnSampleOn.State);    
+            SelectedStation.SwitchSample(btnSampleOn.State);
         }
 
-        
+
 
         private void pvTemp1_ValueChanged(object sender, ValueDoubleEventArgs e)
         {
@@ -376,37 +365,30 @@ namespace EazyLab.Cpt.Controls
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SelectedStation.Test.CptSample = Server.DbAccess.GetAll<CptSample>().Where(x=>x.SerialNo == "2401000").FirstOrDefault();
-            sample = SelectedStation.Test.CptSample;
-            cbSource.Items.Clear();
             try
             {
-                foreach (var profile in SelectedStation.Test.CptSample.Profiles)
-                {
-                    cbSource.Items.Add(profile.Source.ToString());
-                }
+                SelectedStation.Test.CptSample = Server.DbAccess.GetAll<CptSample>().Where(x => x.SerialNo == "2401000").FirstOrDefault();
+                sample = SelectedStation.Test.CptSample;
+                
+                UpdateSampleControl(SelectedStation.Test.CptSample.SerialNo);
             }
             catch (Exception ex)
             {
+
                 LoggerFile.WriteException(ex);
             }
-            UpdateSampleControl(SelectedStation.Test.CptSample.SerialNo);
         }
 
-        private void checkUpperLimit_CheckedChanged(object sender, EventArgs e)
+        private void checkLimit_CheckedChanged(object sender, EventArgs e)
         {
-            
+
             PlotYAxis axis = null;
-            
+
             try
             {
-                //CptProfile profile = SelectedStation.Test.CptSample.Profiles.
-                //    Where(x => x.Source == (CptProfile.ProfileSource)Enum.Parse(typeof(CptProfile.ProfileSource), cbSource.Text)).First();
-                foreach(CptProfile profile in SelectedStation.Test.CptSample.Profiles)
+                
+                foreach (CptProfile profile in SelectedStation.Test.CptSample.Profiles)
                 {
-                    
-                    var source = cbSource.Text;
-                    SelectedStation.Test.CptSample.SelectedSource = (CptProfile.ProfileSource)Enum.Parse(typeof(CptProfile.ProfileSource), profile.Source.ToString());
                     axis = Plot.YAxes[profile.Source.ToString()];
                     if (axis == null)
                     {
@@ -416,34 +398,23 @@ namespace EazyLab.Cpt.Controls
                     {
                         profile.InitializeSubscribers(axis);
                     }
-                    try
+                    if(!checkLimit.Checked)
                     {
-                        var data = Server.DbAccess.GetAll<CptTagController>();
-                        profile.LowerLimitSubs.Color = profile.LowerLimitRGP == 0 ? System.Drawing.Color.Gray: System.Drawing.Color.FromArgb(profile.LowerLimitRGP);  //System.Drawing.Color.FromArgb(data.Find(x => x.Name == nameof(CptProfile.LowerLimit)).RGB);
-                        profile.UpperLimitSubs.Color = profile.UpperLimitRGP == 0 ? System.Drawing.Color.Yellow : System.Drawing.Color.FromArgb(profile.UpperLimitRGP);
-                        if(profile.Source.ToString() == pvTemp1.TagName.Replace("►","") && pvTemp1.IsSelectedForPloting && checkUpperLimit.Checked)
-                        {
-                            Plot.Subscribe(profile.LowerLimitSubs);
-                            Plot.Subscribe(profile.UpperLimitSubs);
-                        }
-                        else if (profile.Source.ToString() == pvTemp2.TagName.Replace("►", "") && pvTemp2.IsSelectedForPloting && checkUpperLimit.Checked)
-                        {
-                            Plot.Subscribe(profile.LowerLimitSubs);
-                            Plot.Subscribe(profile.UpperLimitSubs);
-                        }
-                        else if (profile.Source.ToString() == pvTemp3.TagName.Replace("►", "") && pvTemp3.IsSelectedForPloting && checkUpperLimit.Checked)
-                        {
-                            Plot.Subscribe(profile.LowerLimitSubs);
-                            Plot.Subscribe(profile.UpperLimitSubs);
-                        }
+                        if(profile.UpperLimitSubs != null) Plot.UnSubscribe(profile.UpperLimitSubs);
+                        if(profile.LowerLimitSubs != null)Plot.UnSubscribe(profile.LowerLimitSubs);
                     }
-                    catch (Exception ex)
+                    else
                     {
+                        profile.UpperLimitSubs.YAxis = axis;
+                        profile.LowerLimitSubs.YAxis = axis;
+                        if (profile.UpperLimitSubs != null) Plot.Subscribe(profile.UpperLimitSubs);
+                        if (profile.LowerLimitSubs != null) Plot.Subscribe(profile.LowerLimitSubs);
+
                     }
+
+    
                 }
 
-                //SelectedStation.Test.CptSample.Profile.LowerLimitSubs.Color = lowerLimitColor.Color;
-                    
             }
             catch (Exception ex)
             {
@@ -460,9 +431,7 @@ namespace EazyLab.Cpt.Controls
                 return;
             }
             profile.InitializeSubscribers(axis);
-            var data = Server.DbAccess.GetAll<CptTagController>();
-            profile.LowerLimitSubs.Color = System.Drawing.Color.FromArgb(profile.LowerLimitRGP);  //System.Drawing.Color.FromArgb(data.Find(x => x.Name == nameof(CptProfile.LowerLimit)).RGB);
-            profile.UpperLimitSubs.Color = System.Drawing.Color.FromArgb(profile.UpperLimitRGP);
+
         }
 
         //private void btLower_Click(object sender, EventArgs e)
@@ -505,22 +474,15 @@ namespace EazyLab.Cpt.Controls
 
         }
 
-        private void multiSelectionComboBox1_Click(object sender, EventArgs e)
-        {
-        }
-
         private void Subscribe(PV pV)
         {
             var profile = SelectedStation.Test.CptSample.Profiles.Where(x => x.Source == (CptProfile.ProfileSource)Enum.Parse(typeof(CptProfile.ProfileSource), pV.TagName.Replace("►", ""))).FirstOrDefault();
             if (profile != null)
             {
-                if (profile.LowerLimitSubs == null && profile.UpperLimitSubs == null)
-                {
-                    InitializeSubscribers(profile);
-                }
+                InitializeSubscribers(profile);
                 Plot.Subscribe(profile.LowerLimitSubs);
                 Plot.Subscribe(profile.UpperLimitSubs);
-                
+
             }
         }
         private void UnSubscribe(PV pV)
@@ -530,24 +492,27 @@ namespace EazyLab.Cpt.Controls
             {
                 if (profile.LowerLimitSubs == null && profile.UpperLimitSubs == null)
                 {
-                    InitializeSubscribers(profile);
-                }
-
-                Plot.UnSubscribe(profile.LowerLimitSubs);
-                Plot.UnSubscribe(profile.UpperLimitSubs);
-            }
-        }
-        private void pvTemp1_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-               if(pvTemp1.IsSelectedForPloting && checkUpperLimit.Checked)
-                {
-                    Subscribe(pvTemp1);
+                    return;
                 }
                 else
                 {
-                    UnSubscribe(pvTemp1);
+                    Plot.UnSubscribe(profile.LowerLimitSubs);
+                    Plot.UnSubscribe(profile.UpperLimitSubs);
+                }
+            }
+        }
+        private void pvTemp_DoubleClick(object sender, EventArgs e)
+        {
+            try
+            {
+                var pv = (PV)sender;
+                if (pv.IsSelectedForPloting && checkLimit.Checked)
+                {
+                    Subscribe(pv);
+                }
+                else
+                {
+                    UnSubscribe(pv);
                 }
 
             }
@@ -558,27 +523,7 @@ namespace EazyLab.Cpt.Controls
             }
         }
 
-        private void pvTemp2_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (pvTemp2.IsSelectedForPloting && checkUpperLimit.Checked)
-                {
-                    Subscribe(pvTemp2);
-                }
-                else
-                {
-                    UnSubscribe(pvTemp2);
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                LoggerFile.WriteException(ex);
-            }
-
-        }
+       
 
         private void editString1_ValueChanged(object sender, ValueStringEventArgs e)
         {

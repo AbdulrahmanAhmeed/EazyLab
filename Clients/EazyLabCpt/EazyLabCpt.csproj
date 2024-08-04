@@ -57,19 +57,32 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EazyLab.Common">
+    <Reference Include="EazyLab.Common, Version=5.0.2.1636, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Dll\EazyLab.Common.dll</HintPath>
     </Reference>
-    <Reference Include="EazyLab.Equipments">
+    <Reference Include="EazyLab.Devices, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\EazyLab.Devices.dll</HintPath>
+    </Reference>
+    <Reference Include="EazyLab.Equipments, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Dll\EazyLab.Equipments.dll</HintPath>
     </Reference>
-    <Reference Include="EazyLab.Plot">
+    <Reference Include="EazyLab.Plot, Version=5.0.2.1637, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Dll\EazyLab.Plot.dll</HintPath>
     </Reference>
-    <Reference Include="EazyLab.Pro">
+    <Reference Include="EazyLab.Pro, Version=5.0.2.1638, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Dll\EazyLab.Pro.dll</HintPath>
     </Reference>
-    <Reference Include="EazyLab.Std">
+    <Reference Include="EazyLab.PsychroLib, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Dll\EazyLab.PsychroLib.dll</HintPath>
+    </Reference>
+    <Reference Include="EazyLab.Std, Version=5.0.2.1638, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>Dll\EazyLab.Std.dll</HintPath>
     </Reference>
     <Reference Include="LiteDB">

@@ -695,6 +695,9 @@ H:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\obj\Debug\EazyLabCpt.csproj.C
 H:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\obj\Debug\EazyLabCpt.csproj.Up2Date
 H:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\obj\Debug\EazyLabCient.exe
 H:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\obj\Debug\EazyLabCient.pdb
+F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\Controls\cntrlPIDLoop.resx
+F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\Controls\cntrlPIDLoop.cs
+F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\Controls\cntrlPIDLoop.designer.cs
 F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\Microsoft.CodeAnalysis.CSharp.Scripting.dll
 F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\Microsoft.CodeAnalysis.CSharp.Scripting.pdb
 F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\cs\Microsoft.CodeAnalysis.CSharp.Scripting.resources.dll
@@ -734,6 +737,3 @@ F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\NPOI.OpenXmlFormats
 F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\NPOI.OpenXmlFormats.pdb
 F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\Syncfusion.Licensing.dll
 F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\Syncfusion.XlsIO.Base.dll
-F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\Controls\cntrlPIDLoop.resx
-F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\Controls\cntrlPIDLoop.cs
-F:\ActiveProjects\EazyLabCpt\PC\Clients\EazyLabCpt\bin\Debug\Controls\cntrlPIDLoop.designer.cs

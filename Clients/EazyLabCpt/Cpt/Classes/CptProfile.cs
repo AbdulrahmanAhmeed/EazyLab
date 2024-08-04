@@ -64,13 +64,21 @@ namespace EazyLab.Cpt.Classes
 
         public void InitializeSubscribers(PlotYAxis axis)
         {
-            
-            UpperLimitSubs = new PlotSubscriber(UpperLimit,axis, 0.5f);
-            LowerLimitSubs = new PlotSubscriber(LowerLimit,axis, -0.5f);
-            UpperLimitSubs.TagName = "UpperLimit"+Source.ToString();
-            LowerLimitSubs.TagName = "LowerLimit" + Source.ToString();
-            UpperLimitSubs.PlotChannel.Name = UpperLimitSubs.TagName;
-            LowerLimitSubs.PlotChannel.Name = LowerLimitSubs.TagName;
+
+            try
+            {
+                UpperLimit.TagName= "UpperLimit" + Source.ToString();
+                LowerLimit.TagName =  "LowerLimit" + Source.ToString();
+                if(LowerLimitRGP == 0) LowerLimitSubs = new PlotSubscriber(LowerLimit, axis, -0.5f);
+                else LowerLimitSubs = new PlotSubscriber(LowerLimit, axis, System.Drawing.Color.FromArgb(LowerLimitRGP));
+                if(UpperLimitRGP == 0) UpperLimitSubs = new PlotSubscriber(UpperLimit, axis, 0.5f);
+                else UpperLimitSubs = new PlotSubscriber(UpperLimit, axis, System.Drawing.Color.FromArgb(UpperLimitRGP));
+
+            }
+            catch (Exception ex)
+            { 
+                LoggerFile.WriteException(ex);
+            }
 
         }
 
