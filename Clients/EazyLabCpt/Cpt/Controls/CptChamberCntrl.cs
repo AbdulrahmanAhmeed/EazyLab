@@ -21,7 +21,6 @@ namespace EazyLab.Cpt.Controls
     {
         private CptChamber chamber;
         private CptSample sample;
-
         public CptChamber Chamber { get => chamber; set => chamber = value; }
         int number_of_Graphs = 0, Maximum_Grphs = 3;
 
@@ -70,6 +69,14 @@ namespace EazyLab.Cpt.Controls
             }
         }
 
+
+        public void LoadEvents()
+        {
+
+            if (chamber.SampleReadyEvent == null) chamber.SampleReadyEvent += SampleReady;
+            if (chamber.SelectStationEvent == null) chamber.SelectStationEvent += SelectStation;
+        }
+
         /// <summary>
         /// Updates the All the  Controls in this display.
         /// </summary>
@@ -79,8 +86,20 @@ namespace EazyLab.Cpt.Controls
 
             try
             {
-                if (chamber.SampleReadyEvent == null) chamber.SampleReadyEvent += SampleReady;
-
+                try
+                {
+                    if (!SelectedStation.IsTestStarted)
+                    {
+                        if (tbtnStart.State)
+                        {
+                            StopTest();
+                        }
+                    }
+                }
+                catch (Exception ex) { 
+                    LoggerFile.WriteException(ex);
+                }
+                editString1.Value.AsString = SelectedStation.Test.CptSample == null ? editString1.Name : SelectedStation.Test.CptSample.SerialNo;
                 pvTemp1.Value.AsDouble = dp.Temp0;
                 pvTemp2.Value.AsDouble = dp.Temp1;
                 pvTemp3.Value.AsDouble = dp.Temp2;
@@ -92,9 +111,10 @@ namespace EazyLab.Cpt.Controls
                 pvVoltage.Value.AsDouble = dp.Voltage;
                 pvEnergy.Value.AsDouble = dp.Energy;
                 Plot.Update(dp.Time);
-                RefreshPlot();
+                //RefreshPlot();
                 CheckSelectedStationStatus();
                 led1.Indicator.Text = SelectedStation.SampleStatus.ToString();
+                tbtnStart.State = SelectedStation.IsTestStarted;
             }
             catch (Exception ex)
             {
@@ -191,18 +211,43 @@ namespace EazyLab.Cpt.Controls
 
         private bool CheckTemp(CptDataPacketVer1 data)
         {
+            bool error = false;
             if (data.CptError.Temp1 != CptError.ErrorState.noError)
+            {
                 pvTemp1.ForeColor = System.Drawing.Color.Red;
+                error = true;
+            }
             if (data.CptError.Temp2 != CptError.ErrorState.noError)
+            {
                 pvTemp2.ForeColor = System.Drawing.Color.Red;
+                error = true;
+            }
             if (data.CptError.Temp3 != CptError.ErrorState.noError)
+            {
                 pvTemp3.ForeColor = System.Drawing.Color.Red;
+                error = true;
+            }
             if (data.CptError.Temp4 != CptError.ErrorState.noError)
+            {
                 pvTemp4.ForeColor = System.Drawing.Color.Red;
+                error = true;
+            }
             if (data.CptError.Temp5 != CptError.ErrorState.noError)
+            {
                 pvTemp5.ForeColor = System.Drawing.Color.Red;
+                error = true;
+            }
             if (data.CptError.Temp6 != CptError.ErrorState.noError)
+            {
                 pvTemp6.ForeColor = System.Drawing.Color.Red;
+                error = true;
+            }
+            if(data.CptError.Current != CptError.ErrorState.noError)
+            {
+                pvCurrent.ForeColor = System.Drawing.Color.Red;
+                error = true;
+            }
+            if (error) SelectedStation.SetDO(5, true);
             return true;
         }
 
@@ -210,10 +255,20 @@ namespace EazyLab.Cpt.Controls
         {
             sample = e.cptSample;
             SelectedStation.Test.CptSample = sample;
+            SelectedStation.StartTest(true);
             
+
             Invoke(new Action(() => UpdateSampleControl(e.cptSample.SerialNo)));
             //Lastdp = e.DataPacket;
             //ledStatus.Value = !ledStatus.Value;
+
+        }
+
+        private void SelectStation(object sender , EventArgs e)
+        {
+            if(SelectedStation != null)
+                SelectedStation.Selected = false;
+            SelectedStation = chamber.Stations.First(x => x.Selected);
 
         }
 
@@ -222,8 +277,8 @@ namespace EazyLab.Cpt.Controls
             try
             {
                 CbStation.DataSource = chamber.Stations;
-                CbStation.DisplayMember = "SerialNumber";
-                CbStation.ValueMember = "SerialNumber";
+                CbStation.DisplayMember = "Name";
+                CbStation.ValueMember = "Name";
             }
             catch (Exception ex)
             {
@@ -263,6 +318,13 @@ namespace EazyLab.Cpt.Controls
                 LoggerFile.WriteException(ex);
             }
 
+        }
+
+        private void StopTest()
+        {
+                SelectedStation.StartTest(false);
+                tbtnStart.State = false;
+                return;
         }
 
         private void tbtnStart_Click(object sender, EventArgs e)
@@ -305,7 +367,7 @@ namespace EazyLab.Cpt.Controls
             {
                 UpdateCbStation();
                 CbStation.SelectedIndex = stNo;
-                CbStation.SelectedValue = Chamber.Stations[stNo].SerialNumber;
+                CbStation.SelectedValue = Chamber.Stations[stNo].Name;
             }
             catch (Exception ex)
             {
@@ -319,11 +381,6 @@ namespace EazyLab.Cpt.Controls
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CbStation_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -349,19 +406,125 @@ namespace EazyLab.Cpt.Controls
         {
             try
             {
-                if (SelectedStation != null) SelectedStation.DataReadyEvent -= DataReady;
+                
+                if (SelectedStation != null) { 
+                    SelectedStation.DataReadyEvent -= DataReady;
+                    UnSubscribeAllPVs();
+                    SelectedStation!.Selected = false;
+                }
                 SelectedStation = Chamber.Stations[CbStation.SelectedIndex];
+                SelectedStation.Selected = true;
                 SelectedStation.DataReadyEvent += DataReady;
                 btnConnect.State = SelectedStation.IsConnected;
                 tbtnStart.State = SelectedStation.IsTestStarted;
-                UpdateDisplay(new CptDataPacketVer1());
+                var lastDq = new CptDataPacketVer1();
+                SubscribeAllPVs();
+                foreach (var data in SelectedStation.Test.Data)
+                {
+                    pvTemp1.Value.AsDouble = data.Temp0;
+                    pvTemp2.Value.AsDouble = data.Temp1;
+                    pvTemp3.Value.AsDouble = data.Temp2;
+                    pvTemp4.Value.AsDouble = data.Temp3;
+                    pvTemp5.Value.AsDouble = data.Temp4;
+                    pvTemp6.Value.AsDouble = data.Temp5;
+                    pvCurrent.Value.AsDouble = data.Current;
+                    pvPower.Value.AsDouble = data.Power;
+                    pvVoltage.Value.AsDouble = data.Voltage;
+                    pvEnergy.Value.AsDouble = data.Energy;
+                    Plot.Update(data.Time);
+                    RefreshPlot();
+                    lastDq = data;
+                }
+
+                UpdateDisplay(lastDq);
             }
             catch (Exception ex)
             {
                 LoggerFile.WriteException(ex);
             }
         }
+        private void SubscribeAllPVs()
+        {
+            if (pvTemp1.IsSelectedForPloting)
+            {
+                Subscribe(pvTemp1);
+            }
+            if (pvTemp2.IsSelectedForPloting)
+            {
+                Subscribe(pvTemp2);
+            }
+            if (pvTemp3.IsSelectedForPloting)
+            {
+                Subscribe(pvTemp3);
+            }
+            if (pvTemp4.IsSelectedForPloting)
+            {
+                Subscribe(pvTemp4);
 
+            }
+            if (pvTemp5.IsSelectedForPloting)
+            {
+                Subscribe(pvTemp5);
+
+            }
+            if (pvTemp6.IsSelectedForPloting)
+            {
+                Subscribe(pvTemp6);
+            }
+        }
+        private void UnSubscribeAllPVs()
+        {
+            if (pvTemp1.IsSelectedForPloting) {
+
+                UnSubscribe(pvTemp1);
+                pvTemp1.IsSelectedForPloting = false;
+                pvTemp1.IsSelectedForPloting = true;
+                //UnSubscribe(pvTemp1);
+                //Subscribe(pvTemp1);
+            }
+            if (pvTemp2.IsSelectedForPloting) {
+                
+                
+                pvTemp2.IsSelectedForPloting = false;
+                UnSubscribe(pvTemp2);
+                pvTemp2.IsSelectedForPloting = true;
+            }
+            if (pvTemp3.IsSelectedForPloting)
+            {
+               
+                
+                pvTemp3.IsSelectedForPloting = false;
+                UnSubscribe(pvTemp3);
+                pvTemp3.IsSelectedForPloting = true;
+
+            }
+            if (pvTemp4.IsSelectedForPloting)
+            {
+                
+                
+                pvTemp4.IsSelectedForPloting = false;
+                UnSubscribe(pvTemp4);
+                pvTemp4.IsSelectedForPloting = true;
+
+            }
+            if (pvTemp5.IsSelectedForPloting)
+            {
+                
+                
+                pvTemp5.IsSelectedForPloting = false;
+                UnSubscribe(pvTemp5);
+                pvTemp5.IsSelectedForPloting = true;
+
+            }
+            if (pvTemp6.IsSelectedForPloting)
+            {
+                
+                pvTemp6.IsSelectedForPloting = false;
+                UnSubscribe(pvTemp6);
+                pvTemp6.IsSelectedForPloting = true;
+
+            }
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -479,6 +642,7 @@ namespace EazyLab.Cpt.Controls
             var profile = SelectedStation.Test.CptSample.Profiles.Where(x => x.Source == (CptProfile.ProfileSource)Enum.Parse(typeof(CptProfile.ProfileSource), pV.TagName.Replace("►", ""))).FirstOrDefault();
             if (profile != null)
             {
+                var axis = Plot.YAxes[profile.Source.ToString()];
                 InitializeSubscribers(profile);
                 Plot.Subscribe(profile.LowerLimitSubs);
                 Plot.Subscribe(profile.UpperLimitSubs);
@@ -492,7 +656,9 @@ namespace EazyLab.Cpt.Controls
             {
                 if (profile.LowerLimitSubs == null && profile.UpperLimitSubs == null)
                 {
-                    return;
+                    InitializeSubscribers(profile);
+                    Plot.UnSubscribe(profile.LowerLimitSubs);
+                    Plot.UnSubscribe(profile.UpperLimitSubs);
                 }
                 else
                 {
@@ -506,14 +672,60 @@ namespace EazyLab.Cpt.Controls
             try
             {
                 var pv = (PV)sender;
-                if (pv.IsSelectedForPloting && checkLimit.Checked)
+                
+                
+                if (pv.IsSelectedForPloting)
                 {
-                    Subscribe(pv);
+                    if (SelectedStation.IsTestStarted)
+                    {
+                        var lastDb = new CptDataPacketVer1();
+
+
+                        foreach (var data in SelectedStation.Test.Data)
+                        {
+                            if (pv == pvTemp1)
+                                pv.Value.AsDouble = data.Temp0;
+                            else if (pv == pvTemp2)
+                                pv.Value.AsDouble = data.Temp1;
+                            else if (pv == pvTemp3)
+                                pv.Value.AsDouble = data.Temp2;
+                            else if (pv == pvTemp4)
+                                pv.Value.AsDouble = data.Temp3;
+                            else if (pv == pvTemp5)
+                                pv.Value.AsDouble = data.Temp4;
+                            else if (pv == pvTemp6)
+                                pv.Value.AsDouble = data.Temp5;
+                            else if (pv == pvCurrent)
+                                pv.Value.AsDouble = data.Current;
+                            else if (pv == pvPower)
+                                pv.Value.AsDouble = data.Power;
+                            else if (pv == pvVoltage)
+                                pv.Value.AsDouble = data.Voltage;
+                            else if (pv == pvEnergy)
+                                pv.Value.AsDouble = data.Energy;
+                            Plot.Update(pv.PlotSubscriber, data.Time);
+                            lastDb = data;
+                        }
+                        RefreshPlot();
+                        UpdateDisplay(lastDb);
+                        if (checkLimit.Checked)
+                        {
+
+                            Subscribe(pv);
+                        }
+                        else
+                        {
+                            UnSubscribe(pv);
+                        }
+                    }
+
                 }
                 else
                 {
                     UnSubscribe(pv);
                 }
+
+
 
             }
             catch (Exception ex)
@@ -523,7 +735,10 @@ namespace EazyLab.Cpt.Controls
             }
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+        }
+
 
         private void editString1_ValueChanged(object sender, ValueStringEventArgs e)
         {

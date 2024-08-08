@@ -48,8 +48,9 @@ namespace EazyLab.Cpt.Classes
         public CptDataPacketVer1 Lastdp = new CptDataPacketVer1();
         private Modbus.Modbus modbus;
         private LiteDatabase db;
+        private bool selected = false;
 
-
+        public bool Selected {  get=> selected; set => selected = true; }
         public ValueDouble min = new ValueDouble(0);
         public ValueDouble max = new ValueDouble(100);
 
@@ -92,7 +93,7 @@ namespace EazyLab.Cpt.Classes
         public CptStation()
         {
             Timer.Elapsed += new System.Timers.ElapsedEventHandler(UpdateData);
-            Timer.Interval = 20000;
+            Timer.Interval = 1000;
             modbus = new Modbus.Modbus(Mode.TCP_IP);
 
         }
@@ -216,9 +217,14 @@ namespace EazyLab.Cpt.Classes
                         {
                             if (IsTestStarted)
                             {
-                                test.CptSample.Profiles.Where(x =>
-                                x.UpperLimitSubs != null && x.LowerLimitSubs != null &&
-                                x.UpperLimitSubs.PlotChannel.Enabled && x.LowerLimitSubs.PlotChannel.Enabled).ToList()?.ForEach(x=>x.UpdateLimits((DateTime.Now - Test.StartTime).TotalMinutes));
+                                double time = 0;
+                                test.CptSample.Profiles.ToList()?.ForEach(x=>
+                                {
+                                    x.UpdateLimits((DateTime.Now - Test.StartTime).TotalMinutes);
+                                    time = x.TempZones.Count >0 & x.TempZones.Last().Time > time ? x.TempZones.Last().Time : time;
+                                    });
+                                if ((DateTime.Now - Test.StartTime).TotalMinutes > time)
+                                    Test.Stop();
 
                             }
                         }
@@ -268,7 +274,6 @@ namespace EazyLab.Cpt.Classes
                 LoggerFile.WriteException(ex);
             }
             
-            await Task.Delay(20000);
             Timer.Start();
         }
 
@@ -388,6 +393,24 @@ namespace EazyLab.Cpt.Classes
                                 //Server.DbAccess.Upsert(SelectedStation.Test);
                             }
                             break;
+                        case CptProfile.ProfileSource.Current:
+                            if (!(data.Current < Profile.UpperLimit))
+                            {
+                                //message = "The temp5 hase exceeded its profile limit";
+                                //pvTemp6.BackColor = System.Drawing.Color.Red;
+                                data.CptError.Current = CptError.ErrorState.upperLimit;
+                                //data.CptError = error;
+                                //SelectedStation.Test.Errors.Add(error);
+                                //Server.DbAccess.Upsert(SelectedStation.Test);
+                            }
+                            if (data.Temp5 < Profile.LowerLimit)
+                            {
+                                data.CptError.Current = CptError.ErrorState.lowerLimit;
+                                //data.CptError = error;
+                                //SelectedStation.Test.Errors.Add(error);
+                                //Server.DbAccess.Upsert(SelectedStation.Test);
+                            }
+                            break;
 
 
 
@@ -427,7 +450,6 @@ namespace EazyLab.Cpt.Classes
                         modbus.Disconnect();
                         return;
                     }
-                    PutStationWaitForSample();
                     byte[] bytes = new byte[8];
                     Buffer.BlockCopy(data, (data.Length - 4) * 2, bytes, 0, bytes.Length);
                     var tempSN = BitConverter.ToUInt64(bytes, 0).ToString();
@@ -535,10 +557,19 @@ namespace EazyLab.Cpt.Classes
         public Result StartTest(bool start)
         {
             Result result = Result.CONNECT_ERROR;
+            if (!start) {
+                result = modbus.WriteSingleRegister(1, (ushort)Commands.StartTest, (short)(start ? 0xff : 0x00));
+                SetDO(7, false);
+                SetDO(5, false);
+                Test.Stop();
+                return result;
+                    }
+
             try
             {
                 lock (this.modbus)
                 {
+                    
                     if (!modbus.IsConnected) modbus.Connect();
                     result = modbus.WriteSingleRegister(1, (ushort)Commands.StartTest, (short)(start ? 0xff : 0x00));
                  if(test==null)   test = new CptTest(db);

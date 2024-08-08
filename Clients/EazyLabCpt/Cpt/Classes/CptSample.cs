@@ -14,6 +14,7 @@ namespace EazyLab.Cpt.Classes
         public List<CptProfile> Profiles { get; set; }
         public CptModel Model { get; set; }
         public string SerialNo { set; get; }
+        public string BatchNumber { set; get; } = "0";
         [BsonIgnore]
         public CptProfile.ProfileSource SelectedSource { get; set; }
     }

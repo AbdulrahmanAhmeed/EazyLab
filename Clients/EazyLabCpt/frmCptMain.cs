@@ -292,14 +292,14 @@ namespace EazyLabClient
         }
 
 
-        private void switchLedConnect_ValueChanged(object sender, ValueBooleanEventArgs e)
-        {
-            //if (!Server.IsStarted) { Server.Start(); _chamber.Ahu.Initialize(); _chamber.Ahu.Connect(true); }
-            //else { Server.Stop(); _chamber.Ahu.Connect(false); }
-            switchLedConnect.Text = Server.IsStarted ? "DisConnect" : "Connect";
-            timerUpdateDisplay.Enabled = true;
-            switchLedConnect.NoEventUpdate = Server.IsStarted;
-        }
+        //private void switchLedConnect_ValueChanged(object sender, ValueBooleanEventArgs e)
+        //{
+        //    //if (!Server.IsStarted) { Server.Start(); _chamber.Ahu.Initialize(); _chamber.Ahu.Connect(true); }
+        //    //else { Server.Stop(); _chamber.Ahu.Connect(false); }
+        //    switchLedConnect.Text = Server.IsStarted ? "DisConnect" : "Connect";
+        //    timerUpdateDisplay.Enabled = true;
+        //    switchLedConnect.NoEventUpdate = Server.IsStarted;
+        //}
 
         private void timerUpdateDisplay_Tick(object sender, EventArgs e)
         {
@@ -340,10 +340,8 @@ namespace EazyLabClient
             }
 
             Cntrl.Chamber = Chamber;
+            Cntrl.LoadEvents();
             this.WindowState = FormWindowState.Maximized;
-            timer1.Interval = 60000;
-
-
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -390,9 +388,12 @@ namespace EazyLabClient
 
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+
+        private void btClsoe_Click(object sender, EventArgs e)
         {
-            // Chamber.ReInitialize(); 
+            SaveTagsWithColor();
+            this.Close();
+            
         }
     }
 }

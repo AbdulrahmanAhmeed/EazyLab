@@ -46,6 +46,12 @@ namespace EazyLab.Cpt.Classes
 
         }
 
+        public void Stop()
+        {
+            startTime = DateTime.Now;
+            isStarted = false;
+        }
+
         public void Add(CptDataPacketVer1 dp)
         {
             try

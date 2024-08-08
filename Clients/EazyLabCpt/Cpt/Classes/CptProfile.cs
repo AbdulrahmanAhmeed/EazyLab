@@ -156,10 +156,17 @@ namespace EazyLab.Cpt.Classes
 
             }
 
-            UpperLimit = (time - z1.Time) * (z2.Upper - z1.Upper) / (z2.Time - z1.Time) + z1.Upper;
-            LowerLimit = (time - z1.Time) * (z2.Lower - z1.Lower) / (z2.Time - z1.Time) + z1.Lower;
-            UpperLimitSubs.Value = UpperLimit;
-            LowerLimitSubs.Value = LowerLimit;
+            
+            try
+            {
+                UpperLimit = (time - z1.Time) * (z2.Upper - z1.Upper) / (z2.Time - z1.Time) + z1.Upper;
+                LowerLimit = (time - z1.Time) * (z2.Lower - z1.Lower) / (z2.Time - z1.Time) + z1.Lower;
+                UpperLimitSubs.Value = UpperLimit;
+                LowerLimitSubs.Value = LowerLimit;
+            }
+            catch (Exception e) { 
+                LoggerFile.WriteException(e);
+            }
 
 
         }

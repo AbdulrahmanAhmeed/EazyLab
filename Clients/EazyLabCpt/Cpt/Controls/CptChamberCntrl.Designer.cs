@@ -40,7 +40,7 @@ namespace EazyLab.Cpt.Controls
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnReplot = new System.Windows.Forms.Button();
             this.checkLimit = new System.Windows.Forms.CheckBox();
             this.button2 = new System.Windows.Forms.Button();
             this.led1 = new EazyLab.Instrumentation.Standard.Led();
@@ -96,7 +96,6 @@ namespace EazyLab.Cpt.Controls
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -161,7 +160,8 @@ namespace EazyLab.Cpt.Controls
             // 
             this.groupBox1.BackColor = System.Drawing.Color.Black;
             this.tableLayoutPanel2.SetColumnSpan(this.groupBox1, 2);
-            this.groupBox1.Controls.Add(this.groupBox2);
+            this.groupBox1.Controls.Add(this.checkLimit);
+            this.groupBox1.Controls.Add(this.btnReplot);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.led1);
             this.groupBox1.Controls.Add(this.btnSampleOn);
@@ -182,33 +182,33 @@ namespace EazyLab.Cpt.Controls
             this.groupBox1.Text = "Station";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // groupBox2
+            // btnReplot
             // 
-            this.groupBox2.Controls.Add(this.checkLimit);
-            this.groupBox2.ForeColor = System.Drawing.SystemColors.Window;
-            this.groupBox2.Location = new System.Drawing.Point(627, 20);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 109);
-            this.groupBox2.TabIndex = 100;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Limits ";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            this.btnReplot.ForeColor = System.Drawing.Color.Black;
+            this.btnReplot.Location = new System.Drawing.Point(451, 174);
+            this.btnReplot.Name = "btnReplot";
+            this.btnReplot.Size = new System.Drawing.Size(149, 24);
+            this.btnReplot.TabIndex = 103;
+            this.btnReplot.Text = "Replot";
+            this.btnReplot.UseVisualStyleBackColor = true;
             // 
             // checkLimit
             // 
             this.checkLimit.AutoSize = true;
-            this.checkLimit.Location = new System.Drawing.Point(66, 47);
+            this.checkLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkLimit.ForeColor = System.Drawing.Color.White;
+            this.checkLimit.Location = new System.Drawing.Point(451, 243);
             this.checkLimit.Name = "checkLimit";
-            this.checkLimit.Size = new System.Drawing.Size(66, 17);
+            this.checkLimit.Size = new System.Drawing.Size(157, 29);
             this.checkLimit.TabIndex = 1;
-            this.checkLimit.Text = "AddLimit";
+            this.checkLimit.Text = "Show Limits";
             this.checkLimit.UseVisualStyleBackColor = true;
             this.checkLimit.CheckedChanged += new System.EventHandler(this.checkLimit_CheckedChanged);
             // 
             // button2
             // 
             this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(451, 237);
+            this.button2.Location = new System.Drawing.Point(451, 204);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(149, 23);
             this.button2.TabIndex = 1;
@@ -296,6 +296,7 @@ namespace EazyLab.Cpt.Controls
             this.button1.TabIndex = 79;
             this.button1.Text = "Export";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // editString1
             // 
@@ -330,8 +331,7 @@ namespace EazyLab.Cpt.Controls
             this.CbStation.Size = new System.Drawing.Size(312, 28);
             this.CbStation.TabIndex = 87;
             this.CbStation.DropDown += new System.EventHandler(this.CbStation_DropDown);
-            this.CbStation.SelectedIndexChanged += new System.EventHandler(this.CbStation_SelectedIndexChanged);
-            this.CbStation.SelectedValueChanged += new System.EventHandler(this.CbStation_SelectedValueChanged);
+            this.CbStation.SelectionChangeCommitted += new System.EventHandler(this.CbStation_SelectedValueChanged);
             // 
             // label2
             // 
@@ -378,6 +378,7 @@ namespace EazyLab.Cpt.Controls
             this.pvCurrent.TextFormatting.UnitsText = "A";
             this.pvCurrent.Unit = "A";
             this.pvCurrent.ValueAsDouble = 0D;
+            this.pvCurrent.DoubleClick += new System.EventHandler(this.pvTemp_DoubleClick);
             this.pvCurrent.LoadingEnd();
             // 
             // pvEnergy
@@ -410,6 +411,7 @@ namespace EazyLab.Cpt.Controls
             this.pvEnergy.TextFormatting.UnitsText = "kwh";
             this.pvEnergy.Unit = "kwh";
             this.pvEnergy.ValueAsDouble = 0D;
+            this.pvEnergy.DoubleClick += new System.EventHandler(this.pvTemp_DoubleClick);
             this.pvEnergy.LoadingEnd();
             // 
             // pvVoltage
@@ -443,6 +445,7 @@ namespace EazyLab.Cpt.Controls
             this.pvVoltage.Unit = "V";
             this.pvVoltage.ValueAsDouble = 0D;
             this.pvVoltage.ValueChanged += new EazyLab.Delegates.ValueDoubleEventHandler(this.pvVoltage_ValueChanged);
+            this.pvVoltage.DoubleClick += new System.EventHandler(this.pvTemp_DoubleClick);
             this.pvVoltage.LoadingEnd();
             // 
             // pvPower
@@ -475,6 +478,7 @@ namespace EazyLab.Cpt.Controls
             this.pvPower.TextFormatting.UnitsText = "W";
             this.pvPower.Unit = "W";
             this.pvPower.ValueAsDouble = 0D;
+            this.pvPower.DoubleClick += new System.EventHandler(this.pvTemp_DoubleClick);
             this.pvPower.LoadingEnd();
             // 
             // pvTemp2
@@ -540,6 +544,7 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp4.TextFormatting.UnitsText = "°c";
             this.pvTemp4.Unit = "°c";
             this.pvTemp4.ValueAsDouble = 0D;
+            this.pvTemp4.DoubleClick += new System.EventHandler(this.pvTemp_DoubleClick);
             this.pvTemp4.LoadingEnd();
             // 
             // pvTemp6
@@ -572,6 +577,7 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp6.TextFormatting.UnitsText = "°c";
             this.pvTemp6.Unit = "°c";
             this.pvTemp6.ValueAsDouble = 0D;
+            this.pvTemp6.DoubleClick += new System.EventHandler(this.pvTemp_DoubleClick);
             this.pvTemp6.LoadingEnd();
             // 
             // pvTemp1
@@ -683,6 +689,7 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp3.TextFormatting.UnitsText = "°c";
             this.pvTemp3.Unit = "°c";
             this.pvTemp3.ValueAsDouble = 0D;
+            this.pvTemp3.DoubleClick += new System.EventHandler(this.pvTemp_DoubleClick);
             this.pvTemp3.LoadingEnd();
             // 
             // pvTemp5
@@ -715,6 +722,7 @@ namespace EazyLab.Cpt.Controls
             this.pvTemp5.TextFormatting.UnitsText = "°c";
             this.pvTemp5.Unit = "°c";
             this.pvTemp5.ValueAsDouble = 0D;
+            this.pvTemp5.DoubleClick += new System.EventHandler(this.pvTemp_DoubleClick);
             this.pvTemp5.LoadingEnd();
             // 
             // labelStatus
@@ -1032,8 +1040,6 @@ namespace EazyLab.Cpt.Controls
             this.tableLayoutPanel2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1094,7 +1100,7 @@ namespace EazyLab.Cpt.Controls
         private System.Windows.Forms.ImageList imageList4;
         private System.Windows.Forms.CheckBox checkLimit;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button btnReplot;
     }
 }

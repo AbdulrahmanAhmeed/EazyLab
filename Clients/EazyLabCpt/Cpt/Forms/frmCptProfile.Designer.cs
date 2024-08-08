@@ -29,16 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            EazyLab.Classes.PlotChannelTrace plotChannelTrace1 = new EazyLab.Classes.PlotChannelTrace();
-            EazyLab.Classes.PlotChannelTrace plotChannelTrace2 = new EazyLab.Classes.PlotChannelTrace();
-            EazyLab.Classes.PlotDataCursorXY plotDataCursorXY1 = new EazyLab.Classes.PlotDataCursorXY();
-            EazyLab.Classes.PlotDataView plotDataView1 = new EazyLab.Classes.PlotDataView();
-            EazyLab.Classes.PlotLabelBasic plotLabelBasic1 = new EazyLab.Classes.PlotLabelBasic();
-            EazyLab.Classes.PlotLegendBasic plotLegendBasic1 = new EazyLab.Classes.PlotLegendBasic();
-            EazyLab.Classes.PlotTableGrid plotTableGrid1 = new EazyLab.Classes.PlotTableGrid();
-            EazyLab.Classes.PlotXAxis plotXAxis1 = new EazyLab.Classes.PlotXAxis();
-            EazyLab.Classes.PlotYAxis plotYAxis1 = new EazyLab.Classes.PlotYAxis();
+            EazyLab.Classes.PlotChannelTrace plotChannelTrace3 = new EazyLab.Classes.PlotChannelTrace();
+            EazyLab.Classes.PlotChannelTrace plotChannelTrace4 = new EazyLab.Classes.PlotChannelTrace();
+            EazyLab.Classes.PlotDataCursorXY plotDataCursorXY2 = new EazyLab.Classes.PlotDataCursorXY();
+            EazyLab.Classes.PlotDataView plotDataView2 = new EazyLab.Classes.PlotDataView();
+            EazyLab.Classes.PlotLabelBasic plotLabelBasic2 = new EazyLab.Classes.PlotLabelBasic();
+            EazyLab.Classes.PlotLegendBasic plotLegendBasic2 = new EazyLab.Classes.PlotLegendBasic();
+            EazyLab.Classes.PlotXAxis plotXAxis2 = new EazyLab.Classes.PlotXAxis();
+            EazyLab.Classes.PlotYAxis plotYAxis2 = new EazyLab.Classes.PlotYAxis();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.numBatch = new System.Windows.Forms.NumericUpDown();
+            this.label14 = new EazyLab.Instrumentation.Standard.Label();
             this.btnSaveGeneratedSamples = new System.Windows.Forms.Button();
             this.nudQuantity = new System.Windows.Forms.NumericUpDown();
             this.btnGenerate = new System.Windows.Forms.Button();
@@ -51,6 +52,7 @@
             this.label9 = new EazyLab.Instrumentation.Standard.Label();
             this.cbSuffix = new System.Windows.Forms.ComboBox();
             this.groupBoxModel = new System.Windows.Forms.GroupBox();
+            this.btnNewModel = new System.Windows.Forms.Button();
             this.nudDelayTime = new System.Windows.Forms.NumericUpDown();
             this.nudInrushDurration = new System.Windows.Forms.NumericUpDown();
             this.listBox2 = new System.Windows.Forms.ListBox();
@@ -89,7 +91,10 @@
             this.label13 = new EazyLab.Instrumentation.Standard.Label();
             this.label5 = new EazyLab.Instrumentation.Standard.Label();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.cbBatchNumbers = new System.Windows.Forms.ComboBox();
+            this.label15 = new EazyLab.Instrumentation.Standard.Label();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numBatch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStartCount)).BeginInit();
             this.groupBoxModel.SuspendLayout();
@@ -109,6 +114,10 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.White;
+            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.cbBatchNumbers);
+            this.groupBox3.Controls.Add(this.numBatch);
+            this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.btnSaveGeneratedSamples);
             this.groupBox3.Controls.Add(this.nudQuantity);
             this.groupBox3.Controls.Add(this.btnGenerate);
@@ -129,6 +138,44 @@
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Sample Serial No.s";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            // 
+            // numBatch
+            // 
+            this.numBatch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numBatch.Location = new System.Drawing.Point(362, 220);
+            this.numBatch.Maximum = new decimal(new int[] {
+            2147483647,
+            0,
+            0,
+            0});
+            this.numBatch.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numBatch.Name = "numBatch";
+            this.numBatch.Size = new System.Drawing.Size(132, 26);
+            this.numBatch.TabIndex = 22;
+            this.numBatch.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numBatch.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            // 
+            // label14
+            // 
+            this.label14.LoadingBegin();
+            this.label14.AutoFont = false;
+            this.label14.AutoSize = false;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(281, 218);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(72, 28);
+            this.label14.Text = "BN";
+            this.label14.TextChanged += new System.EventHandler(this.label14_TextChanged);
+            this.label14.LoadingEnd();
             // 
             // btnSaveGeneratedSamples
             // 
@@ -185,6 +232,7 @@
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(246, 434);
             this.listBox1.TabIndex = 0;
+            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // nudStartCount
             // 
@@ -280,6 +328,7 @@
             // groupBoxModel
             // 
             this.groupBoxModel.BackColor = System.Drawing.Color.White;
+            this.groupBoxModel.Controls.Add(this.btnNewModel);
             this.groupBoxModel.Controls.Add(this.nudDelayTime);
             this.groupBoxModel.Controls.Add(this.nudInrushDurration);
             this.groupBoxModel.Controls.Add(this.listBox2);
@@ -301,6 +350,17 @@
             this.groupBoxModel.TabIndex = 13;
             this.groupBoxModel.TabStop = false;
             this.groupBoxModel.Text = "Model";
+            // 
+            // btnNewModel
+            // 
+            this.btnNewModel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNewModel.Location = new System.Drawing.Point(234, 405);
+            this.btnNewModel.Name = "btnNewModel";
+            this.btnNewModel.Size = new System.Drawing.Size(97, 31);
+            this.btnNewModel.TabIndex = 26;
+            this.btnNewModel.Text = "New ";
+            this.btnNewModel.UseVisualStyleBackColor = true;
+            this.btnNewModel.Click += new System.EventHandler(this.btnNewModel_Click);
             // 
             // nudDelayTime
             // 
@@ -346,6 +406,7 @@
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(308, 160);
             this.listBox2.TabIndex = 16;
+            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -441,9 +502,9 @@
             // btModelDelete
             // 
             this.btModelDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btModelDelete.Location = new System.Drawing.Point(164, 405);
+            this.btModelDelete.Location = new System.Drawing.Point(121, 405);
             this.btModelDelete.Name = "btModelDelete";
-            this.btModelDelete.Size = new System.Drawing.Size(113, 31);
+            this.btModelDelete.Size = new System.Drawing.Size(107, 31);
             this.btModelDelete.TabIndex = 8;
             this.btModelDelete.Text = "Del";
             this.btModelDelete.UseVisualStyleBackColor = true;
@@ -454,7 +515,7 @@
             this.btModelSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btModelSave.Location = new System.Drawing.Point(16, 405);
             this.btModelSave.Name = "btModelSave";
-            this.btModelSave.Size = new System.Drawing.Size(122, 31);
+            this.btModelSave.Size = new System.Drawing.Size(99, 31);
             this.btModelSave.TabIndex = 8;
             this.btModelSave.Text = "Save";
             this.btModelSave.UseVisualStyleBackColor = true;
@@ -553,6 +614,11 @@
             this.dudMax.DecimalPlaces = 2;
             this.dudMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dudMax.Location = new System.Drawing.Point(219, 67);
+            this.dudMax.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.dudMax.Name = "dudMax";
             this.dudMax.Size = new System.Drawing.Size(97, 31);
             this.dudMax.TabIndex = 1;
@@ -563,6 +629,11 @@
             this.dudMin.DecimalPlaces = 2;
             this.dudMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dudMin.Location = new System.Drawing.Point(219, 104);
+            this.dudMin.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
             this.dudMin.Name = "dudMin";
             this.dudMin.Size = new System.Drawing.Size(97, 31);
             this.dudMin.TabIndex = 1;
@@ -572,70 +643,52 @@
             // 
             this.plot.LoadingBegin();
             this.plot.AutoFont = false;
-            this.plot.Background.GradientStartColor = System.Drawing.Color.DeepSkyBlue;
-            this.plot.Background.GradientStopColor = System.Drawing.Color.Blue;
-            this.plot.Background.SolidColor = System.Drawing.Color.White;
-            this.plot.Background.Style = EazyLab.Types.PlotBrushStyle.Solid;
-            this.plot.Background.Visible = true;
-            plotChannelTrace1.Color = System.Drawing.Color.Red;
-            plotChannelTrace1.DrawCustomDataPointAttributes = true;
-            plotChannelTrace1.Markers.Size = 6;
-            plotChannelTrace1.Markers.Visible = true;
-            plotChannelTrace1.MarkersTurnOffLimit = 0;
-            plotChannelTrace1.Name = "Max";
-            plotChannelTrace1.TitleText = "Max";
-            plotChannelTrace1.Trace.Thickness = 3D;
-            plotChannelTrace2.Color = System.Drawing.Color.Lime;
-            plotChannelTrace2.Markers.Size = 6;
-            plotChannelTrace2.Markers.Style = EazyLab.Types.PlotMarkerStyle.TriangleUp;
-            plotChannelTrace2.Markers.Visible = true;
-            plotChannelTrace2.MarkersTurnOffLimit = 0;
-            plotChannelTrace2.Name = "Min";
-            plotChannelTrace2.TitleText = "Min";
-            plotChannelTrace2.Trace.Thickness = 3D;
-            this.plot.Channels.Add(plotChannelTrace1);
-            this.plot.Channels.Add(plotChannelTrace2);
+            plotChannelTrace3.Color = System.Drawing.Color.Red;
+            plotChannelTrace3.DrawCustomDataPointAttributes = true;
+            plotChannelTrace3.Markers.Size = 6;
+            plotChannelTrace3.Markers.Visible = true;
+            plotChannelTrace3.MarkersTurnOffLimit = 0;
+            plotChannelTrace3.Name = "Max";
+            plotChannelTrace3.TitleText = "Max";
+            plotChannelTrace3.Trace.Thickness = 3D;
+            plotChannelTrace4.Color = System.Drawing.Color.Lime;
+            plotChannelTrace4.Markers.Size = 6;
+            plotChannelTrace4.Markers.Style = EazyLab.Types.PlotMarkerStyle.TriangleUp;
+            plotChannelTrace4.Markers.Visible = true;
+            plotChannelTrace4.MarkersTurnOffLimit = 0;
+            plotChannelTrace4.Name = "Min";
+            plotChannelTrace4.TitleText = "Min";
+            plotChannelTrace4.Trace.Thickness = 3D;
+            this.plot.Channels.Add(plotChannelTrace3);
+            this.plot.Channels.Add(plotChannelTrace4);
             this.tableLayoutPanel2.SetColumnSpan(this.plot, 3);
-            plotDataCursorXY1.ClippingStyle = EazyLab.Types.PlotClippingStyle.Axes;
-            plotDataCursorXY1.Hint.Fill.Pen.Color = System.Drawing.SystemColors.InfoText;
-            plotDataCursorXY1.Name = "Data-Cursor 1";
-            plotDataCursorXY1.Style = EazyLab.Types.PlotDataCursorMultipleStyle.ValueX;
-            plotDataCursorXY1.TitleText = "Data-Cursor 1";
-            plotDataCursorXY1.UserCanEdit = false;
-            plotDataCursorXY1.Visible = true;
-            this.plot.DataCursors.Add(plotDataCursorXY1);
-            plotDataView1.Name = "Data-View 1";
-            plotDataView1.TitleText = "Data-View 1";
-            this.plot.DataViews.Add(plotDataView1);
+            plotDataCursorXY2.Hint.Fill.Pen.Color = System.Drawing.SystemColors.InfoText;
+            plotDataCursorXY2.Name = "Data-Cursor 1";
+            plotDataCursorXY2.TitleText = "Data-Cursor 1";
+            this.plot.DataCursors.Add(plotDataCursorXY2);
+            plotDataView2.Name = "Data-View 1";
+            plotDataView2.TitleText = "Data-View 1";
+            this.plot.DataViews.Add(plotDataView2);
             this.plot.Dock = System.Windows.Forms.DockStyle.Fill;
-            plotLabelBasic1.DockOrder = 0;
-            plotLabelBasic1.Name = "Label 1";
-            plotLabelBasic1.Text = "Profile";
-            plotLabelBasic1.Visible = false;
-            this.plot.Labels.Add(plotLabelBasic1);
-            plotLegendBasic1.DockOrder = 0;
-            plotLegendBasic1.Name = "Legend 1";
-            plotLegendBasic1.TitleText = "Legend 1";
-            this.plot.Legends.Add(plotLegendBasic1);
+            plotLabelBasic2.DockOrder = 0;
+            plotLabelBasic2.Name = "Label 1";
+            this.plot.Labels.Add(plotLabelBasic2);
+            plotLegendBasic2.DockOrder = 0;
+            plotLegendBasic2.Name = "Legend 1";
+            plotLegendBasic2.TitleText = "Legend 1";
+            this.plot.Legends.Add(plotLegendBasic2);
             this.plot.Location = new System.Drawing.Point(3, 3);
             this.plot.Name = "plot";
             this.plot.Size = new System.Drawing.Size(1458, 392);
             this.plot.TabIndex = 0;
-            plotTableGrid1.ColTitlesVisible = true;
-            plotTableGrid1.DataRowCount = 7;
-            plotTableGrid1.DockOrder = 1;
-            plotTableGrid1.Name = "Table 1";
-            plotTableGrid1.TitleText = "Table 1";
-            plotTableGrid1.Visible = false;
-            this.plot.Tables.Add(plotTableGrid1);
-            plotXAxis1.DockOrder = 0;
-            plotXAxis1.Name = "X-Axis 1";
-            plotXAxis1.Title.Text = "X-Axis 1";
-            this.plot.XAxes.Add(plotXAxis1);
-            plotYAxis1.DockOrder = 0;
-            plotYAxis1.Name = "Y-Axis 1";
-            plotYAxis1.Title.Text = "Y-Axis 1";
-            this.plot.YAxes.Add(plotYAxis1);
+            plotXAxis2.DockOrder = 0;
+            plotXAxis2.Name = "X-Axis 1";
+            plotXAxis2.Title.Text = "X-Axis 1";
+            this.plot.XAxes.Add(plotXAxis2);
+            plotYAxis2.DockOrder = 0;
+            plotYAxis2.Name = "Y-Axis 1";
+            plotYAxis2.Title.Text = "Y-Axis 1";
+            this.plot.YAxes.Add(plotYAxis2);
             this.plot.CursorChanged += new System.EventHandler(this.plot_CursorChanged);
             this.plot.Click += new System.EventHandler(this.plot_Click);
             this.plot.DoubleClick += new System.EventHandler(this.plot_DoubleClick);
@@ -750,7 +803,7 @@
             // btnNewProfile
             // 
             this.btnNewProfile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNewProfile.Location = new System.Drawing.Point(386, 51);
+            this.btnNewProfile.Location = new System.Drawing.Point(386, 48);
             this.btnNewProfile.Name = "btnNewProfile";
             this.btnNewProfile.Size = new System.Drawing.Size(151, 28);
             this.btnNewProfile.TabIndex = 8;
@@ -840,6 +893,28 @@
             this.label5.Text = "Id:";
             this.label5.LoadingEnd();
             // 
+            // cbBatchNumbers
+            // 
+            this.cbBatchNumbers.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbBatchNumbers.FormattingEnabled = true;
+            this.cbBatchNumbers.Location = new System.Drawing.Point(353, 70);
+            this.cbBatchNumbers.Name = "cbBatchNumbers";
+            this.cbBatchNumbers.Size = new System.Drawing.Size(135, 28);
+            this.cbBatchNumbers.TabIndex = 28;
+            this.cbBatchNumbers.SelectedIndexChanged += new System.EventHandler(this.cbBatchNumbers_SelectionChangeCommitted);
+            // 
+            // label15
+            // 
+            this.label15.LoadingBegin();
+            this.label15.AutoFont = false;
+            this.label15.AutoSize = false;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(275, 70);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(72, 28);
+            this.label15.Text = "BN";
+            this.label15.LoadingEnd();
+            // 
             // frmCptProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -852,6 +927,7 @@
             this.Text = " CptT emp Profile";
             this.Load += new System.EventHandler(this.frmCptTempProfile_Load);
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numBatch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudStartCount)).EndInit();
             this.groupBoxModel.ResumeLayout(false);
@@ -924,5 +1000,10 @@
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button btLower;
         private System.Windows.Forms.Button btUpper;
+        private System.Windows.Forms.Button btnNewModel;
+        private System.Windows.Forms.NumericUpDown numBatch;
+        private Instrumentation.Standard.Label label14;
+        private Instrumentation.Standard.Label label15;
+        private System.Windows.Forms.ComboBox cbBatchNumbers;
     }
 }

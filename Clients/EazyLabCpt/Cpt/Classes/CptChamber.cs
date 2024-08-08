@@ -30,6 +30,8 @@ namespace EazyLab.Cpt.Classes
         WiFiAvailableNetwork WiFiAvailableNetwork { get; set; }
         [BsonIgnore]
         public EventHandler<SampleReadyEventArgs> SampleReadyEvent { get => smapleReadyEvent; set => smapleReadyEvent = value; }
+        [BsonIgnore]
+        public EventHandler<EventArgs> SelectStationEvent {  get => selectStationEvent; set => selectStationEvent = value; }
         public CptChamber()
         {
             Stations = new List<CptStation>();
@@ -44,6 +46,16 @@ namespace EazyLab.Cpt.Classes
         protected virtual void OnSampleReadyEvent(SampleReadyEventArgs e)
         {
             EventHandler<SampleReadyEventArgs> handler = SampleReadyEvent;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+
+        }
+
+        protected virtual void OnSelectStationEvent(EventArgs e)
+        {
+            EventHandler<EventArgs> handler = SelectStationEvent;
             if (handler != null)
             {
                 handler(this, e);
@@ -133,7 +145,7 @@ namespace EazyLab.Cpt.Classes
 
         CptStation waitingStation = new CptStation();
         private EventHandler<SampleReadyEventArgs> smapleReadyEvent;
-
+        private EventHandler<EventArgs> selectStationEvent;
         private void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             string ss = ""; 
@@ -156,6 +168,8 @@ namespace EazyLab.Cpt.Classes
                         if ((st.SampleStatus == CptStation.SamplesStatus.NoSample || st.SampleStatus == CptStation.SamplesStatus.SampleFinished))
                         {
                             st.PutStationWaitForSample();
+                            st.Selected = true;
+                            OnSelectStationEvent(new EventArgs());
                             ToastMessage("Add Sample To station #" + st.SerialNumber);
                             waitingStation = st;
                             return;
@@ -171,7 +185,7 @@ namespace EazyLab.Cpt.Classes
 
                 else
                 {
-                    waitingStation = string.IsNullOrEmpty(ss) ? Stations.First(x => x.IsConnected) : Stations.First(T => T.SerialNumber == ss);
+                    waitingStation = string.IsNullOrEmpty(ss) ? Stations.First(x => x.Selected) : Stations.First(T => T.SerialNumber == ss);
                     if (waitingStation.SampleStatus == CptStation.SamplesStatus.SampleWaiting)
                     {
                         var cptSamples = Server.DbAccess.GetAll<CptSample>();

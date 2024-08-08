@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+//using static Syncfusion.XlsIO.Parser.Biff_Records.AutoFilterRecord;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 namespace EazyLab.Cpt.Forms
 {
     public partial class frmCptProfile : Form
@@ -12,8 +14,9 @@ namespace EazyLab.Cpt.Forms
         DbAccess DbAccess = Server.DbAccess;
         CptProfile tempProfile { set; get; }
         CptTempZone tempZone { set; get; }
+        List<string> BatchNumbers { get; set; } = new List<string>();
         CptModel model;
-
+        private string BatchNumber ;
         List<CptProfile> tempProfiles = new List<CptProfile>();
         List<CptProfile> ModelsProfiles = new List<CptProfile>();
         List<CptModel> cptModels = new List<CptModel>();
@@ -46,10 +49,20 @@ namespace EazyLab.Cpt.Forms
         {
             try
             {
-                tempProfiles = DbAccess.GetAll<CptProfile>();
+
+                cptSamples = DbAccess.GetAll<CptSample>();
+                cptSamples.ForEach(x =>
+                {
+                    if (x.BatchNumber != null && !BatchNumbers.Contains(x.BatchNumber))
+                    {
+                        BatchNumbers.Add(x.BatchNumber);
+                    }
+                });
+                tempProfiles = cptSamples.Count==0? DbAccess.GetAll<CptProfile>() :cptSamples[0].Profiles;
                 nudProfileId.Maximum = tempProfiles.Count==0 ? 1:tempProfiles.Count;
                 cptModels = DbAccess.GetAll<CptModel>();
                 cbModelName.DataSource = cptModels;
+                cbBatchNumbers.DataSource = BatchNumbers;
                 cbModelName.DisplayMember = "Model";
                 cbModelName.SelectedIndex = cptModels.Count > 0 ? 0 : -1;
                 if (tempProfiles.Count > 0) {
@@ -60,8 +73,9 @@ namespace EazyLab.Cpt.Forms
                 cbPrefix.DataSource = sampleSerialPrefixes;
                 sampleSerialSuffixes = DbAccess.GetAll<SampleSerialSuffix>();
                 cbSuffix.DataSource = sampleSerialSuffixes;
-                cptSamples = DbAccess.GetAll<CptSample>();
-                listBox1.Items.AddRange(cptSamples.ToArray());
+                
+                //listBox1.Items.AddRange(cptSamples.ToArray());
+                tempsample = cptSamples;
                 UpdateDisplay();
             }
             catch (Exception ex)
@@ -76,12 +90,16 @@ namespace EazyLab.Cpt.Forms
         /// </summary>
         void UpdateDisplay()
         {
-            cptSamples = DbAccess.GetAll<CptSample>().Where(x => x.Model.Model == cbModelName.Text).ToList();
+            cptSamples = DbAccess.GetAll<CptSample>().Where(x => x.Model.Model == cbModelName.Text&& cbBatchNumbers.Text==x.BatchNumber).ToList();
             if (cptSamples.Count > 0)
             {
                 listBox2.Items.Clear();
                 listBox2.Items.AddRange(cptSamples[0].Profiles.Select(x => x.Source.ToString()).ToArray());
                 ModelsProfiles = cptSamples[0].Profiles;
+                tempsample = cptSamples;
+                listBox1.Items.Clear();
+                listBox1.Items.AddRange(tempsample.Select(x => x.SerialNo).ToArray());
+
             }
             if (tempsample.Count == 0)
             {
@@ -103,12 +121,13 @@ namespace EazyLab.Cpt.Forms
                 {
                     if(tempProfile != null )
                     {
+                        cbSource.Text = tempProfile.Source.ToString();
                         groupBoxPoint.Enabled = true;
                         nudProfileId.Enabled = true;
-                        nudProfileId.Maximum = tempProfiles.Count;
+                        nudProfileId.Maximum = tempProfiles.Count > tempProfile.Id? tempProfiles.Count : tempProfile.Id ;
                         nudProfileId.Minimum = 1;
-                        nudProfileId.Value = tempProfile.Id;
-                        cbSource.Text = tempProfile.Source.ToString();
+                       
+                        
                         tempProfile.TempZones.Sort((x, y) => x.Time.CompareTo(y.Time));
                         foreach (var p in tempProfile.TempZones)
                         {
@@ -123,6 +142,7 @@ namespace EazyLab.Cpt.Forms
                         }
                         plot.XAxes[0].Tracking.ZoomToFitAll();
                         plot.YAxes[0].Tracking.ZoomToFitAll();
+                        nudProfileId.Value = tempProfile.Id;
                     }
                 }
                 
@@ -219,7 +239,7 @@ namespace EazyLab.Cpt.Forms
                 //tempProfile.RejectIfCurrent = cbMaxCurrent.Checked;
                 tempProfile.Source = (CptProfile.ProfileSource)Enum.Parse(typeof(CptProfile.ProfileSource), cbSource.Text);  // (cbSource.SelectedIndex)CptProfile.ProfileSource;
                 DbAccess.Upsert(tempProfile);
-                tempProfiles = DbAccess.GetAll<CptProfile>();
+                //tempProfiles = DbAccess.GetAll<CptProfile>();
                 //tempProfile = tempProfiles[(int)nudProfileId.Value - 1];
                 UpdateDisplay();
             }
@@ -268,12 +288,14 @@ namespace EazyLab.Cpt.Forms
                 nudProfileId.Maximum = tempProfiles.Count;
                 nudProfileId.Minimum = 1;
                 nudProfileId.Value = tempProfiles.Count;
+                this.dudMax.Value = 0;
+                this.dudMin.Value = 0;
+                this.dudTime.Value = 0;
                 if (((Button)sender).Text == "Copy")
                 {
                     foreach (var p in oldprofile.TempZones) tempProfile.Add(p);
 
                 }
-                UpdateDisplay();
             }
             catch (Exception ex)
             {
@@ -403,6 +425,7 @@ namespace EazyLab.Cpt.Forms
         }
 
         List<CptSample> tempsample = new List<CptSample>();
+        List<CptSample> NewSamples = new List<CptSample>();
         private void btnGenerate_Click(object sender, EventArgs e)
         {
             //tempsample.Clear();
@@ -428,14 +451,15 @@ namespace EazyLab.Cpt.Forms
 
             }
             if (nudQuantity.Value == 0) return;
-            listBox1.Items.Clear();
+            //listBox1.Items.Clear();
             try
             {
                 for (int i = 0; i < nudQuantity.Value; i++)
                 {
                     string newserial = cbPrefix.Text + (i + nudStartCount.Value).ToString() + cbSuffix.Text;
-                    CptSample s = new CptSample() { SerialNo = newserial, Model = cptModels[cbModelName.SelectedIndex] };
+                    CptSample s = new CptSample() { SerialNo = newserial, Model = cptModels[cbModelName.SelectedIndex],BatchNumber = numBatch.Value.ToString() };
                     tempsample.Add(s);
+                    NewSamples.Add(s);
                     listBox1.Items.Add(s.SerialNo);
 
                 }
@@ -444,7 +468,6 @@ namespace EazyLab.Cpt.Forms
             {
             }
 
-            UpdateDisplay();
         }
 
         private void btnSaveGeneratedSamples_Click(object sender, EventArgs e)
@@ -454,16 +477,30 @@ namespace EazyLab.Cpt.Forms
             //    DbAccess.Upsert(s);
 
             //}
+            
             tempsample.ForEach(x =>
             {
-                if (x.Model.Model != cptModels[cbModelName.SelectedIndex].Model)
+                if (x.Model.Model != model.Model)
                 {
-                    x.Model = cptModels[cbModelName.SelectedIndex];
+                    x.Model = model;
                 }
             });
             tempsample = tempsample.Count == 0 ? cptSamples : tempsample;
             tempsample.ForEach(x => x.Profiles= ModelsProfiles);
-            DbAccess.Upsert(tempsample);
+            try
+            {
+                foreach (var sample in tempsample) {
+                    DbAccess.Insert(sample);
+                }
+
+            }
+            catch (Exception ex) { 
+                LoggerFile.WriteException(ex);
+            }
+            foreach (var item in tempsample[0].Profiles)
+            {
+                DbAccess.Upsert(item);
+            }
             //CptTest cptTest = new CptTest();
 
         }
@@ -490,7 +527,7 @@ namespace EazyLab.Cpt.Forms
 
         private void cbModelName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var model = (CptModel)cbModelName.SelectedItem;
+            model = (CptModel)cbModelName.SelectedItem;
             cbModelName.Text = model.Model;
             UpdateDisplay();
         }
@@ -503,7 +540,12 @@ namespace EazyLab.Cpt.Forms
                 listBox2.Items.Add(tempProfile.Source);
             }
             else
-                MessageBox.Show($"Model already contain {tempProfile.Source} source");
+            {
+                for(var i = 0; i<ModelsProfiles.Count ;i++)
+                {
+                    if (ModelsProfiles[i].Source == tempProfile.Source) ModelsProfiles[i] = tempProfile;
+                }
+            }
             //listBox1.Items.Add(tempProfile.Source);
         }
 
@@ -550,6 +592,58 @@ namespace EazyLab.Cpt.Forms
         private void cbSource_SelectedIndexChanged(object sender, EventArgs e)
         {
             tempProfile.Source = (CptProfile.ProfileSource)Enum.Parse(typeof(CptProfile.ProfileSource), cbSource.Text);
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                tempProfile = ModelsProfiles[listBox2.SelectedIndex];
+                UpdateDisplay();
+            }
+            catch (Exception ex)
+            {
+                LoggerFile.WriteException(ex);
+            }
+        }
+
+        private void btnNewModel_Click(object sender, EventArgs e)
+        {
+            cbModelName.Text = "";
+            tempsample.Clear();
+            listBox1.Items.Clear();
+            listBox2.Items.Clear();
+            ModelsProfiles.Clear();
+        }
+
+        private void label14_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbBatchNumbers_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            UpdateDisplay();
         }
     }
 }

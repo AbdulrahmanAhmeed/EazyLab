@@ -57,14 +57,9 @@ namespace EazyLabClient
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.Cntrl = new EazyLab.Cpt.Controls.CptChamberCntrl();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.ledArrow3 = new EazyLab.Instrumentation.Professional.LedArrow();
-            this.ledArrow2 = new EazyLab.Instrumentation.Professional.LedArrow();
-            this.ledArrow1 = new EazyLab.Instrumentation.Professional.LedArrow();
-            this.ledArrow4 = new EazyLab.Instrumentation.Professional.LedArrow();
             this.btSettings = new System.Windows.Forms.Button();
             this.buttonSetup = new System.Windows.Forms.Button();
-            this.switchLedConnect = new EazyLab.Instrumentation.Standard.SwitchLed();
-            this.switchLed1 = new EazyLab.Instrumentation.Standard.SwitchLed();
+            this.btClsoe = new System.Windows.Forms.Button();
             this.tableLayoutPanelHeader = new System.Windows.Forms.TableLayoutPanel();
             this.labelTitle = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -96,7 +91,6 @@ namespace EazyLabClient
             this.rtuChamberComp = new EazyLab.Equipments.Components.RtuChamberComp(this.components);
             this.ahuDbtWbtComp = new EazyLab.Equipments.Components.AhuDbtWbtComp(this.components);
             this.comPort1 = new EazyLab.Common.ComPort(this.components);
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStripSetup.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -229,12 +223,12 @@ namespace EazyLabClient
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1449, 745);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1620, 745);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // Cntrl
@@ -243,7 +237,7 @@ namespace EazyLabClient
             this.Cntrl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Cntrl.Location = new System.Drawing.Point(3, 48);
             this.Cntrl.Name = "Cntrl";
-            this.Cntrl.Size = new System.Drawing.Size(1443, 629);
+            this.Cntrl.Size = new System.Drawing.Size(1614, 649);
             this.Cntrl.TabIndex = 0;
             this.Cntrl.Load += new System.EventHandler(this.cptChamberCntrl1_Load);
             // 
@@ -262,80 +256,23 @@ namespace EazyLabClient
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 23F));
-            this.tableLayoutPanel2.Controls.Add(this.ledArrow3, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.ledArrow2, 6, 0);
-            this.tableLayoutPanel2.Controls.Add(this.ledArrow1, 8, 0);
-            this.tableLayoutPanel2.Controls.Add(this.ledArrow4, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.btSettings, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.buttonSetup, 7, 0);
-            this.tableLayoutPanel2.Controls.Add(this.switchLedConnect, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.switchLed1, 5, 0);
+            this.tableLayoutPanel2.Controls.Add(this.btClsoe, 9, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 683);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 703);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(1443, 39);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(1614, 39);
             this.tableLayoutPanel2.TabIndex = 10;
             this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
-            // 
-            // ledArrow3
-            // 
-            this.ledArrow3.LoadingBegin();
-            this.ledArrow3.AutoFont = false;
-            this.ledArrow3.Border.MarginBottom = 6;
-            this.ledArrow3.Border.MarginTop = 6;
-            this.ledArrow3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ledArrow3.Indicator.BodyLength = 11;
-            this.ledArrow3.Indicator.HeadSize = 33;
-            this.ledArrow3.Location = new System.Drawing.Point(513, 3);
-            this.ledArrow3.Name = "ledArrow3";
-            this.ledArrow3.Size = new System.Drawing.Size(44, 33);
-            this.ledArrow3.LoadingEnd();
-            // 
-            // ledArrow2
-            // 
-            this.ledArrow2.LoadingBegin();
-            this.ledArrow2.AutoFont = false;
-            this.ledArrow2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ledArrow2.Indicator.BodyLength = 61;
-            this.ledArrow2.Indicator.HeadSize = 33;
-            this.ledArrow2.Location = new System.Drawing.Point(763, 3);
-            this.ledArrow2.Name = "ledArrow2";
-            this.ledArrow2.Size = new System.Drawing.Size(94, 33);
-            this.ledArrow2.LoadingEnd();
-            // 
-            // ledArrow1
-            // 
-            this.ledArrow1.LoadingBegin();
-            this.ledArrow1.AutoFont = false;
-            this.ledArrow1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ledArrow1.Indicator.BodyLength = 61;
-            this.ledArrow1.Indicator.HeadSize = 33;
-            this.ledArrow1.Location = new System.Drawing.Point(1063, 3);
-            this.ledArrow1.Name = "ledArrow1";
-            this.ledArrow1.Size = new System.Drawing.Size(94, 33);
-            this.ledArrow1.LoadingEnd();
-            // 
-            // ledArrow4
-            // 
-            this.ledArrow4.LoadingBegin();
-            this.ledArrow4.AutoFont = false;
-            this.ledArrow4.Border.MarginBottom = 6;
-            this.ledArrow4.Border.MarginTop = 6;
-            this.ledArrow4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ledArrow4.Indicator.BodyLength = 11;
-            this.ledArrow4.Indicator.HeadSize = 33;
-            this.ledArrow4.Location = new System.Drawing.Point(263, 3);
-            this.ledArrow4.Name = "ledArrow4";
-            this.ledArrow4.Size = new System.Drawing.Size(44, 33);
-            this.ledArrow4.LoadingEnd();
             // 
             // btSettings
             // 
             this.btSettings.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btSettings.Location = new System.Drawing.Point(63, 3);
+            this.btSettings.Location = new System.Drawing.Point(148, 3);
             this.btSettings.Name = "btSettings";
             this.btSettings.Size = new System.Drawing.Size(194, 33);
             this.btSettings.TabIndex = 14;
@@ -348,7 +285,7 @@ namespace EazyLabClient
             this.buttonSetup.ContextMenuStrip = this.contextMenuStripSetup;
             this.buttonSetup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonSetup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSetup.Location = new System.Drawing.Point(863, 3);
+            this.buttonSetup.Location = new System.Drawing.Point(948, 3);
             this.buttonSetup.Name = "buttonSetup";
             this.buttonSetup.Size = new System.Drawing.Size(194, 33);
             this.buttonSetup.TabIndex = 16;
@@ -356,37 +293,17 @@ namespace EazyLabClient
             this.buttonSetup.UseVisualStyleBackColor = true;
             this.buttonSetup.Click += new System.EventHandler(this.buttonSetup_Click_1);
             // 
-            // switchLedConnect
+            // btClsoe
             // 
-            this.switchLedConnect.LoadingBegin();
-            this.switchLedConnect.AutoFont = false;
-            this.switchLedConnect.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.switchLedConnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.switchLedConnect.Location = new System.Drawing.Point(313, 3);
-            this.switchLedConnect.Name = "switchLedConnect";
-            this.switchLedConnect.OffText = null;
-            this.switchLedConnect.OnText = null;
-            this.switchLedConnect.Size = new System.Drawing.Size(194, 33);
-            this.switchLedConnect.TabIndex = 17;
-            this.switchLedConnect.Text = null;
-            this.switchLedConnect.ValueChanged += new EazyLab.Delegates.ValueBooleanEventHandler(this.switchLedConnect_ValueChanged);
-            this.switchLedConnect.LoadingEnd();
-            // 
-            // switchLed1
-            // 
-            this.switchLed1.LoadingBegin();
-            this.switchLed1.AutoFont = false;
-            this.switchLed1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.switchLed1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.switchLed1.Location = new System.Drawing.Point(563, 3);
-            this.switchLed1.Name = "switchLed1";
-            this.switchLed1.OffText = null;
-            this.switchLed1.OnText = null;
-            this.switchLed1.Size = new System.Drawing.Size(194, 33);
-            this.switchLed1.TabIndex = 18;
-            this.switchLed1.Text = null;
-            this.switchLed1.ValueChanged += new EazyLab.Delegates.ValueBooleanEventHandler(this.switchLed1_ValueChanged);
-            this.switchLed1.LoadingEnd();
+            this.btClsoe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btClsoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btClsoe.Location = new System.Drawing.Point(1248, 3);
+            this.btClsoe.Name = "btClsoe";
+            this.btClsoe.Size = new System.Drawing.Size(194, 33);
+            this.btClsoe.TabIndex = 19;
+            this.btClsoe.Text = "Close";
+            this.btClsoe.UseVisualStyleBackColor = true;
+            this.btClsoe.Click += new System.EventHandler(this.btClsoe_Click);
             // 
             // tableLayoutPanelHeader
             // 
@@ -404,7 +321,7 @@ namespace EazyLabClient
             this.tableLayoutPanelHeader.Name = "tableLayoutPanelHeader";
             this.tableLayoutPanelHeader.RowCount = 1;
             this.tableLayoutPanelHeader.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelHeader.Size = new System.Drawing.Size(1449, 45);
+            this.tableLayoutPanelHeader.Size = new System.Drawing.Size(1620, 45);
             this.tableLayoutPanelHeader.TabIndex = 1;
             // 
             // labelTitle
@@ -414,7 +331,7 @@ namespace EazyLabClient
             this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTitle.Location = new System.Drawing.Point(353, 0);
             this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(743, 45);
+            this.labelTitle.Size = new System.Drawing.Size(914, 45);
             this.labelTitle.TabIndex = 2;
             this.labelTitle.Text = "Data acquisition Test ";
             this.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -437,7 +354,7 @@ namespace EazyLabClient
             this.led1.AutoFont = false;
             this.led1.BlinkerRate = 10;
             this.led1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.led1.Location = new System.Drawing.Point(1352, 3);
+            this.led1.Location = new System.Drawing.Point(1523, 3);
             this.led1.Name = "led1";
             this.led1.Size = new System.Drawing.Size(44, 39);
             this.led1.Value.EventsEnabled = false;
@@ -579,17 +496,12 @@ namespace EazyLabClient
             // 
             this.comPort1.LogFile = null;
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 10000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // frmCptMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Cyan;
-            this.ClientSize = new System.Drawing.Size(1449, 745);
+            this.ClientSize = new System.Drawing.Size(1620, 745);
             this.Controls.Add(this.tableLayoutPanel1);
             this.DoubleBuffered = true;
             this.Name = "frmCptMain";
@@ -599,7 +511,6 @@ namespace EazyLabClient
             this.contextMenuStripSetup.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
             this.tableLayoutPanelHeader.ResumeLayout(false);
             this.tableLayoutPanelHeader.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -659,17 +570,11 @@ namespace EazyLabClient
         private CptChamberCntrl Cntrl;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemBarCodeScanner;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private LedArrow ledArrow3;
-        private LedArrow ledArrow2;
-        private LedArrow ledArrow1;
-        private LedArrow ledArrow4;
         private System.Windows.Forms.Button btSettings;
         private System.Windows.Forms.Button buttonSetup;
-        private SwitchLed switchLedConnect;
-        private SwitchLed switchLed1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemConnectAllStations;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btClsoe;
     }
 }
 
